@@ -54,19 +54,191 @@
 	
 	<definition name="myPage" extends="base_layout">
 		<put-attribute name="title" value="MY PAGE"/>
-		<put-attribute name=""/>
+		<put-attribute name="/WEB-INF/member/mypage/myPage.jsp"/>
 	</definition>
 	
+	<definition name="modifyForm" extends="base_layout">
+		<put-attribute name="title" value="MODIFY FORM"/>
+		<put-attribute name="body" value="/WEB-INF/member/mypage/modifyForm.jsp"/>
+	</definition>
+	
+	<definition name="reserveList" extends="base_layout">
+		<put-attribute name="title" value="RESERVE LIST"/>
+		<put-attribute name="body" value="/WEB-INF/member/mypage/reserveList.jsp"/>
+	</definition>
+	
+	<definition name="reserveCancel" extends="base_layout">
+		<put-attribute name="title" value="RESERVE CANCEL"/>
+		<put-attribute name="body" value="/WEB-INF/member/mypage/reserveCancel.jsp"/>	
+	</definition>
 
+	<definition name="reserveTicket" extends="base_layout">
+		<put-attribute name="title" value="RESERVE TICKET"/>
+		<put-attribute name="body" value="/WEB-INF/member/mypage/reserveTicket.jsp"/>
+	</definition>
+	
+	<definition name="evalMusicList" extends="evalMusicList">
+		<put-attribute name="title" value="MY MUSIC EVALUATION LIST"/>
+		<put-attribute name="body" value="/WEB-INF/member/mypage/evalMusicList.jsp"/>
+	</definition>
 
+	<definition name="cultureList" extends="base_layout">
+		<put-attribute name="title" value="CULTURE LIST"/>
+		<put-attribute name="body" value="/WEB-INF/member/culture/cultureList.jsp"/>
+	</definition>
+	
+	<definition name="cultureDetail" extends="base_layout">
+		<put-attribute name="title" value="CULTURE DETAIL"/>
+		<put-attribute name="body" value="/WEB-INF/member/culture/cultureDetail.jsp"/>
+	</definition>
 
+	<definition name="reserveForm" extends="base_layout">
+		<put-attribute name="title" value="RESERVE FORM"/>
+		<put-attribute name=""></put-attribute>
+	</definition>
+	
+	<definition name="reservePay" extends="base_layout">
+		<put-attribute name="title" value="RESERVE PAYMENT"/>
+		<put-attribute name="body" value="/WEB-INF/member/reserve/reservePay.jsp"/>
+	</definition>
+	
+	<definition name="reserveResultForm" extends="base_layout">
+		<put-attribute name="title" value="RESERVATION COMPLETE"/>
+		<put-attribute name="body" value="/WEB-INF/member/reserve/reserveResultForm.jsp"/>
+	</definition>
+	
+	<definition name="evalList" extends="base_layout">
+		<put-attribute name="title" value="EVALUATION MUSIC LIST"/>
+		<put-attribute name="body" value="/WEB-INF/member/eval/evalList.jsp"/>
+	</definition>
+	
+	<definition name="evalDetail" extends="base_layout">
+		<put-attribute name="title" value="MUSIC DETAIL"/>
+		<put-attribute name="body" value="/WEB-INF/member/eval/evalDetail.jsp"/>
+	</definition>
+	
+	<definition name="recommendList" extends="base_layout">
+		<put-attribute name="title" value="RECOMMEND LIST"/>
+		<put-attribute name="body" value="/WEB-INF/member/eval/recommendList.jsp"/>
+	</definition>
+	
+	<definition name="recommendDetail" extends="base_layout">
+		<put-attribute name="title" value="RECOMMEND DETAIL"/>
+		<put-attribute name="body" value="/WEB-INF/member/eval/recommendDetail.jsp"/>
+	</definition>
+	
+	<!-- ADMIN -->
+	<definition name="adminMain" extends="base_layout">
+		<put-attribute name="title" value="ADMIN MAIN"/>
+		<put-attribute name="body" value="/WEB-INF/admin/main/adminMain.jsp"/>
+	</definition>
+	
+	<definition name="adminMemberList" extends="base_layout">
+		<put-attribute name="title" value="ADMIN MEMBER LIST"/>
+		<put-attribute name="body" value="/WEB-INF/admin/member/adminMemberList.jsp"/>
+	</definition>
+	
+	<definition name="adminModify" extends="base_layout">
+		<put-attribute name="title" value="ADMIN MODIFY"/>
+		<put-attribute name="body" value="/WEB-INF/admin/member/adminModify.jsp"/>
+	</definition>
+	
+	<definition name="adminConcertList" extends="base_layout">
+		<put-attribute name="title" value="ADMIN CONCERT LIST"/>
+		<put-attribute name="body" value="/WEB-INF/admin/concert/adminConcertList.jsp"/>
+	</definition>
 
-
-
-
-
-
+	<definition name="adminConcertDetail" extends="base_layout">
+		<put-attribute name="title" value="ADMIN CONCERT DETAIL"/>
+		<put-attribute name="body" value="/WEB-INF/admin/concert/adminConcertDetail.jsp"/>	
+	</definition>
+	
+	<definition name="adminConcertJoinForm" extends="base_layout">
+		<put-attribute name="title" value="ADMIN CONCERT JOIN FORM"/>
+		<put-attribute name="body" value="/WEB-INF/admin/concert/adminConcertJoinForm.jsp"/>
+	</definition>
+	
+	<definition name="adminConcertModifyForm" extends="base_layout">
+		<put-attribute name="title" value="ADMIN CONCERT MODIFY FORM"/>
+		<put-attribute name="body" value="/WEB-INF/admin/concert/adminConcertModifyForm.jsp"/>
+	</definition>
+	
+	<definition name="adminReserveListForm" extends="base_layout">
+		<put-attribute name="title" value="ADMIN RESERVE LIST"/>
+		<put-attribute name="body" value="/WEB-INF/admin/reserve/adminReserveListForm.jsp"/>
+	</definition>
+	
+	<definition name="adminMusicListForm" extends="base_layout">
+		<put-attribute name="title" value="ADMIN MUSIC LIST"></put-attribute>
+		<put-attribute name="body" value="/WEB-INF/admin/music/adminMusicListForm.jsp"/>
+	</definition>
+	
+	<definition name="adminMusicDetail" extends="base_layout">
+		<put-attribute name="title" value="ADMIN MUSIC DETAIL"/>
+		<put-attribute name="body" value="/WEB-INF/admin/music/adminMusicDetail.jsp"/>
+	</definition>
+	
+	<definition name="adminMusicJoinForm" extends="base-layout">
+		<put-attribute name="title" value="ADMIN MUSIC JOIN FORM"/>
+		<put-attribute name="body" value="/WEB-INF/admin/music/adminMusicJoinForm.jsp"/>
+	</definition>
+	
+	<definition name="adminMusicModifyForm" extends="base-layout">
+		<put-attribute name="title" value="ADMIN MUSIC MODIFY FORM"/>
+		<put-attribute name="body" value="/WEB-INF/admin/music/adminMusicModifyForm.jsp"/>
+	</definition>
+	
 </tiles-definitions>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
