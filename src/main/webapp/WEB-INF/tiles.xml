@@ -7,14 +7,54 @@
 <tiles-definitions>
 
 	<!-- Main Page -->
-	<definition name="default" template="/WEB-INF/viws/layout/layout.jsp">
-		<put-attribute name="header" value="/WEB-INF/vies/layout/header.jsp"/>
-		<put-attribute name="body" value="/WEB-INF/vies/layout/container.jsp"/>
-		<put-attribute name="footer" value="/WEB-INF/vies/layout/footer.jsp"/>
+	<definition name="base_layout" template="/WEB-INF/views/layout/layout.jsp">
+		<put-attribute name="header" value="/WEB-INF/views/layout/header.jsp"/>
+		<put-attribute name="footer" value="/WEB-INF/views/layout/footer.jsp"/>
 	</definition>
 	
-	<definition name="main" template="/WEB-INF/views/layout/layout_main.jsp">
-		
+	<definition name="memberMain" extends="base_layout">
+		<put-attribute name="title" value="MAINPAGE"/>
+		<put-attribute name="body" value="/WEB-INF/member/main/mainPage.jsp"/>
+	</definition>
+	
+	<definition name="loginForm" extends="base_layout">
+		<put-attribute name="title" value="LOGIN FORM"/>
+		<put-attribute name="body" value="/WEB-INF/member/login/loginForm"/>
+	</definition>
+	
+	<definition name="signUp" extends="base_layout">
+		<put-attribute name="title" value="REGISTER"/>
+		<put-attribute name="body" value="/WEB-INF/member/login/signUp.jsp"/>
+	</definition>
+	
+	<definition name="findIdForm" extends="base_layout">
+		<put-attribute name="title" value="FIND ID FORM"/>
+		<put-attribute name="body" value="/WEB-INF/member/login/findIdForm.jsp"/>
+	</definition>
+	
+	<definition name="findId" extends="base_layout">
+		<put-attribute name="title" value="FIND ID"/>
+		<put-attribute name="body" value="/WEB-INF/member/login/findId.jsp"/>
+	</definition>
+	
+	<definition name="findPwForm" extends="base_layout">
+		<put-attribute name="title" value="FIND PASSWORD FORM"/>
+		<put-attribute name="body" value="/WEB-INF/member/login/findPwForm.jsp"/>
+	</definition>
+	
+	<definition name="findPw" extends="base_layout">
+		<put-attribute name="title" value="FIND PASSWORD"/>
+		<put-attribute name="body" value="/WEB-INF/member/login/findPw.jsp"/>
+	</definition>
+	
+	<definition name="loginForm" extends="base_layout">
+		<put-attribute name="title" value="LOGIN FORM"/>
+		<put-attribute name="body" value="/WEB-INF/member/login/loginForm.jsp"/>
+	</definition>
+	
+	<definition name="myPage" extends="base_layout">
+		<put-attribute name="title" value="MY PAGE"/>
+		<put-attribute name=""/>
 	</definition>
 	
 
@@ -27,3 +67,26 @@
 
 
 </tiles-definitions>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
