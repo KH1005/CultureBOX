@@ -178,12 +178,12 @@
 		<put-attribute name="body" value="/WEB-INF/admin/music/adminMusicDetail.jsp"/>
 	</definition>
 	
-	<definition name="adminMusicJoinForm" extends="base-layout">
+	<definition name="adminMusicJoinForm" extends="base_layout">
 		<put-attribute name="title" value="ADMIN MUSIC JOIN FORM"/>
 		<put-attribute name="body" value="/WEB-INF/admin/music/adminMusicJoinForm.jsp"/>
 	</definition>
 	
-	<definition name="adminMusicModifyForm" extends="base-layout">
+	<definition name="adminMusicModifyForm" extends="base_layout">
 		<put-attribute name="title" value="ADMIN MUSIC MODIFY FORM"/>
 		<put-attribute name="body" value="/WEB-INF/admin/music/adminMusicModifyForm.jsp"/>
 	</definition>
