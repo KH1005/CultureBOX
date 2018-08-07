@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="culture">
+
+<resultMap type="cultureModel" id="cultureRes">
+       <result property = "CULTURE_IDX" column ="CULTURE_IDX" />
+       <result property = "CULTURE_NAME" column = "CULTURE_NAME"/>
+       <result property = "CULTURE_CATEGORY" column = "CULTURE_CATEGORY" />
+       <result property = "CULTURE_START" column ="CULTURE_START" />
+       <result property = "CULTURE_END" column = "CULTURE_END" />
+       <result property = "CULTURE_ORGNAME" column = "CULTURE_ORGNAME" />
+       <result property = "CULTURE_SAVNAME" column = "CULTURE_SAVNAME" />
+       <result property = "CULTURE_LOCATION" column = "CULTURE_LOCATION" />
+       <result property = "CULTURE_CONTENT" column = "CULTURE_CONTENT" />
+   </resultMap>
+      
+       <select id="selectCulture_ALL" resultMap="cultureRes">
+           select * from CULTURE order
+           by CULTURE_IDX desc
+       </select>
+       
+       <select id="selectCulture_ONE" resultMap = "cultureRes" parameterType="cultureModel">
+           select * from CULTURE where CULTURE_IDX = #{CULTURE_IDX}
+       </select>
+
+</mapper>
