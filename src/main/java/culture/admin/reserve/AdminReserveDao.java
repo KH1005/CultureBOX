@@ -1,59 +1,61 @@
-package culture.admin.dao;
+package culture.admin.reserve;
 
 import java.util.List;
 
-import culture.admin.model.AdminReserveModel;
+import culture.admin.reserve.AdminReserveModel;
 
 
 public interface AdminReserveDao {
-	//»óÇ°¸ñ·Ï
+	//ï¿½ï¿½Ç°ï¿½ï¿½ï¿½
 	public List<AdminReserveModel> AdminReserveList();
 
-
+	public AdminReserveModel AdminReserveDetail(int RESERVE_IDX);
+	
+	public int AdminReserveDelete(int RESERVE_IDX);
 
 	
-	/*//»óÇ°µî·Ï
+	/*//ï¿½ï¿½Ç°ï¿½ï¿½ï¿½
 	public Object insertGoods(AdminReserveModel AdminReserveModel);*/
 	
-	/*//°Ë»ö (0=»óÇ°ÀÌ¸§, 1=»óÇ°¹øÈ£ 2=Ä«Å×°í¸®)
+	/*//ï¿½Ë»ï¿½ (0=ï¿½ï¿½Ç°ï¿½Ì¸ï¿½, 1=ï¿½ï¿½Ç°ï¿½ï¿½È£ 2=Ä«ï¿½×°ï¿½)
 	List<GoodsModel> goodsSearch0(String search);
 	List<GoodsModel> goodsSearch1(String search);
 	List<GoodsModel> goodsSearch2(String search);
 	List<GoodsModel> goodsSearch3(String search);
 	
-	//±Û»èÁ¦
+	//ï¿½Û»ï¿½ï¿½ï¿½
 	public int goodsDelete(int goods_num);
 	
-	//±Û¼öÁ¤
+	//ï¿½Û¼ï¿½ï¿½ï¿½
 	public int goodsModify(GoodsModel GoodsModel);
 	
-	//±Û ÇÏ³ª ºÒ·¯¿À±â -¼öÁ¤
+	//ï¿½ï¿½ ï¿½Ï³ï¿½ ï¿½Ò·ï¿½ï¿½ï¿½ï¿½ï¿½ -ï¿½ï¿½ï¿½ï¿½
 	public GoodsModel goodsAdminView(int goods_num);
 	
-	//È¸¿ø¸ñ·Ï
+	//È¸ï¿½ï¿½ï¿½ï¿½ï¿½
 	public List<MemberModel> memberList();
 	
-	//È¸¿ø°Ë»ö
+	//È¸ï¿½ï¿½ï¿½Ë»ï¿½
 	List<MemberModel> memberSearch0(String search);
 	
-	//È¸¿ø»èÁ¦
+	//È¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	public int memberDelete(String id);
 
 	public Object adminmemberModify(MemberModel member);
 	
-	//ÁÖ¹®¸®½ºÆ® Ãâ·Â
+	//ï¿½Ö¹ï¿½ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ï¿½
 	public List<OrderModel> orderAllList();
 	
-	//ÁÖ¹®°Ë»ö
+	//ï¿½Ö¹ï¿½ï¿½Ë»ï¿½
 	public List<OrderModel> orderSearch0(String search);
 	
-	//°áÀç¹æ½Ä
+	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	public List<OrderModel> orderSearch1(String search);
 	
-	//ÁÖ¹®»óÅÂ
+	//ï¿½Ö¹ï¿½ï¿½ï¿½ï¿½ï¿½
 	public List<OrderModel> orderSearch2(String search);
 	
-	//ÁÖ¹®¼öÁ¤
+	//ï¿½Ö¹ï¿½ï¿½ï¿½ï¿½ï¿½
 	public Object orderModify(OrderModel OrderModel);
 */	
 }

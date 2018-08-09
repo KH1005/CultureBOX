@@ -168,6 +168,14 @@
 		<put-attribute name="body" value="/WEB-INF/admin/reserve/adminReserveListForm.jsp"/>
 	</definition>
 	
+	<definition name="adminReserveDetail" extends="base_layout">
+		<put-attribute name="title" value="ADMIN RESERVE LIST"/>
+		<put-attribute name="body" value="/WEB-INF/admin/reserve/adminReserveDetail.jsp"/>
+	</definition>
+	
+	
+	
+	
 	<definition name="adminMusicListForm" extends="base_layout">
 		<put-attribute name="title" value="ADMIN MUSIC LIST"></put-attribute>
 		<put-attribute name="body" value="/WEB-INF/admin/music/adminMusicListForm.jsp"/>

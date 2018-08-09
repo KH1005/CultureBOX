@@ -8,6 +8,5 @@
 </head>
 <body>
 	Hello CultureBOX Project...!!
-
 </body>
 </html>

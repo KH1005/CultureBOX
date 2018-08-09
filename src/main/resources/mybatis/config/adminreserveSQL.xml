@@ -2,20 +2,25 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 	<mapper namespace="reserve">
 		<resultMap id="adminreserveRes" type="AdminReserveModel">
-			<result column="reserve_idx" property="reserve_idx"/>
-			<result column="reserve_date" property="reserve_date"/>
-			<result column="reserve_confirm" property="reserve_confirm"/>
-			<result column="reserve_id" property="reserve_id"/>
-			<result column="reserve_sidx" property="reserve_sidx"/>
-			<result column="reserve_cidx" property="reserve_cidx"/>			
+			<result column="RESERVE_IDX" property="RESERVE_IDX"/>
+			<result column="RESERVE_DATE" property="RESERVE_DATE"/>
+			<result column="RESERVE_CONFIRM" property="RESERVE_CONFIRM"/>
+			<result column="RESERVE_ID" property="RESERVE_ID"/>
+			<result column="RESERVE_SIDX" property="RESERVE_SIDX"/>
+			<result column="RESERVE_CIDX" property="RESERVE_CIDX"/>			
 	</resultMap>
 
 		<!-- 공통으로 사용할 select 의 -->
 		<select id="reserveList" resultMap="adminreserveRes">
-		select AAA.FROM( SELECT  COUNT(*) OVER() AS TOTAL_COUNT,  AA.* from(  SELECT ROW_NUMBER() OVER (ORDER BY IDX DESC) RNUM, RESERVE_IDX, RESERVE_NAME, RESERVE_CNAME, RESERVE_AREA, RESERVE_NUMBER, RESERVE_DATE, RESERVE_LOCATION, RESERVE_PRICE, RESERVE_CONFIRM  from  RESERVATION order by RESERVE_IDX DESC  ) AA ) AAA where  AAA.RNUM between #{START} and #{END}
+		SELECT RESERVE_IDX, RESERVE_DATE, RESERVE_CONFIRM, RESERVE_ID, RESERVE_SIDX, RESERVE_CIDX FROM  RESERVATION ORDER BY RESERVE_IDX DESC		
 		</select>
 		
+		<select id="reserveDetail" resultMap="adminreserveRes">
+		SELECT * FROM RESERVATION WHERE RESERVE_IDX = #{RESERVE_IDX}
+		</select>
 		
-		
-		
+		<delete id="reserveDelete" parameterType="Integer">
+		DELETE FROM RESERVATION WHERE RESERVE_IDX = #{RESERVE_IDX}
+		</delete>
+			
 	</mapper>

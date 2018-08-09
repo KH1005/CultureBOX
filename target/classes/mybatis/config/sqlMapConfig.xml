@@ -19,10 +19,7 @@ PUBLIC " - //mybatis.org//DTD Config 3.0//EN"
 	<!-- 모델등록 -->
 	<!-- admin -->
 	<typeAliases>
-		<typeAlias alias="AdminReserveModel" type="culture.admin.model.AdminReserveModel" /> 
-	
-	
-	
+		<typeAlias alias="AdminReserveModel" type="culture.admin.reserve.AdminReserveModel" /> 
 	</typeAliases>
 	
 	
@@ -31,7 +28,7 @@ PUBLIC " - //mybatis.org//DTD Config 3.0//EN"
 	<mappers>
 		<!-- <mapper resource="mybatis/config/memberSQL.xml" /> -->
 	
-	<mapper resource="mybatis/config/adminreserveSQL.xml"/>
+	<mapper resource="mybatis/config/adminreserveSQL.xml"/>    
 	</mappers>
 
 </configuration>
