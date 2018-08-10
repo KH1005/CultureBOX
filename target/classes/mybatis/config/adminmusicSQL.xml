@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	<mapper namespace="music">
+		<resultMap id="adminmusicRes" type="AdminMusicModel">
+			<result column="MUSIC_ALBUM" property="MUSIC_ALBUM"/>
+			<result column="MUSIC_SONG" property="MUSIC_SONG"/>
+			<result column="MUSIC_ARTIST" property="MUSIC_ARTIST"/>
+			<result column="MUSIC_RELEASE" property="MUSIC_RELEASE"/>
+			<result column="MUSIC_INDEX" property="MUSIC_INDEX"/>
+			<result column="MUSIC_ALBUMINFO" property="MUSIC_ALBUMINFO"/>
+			<result column="MUSIC_ARTISTINFO" property="MUSIC_ARTISTINFO"/>
+			<result column="MUSIC_GENRE" property="MUSIC_GENRE"/>
+			<result column="MUSIC_ORGNAME" property="MUSIC_ORGNAME"/>
+			<result column="MUSIC_SAVNAME" property="MUSIC_SAVNAME"/>
+			<result column="MUSIC_COUNTRY" property="MUSIC_COUNTRY"/>				
+	</resultMap>
+
+
+
+		<!-- 공통으로 사용할 select 의 -->
+		<select id="musicList" resultMap="adminmusicRes">
+		SELECT * FROM  MUSIC ORDER BY MUSIC_INDEX DESC		
+		</select>	
+		<!-- <select id="reserveDetail" resultMap="adminreserveRes">
+		SELECT * FROM RESERVATION WHERE RESERVE_IDX = #{RESERVE_IDX}
+		</select>
+		
+		<delete id="reserveDelete" parameterType="Integer">
+		DELETE FROM RESERVATION WHERE RESERVE_IDX = #{RESERVE_IDX}
+		</delete> -->
+			
+	</mapper>

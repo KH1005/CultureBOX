@@ -10,9 +10,10 @@
 			<result column="RESERVE_CIDX" property="RESERVE_CIDX"/>			
 	</resultMap>
 
+
 		<!-- 공통으로 사용할 select 의 -->
 		<select id="reserveList" resultMap="adminreserveRes">
-		SELECT RESERVE_IDX, RESERVE_DATE, RESERVE_CONFIRM, RESERVE_ID, RESERVE_SIDX, RESERVE_CIDX FROM  RESERVATION ORDER BY RESERVE_IDX DESC		
+		SELECT RESERVE_IDX, RESERVE_DATE, RESERVE_CONFIRM, RESERVE_ID, RESERVE_CIDX FROM  RESERVATION ORDER BY RESERVE_IDX DESC		
 		</select>
 		
 		<select id="reserveDetail" resultMap="adminreserveRes">

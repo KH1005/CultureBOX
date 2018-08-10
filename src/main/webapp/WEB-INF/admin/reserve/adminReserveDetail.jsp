@@ -26,8 +26,8 @@
                 <td>${adminReserveDetail.RESERVE_IDX}</td>
 				<td>${adminReserveDetail.RESERVE_DATE}</td>
 				<td>${adminReserveDetail.RESERVE_ID}</td>
-				<td>${adminReserveDetail.RESERVE_SIDX}</td>
-				<td>${adminReserveDetail.RESERVE_CIDX}</td>
+<%-- 				<td>${adminReserveDetail.RESERVE_SIDX}</td>
+ --%>				<td>${adminReserveDetail.RESERVE_CIDX}</td>
 				<td>${adminReserveDetail.RESERVE_CONFIRM}</td>					
 			</tr>			
 			<tr>

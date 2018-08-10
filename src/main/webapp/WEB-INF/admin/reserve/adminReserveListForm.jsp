@@ -21,7 +21,6 @@
                 <th scope="col">예약번호</th>
                 <th scope="col">공연날짜</th>
                 <th scope="col">예약자아이디</th>
-                <th scope="col">좌석번호</th>
                 <th scope="col">공연명</th>
                 <th scope="col">결제여부</th>
             </tr>
@@ -39,7 +38,6 @@
                 </td>
 				<td>${adminReserveListForm.RESERVE_DATE}</td>
 				<td>${adminReserveListForm.RESERVE_ID}</td>
-				<td>${adminReserveListForm.RESERVE_SIDX}</td>
 				<td>${adminReserveListForm.RESERVE_CIDX}</td>
 				<td>${adminReserveListForm.RESERVE_CONFIRM}</td>						
 			</tr>						
