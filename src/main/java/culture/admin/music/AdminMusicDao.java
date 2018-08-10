@@ -9,5 +9,5 @@ public interface AdminMusicDao {
 	
 	public AdminMusicModel AdminMusicDetail(int MUSIC_INDEX);
 
-
+	public int AdminMusicDelete(int MUSIC_INDEX);
 }

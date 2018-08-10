@@ -58,7 +58,7 @@ public class AdminReserveController {
 		ModelAndView mav = new ModelAndView();
 
 		
-		int RESERVE_IDX = Integer.parseInt(request.getParameter("RESERVE_IDX"));
+		int RESERVE_IDX = Integer.parseInt(request.getParameter("RESERVE_IDX")); //jsp 에서 보내준 파라미터 값을 받는다. 
 
 
 		AdminReserveModel adminReserveModel= adminReserveService.AdminReserveDetail(RESERVE_IDX);

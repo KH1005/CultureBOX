@@ -23,6 +23,11 @@ public class AdminMusicService implements AdminMusicDao {
 	public AdminMusicModel AdminMusicDetail(int MUSIC_INDEX) {
 		return sqlSessionTemplate.selectOne("music.musicDetail",MUSIC_INDEX);
 	}
+
+	@Override
+	public int AdminMusicDelete(int MUSIC_INDEX) {
+		return sqlSessionTemplate.update("music.musicDelete",MUSIC_INDEX);
+	}
 	
 	
 	

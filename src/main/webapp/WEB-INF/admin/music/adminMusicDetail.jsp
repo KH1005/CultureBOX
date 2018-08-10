@@ -1,12 +1,4 @@
-
-    
-    
-    
-    
-    
-    
-    
-    <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
@@ -34,15 +26,19 @@
 				<td>${adminMusicDetail.MUSIC_COUNTRY}</td>					
 			</tr>			
 			<tr>
-			<td></td>
-			<td></td>
-			<td></td>
+			
 			<td>
 			<c:url var="viewURL" value="MusicListForm.box" >
-    </c:url>
-     <a href="${viewURL}">목록</a> 
-     </td>
-   
+   			 </c:url>
+    		 <a href="${viewURL}">목록</a> 
+     		</td>
+     		 <td>
+            <c:url var="viewURL" value="MusicDelete.box" >
+               <c:param name="MUSIC_INDEX" value="${adminMusicDetail.MUSIC_INDEX}" />
+            </c:url>
+            <a href="${viewURL}">삭제</a> 
+    	    </td>
+   			</tr>
         </tbody>
     </table>
     <br/>

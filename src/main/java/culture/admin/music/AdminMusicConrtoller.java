@@ -69,6 +69,18 @@ public class AdminMusicConrtoller {
 			return mav;
 		
 		}
-	
+		
+		@RequestMapping("/admin/MusicDelete.box")
+		public ModelAndView AdminMusicDelete(HttpServletRequest request) throws Exception {
+
+			ModelAndView mav = new ModelAndView();
+			
+			int MUSIC_INDEX = Integer.parseInt(request.getParameter("MUSIC_INDEX"));
+			
+			adminMusicService.AdminMusicDelete(MUSIC_INDEX);
+			
+			mav.setViewName("redirect:/admin/MusicListForm.box");
+			return mav;
+		}
 		
 }
