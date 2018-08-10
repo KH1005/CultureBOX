@@ -24,14 +24,6 @@ PUBLIC " - //mybatis.org//DTD Config 3.0//EN"
 		
 		<typeAlias type="culture.member.evaluation.MusicModel" alias="musicModel"/>
 		
-		
-		
-		
-		
-		
-		
-		
-		
 	</typeAliases>
 	
 	<!-- xml문서 Mapping -->

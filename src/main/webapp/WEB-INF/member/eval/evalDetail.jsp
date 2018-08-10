@@ -26,18 +26,57 @@
 					var idx = ${music.MUSIC_INDEX};
 					
 					params = "MUSIC_INDEX="+encodeURIComponent(idx)+"&STAR_COUNT="+encodeURIComponent(star)+"&MEMBER_ID="+encodeURIComponent(id);
-					new ajax.xhr.Request("http://localhost:8080/culture/eval/MusicEval.box", params, insertStar, "POST");
+					$.ajax({
+						url:"http://localhost:8080/culture/eval/MusicEval.box",
+						type:"POST",
+						dataType:"json",
+						data:params,
+						success: function(req){
+							var result = eval("("+req.responseText+")");
+							if(result.code == 'success'){
+								var star = result.star;
+								var div = document.getElementById('star_count');
+								var newDiv = makeView(star);
+								var oldDiv =document.getElementById('star_count');
+								div.replaceChild(newDiv, oldDiv);
+								
+							}else{
+								alert(':(')
+							}
+						},
+						error: function(req){
+							alert("에러발생:"+req.status);
+						}
+					})
+					//new ajax.xhr.Request("http://localhost:8080/culture/eval/MusicEval.box", params, insertStar, "POST");
 					
 				}
 			});
 
 		});
-		
+		//<div id="star_count">star</div>
+		function makeView(star){
+			var starDiv = document.createElement('div');
+			starDiv.setAttribute('id', 'star_count');
+			var html = star;
+			
+			starDiv.innerHTML = html;
+			return starDiv;
+			
+		}
 		function insertStar(req){
+			alert('here1');
 			if(req.readyState == 4){
+				alert('here2');
 				if(req.status == 200){
-					if(req.responseText == 'success'){
-						alert(':D')
+					var result = eval("("+req.responseText+")");
+					if(result.code == 'success'){
+						var star = result.star;
+						var div = document.getElementById('star_count');
+						var newDiv = makeView(star);
+						var oldDiv =document.getElementById('star_count');
+						div.replaceChild(newDiv, oldDiv);
+						
 					}else{
 						alert(':(')
 					}
@@ -63,6 +102,7 @@
 
 	<h1>${music.MUSIC_ALBUM }</h1>
 	<div id="cancel-custom"></div>
+	<div id="star_count">${star }</div>
 	<p>${music.MUSIC_ARTIST }</p>
 	<p>${music.MUSIC_ALBUMINFO }</p>
 	<p>${music.MUSIC_ARTISTINFO }</p>

@@ -1,7 +1,9 @@
 package culture.member.evaluation;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -10,7 +12,6 @@ import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -45,30 +46,49 @@ public class EvalController {
 		return "evalList";
 	}
 	
-	@ResponseBody
+	@ResponseBody	
 	@RequestMapping(value="/eval/MusicEval.box")
-	public String musicEval(Model model, EvalModel evalModel, HttpServletRequest request) {
+	public Map<String, Object> musicEval(Model model, EvalModel evalModel, HttpServletRequest request) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		
 		String music_index = request.getParameter("MUSIC_INDEX");
 		String member_id = request.getParameter("MEMBER_ID");
 		String star_count = request.getParameter("STAR_COUNT");
-		int star = Integer.parseInt(star_count);
-		int index = Integer.parseInt(music_index);
+//		int star = Integer.parseInt(star_count);
+//		int index = Integer.parseInt(music_index);
+		System.out.println("music_index: "+music_index);
 		
 		evalModel.setMEMBER_ID(member_id);
-		evalModel.setMUSIC_INDEX(index);
-		evalModel.setSTAR_COUNT(star);
+		evalModel.setMUSIC_INDEX(Integer.parseInt(music_index));
+		evalModel.setSTAR_COUNT(Integer.parseInt(star_count));
 		
 		int check = evalService.checkEval(evalModel);
 		
 		if(check == 1) {
 			System.out.println("값이 있습니다.");
-			return "fail";
+			map.put("code", "fail");
+			return map;
 		}else{
+			System.out.println("in");
 			evalService.insertEvalMusic(evalModel);
-			return "success";
+			String getStar = evalService.getStar(evalModel);
+			System.out.println("star: "+getStar);
+			map.put("code", "success");
+			map.put("star", getStar);
+			return map;
 		}
 		
 	}
+	
+	/*
+	 *  	
+	 * 		{
+	 * 			check: "success",
+	 * 			star: "1,2,3,4,5"
+	 * 		}
+	 * 	
+	 * 
+	 */
 	
 	@RequestMapping(value="/eval/EvalDetail.box")
 	public String evalDetail(MusicModel musicModel, Model model, HttpServletRequest request) {
@@ -91,6 +111,20 @@ public class EvalController {
 		
 		return "evalDetail";
 	}
+	
+	
+	@RequestMapping(value="/join")
+	@ResponseBody
+	 public String join() {
+	   Map<String, Object> map = new HashMap<String, Object>();
+	   map.put("name", "victolee");
+	   map.put("age", 26);
+     
+	  return "asd";
+	 
+	 }
+
+
 
 }
 
