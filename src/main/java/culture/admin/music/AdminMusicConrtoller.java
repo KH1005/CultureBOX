@@ -20,6 +20,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import culture.admin.music.AdminMusicModel;
 import culture.admin.music.AdminMusicService;
+import culture.admin.reserve.AdminReserveModel;
 
 @Controller
 public class AdminMusicConrtoller {
@@ -33,7 +34,7 @@ public class AdminMusicConrtoller {
 		
 		
 		//goods admin 리스트
-		@RequestMapping("/admin/EvalListForm.box")// 이요청이 들어오면 실행!
+		@RequestMapping("/admin/MusicListForm.box")// 이요청이 들어오면 실행!
 		public ModelAndView AdminMusicList(HttpServletRequest request) throws Exception{
 			System.out.println("111111111111111111111111111111");
 			ModelAndView mav = new ModelAndView();
@@ -46,5 +47,28 @@ public class AdminMusicConrtoller {
 				return mav;
 			}
 		
-}
+		@RequestMapping("/admin/MusicDetail.box")
+		public ModelAndView AdminMusicDetail(HttpServletRequest request) throws Exception{
+			
+			System.out.println("111111111111111111111111111111");
+
+			
+			ModelAndView mav = new ModelAndView();
+
+			
+			int MUSIC_INDEX = Integer.parseInt(request.getParameter("MUSIC_INDEX"));
+
+
+			AdminMusicModel adminMusicModel= adminMusicService.AdminMusicDetail(MUSIC_INDEX);
+			System.out.println("222222222222222222222222222222222");
+
+			
+			mav.addObject("adminMusicDetail", adminMusicModel);
+			mav.setViewName("adminMusicDetail");  
+
+			return mav;
+		
+		}
 	
+		
+}

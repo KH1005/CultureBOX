@@ -32,9 +32,8 @@
 			    </c:url>
 				<tr class="reserve" role="row">
 				<td class="title">
- 
-                
-                <a href="${viewURL}">${adminReserveListForm.RESERVE_IDX}</a>   <!--   클릭을 하면 위 viewRRL 부분 매핑을 실행하기 위함 -->
+               
+                <a href="${viewURL}">${adminReserveListForm.RESERVE_IDX}</a>    <!--   클릭을 하면 위 viewRRL 부분 매핑을 실행하기 위함 -->
                 </td>
 				<td>${adminReserveListForm.RESERVE_DATE}</td>
 				<td>${adminReserveListForm.RESERVE_ID}</td>
@@ -42,6 +41,7 @@
 				<td>${adminReserveListForm.RESERVE_CONFIRM}</td>						
 			</tr>						
 			</c:forEach>
+			
 			<!--  등록된 상품이 없을때 -->
 				<c:if test="${fn:length(adminReserveListForm) le 0}">
 					<tr><td colspan="9" style="text-align:center;">등록된 상품이 없습니다</td></tr>

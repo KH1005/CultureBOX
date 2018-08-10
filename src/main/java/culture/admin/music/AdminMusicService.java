@@ -18,5 +18,13 @@ public class AdminMusicService implements AdminMusicDao {
 	public List<AdminMusicModel> AdminMusicList() {
 		return sqlSessionTemplate.selectList("music.musicList"); // 네임 스페이스.해당쿼리문!
 	}
+
+	@Override
+	public AdminMusicModel AdminMusicDetail(int MUSIC_INDEX) {
+		return sqlSessionTemplate.selectOne("music.musicDetail",MUSIC_INDEX);
+	}
+	
+	
+	
 	
 }

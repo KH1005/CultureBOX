@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper 
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="eval">
+	
+	<resultMap type="evalModel" id="evalRes">
+		<result property="MEMBER_ID" column="MEMBER_ID"/>
+		<result property="STAR_COUNT" column="STAR_COUNT"/>
+		<result property="MUSIC_INDEX" column="MUSIC_INDEX"/>
+	</resultMap>
+	
+	<resultMap type="memberModel" id="memberRes">
+		<result property="MEMBER_ID" column="MEMBER_ID"/>
+		<result property="MEMBER_PASSWORD" column="MEMBER_PASSWORD"/>
+		<result property="MEMBER_NAME" column="MEMBER_NAME"/>
+		<result property="MEMBER_EMAIL" column="MEMBER_EMAIL"/>
+	</resultMap>
+	
+	<resultMap type="musicModel" id="musicRes">
+		<result property="MUSIC_ALBUM" column="MUSIC_ALBUM"/>
+		<result property="MUSIC_SONG" column="MUSIC_SONG"/>
+		<result property="MUSIC_ARTIST" column="MUSIC_ARTIST"/>
+		<result property="MUSIC_RELEASE" column="MUSIC_RELEASE"/>
+		<result property="MUSIC_INDEX" column="MUSIC_INDEX"/>
+		<result property="MUSIC_ALBUMINFO" column="MUSIC_ALBUMINFO"/>
+		<result property="MUSIC_ARTISTINFO" column="MUSIC_ARTISTINFO"/>
+		<result property="MUSIC_GENRE" column="MUSIC_GENRE"/>
+		<result property="MUSIC_ORGNAME" column="MUSIC_ORGNAME"/>
+		<result property="MUSIC_SAVNAME" column="MUSIC_SAVNAME"/>
+		<result property="MUSIC_COUNTRY" column="MUSIC_COUNTRY"/>
+	</resultMap>
+	
+	<!-- 내가 평가한 음악 빼고 리스트로 가져온다. -->
+	<select id="evalMusicList" parameterType="string" resultMap="musicRes">
+		select music_album, music_song, music_artist, music_release, music_index, music_albuminfo, music_artistinfo,
+    music_genre, music_orgname, music_savname,music_country
+    from(
+        select * from music where 
+        music_index not in ( select music_index from evaluation where member_id = #{MEMBER_ID})
+        ) 
+	</select>
+	
+	<!-- 평가넣기 -->
+	<insert id="insertEvalMusic" parameterType="evalModel">
+		INSERT INTO EVALUATION (MEMBER_ID, STAR_COUNT, MUSIC_INDEX) VALUES ( #{MEMBER_ID}, #{STAR_COUNT}, #{MUSIC_INDEX})
+	</insert>
+
+	<select id="checkEval" parameterType="evalModel" resultType="int">
+		select count(*) from evaluation where member_id = #{MEMBER_ID} and music_index = #{MUSIC_INDEX}
+	
+	</select>
+	
+	<select id="selectMusic" parameterType="int" resultMap="musicRes">
+		select * from music where music_index = #{MUSIC_INDEX}
+	</select>
+	
+	<select id="getStar" parameterType="evalModel" resultType="string">
+		select star_count from evaluation where member_id = #{MEMBER_ID} and music_index = #{MUSIC_INDEX}
+	
+	</select>
+
+
+
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

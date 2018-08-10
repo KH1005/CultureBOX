@@ -20,11 +20,13 @@
 		<!-- 공통으로 사용할 select 의 -->
 		<select id="musicList" resultMap="adminmusicRes">
 		SELECT * FROM  MUSIC ORDER BY MUSIC_INDEX DESC		
-		</select>	
-		<!-- <select id="reserveDetail" resultMap="adminreserveRes">
-		SELECT * FROM RESERVATION WHERE RESERVE_IDX = #{RESERVE_IDX}
 		</select>
-		
+			
+		<select id="musicDetail" resultMap="adminmusicRes">
+		SELECT * FROM MUSIC WHERE MUSIC_INDEX = #{MUSIC_INDEX}
+		</select>
+		 
+		<!--  
 		<delete id="reserveDelete" parameterType="Integer">
 		DELETE FROM RESERVATION WHERE RESERVE_IDX = #{RESERVE_IDX}
 		</delete> -->
