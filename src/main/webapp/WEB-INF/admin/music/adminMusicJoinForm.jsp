@@ -145,21 +145,21 @@ $(function(){
             </c:url>
             <a href="${viewURL}">목록</a> 
     	    </td>
-    	    <td>
+    	    <%--  <td>
             <c:url var="viewURL" value="MusicJoin.cul" >
             </c:url>
             <a href="${viewURL}">작성완료</a> 
-    	    </td>
-    	    
+    	    </td> --%>
+    	     
     	    
 			<%-- <div class="btn_type_03">
 				<a href="#none" class="btn btnC_03 btnP_04 mr10" onclick="javascript:location.href='movieList.torrent?currentPage=${currentPage.currentPage}'">
 					<span>목록</span>
-				</a>
+				</a> --%>
 				<span class="btn btnC_04 btnP_04">
 					<input type="submit" value="작성완료" />
-				</span>
-			</div> --%>
+				</span> 
+			<!-- </div> -->
 		</form:form>
 		</tbody>
  	</div>
