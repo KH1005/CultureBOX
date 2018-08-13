@@ -24,6 +24,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 
+
 import culture.admin.music.AdminMusicModel;
 import culture.admin.music.AdminMusicService;
 import culture.admin.reserve.AdminReserveModel;
@@ -32,6 +33,8 @@ import culture.admin.reserve.AdminReserveModel;
 public class AdminMusicConrtoller {
 
 
+	private static final String uploadPath = "C:\\Spring\\cultureBOX\\src\\main\\webapp\\";
+	     
 		@Resource(name="adminMusicService")  // 의존주입 해서 사용하기 위해
 		
 		private AdminMusicService adminMusicService;
@@ -104,14 +107,54 @@ public class AdminMusicConrtoller {
 		}
 		
 		
+		
+		/////////////////////////////////글쓰기 ///////////////////////////////////////////
 		@RequestMapping("/admin/MusicJoin.cul")
+		public String reviewWrite(AdminMusicModel adminMusicModel,  BindingResult result,
+				MultipartHttpServletRequest multipartHttpServletRequest) throws Exception, Exception{
+			System.out.println("444444444444444444");
+			ModelAndView mav = new ModelAndView();
+			
+			/*벨리데이트
+			new MusicValidator().validate(adminMusicModel, result);
+			if(result.hasErrors()) {
+				mav.setViewName("adminMusicJoinForm");
+				return "adminMusicJoinForm";
+			}*/
+			
+		/*	줄바꿈
+			String content = reviewModel.getContent().replaceAll("\r\n", "<br />");
+			reviewModel.setContent(content);
+					*/
+			//업로드
+			MultipartFile multipartFile = multipartHttpServletRequest.getFile("file");
+	    	String filename = multipartFile.getOriginalFilename();
+	        	if (filename != ""){ 
+				    adminMusicModel.setMUSIC_SAVNAME(System.currentTimeMillis()+"_"+multipartFile.getOriginalFilename());
+				    String savimagename = System.currentTimeMillis()+"_"+multipartFile.getOriginalFilename();
+			        FileCopyUtils.copy(multipartFile.getInputStream(), new FileOutputStream(uploadPath+"/"+savimagename));
+			        adminMusicModel.setMUSIC_SAVNAME(savimagename);
+	        	}else{
+	        		adminMusicModel.setMUSIC_SAVNAME("NULL");		
+	        	}
+				System.out.println("5555555555555555555555");
+
+			adminMusicService.AdminMusicinsert(adminMusicModel);
+		
+			System.out.println("66666666666666666666663");
+
+			mav.setViewName("redirect:MusicListForm.cul");
+			
+			return "redirect:MusicListForm.cul";
+		}
+		/*@RequestMapping("/admin/MusicJoin.cul")
 		public String write(Model model, AdminMusicModel adminMusicModel ) {
 			
 			
 			System.out.println("글쓰기 시작");
 			
-/*			adminMusicModel.setContent(adminMusicModel.getContent().replaceAll("\n", "").replaceAll("\t", "").replaceAll("\r", "").replaceAll("'", "&apos;"));
-*/			
+			adminMusicModel.setContent(adminMusicModel.getContent().replaceAll("\n", "").replaceAll("\t", "").replaceAll("\r", "").replaceAll("'", "&apos;"));
+			
 			String imgName = adminMusicModel.getMUSIC_ALBUM();
 			
 			int index1 = imgName.indexOf("album_img_upload/");
@@ -119,11 +162,11 @@ public class AdminMusicConrtoller {
 			index1 += 15;
 			index2 += 32;
 			
-			/*System.out.println(index1+"  1번인데긋");
+			System.out.println(index1+"  1번인데긋");
 			System.out.println(index2+"  2번인덱스");
-			System.out.println(imgName);*/
+			System.out.println(imgName);
 			imgName = imgName.substring(index1, index2);
-			/*System.out.println(imgName);*/
+			System.out.println(imgName);
 			
 			
 			adminMusicModel.setMUSIC_SAVNAME(imgName);
@@ -131,6 +174,6 @@ public class AdminMusicConrtoller {
 			
 			
 			return "redirect:MusicListForm.cul";
-		}
+		}*/
 		
 }
