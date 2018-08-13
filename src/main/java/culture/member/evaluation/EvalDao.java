@@ -1,6 +1,8 @@
 package culture.member.evaluation;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /*
  * 
@@ -20,6 +22,12 @@ public interface EvalDao {
 	public MusicModel selectMusic(MusicModel musicModel);
 	
 	public String getStar(EvalModel evalModel);
+	
+	public List<Map<String, Object>> getGenre(String MEMBER_ID);
+	
+	public List<Map<String, Object>> getArtist(String MEMBER_ID);
+	
+	public List<Map<String, Object>> getCountry(String MEMBER_ID);
 	
 
 }

@@ -61,6 +61,31 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select star_count from evaluation where member_id = #{MEMBER_ID} and music_index = #{MUSIC_INDEX}
 	
 	</select>
+	
+	<select id="recommendGenre" parameterType="string" resultType="java.util.HashMap">
+		select count(music_genre), music_genre from(
+ 		select music_genre
+ 		from music where music_index in( select music_index 
+ 		from evaluation where star_count >= (select round(avg(star_count),2)
+ 		from evaluation where member_id = #{MEMBER_ID}) and member_id = #{MEMBER_ID}) ) group by music_genre order by count(music_genre) desc
+	
+	</select>
+	
+	<select id="recommendArtist" parameterType="string" resultType="java.util.HashMap">
+		select count(music_artist), music_artist from(
+ 		select music_artist
+ 		from music where music_index in( select music_index 
+ 		from evaluation where star_count >= (select round(avg(star_count),2)
+ 		from evaluation where member_id = #{MEMBER_ID}) and member_id = #{MEMBER_ID}) ) group by music_artist order by count(music_artist) desc
+	</select>
+	
+	<select id="recommendCountry" parameterType="string" resultType="java.util.HashMap">
+		select count(music_country), music_country from(
+ 		select music_country
+ 		from music where music_index in( select music_index 
+ 		from evaluation where star_count >= (select round(avg(star_count),2)
+ 		from evaluation where member_id = #{MEMBER_ID}) and member_id = #{MEMBER_ID}) ) group by music_country order by count(music_country) desc	
+	</select>
 
 
 

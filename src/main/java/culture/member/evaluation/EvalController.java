@@ -9,6 +9,7 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -22,7 +23,7 @@ public class EvalController {
 	@Resource(name="evalService")
 	private EvalService evalService;
 	
-	@RequestMapping(value="/eval/EvalList.box")		//아이디 값을 세션으로 받아온다. 테스트를 위해 파라미터로 받는다.
+	@RequestMapping(value="/eval/EvalList.cul")		//아이디 값을 세션으로 받아온다. 테스트를 위해 파라미터로 받는다.
 	public String evalList(Model model, MemberModel memberModel, HttpServletRequest request) {
 		String id = request.getParameter("id");	//아이디를 받아온다.
 		
@@ -47,7 +48,7 @@ public class EvalController {
 	}
 	
 	@ResponseBody	
-	@RequestMapping(value="/eval/MusicEval.box")
+	@RequestMapping(value="/eval/MusicEval.cul")
 	public Map<String, Object> musicEval(Model model, EvalModel evalModel, HttpServletRequest request) {
 		Map<String, Object> map = new HashMap<String, Object>();
 		
@@ -90,7 +91,7 @@ public class EvalController {
 	 * 
 	 */
 	
-	@RequestMapping(value="/eval/EvalDetail.box")
+	@RequestMapping(value="/eval/EvalDetail.cul")
 	public String evalDetail(MusicModel musicModel, Model model, HttpServletRequest request) {
 		MusicModel music = new MusicModel();
 		EvalModel evalModel = new EvalModel();
@@ -112,17 +113,71 @@ public class EvalController {
 		return "evalDetail";
 	}
 	
-	
-	@RequestMapping(value="/join")
 	@ResponseBody
+	@RequestMapping(value="/eval/join.cul")
 	 public String join() {
+		System.out.println("in");
 	   Map<String, Object> map = new HashMap<String, Object>();
 	   map.put("name", "victolee");
 	   map.put("age", 26);
      
-	  return "asd";
+	  return "hello";
 	 
 	 }
+	
+	@ResponseBody
+	@RequestMapping(value="/eval/RecommendList.cul")
+	public List<Map<String, Object>> recommendList(Model model, HttpServletRequest request) {
+		HttpSession session = request.getSession();
+
+		List<Map<String, Object>> genre = evalService.getGenre("kh10005");
+		List<Map<String, Object>> artist = evalService.getArtist("kh10005");
+		List<Map<String, Object>> country = evalService.getCountry("kh10005");
+		
+		List<String> top3artist = new ArrayList<String>();
+		List<String> top3genre = new ArrayList<String>();
+		List<String> top3country = new ArrayList<String>();
+		
+		for(int i=0;i<3;i++) {
+			String addCountry = (String)country.get(i).get("MUSIC_COUNTRY");
+			if(addCountry == null) {
+				break;
+			}
+			top3country.add(addCountry);
+			System.out.println("country: "+top3country.get(i));
+		}
+		
+		for(int i=0;i<3;i++) {
+			String addGenre = (String)genre.get(i).get("MUSIC_GENRE");
+			if(addGenre == null) {
+				break;
+			}
+			top3genre.add(addGenre);
+			System.out.println("genre: "+top3genre.get(i));
+		}
+		
+		for(int i=0;i<3;i++) {
+			String addArtist = (String)artist.get(i).get("MUSIC_ARTIST");
+			if(addArtist == null) {
+				break;
+			}
+			top3artist.add(addArtist);
+			System.out.println("artist: "+top3artist.get(i));
+		}
+		
+		/*
+		 * genre: 1.rock, 2.edm, 3.ballard
+		 * 
+		 * artist: 1.,2.,3.
+		 */
+		
+		
+		
+		return genre;
+		
+	}
+	
+	
 
 
 

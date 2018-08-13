@@ -27,18 +27,18 @@
 					
 					params = "MUSIC_INDEX="+encodeURIComponent(idx)+"&STAR_COUNT="+encodeURIComponent(star)+"&MEMBER_ID="+encodeURIComponent(id);
 					$.ajax({
-						url:"http://localhost:8080/culture/eval/MusicEval.box",
+						url:"http://localhost:8080/culture/eval/MusicEval.cul",
 						type:"POST",
 						dataType:"json",
 						data:params,
 						success: function(req){
-							var result = eval("("+req.responseText+")");
-							if(result.code == 'success'){
-								var star = result.star;
-								var div = document.getElementById('star_count');
-								var newDiv = makeView(star);
-								var oldDiv =document.getElementById('star_count');
-								div.replaceChild(newDiv, oldDiv);
+							var result = req.code;
+							if(result == 'success'){
+								var star = req.star;
+								alert(star);
+								$(function(star){
+									$('div.star_count').text(star);
+								});
 								
 							}else{
 								alert(':(')
@@ -55,38 +55,14 @@
 
 		});
 		//<div id="star_count">star</div>
-		function makeView(star){
-			var starDiv = document.createElement('div');
-			starDiv.setAttribute('id', 'star_count');
-			var html = star;
-			
-			starDiv.innerHTML = html;
-			return starDiv;
-			
-		}
-		function insertStar(req){
-			alert('here1');
-			if(req.readyState == 4){
-				alert('here2');
-				if(req.status == 200){
-					var result = eval("("+req.responseText+")");
-					if(result.code == 'success'){
-						var star = result.star;
-						var div = document.getElementById('star_count');
-						var newDiv = makeView(star);
-						var oldDiv =document.getElementById('star_count');
-						div.replaceChild(newDiv, oldDiv);
-						
-					}else{
-						alert(':(')
-					}
-					
-				}else{
-					alert("에러발생:"+req.status);
-				}	
-			}	
-		}
-
+						function mekeView(star){
+							var starDiv = document.createElement('div');
+							starDiv.setAttribute('id', 'star_count');
+							var html = star;
+							
+							starDiv.innerHTML = html;
+							return starDiv;
+						}
 		var _gaq = _gaq || [];
 		_gaq.push(['_setAccount', 'UA-17006803-1']);
 		_gaq.push(['_trackPageview']);

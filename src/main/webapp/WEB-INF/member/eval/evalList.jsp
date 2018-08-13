@@ -25,8 +25,8 @@
                               <tr></tr>
                            </c:if>
                            <td width="100px" height="150px" align="center" class="music">
-                           <a class="show" href='http://localhost:8080/culture/eval/EvalDetail.box?music_index=${row.MUSIC_INDEX }'><img src="http://localhost:8080/culture/a.jpg" width="150px" height="200px"/></a>
-                           <a href="http://localhost:8080/culture/eval/EvalDetail.box?MUSIC_INDEX=${row.MUSIC_INDEX }&MEMBER_ID=${id}"><div class="hide"><p>${row.MUSIC_ALBUM}</p>
+                           <a class="show" href='http://localhost:8080/culture/eval/EvalDetail.cul?music_index=${row.MUSIC_INDEX }'><img src="http://localhost:8080/culture/a.jpg" width="150px" height="200px"/></a>
+                           <a href="http://localhost:8080/culture/eval/EvalDetail.cul?MUSIC_INDEX=${row.MUSIC_INDEX }&MEMBER_ID=${id}"><div class="hide"><p>${row.MUSIC_ALBUM}</p>
                            <input type="text" id="MUSIC_INDEX" name="MUSIC_INDEX" value="${row.MUSIC_INDEX}">
                            </div> </a>
                         	</td>

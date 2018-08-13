@@ -1,6 +1,8 @@
 package culture.member.evaluation;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 
@@ -42,6 +44,24 @@ public class EvalService implements EvalDao{
 	@Override
 	public String getStar(EvalModel evalModel) {
 		return sqlSessionTempate.selectOne("eval.getStar", evalModel);
+	}
+
+
+	@Override
+	public List<Map<String, Object>> getGenre(String MEMBER_ID) {
+		return sqlSessionTempate.selectList("eval.recommendGenre", MEMBER_ID);
+	}
+
+
+	@Override
+	public List<Map<String, Object>> getArtist(String MEMBER_ID) {
+		return sqlSessionTempate.selectList("eval.recommendArtist",MEMBER_ID);
+	}
+
+
+	@Override
+	public List<Map<String, Object>> getCountry(String MEMBER_ID) {
+		return sqlSessionTempate.selectList("eval.recommendCountry",MEMBER_ID);
 	}
 	
 	
