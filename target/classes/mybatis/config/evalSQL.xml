@@ -61,8 +61,58 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select star_count from evaluation where member_id = #{MEMBER_ID} and music_index = #{MUSIC_INDEX}
 	
 	</select>
-
-
+	
+	<select id="likeGenre" parameterType="string" resultType="java.util.HashMap">
+		select count(music_genre), music_genre from(
+ 		select music_genre
+ 		from music where music_index in( select music_index 
+ 		from evaluation where star_count >= (select round(avg(star_count),2)
+ 		from evaluation where member_id = #{MEMBER_ID}) and member_id = #{MEMBER_ID}) ) group by music_genre order by count(music_genre) desc
+	
+	</select>
+	
+	<select id="likeArtist" parameterType="string" resultType="java.util.HashMap">
+		select count(music_artist), music_artist from(
+ 		select music_artist
+ 		from music where music_index in( select music_index 
+ 		from evaluation where star_count >= (select round(avg(star_count),2)
+ 		from evaluation where member_id = #{MEMBER_ID}) and member_id = #{MEMBER_ID}) ) group by music_artist order by count(music_artist) desc
+	</select>
+	
+	<select id="likeCountry" parameterType="string" resultType="java.util.HashMap">
+		select count(music_country), music_country from(
+ 		select music_country
+ 		from music where music_index in( select music_index 
+ 		from evaluation where star_count >= (select round(avg(star_count),2)
+ 		from evaluation where member_id = #{MEMBER_ID}) and member_id = #{MEMBER_ID}) ) group by music_country order by count(music_country) desc	
+	</select>
+	
+	<select id="recommendGenre" parameterType="hashmap" resultMap="musicRes">
+		select music_album, music_song, music_artist, music_release, music_index, music_albuminfo, music_artistinfo,
+   	 	music_genre, music_savname, music_orgname, music_country
+    	from(
+        select * from music where 
+        music_index not in ( select music_index from evaluation where member_id = #{MEMBER_ID})
+        ) where music_genre = #{MUSIC_GENRE}
+	</select>
+	
+	<select id="recommendArtist" parameterType="hashmap" resultMap="musicRes">
+		select music_album, music_song, music_artist, music_release, music_index, music_albuminfo, music_artistinfo,
+   		music_genre, music_savname, music_orgname, music_country
+    	from(
+        select * from music where 
+        music_index not in ( select music_index from evaluation where member_id = #{MEMBER_ID})
+        ) where music_ARTIST = #{MUSIC_ARTIST}
+	</select>
+	
+	<select id="recommendCountry" parameterType="hashmap" resultMap="musicRes">
+		select music_album, music_song, music_artist, music_release, music_index, music_albuminfo, music_artistinfo,
+    	music_genre, music_savname, music_orgname, music_country
+    	from(
+        select * from music where 
+        music_index not in ( select music_index from evaluation where member_id = #{MEMBER_ID})
+        ) where music_country = #{MUSIC_COUNTRY}
+	</select>
 
 </mapper>
 

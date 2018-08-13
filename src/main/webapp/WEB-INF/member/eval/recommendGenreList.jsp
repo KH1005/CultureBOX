@@ -12,9 +12,13 @@
 </head>
 <body>
 
-<h2>음악 리스트</h2>
+<h2>추천 리스트</h2>	<a href="http://localhost:8080/culture/eval/RecommendGenreList.cul?id=${id} }">장르</a>&nbsp;&nbsp;&nbsp;
+				|&nbsp;&nbsp;&nbsp;<a href="http://localhost:8080/culture/eval/RecommendArtistList.cul?id=${id }">아티스트</a>&nbsp;&nbsp;&nbsp;
+				|&nbsp;&nbsp;&nbsp;<a href="http://localhost:8080/culture/eval/RecommendCountryList.cul?id=${id}">국가</a>
 	<table  class="table" width="700" align="center" id="work" >
-                        <c:forEach items="${musicList }" var="row" varStatus="stat">
+					<c:choose>
+						<c:when test="${fn:length(genre) > 0} }">
+                        <c:forEach items="${genre }" var="row" varStatus="stat">
                            <!-- <s:url id="viewURL" action="MemberGoodsList">
                               <s:param name="goods_number">
                                  <s:property value="goods_number" />
@@ -32,21 +36,17 @@
                         	</td>
                         	
                         </c:forEach>
-     
+                        </c:when>
+                        <c:otherwise>
+                        <p>
+                        	평가 데이터가 부족합니다 :( 별점을 더 찍어주세요 :D
+                        </p>
+                        </c:otherwise>
+     				</c:choose>
                </table>
-
-	 
 
 </body>
 </html>
-   
-<!-- 
-	리스트, 커서 올리면 정보보이기 
-
- -->
-
-
-
 
 
 
