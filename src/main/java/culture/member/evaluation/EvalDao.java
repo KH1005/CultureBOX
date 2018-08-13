@@ -29,5 +29,13 @@ public interface EvalDao {
 	
 	public List<Map<String, Object>> getCountry(String MEMBER_ID);
 	
+	public List<MusicModel> getRecommendGenre(Map<String, Object> parameter);
+	
+	public List<MusicModel> getRecommendArtist(Map<String, Object> parameter);
+	
+	public List<MusicModel> getREcommendCountry(Map<String, Object> parameter);
+	
+
+	
 
 }

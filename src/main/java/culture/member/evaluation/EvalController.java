@@ -9,6 +9,7 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.apache.taglibs.standard.lang.jstl.Literal;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,6 +17,8 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.sun.javafx.sg.prism.NGShape.Mode;
 
 @Controller
 public class EvalController {
@@ -125,36 +128,18 @@ public class EvalController {
 	 
 	 }
 	
-	@ResponseBody
-	@RequestMapping(value="/eval/RecommendList.cul")
-	public List<Map<String, Object>> recommendList(Model model, HttpServletRequest request) {
+	@RequestMapping(value="/eval/RecommendArtistList.cul")
+	public String recommendArtistList(Model model, HttpServletRequest request) {
 		HttpSession session = request.getSession();
-
-		List<Map<String, Object>> genre = evalService.getGenre("kh10005");
-		List<Map<String, Object>> artist = evalService.getArtist("kh10005");
-		List<Map<String, Object>> country = evalService.getCountry("kh10005");
+		String id = request.getParameter("id");
+		Map<String, Object> parameter = new HashMap<String, Object>();
+		
+		parameter.put("MEMBER_ID", id);
+		
+		List<Map<String, Object>> artist = evalService.getArtist(id);
+		List<MusicModel> recommendArtist = new ArrayList<MusicModel>();
 		
 		List<String> top3artist = new ArrayList<String>();
-		List<String> top3genre = new ArrayList<String>();
-		List<String> top3country = new ArrayList<String>();
-		
-		for(int i=0;i<3;i++) {
-			String addCountry = (String)country.get(i).get("MUSIC_COUNTRY");
-			if(addCountry == null) {
-				break;
-			}
-			top3country.add(addCountry);
-			System.out.println("country: "+top3country.get(i));
-		}
-		
-		for(int i=0;i<3;i++) {
-			String addGenre = (String)genre.get(i).get("MUSIC_GENRE");
-			if(addGenre == null) {
-				break;
-			}
-			top3genre.add(addGenre);
-			System.out.println("genre: "+top3genre.get(i));
-		}
 		
 		for(int i=0;i<3;i++) {
 			String addArtist = (String)artist.get(i).get("MUSIC_ARTIST");
@@ -165,15 +150,97 @@ public class EvalController {
 			System.out.println("artist: "+top3artist.get(i));
 		}
 		
+		model.addAttribute("artist",recommendArtist);
+		model.addAttribute("id",id);
+		
+		return "recommendArtistList";
+	}
+	
+	@RequestMapping(value="/eval/RecommendCountryList.cul")
+	public String recommendCountryList(Model model, HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		String id = request.getParameter("id");
+		Map<String, Object> parameter = new HashMap<String, Object>();
+		
+		parameter.put("MEMBER_ID", id);
+		List<Map<String, Object>> country = evalService.getCountry(id);
+		
+		List<String> top3country = new ArrayList<String>();
+		
+		for(int i=0;i<3;i++) {
+			String addCountry = (String)country.get(i).get("MUSIC_COUNTRY");
+			if(addCountry == null) {
+				break;
+			}
+			top3country.add(addCountry);
+			System.out.println("country: "+top3country.get(i));
+		
+		}
+		
+		List<MusicModel> recommendCountry = new ArrayList<MusicModel>();
+		
+		for(int i=0;i<top3country.size();i++) {
+			if(top3country.get(i)==null) {
+				break;
+			}
+			parameter.put("MUSIC_COUNTRY", top3country.get(i));
+			
+			List<MusicModel> nara = evalService.getREcommendCountry(parameter); //순위대로 선호하는 국가를 뽑는다. 
+			recommendCountry.addAll(nara);										//순위대로 검색한 국가리스트를 모두 더한다.
+		}
+		
+		model.addAttribute("country",recommendCountry);
+		model.addAttribute("id",id);
+		return "recommendCountryList";
+	}
+	
+	
+	@RequestMapping(value="/eval/RecommendGenreList.cul")
+	public String recommendGenreList(Model model, HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		String id = request.getParameter("id");
+		Map<String, Object> parameter = new HashMap<String, Object>();
+		
+		parameter.put("MEMBER_ID", id);
+
+		List<Map<String, Object>> genre = evalService.getGenre(id);
+		List<String> top3genre = new ArrayList<String>();
+		
+		
+		for(int i=0;i<3;i++) {
+			String addGenre = (String)genre.get(i).get("MUSIC_GENRE");
+			if(addGenre == null) {
+				break;
+			}
+			top3genre.add(addGenre);
+			System.out.println("genre: "+top3genre.get(i));
+		}
+		
+		List<MusicModel> recommendGenre = new ArrayList<MusicModel>();
+		
+		//id = kh10005
+		for(int i=0;i<top3genre.size();i++) {
+			parameter.put("MUSIC_GENRE", top3genre.get(i));
+			if(top3genre.get(i) == null) {
+				break;
+			}
+			List<MusicModel> music = evalService.getRecommendGenre(parameter); //순위에 맞는 장르에 해당하는 뮤직 리스트를 보여준다.
+			recommendGenre.addAll(music);	//1,2,3위 장르에 맞는 추천 음악리스트를 모두 불러온다.
+		}
+		
 		/*
 		 * genre: 1.rock, 2.edm, 3.ballard
 		 * 
-		 * artist: 1.,2.,3.
+		 * artist: 1.oasis, 2.kasabian , 3.dua lipa
+		 * 
+		 * country: 1.US, 2.UK, 3.KR
 		 */
 		
 		
+		model.addAttribute("genre",recommendGenre);
+		model.addAttribute("id",id);
 		
-		return genre;
+		return "recommendGenreList";
 		
 	}
 	
