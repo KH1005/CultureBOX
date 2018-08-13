@@ -28,6 +28,15 @@ public class AdminMusicService implements AdminMusicDao {
 	public int AdminMusicDelete(int MUSIC_INDEX) {
 		return sqlSessionTemplate.update("music.musicDelete",MUSIC_INDEX);
 	}
+
+	@Override
+	public Object AdminMusicinsert(AdminMusicModel adminMusicModel) {
+		return sqlSessionTemplate.insert("music.musicInsert", adminMusicModel);
+
+	}
+
+	
+	
 	
 	
 	

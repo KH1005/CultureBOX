@@ -13,7 +13,7 @@
        
         
             <c:forEach var="adminMusicListForm"  items="${adminMusicListForm}" varStatus="stat"> <!--  컨트롤러에서 보내준 값과 일치시켜야한다(대소문자까지!) -->
-				<c:url var="viewURL" value="MusicDetail.box" >
+				<c:url var="viewURL" value="MusicDetail.cul" >
 					<c:param name="MUSIC_INDEX" value="${adminMusicListForm.MUSIC_INDEX}" /> <!-- ReserveDetail.box 매핑컨트롤러에 해당 파라미터값을 보낸다 -->	
 			    </c:url>
 				 <c:if test="${stat.index %4 eq 0 }">
@@ -31,6 +31,12 @@
 				<c:if test="${fn:length(adminMusicListForm) le 0}">
 					<tr><td colspan="9" style="text-align:center;">등록된 상품이 없습니다</td></tr>
 				</c:if> 
+		 	 <td>
+            <c:url var="viewURL" value="MusicJoinForm.cul" >
+            </c:url>
+            <a href="${viewURL}">등록</a> 
+    	    </td>				 
+								
 															
         </tbody>
     </table>

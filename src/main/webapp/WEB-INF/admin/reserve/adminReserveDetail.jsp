@@ -35,7 +35,7 @@
 			<td></td>
 			<td></td>
 			<td>
-			<c:url var="viewURL" value="ReserveListForm.box" >
+			<c:url var="viewURL" value="ReserveListForm.cul" >
     </c:url>
      <a href="${viewURL}">목록</a> 
      </td>
@@ -44,7 +44,7 @@
      <c:param name="RESERVE_IDX" value="${adminReserveDelete.RESERVE_IDX}" />
     </c:url> --%>
     <td>
-    <c:url var="viewURL" value="ReserveDelete.box" >
+    <c:url var="viewURL" value="ReserveDelete.cul" >
          <c:param name="RESERVE_IDX" value="${adminReserveDetail.RESERVE_IDX}" />
     </c:url>
      <a href="${viewURL}">삭제</a> 

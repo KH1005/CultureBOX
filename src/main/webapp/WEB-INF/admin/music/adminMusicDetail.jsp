@@ -28,16 +28,17 @@
 			<tr>
 			
 			<td>
-			<c:url var="viewURL" value="MusicListForm.box" >
+			<c:url var="viewURL" value="MusicListForm.cul" >
    			 </c:url>
     		 <a href="${viewURL}">목록</a> 
      		</td>
      		 <td>
-            <c:url var="viewURL" value="MusicDelete.box" >
+            <c:url var="viewURL" value="MusicDelete.cul" >
                <c:param name="MUSIC_INDEX" value="${adminMusicDetail.MUSIC_INDEX}" />
             </c:url>
             <a href="${viewURL}">삭제</a> 
     	    </td>
+    	    <td>
    			</tr>
         </tbody>
     </table>

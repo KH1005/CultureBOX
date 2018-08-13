@@ -27,7 +27,7 @@
         </thead>
         <tbody>
             <c:forEach var="adminReserveListForm"  items="${adminReserveListForm}" varStatus="stat"> <!--  컨트롤러에서 보내준 값과 일치시켜야한다(대소문자까지!) -->
-				<c:url var="viewURL" value="ReserveDetail.box" >
+				<c:url var="viewURL" value="ReserveDetail.cul" >
 					<c:param name="RESERVE_IDX" value="${adminReserveListForm.RESERVE_IDX}" /> <!-- ReserveDetail.box 매핑컨트롤러에 해당 파라미터값을 보낸다 -->	
 			    </c:url>
 				<tr class="reserve" role="row">

@@ -22,7 +22,7 @@ public class EvalController {
 	@Resource(name="evalService")
 	private EvalService evalService;
 	
-	@RequestMapping(value="/eval/EvalList.box")		//아이디 값을 세션으로 받아온다. 테스트를 위해 파라미터로 받는다.
+	@RequestMapping(value="/eval/EvalList.cul")		//아이디 값을 세션으로 받아온다. 테스트를 위해 파라미터로 받는다.
 	public String evalList(Model model, MemberModel memberModel, HttpServletRequest request) {
 		String id = request.getParameter("id");	//아이디를 받아온다.
 		
@@ -47,7 +47,7 @@ public class EvalController {
 	}
 	
 	@ResponseBody	
-	@RequestMapping(value="/eval/MusicEval.box")
+	@RequestMapping(value="/eval/MusicEval.cul")
 	public Map<String, Object> musicEval(Model model, EvalModel evalModel, HttpServletRequest request) {
 		Map<String, Object> map = new HashMap<String, Object>();
 		
@@ -90,7 +90,7 @@ public class EvalController {
 	 * 
 	 */
 	
-	@RequestMapping(value="/eval/EvalDetail.box")
+	@RequestMapping(value="/eval/EvalDetail.cul")
 	public String evalDetail(MusicModel musicModel, Model model, HttpServletRequest request) {
 		MusicModel music = new MusicModel();
 		EvalModel evalModel = new EvalModel();

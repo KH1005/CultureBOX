@@ -35,7 +35,7 @@ public class AdminReserveController {
 	
 	
 	//goods admin 리스트
-	@RequestMapping("/admin/ReserveListForm.box")// 이요청이 들어오면 실행!
+	@RequestMapping("/admin/ReserveListForm.cul")// 이요청이 들어오면 실행!
 	public ModelAndView AdminReserveList(HttpServletRequest request) throws Exception{
 		System.out.println("111111111111111111111111111111");
 
@@ -52,7 +52,7 @@ public class AdminReserveController {
 	
 	
 	
-	@RequestMapping("/admin/ReserveDetail.box")
+	@RequestMapping("/admin/ReserveDetail.cul")
 	public ModelAndView AdminReserveDetail(HttpServletRequest request) throws Exception{
 		
 		ModelAndView mav = new ModelAndView();
@@ -71,7 +71,7 @@ public class AdminReserveController {
 		
 	}
 	
-	@RequestMapping("/admin/ReserveDelete.box")
+	@RequestMapping("/admin/ReserveDelete.cul")
 	public ModelAndView AdminReserveDelete(HttpServletRequest request) throws Exception {
 
 		ModelAndView mav = new ModelAndView();
@@ -80,7 +80,7 @@ public class AdminReserveController {
 		
 		adminReserveService.AdminReserveDelete(RESERVE_IDX);
 		
-		mav.setViewName("redirect:/admin/ReserveListForm.box");
+		mav.setViewName("redirect:/admin/ReserveListForm.cul");
 		return mav;
 		
 		/*ModelAndView mav = new ModelAndView();
