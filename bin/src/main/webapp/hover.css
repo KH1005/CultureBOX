@@ -1,0 +1,48 @@
+@charset "UTF-8";
+
+#work td .show{
+			display:block;
+			/* width:100px;
+			height:150px; */
+		}
+		#work td .hide {
+			color:#d4df9d;
+<<<<<<< HEAD
+			text-align: left;
+=======
+			text-align: center;
+>>>>>>> d7dcd69914d7ff44bb5f84ffeb3be36f620829f0
+			height: 0;
+			overflow: hidden;
+			background:#687b00;
+		}
+<<<<<<< HEAD
+=======
+		
+		#work td .hide{
+			text-align: center;
+		}
+		
+>>>>>>> d7dcd69914d7ff44bb5f84ffeb3be36f620829f0
+		#work td:hover .hide, #work td.over .hide {
+			cursor: pointer;
+			height: 200px;
+			/* padding:10px; */
+			width:150px;
+<<<<<<< HEAD
+=======
+
+>>>>>>> d7dcd69914d7ff44bb5f84ffeb3be36f620829f0
+		}
+		#work td:hover .show, #work td.over .show {
+			height: 0;
+			overflow: hidden;
+		}
+		
+		#work td a {
+			color:#e9ff73;
+			font-size:1.3em;
+		}
+		#work td a:hover {
+			color:#fff;
+		}

@@ -17,12 +17,20 @@ PUBLIC " - //mybatis.org//DTD Config 3.0//EN"
 	</settings>
 	
 	<!-- 모델등록 -->
+	
+	
+	<!-- admin -->
 	<typeAliases>
+
 
 		<!-- admin -->
 		<typeAlias type="culture.member.culture.CultureModel" alias="cultureModel" />
 		<typeAlias type="culture.member.culture.CultureCommentModel" alias="cultureCommentModel" />
 
+
+		<typeAlias alias="AdminReserveModel" type="culture.admin.reserve.AdminReserveModel" /> 
+		<typeAlias alias="AdminMusicModel" type="culture.admin.music.AdminMusicModel" /> 
+		
 		<typeAlias type="culture.member.evaluation.EvalModel" alias="evalModel"/>
 		
 		<typeAlias type="culture.member.evaluation.MemberModel" alias="memberModel"/>
@@ -39,9 +47,16 @@ PUBLIC " - //mybatis.org//DTD Config 3.0//EN"
 	
 
 		<!-- <mapper resource="mybatis/config/memberSQL.xml" /> -->
+
 		<mapper resource="mybatis/config/evalSQL.xml"/>
 
 	
+
+		<mapper resource="mybatis/config/adminmusicSQL.xml"/>
+		<mapper resource="mybatis/config/adminreserveSQL.xml"/>
+		<mapper resource="mybatis/config/adminmusicSQL.xml"/>    
+	    
+
 	</mappers>
 
 </configuration>
