@@ -41,7 +41,7 @@
                </table>
       
 
-<!--  등록된 상품이 없을때 -->
+<!--  등록된 공연이 없을때 -->
 <c:if test="${fn:length(cultureList) le 0}">
    등록된 상품이 없습니다
 </c:if> 

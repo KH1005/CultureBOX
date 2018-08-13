@@ -18,15 +18,29 @@ PUBLIC " - //mybatis.org//DTD Config 3.0//EN"
 	
 	<!-- 모델등록 -->
 	<typeAliases>
+
 		<!-- admin -->
 		<typeAlias type="culture.member.culture.CultureModel" alias="cultureModel" />
 		<typeAlias type="culture.member.culture.CultureCommentModel" alias="cultureCommentModel" />
+
+		<typeAlias type="culture.member.evaluation.EvalModel" alias="evalModel"/>
+		
+		<typeAlias type="culture.member.evaluation.MemberModel" alias="memberModel"/>
+		
+		<typeAlias type="culture.member.evaluation.MusicModel" alias="musicModel"/>
+		
+
 	</typeAliases>
 	
 	<!-- xml문서 Mapping -->
 	<mappers>
+
 	 <mapper resource="mybatis/config/cultureSQL.xml" /> 
 	
+
+		<!-- <mapper resource="mybatis/config/memberSQL.xml" /> -->
+		<mapper resource="mybatis/config/evalSQL.xml"/>
+
 	
 	</mappers>
 

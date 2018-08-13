@@ -47,6 +47,9 @@
 	.btn-wrap {
 	    text-align: left;
 	}
+	  tr .bbb{
+        text-align: right;
+        }
 </style>
 <script type="text/javascript">
 $(window).on('load', function () {
@@ -97,10 +100,10 @@ function load(id, cnt, btn) {
 		<div class="culture_btn">
 			<span class="btn btnC_02 btnF_01 mr10"> <input type="button"
 				value="예매하기"
-				onclick="javascript:location.href='<%=cp%>/reserve/reserveMain.mt'" />
+				onclick="javascript:location.href='<%=cp%>/reserve/reserveForm.cul'" />
 			</span>
 
-			<c:if test="${session_member_grade == 1}">
+			<%-- <c:if test="${session_member_grade == 1}">
 				<a href="<%=cp%>/admin/movieUpdate.mt?movie_no=${list.movie_no}"
 					class="btn btnC_01 btnF_04"> <span>수정</span>
 				</a>
@@ -108,7 +111,7 @@ function load(id, cnt, btn) {
 					href="javascript:del_check('movieDelete.mt?movie_no=${list.movie_no}');"
 					class="btn btnC_01 btnF_04"> <span>삭제</span>
 				</a>
-			</c:if>
+			</c:if> --%>
 
 		</div>
 	</div>
@@ -124,6 +127,14 @@ function load(id, cnt, btn) {
 <br>
 My티켓 > 예매/취소내역에서 직접 취소 또는 고객센터(1544-1234)를 통해서 예매를 취소할 수 있습니다.
 
+<table>
+<tr>
+<td class="bbb"><br><br>
+ <a href="javascript:history.back()" class="btn btnC_03 btnF_02 mr10">
+		       <span>목록</span></a>
+</td>
+</tr>
+</table>
 
 <h3 class="sub_tit">관람후기</h3>
 
@@ -160,11 +171,12 @@ My티켓 > 예매/취소내역에서 직접 취소 또는 고객센터(1544-1234
 			 </ul>
 			 	<div id="js-btn-wrap" class="btn-wrap"><a href="javascript:;" class="button">더보기</a></div>
 			 	<div class="btn_type_04">
-	             <a href="javascript:history.back()" class="btn btnC_03 btnF_02 mr10">
-		       <span>목록</span>
-		       
-	             </a>
-               </div>
+	             <!-- <a href="javascript:history.back()" class="btn btnC_03 btnF_02 mr10">
+		       <span>목록</span></a> -->
+		       </div>
+	             <!--  <a href="javascript:history.back()" class="btn btnC_03 btnF_02 mr10">
+		       <span>목록</span></a> -->
+               
 			 	</div>
 			   </div>
 			   
@@ -177,10 +189,6 @@ My티켓 > 예매/취소내역에서 직접 취소 또는 고객센터(1544-1234
 	       
 	</c:choose>
 </div>
-
 </body>
-
-
-
 </html>
 
