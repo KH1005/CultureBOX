@@ -3,7 +3,7 @@
 
 <mapper namespace="culture">
 
-<resultMap type="cultureModel" id="cultureRes">
+  <resultMap type="cultureModel" id="cultureRes">
        <result property = "CULTURE_IDX" column ="CULTURE_IDX" />
        <result property = "CULTURE_NAME" column = "CULTURE_NAME"/>
        <result property = "CULTURE_CATEGORY" column = "CULTURE_CATEGORY" />
@@ -14,14 +14,45 @@
        <result property = "CULTURE_LOCATION" column = "CULTURE_LOCATION" />
        <result property = "CULTURE_CONTENT" column = "CULTURE_CONTENT" />
    </resultMap>
-      
+   
+   
+   <resultMap type="cultureCommentModel" id="cultureCommentRes">
+		<result property="COMMENT_IDX" column="COMMENT_IDX"/>
+		<result property="COMMENT_WRITER" column="COMMENT_WRITER"/>
+		<result property="COMMENT_CONTENT" column="COMMENT_CONTENT"/>
+		<result property="COMMENT_CULTUREIDX" column="COMMENT_CULTUREIDX"/>
+		<result property="COMMENT_WRITEDATE" column="COMMENT_WRITEDATE"/>
+		<result property="COMMENT_WRITERID" column="COMMENT_WRITERID"/>
+	</resultMap>   
+
+    <!--    공연 리스트 -->
        <select id="selectCulture_ALL" resultMap="cultureRes">
            select * from CULTURE order
            by CULTURE_IDX desc
        </select>
        
+       <!-- 공연 상세보기 -->
        <select id="selectCulture_ONE" resultMap = "cultureRes" parameterType="cultureModel">
            select * from CULTURE where CULTURE_IDX = #{CULTURE_IDX}
-       </select>
+       </select> 
+       
+       <!-- 댓글달기 -->
+       <insert id="writeCultureComment" parameterType="int">
+		insert into CULTURE_COMMENT (COMMENT_IDX, COMMENT_CONTENT,COMMENT_CULTUREIDX,COMMENT_WRITEDATE)
+                values(COMMENT_SEQ.NEXTVAL,#{COMMENT_CONTENT},#{COMMENT_CULTUREIDX},SYSDATE)
+	   </insert>
+	   
+	   <!-- 댓글 전체 꺼내오기 -->
+	   <select id="selectCultureCommentList" resultMap="cultureCommentRes" parameterType="cultureCommentModel">
+		select * from CULTURE_COMMENT
+				where COMMENT_CULTUREIDX = #{COMMENT_IDX}
+			    order by COMMENT_IDX desc
+	   </select>
+	   
+	   <!-- 댓글 삭제 -->
+      <delete id="deleteCultureComment" parameterType="cultureCommentModel">
+		delete from CULTURE_COMMENT where COMMENT_IDX=#{COMMENT_IDX} 
+	</delete>
+       
 
 </mapper>

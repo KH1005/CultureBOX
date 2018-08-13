@@ -1,0 +1,32 @@
+@charset "UTF-8";
+
+#work td .show{
+			display:block;
+			/* width:100px;
+			height:150px; */
+		}
+		#work td .hide {
+			color:#d4df9d;
+			text-align: left;
+			height: 0;
+			overflow: hidden;
+			background:#687b00;
+		}
+		#work td:hover .hide, #work td.over .hide {
+			cursor: pointer;
+			height: 200px;
+			/* padding:10px; */
+			width:150px;
+		}
+		#work td:hover .show, #work td.over .show {
+			height: 0;
+			overflow: hidden;
+		}
+		
+		#work td a {
+			color:#e9ff73;
+			font-size:1.3em;
+		}
+		#work td a:hover {
+			color:#fff;
+		}

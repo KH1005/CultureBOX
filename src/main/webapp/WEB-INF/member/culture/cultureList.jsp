@@ -15,7 +15,7 @@
 <h2>공연</h2>
 
 
- 		<table  class="table" width="700" align="center" id="work">
+       <table  class="table" width="700" align="center" id="work">
                         <c:forEach items ="${cultureList}" var = "row" varStatus="stat">
                            
 
@@ -43,8 +43,7 @@
 
 <!--  등록된 상품이 없을때 -->
 <c:if test="${fn:length(cultureList) le 0}">
-	등록된 상품이 없습니다
+   등록된 상품이 없습니다
 </c:if> 
 </div>
 </body>
-</html>

@@ -19,7 +19,8 @@ PUBLIC " - //mybatis.org//DTD Config 3.0//EN"
 	<!-- 모델등록 -->
 	<typeAliases>
 		<!-- admin -->
-		<typeAlias type="culture.member.model.CultureModel" alias="cultureModel" />
+		<typeAlias type="culture.member.culture.CultureModel" alias="cultureModel" />
+		<typeAlias type="culture.member.culture.CultureCommentModel" alias="cultureCommentModel" />
 	</typeAliases>
 	
 	<!-- xml문서 Mapping -->
