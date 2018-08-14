@@ -17,11 +17,16 @@ PUBLIC " - //mybatis.org//DTD Config 3.0//EN"
 	</settings>
 	
 	<!-- 모델등록 -->
-	
+	<typeAliases>
+		<typeAlias alias="AdminMemberModel" type="culture.admin.member.AdminMemberModel"/>
+		<typeAlias alias="AdminCultureModel" type="culture.admin.culture.AdminCultureModel"/>
+	</typeAliases>
 	
 	<!-- xml문서 Mapping -->
 	<mappers>
-		<!-- <mapper resource="mybatis/config/memberSQL.xml" /> -->
+	  <mapper resource="mybatis/config/adminMemberSQL.xml" />
+	  <mapper resource="mybatis/config/adminCultureSQL.xml"/> 
+	  
 	
 	</mappers>
 
