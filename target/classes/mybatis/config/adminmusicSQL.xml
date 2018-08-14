@@ -33,10 +33,10 @@
 		</delete> 
 		
 		<!-- 등록 -->
-		 <insert id="musicInsert" parameterType="adminmusicRes">
+		 <!-- <insert id="musicInsert" parameterType="adminmusicRes">
 		INSERT INTO MUSIC(MUSIC_INDEX, MUSIC_ALBUM, MUSIC_SONG, MUSIC_ARTIST, MUSIC_RELEASE, MUSIC_ALBUMINFO, MUSIC_ARTISTINFO, MUSIC_GENRE, MUSIC_SAVNAME, MUSIC_COUNTRY) 
 		VALUES (MUSIC_SEQ.NEXTVAL, #{MUSIC_ALBUM}, #{MUSIC_SONG}, #{MUSIC_ARTIST}, , #{MUSIC_ALBUMINFO}, #{MUSIC_ARTISTINFO}, #{MUSIC_GENRE}, #{MUSIC_SAVNAME}, #{MUSIC_COUNTRY} )
-		</insert>
+		</insert> -->
 		 
 					
 	
