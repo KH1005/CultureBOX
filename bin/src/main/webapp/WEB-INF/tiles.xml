@@ -153,24 +153,24 @@
 		<put-attribute name="body" value="/WEB-INF/admin/member/adminModify.jsp"/>
 	</definition>
 	
-	<definition name="adminConcertList" extends="base_layout">
+	<definition name="adminCultureList" extends="base_layout">
 		<put-attribute name="title" value="ADMIN CONCERT LIST"/>
-		<put-attribute name="body" value="/WEB-INF/admin/concert/adminConcertList.jsp"/>
+		<put-attribute name="body" value="/WEB-INF/admin/culture/adminCultureList.jsp"/>
 	</definition>
 
-	<definition name="adminConcertDetail" extends="base_layout">
+	<definition name="adminCultureDetail" extends="base_layout">
 		<put-attribute name="title" value="ADMIN CONCERT DETAIL"/>
-		<put-attribute name="body" value="/WEB-INF/admin/concert/adminConcertDetail.jsp"/>	
+		<put-attribute name="body" value="/WEB-INF/admin/culture/adminCultureDetail.jsp"/>	
 	</definition>
 	
-	<definition name="adminConcertJoinForm" extends="base_layout">
+	<definition name="adminCultureJoinForm" extends="base_layout">
 		<put-attribute name="title" value="ADMIN CONCERT JOIN FORM"/>
-		<put-attribute name="body" value="/WEB-INF/admin/concert/adminConcertJoinForm.jsp"/>
+		<put-attribute name="body" value="/WEB-INF/admin/culture/adminCultureJoinForm.jsp"/>
 	</definition>
 	
-	<definition name="adminConcertModifyForm" extends="base_layout">
+	<definition name="adminCultureModifyForm" extends="base_layout">
 		<put-attribute name="title" value="ADMIN CONCERT MODIFY FORM"/>
-		<put-attribute name="body" value="/WEB-INF/admin/concert/adminConcertModifyForm.jsp"/>
+		<put-attribute name="body" value="/WEB-INF/admin/culture/adminCultureModifyForm.jsp"/>
 	</definition>
 	
 	<definition name="adminReserveListForm" extends="base_layout">
@@ -207,7 +207,6 @@
 	</definition>
 	
 </tiles-definitions>
-
 
 
 

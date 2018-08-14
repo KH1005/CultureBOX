@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="admin">
+
+	<resultMap id="AdminCultureRes" type="AdminCultureModel">
+		<result column="CULTURE_IDX" property="CULTURE_IDX" />
+		<result column="CULTURE_NAME" property="CULTURE_NAME" />
+		<result column="CULTURE_CATEGORY" property="CULTURE_CATEGORY" />
+		<result column="CULTURE_START" property="CULTURE_START" />
+		<result column="CULTURE_END" property="CULTURE_END" />
+		<result column="CULTURE_ORGNAME" property="CULTURE_ORGNAME" />
+		<result column="CULTURE_SAVNAME" property="CULTURE_SAVNAME" />
+		<result column="CULTURE_LOCATION" property="CULTURE_LOCATION" />
+		<result column="CULTURE_CONTENT" property="CULTURE_CONTENT" />
+		<result column="CULTURE_CHECK" property="CULTURE_CHECK" />
+	</resultMap>
+
+
+	<select id="AdminCultureList" resultMap="AdminCultureRes">
+		SELECT * FROM CULTURE
+		ORDER BY CULTURE_IDX DESC
+		
+	</select>
+
+	<select id="AdminCultureDetail" resultMap="AdminMemberRes" parameterType="int">
+		SELECT * FROM CULTURE WHERE CULTURE_IDX = #{CULTURE_IDX}
+
+	</select>
+
+
+
+
+
+
+
+</mapper>
