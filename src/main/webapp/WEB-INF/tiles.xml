@@ -117,9 +117,19 @@
 		<put-attribute name="body" value="/WEB-INF/member/eval/evalDetail.jsp"/>
 	</definition>
 	
-	<definition name="recommendList" extends="base_layout">
+	<definition name="recommendGenreList" extends="base_layout">
 		<put-attribute name="title" value="RECOMMEND LIST"/>
-		<put-attribute name="body" value="/WEB-INF/member/eval/recommendList.jsp"/>
+		<put-attribute name="body" value="/WEB-INF/member/eval/recommendGenreList.jsp"/>
+	</definition>
+	
+	<definition name="recommendArtistList" extends="base_layout">
+		<put-attribute name="title" value="RECOMMEND LIST"></put-attribute>
+		<put-attribute name="body" value="/WEB-INF/member/eval/recommendArtistList.jsp"></put-attribute>	
+	</definition>
+	
+	<definition name="recommendCountryList" extends="base_layout">
+		<put-attribute name="title" value="RECOMMEND LIST"></put-attribute>
+		<put-attribute name="body" value="/WEB-INF/member/eval/recommendCountryList.jsp"></put-attribute>
 	</definition>
 	
 	<definition name="recommendDetail" extends="base_layout">
@@ -167,6 +177,14 @@
 		<put-attribute name="title" value="ADMIN RESERVE LIST"/>
 		<put-attribute name="body" value="/WEB-INF/admin/reserve/adminReserveListForm.jsp"/>
 	</definition>
+	
+	<definition name="adminReserveDetail" extends="base_layout">
+		<put-attribute name="title" value="ADMIN RESERVE LIST"/>
+		<put-attribute name="body" value="/WEB-INF/admin/reserve/adminReserveDetail.jsp"/>
+	</definition>
+	
+	
+	
 	
 	<definition name="adminMusicListForm" extends="base_layout">
 		<put-attribute name="title" value="ADMIN MUSIC LIST"></put-attribute>

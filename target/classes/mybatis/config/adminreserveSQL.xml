@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	<mapper namespace="reserve">
+		<resultMap id="adminreserveRes" type="AdminReserveModel">
+			<result column="RESERVE_IDX" property="RESERVE_IDX"/>
+			<result column="RESERVE_DATE" property="RESERVE_DATE"/>
+			<result column="RESERVE_CONFIRM" property="RESERVE_CONFIRM"/>
+			<result column="RESERVE_ID" property="RESERVE_ID"/>
+			<result column="RESERVE_SIDX" property="RESERVE_SIDX"/>
+			<result column="RESERVE_CIDX" property="RESERVE_CIDX"/>			
+	</resultMap>
+
+
+		<!-- 공통으로 사용할 select 의 -->
+		<select id="reserveList" resultMap="adminreserveRes">
+		SELECT RESERVE_IDX, RESERVE_DATE, RESERVE_CONFIRM, RESERVE_ID, RESERVE_CIDX FROM  RESERVATION ORDER BY RESERVE_IDX DESC		
+		</select>
+		
+		<select id="reserveDetail" resultMap="adminreserveRes">
+		SELECT * FROM RESERVATION WHERE RESERVE_IDX = #{RESERVE_IDX}
+		</select>
+		
+		<delete id="reserveDelete" parameterType="Integer">
+		DELETE FROM RESERVATION WHERE RESERVE_IDX = #{RESERVE_IDX}
+		</delete>
+			
+	</mapper>
