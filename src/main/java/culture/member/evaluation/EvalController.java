@@ -15,6 +15,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -33,18 +34,18 @@ public class EvalController {
 		memberModel.setMEMBER_ID(id);	//아이디를 빈에 저장하고
 		
 		List<MusicModel> musicList = evalService.selectMusicList(memberModel);	//서비스를 이용해서 디비에서 가져온다.
-		List<String[]> songList  = new ArrayList<String[]>();
+//		List<String[]> songList  = new ArrayList<String[]>();
 		
 		//노래들
-		for(int i=0;i<musicList.size();i++) {
-			String song = musicList.get(i).getMUSIC_SONG();
-			//System.out.println("song: "+song);
-			String[] albumSong = song.split("|");
-			songList.add(albumSong);
-		}
+//		for(int i=0;i<musicList.size();i++) {
+//			String song = musicList.get(i).getMUSIC_SONG();
+//			//System.out.println("song: "+song);
+//			String[] albumSong = song.split("|");
+//			songList.add(albumSong);
+//		}
 		//System.out.println("size: "+musicList.size());
 		model.addAttribute("musicList",musicList);
-		model.addAttribute("songList",songList);
+//		model.addAttribute("songList",songList);
 		model.addAttribute("id",id);
 		
 		return "evalList";
@@ -98,8 +99,12 @@ public class EvalController {
 	public String evalDetail(MusicModel musicModel, Model model, HttpServletRequest request) {
 		MusicModel music = new MusicModel();
 		EvalModel evalModel = new EvalModel();
+		MemberModel memberModel = new MemberModel();
+		HttpSession session = request.getSession();
 		
+		String member_id = (String)session.getAttribute("id");
 		String id = request.getParameter("MEMBER_ID");
+		memberModel = evalService.getMemberInfo(id);
 		music = evalService.selectMusic(musicModel);
 		
 		evalModel.setMEMBER_ID(id);
@@ -109,9 +114,23 @@ public class EvalController {
 		if(star == null) {
 			star = "0";
 		}
+		//코멘트 리스트 불러오기
+		Map<String, Object> parameter = new HashMap<String, Object>();
+		parameter.put("MCOMMENT_MUSICIDX", music.getMUSIC_INDEX());
+		parameter.put("MCOMMENT_WRITERID", id);
+		List<MusicCommentModel> commentList = evalService.getMusicComment(music.getMUSIC_INDEX());
+		MusicCommentModel myComment = evalService.getMyComment(parameter);
+		if(myComment == null) {
+			System.out.println("no comment");
+		}else {
+			System.out.println("size: "+myComment.getMCOMMENT_IDX());
+		}
 		
+		model.addAttribute("mycomment", myComment);
+		model.addAttribute("commentList", commentList);
 		model.addAttribute("music", music);
 		model.addAttribute("star",star);
+		model.addAttribute("member",memberModel);
 		
 		return "evalDetail";
 	}
@@ -244,7 +263,14 @@ public class EvalController {
 		
 	}
 	
-	
+	@RequestMapping(value="/eval/CommentWrite.cul" , method=RequestMethod.POST)
+	public String commentWrite(MusicCommentModel musicCommentModel, HttpServletRequest request, Model model) {
+		
+		evalService.insertMusicComment(musicCommentModel); //댓글 쓰기
+		int music_index = musicCommentModel.getMCOMMENT_MUSICIDX();
+		String member_id = musicCommentModel.getMCOMMENT_WRITERID();
+		return "redirect:EvalDetail.cul?MUSIC_INDEX="+music_index+"&MEMBER_ID="+member_id;
+	}
 
 
 

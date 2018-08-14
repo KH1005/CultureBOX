@@ -83,6 +83,28 @@ public class EvalService implements EvalDao{
 	}
 
 
+	@Override
+	public MemberModel getMemberInfo(String MEMBER_ID) {
+		return sqlSessionTempate.selectOne("eval.getMemberInfo",MEMBER_ID);
+	}
+
+
+	@Override
+	public void insertMusicComment(MusicCommentModel musicCommentModel) {
+		sqlSessionTempate.insert("eval.insertMusicComment",musicCommentModel);
+	}
+
+
+	@Override
+	public List<MusicCommentModel> getMusicComment(int mcomment_musicidx) {
+		return sqlSessionTempate.selectList("eval.getMusicComment",mcomment_musicidx);
+	}
+
+
+	@Override
+	public MusicCommentModel getMyComment(Map<String, Object> parameter) {
+		return sqlSessionTempate.selectOne("eval.getMyComment", parameter);
+	}
 	
 	
 	

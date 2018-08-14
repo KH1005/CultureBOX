@@ -35,6 +35,13 @@ public interface EvalDao {
 	
 	public List<MusicModel> getREcommendCountry(Map<String, Object> parameter);
 	
+	public MemberModel getMemberInfo(String MEMBER_ID);
+	
+	public void insertMusicComment(MusicCommentModel musicCommentModel);
+	
+	public List<MusicCommentModel> getMusicComment(int mcomment_musicidx);
+	
+	public MusicCommentModel getMyComment(Map<String, Object> parameter);
 
 	
 
