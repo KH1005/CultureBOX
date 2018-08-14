@@ -227,7 +227,7 @@ public class EvalController {
 			List<MusicModel> music = evalService.getRecommendGenre(parameter); //순위에 맞는 장르에 해당하는 뮤직 리스트를 보여준다.
 			recommendGenre.addAll(music);	//1,2,3위 장르에 맞는 추천 음악리스트를 모두 불러온다.
 		}
-		
+		System.out.println("size: "+recommendGenre.size());
 		/*
 		 * genre: 1.rock, 2.edm, 3.ballard
 		 * 
