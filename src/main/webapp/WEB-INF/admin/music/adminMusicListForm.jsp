@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
-<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>   
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <html lang="ko">
 <head>
 </head>
@@ -21,7 +21,7 @@
                            </c:if>
 				 <td width="100px" height="150px" align="center" class="music">
                  
-                <a href="${viewURL}"><img src="http://localhost:8080/culture/a.jpg" width="150px" height="200px"/></a>    <!--   클릭을 하면 위 viewRRL 부분 매핑을 실행하기 위함 -->
+                <a href="${viewURL}"><img src="http://localhost:8080/culture/${adminMusicListForm.MUSIC_SAVNAME}" width="150px" height="200px"/></a>    <!--   클릭을 하면 위 viewRRL 부분 매핑을 실행하기 위함 -->
                 </td>
 									
 										

@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
 	<mapper namespace="music">
+	
 		<resultMap id="adminmusicRes" type="AdminMusicModel">
 			<result column="MUSIC_ALBUM" property="MUSIC_ALBUM"/>
 			<result column="MUSIC_SONG" property="MUSIC_SONG"/>
@@ -15,6 +17,15 @@
 			<result column="MUSIC_COUNTRY" property="MUSIC_COUNTRY"/>				
 	</resultMap>
 
+	 <resultMap type="MusicCommentModel" id="musicCommentRes">
+		<result property="MCOMMENT_IDX" column="MCOMMENT_IDX"/>
+		<result property="MCOMMENT_WRITER" column="MCOMMENT_WRITER"/>
+		<result property="MCOMMENT_CONTENT" column="MCOMMENT_CONTENT"/>
+		<result property="MCOMMENT_MUSICIDX" column="MCOMMENT_MUSICIDX"/>
+		<result property="MCOMMENT_WRITEDATE" column="MCOMMENT_WRITEDATE"/>
+		<result property="MCOMMENT_WRITERID" column="MCOMMENT_WRITERID"/>
+	</resultMap>
+	
 
 
 		<!-- 공통으로 사용할 select 의 -->
@@ -28,16 +39,38 @@
 		</select>
 		 
 		 <!--  삭제 -->
-		<delete id="musicDelete" parameterType="Integer">
+		<!-- <delete id="musicDelete" parameterType="Integer">
 		DELETE FROM MUSIC WHERE MUSIC_INDEX = #{MUSIC_INDEX}
-		</delete> 
+		</delete>  -->
 		
 		<!-- 등록 -->
-		 <!-- <insert id="musicInsert" parameterType="adminmusicRes">
-		INSERT INTO MUSIC(MUSIC_INDEX, MUSIC_ALBUM, MUSIC_SONG, MUSIC_ARTIST, MUSIC_RELEASE, MUSIC_ALBUMINFO, MUSIC_ARTISTINFO, MUSIC_GENRE, MUSIC_SAVNAME, MUSIC_COUNTRY) 
-		VALUES (MUSIC_SEQ.NEXTVAL, #{MUSIC_ALBUM}, #{MUSIC_SONG}, #{MUSIC_ARTIST}, , #{MUSIC_ALBUMINFO}, #{MUSIC_ARTISTINFO}, #{MUSIC_GENRE}, #{MUSIC_SAVNAME}, #{MUSIC_COUNTRY} )
-		</insert> -->
+		<insert id="musicInsert" parameterType="AdminMusicModel">
+		INSERT INTO MUSIC(MUSIC_INDEX,
+					      MUSIC_ALBUM,
+		 				  MUSIC_SONG,
+		 				  MUSIC_ARTIST,
+		   				  MUSIC_RELEASE,
+		    			  MUSIC_ALBUMINFO,
+		      MUSIC_ARTISTINFO,
+		       MUSIC_GENRE,
+		       MUSIC_SAVNAME,
+		        MUSIC_COUNTRY) 
+		VALUES (MUSIC_SEQ.NEXTVAL, #{MUSIC_ALBUM}, #{MUSIC_SONG}, #{MUSIC_ARTIST}, to_date(#{MUSIC_RELEASE}, 'yyyy-MM-dd'), #{MUSIC_ALBUMINFO}, #{MUSIC_ARTISTINFO}, #{MUSIC_GENRE}, #{MUSIC_SAVNAME}, #{MUSIC_COUNTRY} )
+		</insert>  
 		 
+			
+			
+		<!-- 댓글 전체 꺼내오기 -->
+	   <select id="selectMusicCommentList" resultMap="musicCommentRes" parameterType="MusicCommentModel">
+		SELECT * from MUSIC_COMMENT
+				WHERE MCOMMENT_MUSICIDX = #{MCOMMENT_IDX}
+			    ORDER BY MCOMMENT_IDX DESC
+	   </select>
+	   
+	    <!-- 댓글 삭제 -->
+      <delete id="deleteMusicComment" parameterType="MusicCommentModel">
+		DELETE FROM MUSIC_COMMENT WHERE MCOMMENT_IDX = #{MCOMMENT_IDX} 
+	  </delete>
 					
 	
 	</mapper>

@@ -28,21 +28,24 @@ import org.springframework.web.servlet.ModelAndView;
 import culture.admin.music.AdminMusicModel;
 import culture.admin.music.AdminMusicService;
 import culture.admin.reserve.AdminReserveModel;
+import culture.member.culture.CultureCommentModel;
 
 @Controller
 public class AdminMusicConrtoller {
 
 
-	private static final String uploadPath = "C:\\Spring\\cultureBOX\\src\\main\\webapp\\";
 	     
 		@Resource(name="adminMusicService")  // 의존주입 해서 사용하기 위해
+		
+		private static String uploadPath = "C:\\Spring\\cultureBOX\\src\\main\\webapp\\WEB-INF\\";
+
 		
 		private AdminMusicService adminMusicService;
 		
 		
 		
 		
-		//goods admin 리스트
+		///////////////////////MUSIC 리스트//////////////////////////////////////////////
 		@RequestMapping("/admin/MusicListForm.cul")// 이요청이 들어오면 실행!
 		public ModelAndView AdminMusicList(HttpServletRequest request) throws Exception{
 			System.out.println("111111111111111111111111111111");
@@ -56,11 +59,12 @@ public class AdminMusicConrtoller {
 				return mav;
 			}
 		
+		///////////////////////MUSIC 상세보기(댓글추가)//////////////////////////////////////////////
 		@RequestMapping("/admin/MusicDetail.cul")
 		public ModelAndView AdminMusicDetail(HttpServletRequest request) throws Exception{
 			
 			System.out.println("111111111111111111111111111111");
-
+		
 			
 			ModelAndView mav = new ModelAndView();
 
@@ -69,9 +73,12 @@ public class AdminMusicConrtoller {
 
 
 			AdminMusicModel adminMusicModel= adminMusicService.AdminMusicDetail(MUSIC_INDEX);
+			List<MusicCommentModel> list = adminMusicService.MusicCommentList(adminMusicModel.getMUSIC_INDEX());
+
 			System.out.println("222222222222222222222222222222222");
 
-			
+			mav.addObject("musicCommentList",list);
+
 			mav.addObject("adminMusicDetail", adminMusicModel);
 			mav.setViewName("adminMusicDetail");  
 
@@ -79,7 +86,9 @@ public class AdminMusicConrtoller {
 		
 		}
 		
-		@RequestMapping("/admin/MusicDelete.cul")
+		
+		///////////////////////MUSIC 삭제//////////////////////////////////////////////
+		/*@RequestMapping("/admin/MusicDelete.cul")
 		public ModelAndView AdminMusicDelete(HttpServletRequest request) throws Exception {
 
 			ModelAndView mav = new ModelAndView();
@@ -90,7 +99,7 @@ public class AdminMusicConrtoller {
 			
 			mav.setViewName("redirect:/admin/MusicListForm.cul");
 			return mav;
-		}
+		}*/
 		
 
 		/*/////////////////////////////////////글쓰기 폼 이동/////////////////////////////////////*/
@@ -110,11 +119,13 @@ public class AdminMusicConrtoller {
 		
 		/////////////////////////////////글쓰기 ///////////////////////////////////////////
 		@RequestMapping("/admin/MusicJoin.cul")
-		public String reviewWrite(AdminMusicModel adminMusicModel,  BindingResult result,
+		public String MusicJoin(AdminMusicModel adminMusicModel,  BindingResult result,
 				MultipartHttpServletRequest multipartHttpServletRequest) throws Exception, Exception{
 			System.out.println("444444444444444444");
 			ModelAndView mav = new ModelAndView();
 			
+			System.out.println("music_artist: "+adminMusicModel.getMUSIC_ARTIST());
+
 			/*벨리데이트
 			new MusicValidator().validate(adminMusicModel, result);
 			if(result.hasErrors()) {
@@ -129,18 +140,21 @@ public class AdminMusicConrtoller {
 			//업로드
 			MultipartFile multipartFile = multipartHttpServletRequest.getFile("file");
 	    	String filename = multipartFile.getOriginalFilename();
+	    	System.out.println("99999999999999999999999");
 	        	if (filename != ""){ 
 				    adminMusicModel.setMUSIC_SAVNAME(System.currentTimeMillis()+"_"+multipartFile.getOriginalFilename());
 				    String savimagename = System.currentTimeMillis()+"_"+multipartFile.getOriginalFilename();
 			        FileCopyUtils.copy(multipartFile.getInputStream(), new FileOutputStream(uploadPath+"/"+savimagename));
 			        adminMusicModel.setMUSIC_SAVNAME(savimagename);
+			        System.out.println("0000000000000000000000");
 	        	}else{
 	        		adminMusicModel.setMUSIC_SAVNAME("NULL");		
 	        	}
+	        	
 				System.out.println("5555555555555555555555");
 
-			adminMusicService.AdminMusicinsert(adminMusicModel);
-		
+				adminMusicService.AdminMusicinsert(adminMusicModel);
+
 			System.out.println("66666666666666666666663");
 
 			mav.setViewName("redirect:MusicListForm.cul");
@@ -175,5 +189,21 @@ public class AdminMusicConrtoller {
 			
 			return "redirect:MusicListForm.cul";
 		}*/
+		/////////////////////////댓글 삭제//////////////////////////////////
+		@RequestMapping("/admin/deleteMusicComment.cul")
+		public ModelAndView commentDelete(HttpServletRequest request, MusicCommentModel musicCommentModel ){
+		
+			ModelAndView mav=new ModelAndView();
+			System.out.println("value: "+musicCommentModel.getMCOMMENT_IDX());
+			adminMusicService.DeleteMusicComment(musicCommentModel);
+		
+			mav.setViewName("redirect:MusicDetail.cul?MUSIC_INDEX="+musicCommentModel.getMCOMMENT_MUSICIDX());
+		
+			return mav;
+		
+		}
+		
+		
+		
 		
 }

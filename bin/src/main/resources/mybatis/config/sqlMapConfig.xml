@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE configuration 
+PUBLIC " - //mybatis.org//DTD Config 3.0//EN"
+	   " http://mybatis.org/dtd/mybatis-3-config.dtd">
+	   
+<configuration>
+	<!-- mybatis 기본 세팅 -->
+	<settings>
+		<setting name="cacheEnabled"              value="true"/>  
+        <setting name="lazyLoadingEnabled"        value="false"/>  
+        <setting name="multipleResultSetsEnabled" value="true"/>  
+        <setting name="useColumnLabel"            value="true"/>  
+        <setting name="useGeneratedKeys"          value="false"/>  
+        <setting name="defaultExecutorType"       value="SIMPLE"/>  
+        <setting name="defaultStatementTimeout"   value="25000"/>  
+	</settings>
+	
+	<!-- 모델등록 -->
+	
+	
+	<!-- admin -->
+	<typeAliases>
+
+
+		<!-- admin -->
+		<typeAlias type="culture.member.culture.CultureModel" alias="cultureModel" />
+		<typeAlias type="culture.member.culture.CultureCommentModel" alias="cultureCommentModel" />
+
+
+		<typeAlias alias="AdminReserveModel" type="culture.admin.reserve.AdminReserveModel" /> 
+		<typeAlias alias="AdminMusicModel" type="culture.admin.music.AdminMusicModel" /> 
+		
+		<typeAlias type="culture.member.evaluation.EvalModel" alias="evalModel"/>
+		
+		<typeAlias type="culture.member.evaluation.MemberModel" alias="memberModel"/>
+		
+		<typeAlias type="culture.member.evaluation.MusicModel" alias="musicModel"/>
+		
+
+	</typeAliases>
+	
+	<!-- xml문서 Mapping -->
+	<mappers>
+
+	 <mapper resource="mybatis/config/cultureSQL.xml" /> 
+	
+
+		<!-- <mapper resource="mybatis/config/memberSQL.xml" /> -->
+
+		<mapper resource="mybatis/config/evalSQL.xml"/>
+
+	
+
+		<mapper resource="mybatis/config/adminmusicSQL.xml"/>
+		<mapper resource="mybatis/config/adminreserveSQL.xml"/>
+		<mapper resource="mybatis/config/adminmusicSQL.xml"/>    
+	    
+
+	</mappers>
+
+</configuration>
