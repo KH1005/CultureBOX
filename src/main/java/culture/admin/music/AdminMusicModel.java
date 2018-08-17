@@ -6,7 +6,7 @@ public class AdminMusicModel {
 	private String MUSIC_ALBUM;
 	private String MUSIC_SONG;
 	private String MUSIC_ARTIST;
-	private Date MUSIC_RELEASE;
+	private String MUSIC_RELEASE;
 	private int MUSIC_INDEX;
 	private String MUSIC_ALBUMINFO;
 	private String MUSIC_ARTISTINFO;
@@ -33,10 +33,11 @@ public class AdminMusicModel {
 	public void setMUSIC_ARTIST(String mUSIC_ARTIST) {
 		MUSIC_ARTIST = mUSIC_ARTIST;
 	}
-	public Date getMUSIC_RELEASE() {
+	
+	public String getMUSIC_RELEASE() {
 		return MUSIC_RELEASE;
 	}
-	public void setMUSIC_RELEASE(Date mUSIC_RELEASE) {
+	public void setMUSIC_RELEASE(String mUSIC_RELEASE) {
 		MUSIC_RELEASE = mUSIC_RELEASE;
 	}
 	public int getMUSIC_INDEX() {

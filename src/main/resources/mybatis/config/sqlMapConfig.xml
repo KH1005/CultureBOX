@@ -27,6 +27,8 @@
 
 		<typeAlias alias="AdminReserveModel" type="culture.admin.reserve.AdminReserveModel" /> 
 		<typeAlias alias="AdminMusicModel" type="culture.admin.music.AdminMusicModel" /> 
+		<typeAlias alias="MusicCommentModel" type="culture.admin.music.MusicCommentModel" /> 
+		
 		
 		<typeAlias type="culture.member.evaluation.EvalModel" alias="evalModel"/>
 		

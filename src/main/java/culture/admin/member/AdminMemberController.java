@@ -119,7 +119,7 @@ public class AdminMemberController {
 		return mav;
 	}
 
-	
+	//회원 수정
 	@RequestMapping(value = "/admin/MemberModify.cul")
 	public ModelAndView adminMemberModify(AdminMemberModel member, HttpServletRequest request) {
 		System.out.println("test : " + member.getMEMBER_ID());
