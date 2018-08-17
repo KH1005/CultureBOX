@@ -23,6 +23,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
+import culture.admin.culture.AdminCultureModel;
 import culture.admin.member.AdminMemberModel;
 import culture.admin.music.AdminMusicModel;
 import culture.admin.music.AdminMusicService;
@@ -36,7 +37,7 @@ public class AdminMusicConrtoller {
 	     
 		@Resource(name="adminMusicService")  // 의존주입 해서 사용하기 위해
 		private AdminMusicService adminMusicService;
-		
+		ModelAndView mav = new ModelAndView();
 		
 		private static String uploadPath = "C:\\Spring\\cultureBOX\\src\\main\\webapp\\WEB-INF\\";
 
@@ -86,24 +87,7 @@ public class AdminMusicConrtoller {
 			return mav;
 		
 		}
-		//////////////////////////////////////////수정 폼 띄우기 /////////////////////////////////
-		@RequestMapping("/admin/MusicModifyForm.cul")
-		public ModelAndView adminMusicModifyForm(AdminMusicModel adminMusicModel, HttpServletRequest request) throws Exception{
-
-			ModelAndView mav = new ModelAndView();
 	
-			AdminMusicModel oneMusic = new AdminMusicModel();
-			oneMusic = adminMusicService.AdminMusicModify(adminMusicModel.getMUSIC_INDEX());
-			 System.out.println("name: "+oneMusic.getMUSIC_INDEX()); 
-			mav.addObject("adminMusicModify", oneMusic);
-			mav.setViewName("adminMusicModify");
-
-			return mav;
-		}
-		
-		
-		
-		
 		
 		
 		///////////////////////MUSIC 삭제//////////////////////////////////////////////
@@ -226,6 +210,18 @@ public class AdminMusicConrtoller {
 		
 			return mav;
 		
+		}
+		
+		@RequestMapping(value = "/admin/CultureModifyForm.cul")
+		public ModelAndView adminMusicModifyForm(AdminMusicModel music, HttpServletRequest request) {
+			
+			AdminMusicModel oneMusic = new AdminMusicModel();
+			oneMusic = adminMusicService.AdminMusicModify(music.getMUSIC_INDEX());
+			
+			mav.addObject("music", oneMusic);
+			mav.setViewName("adminMusicModify");
+
+			return mav;
 		}
 		
 		

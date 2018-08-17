@@ -70,9 +70,11 @@
 		</insert>  
 		 
 		 <!-- 수정폼 띄우기 -->
-	  <select id="musicModifyForm" resultMap="adminmusicRes" parameterType="int">
+	 <select id="MusicModifyForm" resultMap="adminmusicRes"
+		parameterType="int">
 		SELECT * FROM MUSIC WHERE MUSIC_INDEX = #{MUSIC_INDEX}
-	  </select>  
+
+	</select>  
 			
 			
 		<!-- 댓글 전체 꺼내오기 -->

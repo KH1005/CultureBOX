@@ -61,11 +61,13 @@ public class AdminMusicService implements AdminMusicDao {
 		return sqlSessionTemplate.delete("music.deleteMusicComment",musicCommentModel);
 	}
 
-			
-	@Override//수정폼 띄우기
+	@Override
 	public AdminMusicModel AdminMusicModify(int MUSIC_INDEX) {
-		return sqlSessionTemplate.selectOne("music.musicModifyForm", MUSIC_INDEX);
+		// TODO Auto-generated method stub
+		return sqlSessionTemplate.selectOne("music.MusicModifyForm", MUSIC_INDEX);
 	}
+
+	
 
 	
 	

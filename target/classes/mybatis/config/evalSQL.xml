@@ -33,7 +33,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<result property="MUSIC_COUNTRY" column="MUSIC_COUNTRY"/>
 	</resultMap>
 	
-	<resultMap type="musicCommentModel" id="musicCommentRes">
+	<resultMap type="CommentModel" id="musicCommentRes">
 		<result property="MCOMMENT_IDX" column="MCOMMENT_IDX"/>
 		<result property="MCOMMENT_WRITER" column="MCOMMENT_WRITER"/>
 		<result property="MCOMMENT_CONTENT" column="MCOMMENT_CONTENT"/>
@@ -126,7 +126,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select * from member where member_id = #{MEMBER_ID}
 	</select>
 	
-	<insert id="insertMusicComment" parameterType="musicCommentModel" >
+	<insert id="insertMusicComment" parameterType="CommentModel" >
 		insert into MUSIC_COMMENT(MCOMMENT_IDX,
 								  MCOMMENT_WRITER,
 								  MCOMMENT_CONTENT, 
@@ -155,7 +155,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		delete from evaluation where member_id = #{MEMBER_ID} and music_index = #{MUSIC_INDEX}
 	</delete>
 	
-	<update id="updateComment" parameterType="musicCommentModel">
+	<update id="updateComment" parameterType="CommentModel">
 		update music_comment set mcomment_content = #{MCOMMENT_CONTENT},
                          mcomment_writedate = sysdate
                      where mcomment_idx = #{MCOMMENT_IDX}

@@ -36,7 +36,7 @@
 		
 		<typeAlias type="culture.member.evaluation.MusicModel" alias="musicModel"/>
 		
-		<typeAlias type="culture.member.evaluation.MusicCommentModel" alias="musicCommentModel"/>
+		<typeAlias type="culture.member.evaluation.MusicCommentModel" alias="CommentModel"/>
 		
 
 	</typeAliases>
