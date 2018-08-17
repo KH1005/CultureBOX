@@ -20,6 +20,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.sun.javafx.sg.prism.NGShape.Mode;
+import com.sun.org.apache.xalan.internal.xsltc.compiler.sym;
+
+import sun.rmi.transport.proxy.HttpReceiveSocket;
 
 @Controller
 public class EvalController {
@@ -61,23 +64,19 @@ public class EvalController {
 		String star_count = request.getParameter("STAR_COUNT");
 //		int star = Integer.parseInt(star_count);
 //		int index = Integer.parseInt(music_index);
-		System.out.println("music_index: "+music_index);
 		
 		evalModel.setMEMBER_ID(member_id);
 		evalModel.setMUSIC_INDEX(Integer.parseInt(music_index));
 		evalModel.setSTAR_COUNT(Integer.parseInt(star_count));
 		
 		int check = evalService.checkEval(evalModel);
-		
 		if(check == 1) {
 			System.out.println("값이 있습니다.");
 			map.put("code", "fail");
 			return map;
 		}else{
-			System.out.println("in");
 			evalService.insertEvalMusic(evalModel);
 			String getStar = evalService.getStar(evalModel);
-			System.out.println("star: "+getStar);
 			map.put("code", "success");
 			map.put("star", getStar);
 			return map;
@@ -120,32 +119,39 @@ public class EvalController {
 		parameter.put("MCOMMENT_WRITERID", id);
 		List<MusicCommentModel> commentList = evalService.getMusicComment(music.getMUSIC_INDEX());
 		MusicCommentModel myComment = evalService.getMyComment(parameter);
-		if(myComment == null) {
-			System.out.println("no comment");
-		}else {
-			System.out.println("size: "+myComment.getMCOMMENT_IDX());
-		}
 		
 		model.addAttribute("mycomment", myComment);
-		model.addAttribute("commentList", commentList);
+	//	model.addAttribute("commentList", commentList);
 		model.addAttribute("music", music);
-		model.addAttribute("star",star);
+		model.addAttribute("star",Integer.parseInt(star));
 		model.addAttribute("member",memberModel);
+		model.addAttribute("id",id);
 		
 		return "evalDetail";
 	}
 	
 	@ResponseBody
-	@RequestMapping(value="/eval/join.cul")
-	 public String join() {
-		System.out.println("in");
-	   Map<String, Object> map = new HashMap<String, Object>();
-	   map.put("name", "victolee");
-	   map.put("age", 26);
-     
-	  return "hello";
-	 
-	 }
+	@RequestMapping(value="/eval/CommentList.cul")
+	public List<Map<String, Object>> commentList(HttpServletRequest request){
+
+		int idx = Integer.parseInt(request.getParameter("MUSIC_INDEX"));
+		List<MusicCommentModel> commentList = evalService.getMusicComment(idx);
+		
+		List<Map<String, Object>> cList = new ArrayList<>();
+		for(int i =0;i<commentList.size();i++) {
+			Map<String, Object> map = new HashMap<String, Object>();
+			map.put("id", commentList.get(i).getMCOMMENT_WRITERID());
+			map.put("content",commentList.get(i).getMCOMMENT_CONTENT() );
+			map.put("index", commentList.get(i).getMCOMMENT_IDX());
+			map.put("musicidx",commentList.get(i).getMCOMMENT_MUSICIDX());
+			cList.add(map);
+			
+		}
+		
+		return cList;
+	}
+	
+	
 	
 	@RequestMapping(value="/eval/RecommendArtistList.cul")
 	public String recommendArtistList(Model model, HttpServletRequest request) {
@@ -160,7 +166,7 @@ public class EvalController {
 		
 		List<String> top3artist = new ArrayList<String>();
 		
-		for(int i=0;i<3;i++) {
+		for(int i=0;i<artist.size();i++) {
 			String addArtist = (String)artist.get(i).get("MUSIC_ARTIST");
 			if(addArtist == null) {
 				break;
@@ -186,7 +192,7 @@ public class EvalController {
 		
 		List<String> top3country = new ArrayList<String>();
 		
-		for(int i=0;i<3;i++) {
+		for(int i=0;i<country.size();i++) {
 			String addCountry = (String)country.get(i).get("MUSIC_COUNTRY");
 			if(addCountry == null) {
 				break;
@@ -226,7 +232,7 @@ public class EvalController {
 		List<String> top3genre = new ArrayList<String>();
 		
 		
-		for(int i=0;i<3;i++) {
+		for(int i=0;i<genre.size();i++) {
 			String addGenre = (String)genre.get(i).get("MUSIC_GENRE");
 			if(addGenre == null) {
 				break;
@@ -263,15 +269,94 @@ public class EvalController {
 		
 	}
 	
+	/*
+	 * 이름과 아이디로 찾는다. 코멘트가 있으면 업데이트해서 수정하고 찾았는데 없으면 인서트해서 넣는다.
+	 */
+	
+	@ResponseBody
 	@RequestMapping(value="/eval/CommentWrite.cul" , method=RequestMethod.POST)
-	public String commentWrite(MusicCommentModel musicCommentModel, HttpServletRequest request, Model model) {
+	public Map<String, Object> commentWrite(MusicCommentModel musicCommentModel, HttpServletRequest request, Model model) {
+		Map<String, Object> map = new HashMap<String, Object>(); 
+		Map<String, Object> parameter = new HashMap<String, Object>();
+		
+		MusicCommentModel musicinfo = new MusicCommentModel();		//인서트한 뮤직정보를 얻어온다.
+		parameter.put("MCOMMENT_MUSICIDX", musicCommentModel.getMCOMMENT_MUSICIDX());
+		parameter.put("MCOMMENT_WRITERID", musicCommentModel.getMCOMMENT_WRITERID());
 		
 		evalService.insertMusicComment(musicCommentModel); //댓글 쓰기
-		int music_index = musicCommentModel.getMCOMMENT_MUSICIDX();
-		String member_id = musicCommentModel.getMCOMMENT_WRITERID();
-		return "redirect:EvalDetail.cul?MUSIC_INDEX="+music_index+"&MEMBER_ID="+member_id;
+		musicinfo = evalService.getMyComment(parameter);	//쓴 댓글 바로 가져오기
+		
+		model.addAttribute("musicinfo", musicinfo);
+		
+		map.put("code", "success");
+		map.put("id", musicinfo.getMCOMMENT_WRITERID());
+		map.put("content", musicinfo.getMCOMMENT_CONTENT());
+		map.put("index", musicinfo.getMCOMMENT_IDX());
+		map.put("musicidx",musicinfo.getMCOMMENT_MUSICIDX());
+		//return "redirect:EvalDetail.cul?MUSIC_INDEX="+music_index+"&MEMBER_ID="+member_id;
+		return map;
+	}
+	
+	//코멘트를 삭제한다. 
+	@ResponseBody
+	@RequestMapping(value="/eval/CommentDelete.cul")
+	public Map<String, Object> commentDelete(HttpServletRequest request){
+		System.out.println("controller in");
+		Map<String, Object> map = new HashMap<String, Object>();
+		int idx = Integer.parseInt(request.getParameter("MCOMMENT_IDX"));
+		try {
+			evalService.deleteComment(idx);
+			map.put("code", "success");
+		}catch (Exception e) {
+			map.put("code", "fail");
+			return map;
+		}
+		
+		return map;
+		
+	}
+	
+	//수정하고 값을 바꿔주면 된다.
+	@ResponseBody
+	@RequestMapping(value="/eval/CommentModify.cul", method=RequestMethod.POST)
+	public Map<String, Object> commentModify(MusicCommentModel musicCommentModel){
+		Map<String, Object> map = new HashMap<String, Object>();
+		
+		try {
+			evalService.updateComment(musicCommentModel); //댓글 수정
+			
+			map.put("code", "success");
+			map.put("id", musicCommentModel.getMCOMMENT_WRITERID());
+			map.put("content", musicCommentModel.getMCOMMENT_CONTENT());
+			map.put("index", musicCommentModel.getMCOMMENT_IDX());
+			map.put("musicidx",musicCommentModel.getMCOMMENT_MUSICIDX());
+			
+		}catch (Exception e) {
+			return map;
+		}
+		
+		
+		return map;
 	}
 
+	@RequestMapping(value="/eval/DeleteEvaluation.cul")
+	public String deleteEvaluation(HttpServletRequest request, Model model){
+		Map<String, Object>	parameter = new HashMap<String, Object>();
+		Map<String, Object> map = new HashMap<String, Object>();
+		parameter.put("MEMBER_ID", request.getParameter("MEMBER_ID"));
+		parameter.put("MUSIC_INDEX", request.getParameter("MUSIC_INDEX"));
+		
+		try {
+			evalService.deleteEvaluation(parameter);
+			map.put("code", "success");
+		}catch(Exception e) {
+			map.put("code", "fail");
+		}
+				
+		return "redirect:EvalDetail.cul?MUSIC_INDEX="+parameter.get("MUSIC_INDEX")+"&MEMBER_ID="+parameter.get("MEMBER_ID");
+	}
+	
+	
 
 
 }

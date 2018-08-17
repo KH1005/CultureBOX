@@ -105,6 +105,29 @@ public class EvalService implements EvalDao{
 	public MusicCommentModel getMyComment(Map<String, Object> parameter) {
 		return sqlSessionTempate.selectOne("eval.getMyComment", parameter);
 	}
+
+
+	@Override
+	public void deleteEvaluation(Map<String, Object> parameter) {
+		sqlSessionTempate.delete("eval.deleteEvaluation", parameter);
+		
+	}
+
+
+	@Override
+	public void updateComment(MusicCommentModel musicCommentModel) {
+		sqlSessionTempate.update("eval.updateComment",musicCommentModel);
+		
+	}
+
+
+	@Override
+	public void deleteComment(int MCOMMENT_IDX) {
+		sqlSessionTempate.delete("eval.deleteComment",MCOMMENT_IDX);
+	}
+	
+	
+	
 	
 	
 	

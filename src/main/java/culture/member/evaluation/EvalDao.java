@@ -43,6 +43,26 @@ public interface EvalDao {
 	
 	public MusicCommentModel getMyComment(Map<String, Object> parameter);
 
+	public void deleteEvaluation(Map<String, Object> parameter);
+	
+	public void updateComment(MusicCommentModel musicCommentModel);
+	
+	public void deleteComment(int MCOMMENT_IDX);
 	
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

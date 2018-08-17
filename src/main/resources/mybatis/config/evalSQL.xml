@@ -68,7 +68,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<select id="getStar" parameterType="evalModel" resultType="string">
 		select star_count from evaluation where member_id = #{MEMBER_ID} and music_index = #{MUSIC_INDEX}
-	
 	</select>
 	
 	<select id="likeGenre" parameterType="string" resultType="java.util.HashMap">
@@ -151,6 +150,25 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="getMyComment" parameterType="hashmap" resultMap="musicCommentRes">
 		select * from music_comment where mcomment_musicidx = #{MCOMMENT_MUSICIDX} and mcomment_writerid = #{MCOMMENT_WRITERID}	
 	</select>
+	
+	<delete id="deleteEvaluation" parameterType="hashmap">
+		delete from evaluation where member_id = #{MEMBER_ID} and music_index = #{MUSIC_INDEX}
+	</delete>
+	
+	<update id="updateComment" parameterType="musicCommentModel">
+		update music_comment set mcomment_content = #{MCOMMENT_CONTENT},
+                         mcomment_writedate = sysdate
+                     where mcomment_idx = #{MCOMMENT_IDX}
+	</update>
+	
+	<delete id="deleteComment" parameterType="string">
+		delete from music_comment where mcomment_idx = #{MCOMMENT_IDX}
+	
+	</delete>
+	
+	
+	
+	
 	
 </mapper>
 
