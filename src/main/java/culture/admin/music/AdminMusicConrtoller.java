@@ -23,8 +23,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
-
-
+import culture.admin.member.AdminMemberModel;
 import culture.admin.music.AdminMusicModel;
 import culture.admin.music.AdminMusicService;
 import culture.admin.reserve.AdminReserveModel;
@@ -36,11 +35,13 @@ public class AdminMusicConrtoller {
 
 	     
 		@Resource(name="adminMusicService")  // 의존주입 해서 사용하기 위해
+		private AdminMusicService adminMusicService;
+		
 		
 		private static String uploadPath = "C:\\Spring\\cultureBOX\\src\\main\\webapp\\WEB-INF\\";
 
 		
-		private AdminMusicService adminMusicService;
+		
 		
 		
 		
@@ -79,27 +80,50 @@ public class AdminMusicConrtoller {
 
 			mav.addObject("musicCommentList",list);
 
-			mav.addObject("adminMusicDetail", adminMusicModel);
+			mav.addObject("adminMusicModel", adminMusicModel);
 			mav.setViewName("adminMusicDetail");  
 
 			return mav;
 		
 		}
+		//////////////////////////////////////////수정 폼 띄우기 /////////////////////////////////
+		@RequestMapping("/admin/MusicModifyForm.cul")
+		public ModelAndView adminMusicModifyForm(AdminMusicModel adminMusicModel, HttpServletRequest request) throws Exception{
+
+			ModelAndView mav = new ModelAndView();
+	
+			AdminMusicModel oneMusic = new AdminMusicModel();
+			oneMusic = adminMusicService.AdminMusicModify(adminMusicModel.getMUSIC_INDEX());
+			 System.out.println("name: "+oneMusic.getMUSIC_INDEX()); 
+			mav.addObject("adminMusicModify", oneMusic);
+			mav.setViewName("adminMusicModify");
+
+			return mav;
+		}
+		
+		
+		
+		
 		
 		
 		///////////////////////MUSIC 삭제//////////////////////////////////////////////
-		/*@RequestMapping("/admin/MusicDelete.cul")
+		@RequestMapping("/admin/MusicDelete.cul")
 		public ModelAndView AdminMusicDelete(HttpServletRequest request) throws Exception {
 
 			ModelAndView mav = new ModelAndView();
-			
-			int MUSIC_INDEX = Integer.parseInt(request.getParameter("MUSIC_INDEX"));
-			
+			System.out.println("00000000000000000000000000000000000");
+			String MUSIC_INDEX = request.getParameter("MUSIC_INDEX");
+			/*int MCOMMENT_MUSICIDX = Integer.parseInt(request.getParameter("MCOMMENT_MUSICIDX"));
+			int MUSIC_INDEX = Integer.parseInt(request.getParameter("MUSIC_INDEX"));*/
+			System.out.println("111111111111111111111111111111111");
+			adminMusicService.AdminEvalDelete(MUSIC_INDEX);
+			adminMusicService.AdminMusicCommentDelete(MUSIC_INDEX);
 			adminMusicService.AdminMusicDelete(MUSIC_INDEX);
-			
+			System.out.println("22222222222222222222222222222222222222");
+
 			mav.setViewName("redirect:/admin/MusicListForm.cul");
 			return mav;
-		}*/
+		}
 		
 
 		/*/////////////////////////////////////글쓰기 폼 이동/////////////////////////////////////*/
@@ -189,6 +213,7 @@ public class AdminMusicConrtoller {
 			
 			return "redirect:MusicListForm.cul";
 		}*/
+		
 		/////////////////////////댓글 삭제//////////////////////////////////
 		@RequestMapping("/admin/deleteMusicComment.cul")
 		public ModelAndView commentDelete(HttpServletRequest request, MusicCommentModel musicCommentModel ){

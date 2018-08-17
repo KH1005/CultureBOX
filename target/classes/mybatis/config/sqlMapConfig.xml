@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<!DOCTYPE configuration 
-PUBLIC " - //mybatis.org//DTD Config 3.0//EN"
+<!DOCTYPE configuration PUBLIC " - //mybatis.org//DTD Config 3.0//EN"
 	   " http://mybatis.org/dtd/mybatis-3-config.dtd">
 	   
 <configuration>
@@ -17,11 +16,9 @@ PUBLIC " - //mybatis.org//DTD Config 3.0//EN"
 	</settings>
 	
 	<!-- 모델등록 -->
-	
-	
-	<!-- admin -->
 	<typeAliases>
-
+		<typeAlias alias="AdminMemberModel" type="culture.admin.member.AdminMemberModel"/>
+		<typeAlias alias="AdminCultureModel" type="culture.admin.culture.AdminCultureModel"/>
 
 		<!-- admin -->
 		<typeAlias type="culture.member.culture.CultureModel" alias="cultureModel" />
@@ -45,13 +42,13 @@ PUBLIC " - //mybatis.org//DTD Config 3.0//EN"
 	<!-- xml문서 Mapping -->
 	<mappers>
 
+	  <mapper resource="mybatis/config/adminMemberSQL.xml" />
+	  <mapper resource="mybatis/config/adminCultureSQL.xml"/> 
 	 <mapper resource="mybatis/config/cultureSQL.xml" /> 
 	
-
 		<!-- <mapper resource="mybatis/config/memberSQL.xml" /> -->
 
 		<mapper resource="mybatis/config/evalSQL.xml"/>
-
 	
 
 		<mapper resource="mybatis/config/adminmusicSQL.xml"/>

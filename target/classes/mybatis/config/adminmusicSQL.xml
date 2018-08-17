@@ -39,9 +39,20 @@
 		</select>
 		 
 		 <!--  삭제 -->
-		<!-- <delete id="musicDelete" parameterType="Integer">
+		<delete id="musicDelete" parameterType="Integer">
 		DELETE FROM MUSIC WHERE MUSIC_INDEX = #{MUSIC_INDEX}
-		</delete>  -->
+		</delete>
+		
+		<delete id="musicDeleteComment" parameterType="Integer">
+		DELETE FROM MUSIC_COMMENT WHERE MCOMMENT_IDX = #{MCOMMENT_IDX}
+		</delete>
+		
+		<delete id="evalDelete" parameterType="Integer">
+		DELETE FROM EVALUATION WHERE MUSIC_INDEX = #{MUSIC_INDEX}
+		</delete>
+		
+		
+		
 		
 		<!-- 등록 -->
 		<insert id="musicInsert" parameterType="AdminMusicModel">
@@ -58,6 +69,10 @@
 		VALUES (MUSIC_SEQ.NEXTVAL, #{MUSIC_ALBUM}, #{MUSIC_SONG}, #{MUSIC_ARTIST}, to_date(#{MUSIC_RELEASE}, 'yyyy-MM-dd'), #{MUSIC_ALBUMINFO}, #{MUSIC_ARTISTINFO}, #{MUSIC_GENRE}, #{MUSIC_SAVNAME}, #{MUSIC_COUNTRY} )
 		</insert>  
 		 
+		 <!-- 수정폼 띄우기 -->
+	  <select id="musicModifyForm" resultMap="adminmusicRes" parameterType="int">
+		SELECT * FROM MUSIC WHERE MUSIC_INDEX = #{MUSIC_INDEX}
+	  </select>  
 			
 			
 		<!-- 댓글 전체 꺼내오기 -->
@@ -71,6 +86,7 @@
       <delete id="deleteMusicComment" parameterType="MusicCommentModel">
 		DELETE FROM MUSIC_COMMENT WHERE MCOMMENT_IDX = #{MCOMMENT_IDX} 
 	  </delete>
-					
+		
+	   
 	
 	</mapper>

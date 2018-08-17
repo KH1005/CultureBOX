@@ -25,11 +25,23 @@ public class AdminMusicService implements AdminMusicDao {
 		return sqlSessionTemplate.selectOne("music.musicDetail",MUSIC_INDEX);
 	}
 
-	/*@Override//삭제
-	public int AdminMusicDelete(int MUSIC_INDEX) {
-		return sqlSessionTemplate.update("music.musicDelete",MUSIC_INDEX);
+	
+	//삭제
+	@Override
+	public int AdminMusicDelete(String MUSIC_INDEX) {
+		return sqlSessionTemplate.delete("music.musicDelete",MUSIC_INDEX);
 	}
-*/
+
+	@Override
+	public int AdminMusicCommentDelete(String MCOMMENT_IDX) {
+		return sqlSessionTemplate.delete("music.musicDeleteComment",MCOMMENT_IDX);
+	}
+	
+	@Override
+	public int AdminEvalDelete(String MUSIC_INDEX) {
+		return sqlSessionTemplate.delete("music.evalDelete",MUSIC_INDEX);
+	}
+
 	@Override//글쓰기
 	public Object AdminMusicinsert(AdminMusicModel adminMusicModel) {
 		return sqlSessionTemplate.insert("music.musicInsert", adminMusicModel);
@@ -47,6 +59,12 @@ public class AdminMusicService implements AdminMusicDao {
 	@Override//댓글 삭제
 	public Object DeleteMusicComment(MusicCommentModel musicCommentModel) {
 		return sqlSessionTemplate.delete("music.deleteMusicComment",musicCommentModel);
+	}
+
+			
+	@Override//수정폼 띄우기
+	public AdminMusicModel AdminMusicModify(int MUSIC_INDEX) {
+		return sqlSessionTemplate.selectOne("music.musicModifyForm", MUSIC_INDEX);
 	}
 
 	

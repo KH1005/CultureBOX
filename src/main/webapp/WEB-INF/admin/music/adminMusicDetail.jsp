@@ -63,10 +63,11 @@ function load(id, cnt, btn) {
     		 <a href="${viewURL}">목록</a> 
      		</td>
      			<td>
-			<%-- <c:url var="viewURL" value="MusicModifyForm.cul" >
-   			 </c:url>
-    		 <a href="${viewURL}">수정</a> 
-     		</td> --%>
+			<c:url var="viewURL" value="MusicModifyForm.cul" >
+<%-- 				 <c:param name="MUSIC_INDEX" value="${adminMusicDetail.MUSIC_INDEX}" />
+ --%>   			 </c:url> 
+<%--     		 <a href="http://localhost:8080/culture/admin/MusicModifyForm.cul?MUSIC_INDEX=${adminMusicDetail.MUSIC_INDEX}">수정</a> 
+ --%>     		            <a href="${viewURL}">수정</a></td> 
      		
      		 <td>
             <c:url var="viewURL" value="MusicDelete.cul" >

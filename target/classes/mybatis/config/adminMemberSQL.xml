@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="admin">
+
+	<resultMap id="AdminMemberRes" type="AdminMemberModel">
+		<result column="MEMBER_ID" property="MEMBER_ID" />
+		<result column="MEMBER_PASSWORD" property="MEMBER_PASSWORD" />
+		<result column="MEMBER_NAME" property="MEMBER_NAME" />
+		<result column="MEMBER_EMAIL" property="MEMBER_EMAIL" />
+	</resultMap>
+
+	<!-- 공통으로 사용할 select -->
+	<sql id="select-all-m"> SELECT * FROM MEMBER </sql>
+	<select id="memberList" resultMap="AdminMemberRes">
+		SELECT * FROM MEMBER ORDER BY MEMBER_ID DESC
+	</select>
+
+	<select id="AdminMemberList" resultMap="AdminMemberRes">
+		SELECT * FROM MEMBER
+		ORDER BY
+		MEMBER_NAME DESC
+	</select>
+
+
+
+	<!-- <select id="selectUpdate_ONE" resultMap = "AdminMemberRes" parameterType="AdminMemberModel"> 
+		select * from MEMBER where MEMBER_ID = #{MEMBER_ID} </select> -->
+
+	<select id="getMember" resultMap="AdminMemberRes"
+		parameterType="String">
+		SELECT * FROM MEMBER WHERE MEMBER_ID = #{MEMBER_ID}
+
+	</select>
+
+	<!-- 회원 수정 -->
+	<update id="AdminUpdateMember" parameterType="AdminMemberModel">
+		UPDATE MEMBER SET
+		MEMBER_PASSWORD = #{MEMBER_PASSWORD},
+		MEMBER_NAME = #{MEMBER_NAME},
+		MEMBER_EMAIL = #{MEMBER_EMAIL}
+		WHERE MEMBER_ID = #{MEMBER_ID}
+	</update>
+
+	<delete id="adminDeleteMember" parameterType="String">
+		DELETE FROM MEMBER WHERE MEMBER_ID = #{MEMBER_ID}
+	</delete>
+
+
+	<delete id="AdmindeleteMember" parameterType="String">
+		DELETE FROM EVALUATION WHERE MEMBER_ID = #{MEMBER_ID}
+	</delete>
+
+	<delete id="AdminDeleteMember" parameterType="String">
+		DELETE FROM CULTURE_COMMENT WHERE COMMENT_WRITERID = #{COMMENT_WRITERID}
+	</delete>
+
+	<delete id="AdminReserveDelete" parameterType="String">
+		DELETE FROM RESERVATION WHERE RESERVE_ID = #{RESERVE_ID}
+	</delete>
+
+
+	<!-- 전체검색 -->
+	<select id="memberSearch0" resultMap="AdminMemberRes" parameterType="String">
+		SELECT * FROM MEMBER
+		WHERE MEMBER_ID like #{search}
+		or MEMBER_PASSWORD like #{search}
+		or MEMBER_NAME like #{search}
+		or MEMBER_EMAIL like #{search}
+		ORDER BY MEMBER_NAME DESC
+	</select>
+
+
+
+
+
+</mapper>
