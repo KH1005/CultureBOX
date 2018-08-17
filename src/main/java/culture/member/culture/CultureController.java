@@ -47,9 +47,9 @@ public class CultureController {
 		int culture_idx = Integer.parseInt(request.getParameter("culture_idx"));
 		
 		CultureModel cultureModel = cultureService.cultureDetail(culture_idx);
-		//System.out.println("culture idx: "+cultureModel.getCULTURE_IDX());
+		System.out.println("culture idx: "+cultureModel.getCULTURE_IDX());
 		List<CultureCommentModel> list = cultureService.cultureCommentList(cultureModel.getCULTURE_IDX());
-		//System.out.println("size: "+list.size());
+		System.out.println("size: "+list.size());
 		mv.addObject("cultureModel",cultureModel);
 		mv.addObject("cultureCommentList",list);
 		
@@ -59,7 +59,7 @@ public class CultureController {
 	
 	}
 	
-	//댓글달기
+	//댓글달기f
 	@RequestMapping("/concert/writeCultureComment.cul")
 	public ModelAndView commentWrite(HttpServletRequest request, CultureCommentModel cultureCommentModel) {
 		

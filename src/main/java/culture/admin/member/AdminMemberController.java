@@ -110,9 +110,14 @@ public class AdminMemberController {
 	// 회원수정폼
 	@RequestMapping(value = "/admin/MemberModifyForm.cul")
 	public ModelAndView adminModifyForm(AdminMemberModel member, HttpServletRequest request) {
+		System.out.println("test : " + member.getMEMBER_ID());
+		System.out.println("test : " + member.getMEMBER_NAME());
+		System.out.println("test : " + member.getMEMBER_PASSWORD());
+		System.out.println("test : " + member.getMEMBER_EMAIL());
 		AdminMemberModel oneMember = new AdminMemberModel();
 		oneMember = adminMemberService.getMember(member.getMEMBER_ID());
-		/* System.out.println("name: "+oneMember.getMEMBER_NAME()); */
+		
+		System.out.println("member :" +oneMember.getMEMBER_ID());
 		mav.addObject("member", oneMember);
 		mav.setViewName("adminModify");
 
@@ -122,11 +127,7 @@ public class AdminMemberController {
 	
 	@RequestMapping(value = "/admin/MemberModify.cul")
 	public ModelAndView adminMemberModify(AdminMemberModel member, HttpServletRequest request) {
-		System.out.println("test : " + member.getMEMBER_ID());
-		System.out.println("test : " + member.getMEMBER_NAME());
-		System.out.println("test : " + member.getMEMBER_PASSWORD());
-		System.out.println("test : " + member.getMEMBER_EMAIL());
-		System.out.println("test : " + member);
+		
 
 		adminMemberService.AdminUpdateMember(member);
 
