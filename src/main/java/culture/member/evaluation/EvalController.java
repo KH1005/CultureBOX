@@ -301,7 +301,6 @@ public class EvalController {
 	@ResponseBody
 	@RequestMapping(value="/eval/CommentDelete.cul")
 	public Map<String, Object> commentDelete(HttpServletRequest request){
-		System.out.println("controller in");
 		Map<String, Object> map = new HashMap<String, Object>();
 		int idx = Integer.parseInt(request.getParameter("MCOMMENT_IDX"));
 		try {
