@@ -59,7 +59,7 @@ public class AdminCultureController {
 		mav.addObject("isSearch", isSearch);
 		mav.addObject("searchNum", searchNum);
 		
-		mav.addObject("AdminCulture", adminCultureList); 
+		mav.addObject("adminCultureList", adminCultureList); 
 		mav.setViewName("adminCultureList"); 
 
 

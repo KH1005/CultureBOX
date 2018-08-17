@@ -122,15 +122,7 @@ tr .bbb {
 				</c:url> <a href="${viewURL}">수정</a></td>
 
 			<div>
-				<%-- <c:if test="${session_member_grade == 1}">
-				<a href="<%=cp%>/admin/movieUpdate.mt?movie_no=${list.movie_no}"
-					class="btn btnC_01 btnF_04"> <span>수정</span>
-				</a>
-				<a
-					href="javascript:del_check('movieDelete.mt?movie_no=${list.movie_no}');"
-					class="btn btnC_01 btnF_04"> <span>삭제</span>
-				</a>
-			</c:if> --%>
+			
 
 			</div>
 		</div>

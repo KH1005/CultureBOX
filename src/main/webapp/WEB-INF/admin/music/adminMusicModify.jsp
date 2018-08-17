@@ -41,7 +41,7 @@ $(function(){
 	</div> -->
 	<div class="admin_ct">
 		<h3 class="sub_tit">노래 등록</h3>
-		<form:form commandName="adminMusicModel" action="/culture/admin/MusicJoin.cul" name="mform" enctype="multipart/form-data" method="POST">
+		<form:form commandName="adminMusicModel" action="/culture/admin/MusicModify.cul" name="mform" enctype="multipart/form-data" method="POST">
  		<%-- <input type="hidden" name="currentPage" value="${currentPage}" />
 		<input type="hidden" name="movie_no" value="${movieView.movie_no}" /> --%>
 			  <div class="tbl_type_01">
