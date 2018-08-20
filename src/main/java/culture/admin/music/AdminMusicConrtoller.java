@@ -212,7 +212,7 @@ public class AdminMusicConrtoller {
 		
 		}
 		
-		@RequestMapping(value = "/admin/CultureModifyForm.cul")
+		@RequestMapping(value = "/admin/MusicModifyForm.cul")
 		public ModelAndView adminMusicModifyForm(AdminMusicModel music, HttpServletRequest request) {
 			
 			AdminMusicModel oneMusic = new AdminMusicModel();

@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -19,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.fasterxml.jackson.databind.jsonFormatVisitors.JsonArrayFormatVisitor;
 import com.sun.javafx.sg.prism.NGShape.Mode;
 import com.sun.org.apache.xalan.internal.xsltc.compiler.sym;
 
@@ -33,10 +35,20 @@ public class EvalController {
 	@RequestMapping(value="/eval/EvalList.cul")		//아이디 값을 세션으로 받아온다. 테스트를 위해 파라미터로 받는다.
 	public String evalList(Model model, MemberModel memberModel, HttpServletRequest request) {
 		String id = request.getParameter("id");	//아이디를 받아온다.
-		System.out.println("asd");
+		String issearch = request.getParameter("issearch");
 		memberModel.setMEMBER_ID(id);	//아이디를 빈에 저장하고
+		List<MusicModel> musicList;
 		
-		List<MusicModel> musicList = evalService.selectMusicList(memberModel);	//서비스를 이용해서 디비에서 가져온다.
+		if(issearch != null) {
+			//찾는 쿼리 넣어준다.
+			musicList = evalService.getSearchList(issearch);
+			
+			model.addAttribute("musicList",musicList);
+			model.addAttribute("id",id);
+			return "evalList";
+			
+		}
+		musicList = evalService.selectMusicList(memberModel);	//서비스를 이용해서 디비에서 가져온다.
 //		List<String[]> songList  = new ArrayList<String[]>();
 		
 		//노래들
@@ -149,7 +161,7 @@ public class EvalController {
 		}
 		
 		return cList;
-	}
+	} 
 	
 	@ResponseBody
 	@RequestMapping("/eval/join.cul")
@@ -161,8 +173,7 @@ public class EvalController {
 	
 	@RequestMapping(value="/eval/MusicAlbumList.cul")
 	@ResponseBody
-	public String musicAlbumList(HttpServletRequest request){
-		System.out.println("in");
+	public List<Map<String, Object>> musicAlbumList(HttpServletRequest request){
 		List<MusicModel> musicList = evalService.getMusicAlbumList();
 		
 		List<Map<String, Object>> musicAlbumList = new ArrayList<Map<String, Object>>();
@@ -172,7 +183,7 @@ public class EvalController {
 			musicAlbumList.add(music);
 		}
 		
-		return "check";
+		return musicAlbumList;
 	}
 	
 	@RequestMapping(value="/eval/RecommendArtistList.cul")
@@ -208,7 +219,6 @@ public class EvalController {
 		HttpSession session = request.getSession();
 		String id = request.getParameter("id");
 		Map<String, Object> parameter = new HashMap<String, Object>();
-		
 		parameter.put("MEMBER_ID", id);
 		List<Map<String, Object>> country = evalService.getCountry(id);
 		

@@ -20,9 +20,9 @@
     $( "#tags" ).autocomplete({
       source: function(request, response){
     	  $.ajax({
-    		  url:"/eval/MusicAlbumList.cul",
+    		  url:"http://localhost:8080/culture/eval/MusicAlbumList.cul",
     		  type:"POST",
-    		  dataType:'json',
+    		  dataType:"json",
     		  success:function(data){
     			  response($.map(data, function(item){
     				return{
@@ -35,7 +35,7 @@
     		  
     	  });
       },
-      minLength:1
+      minLength:3
       
     });
     

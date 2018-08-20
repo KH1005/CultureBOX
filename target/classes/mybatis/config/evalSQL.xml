@@ -171,6 +171,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	</select>
 	
+	<select id="getSearchList" parameterType="string" resultMap="musicRes">
+		SELECT * FROM MUSIC WHERE MUSIC_ALBUM LIKE '%' ||  #{keyword} || '%' ORDER BY MUSIC_INDEX DESC
+	</select>
+	
 	
 	
 	

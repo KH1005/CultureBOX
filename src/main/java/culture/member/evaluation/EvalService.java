@@ -129,7 +129,13 @@ public class EvalService implements EvalDao{
 
 	@Override
 	public List<MusicModel> getMusicAlbumList() {
-		return sqlSessionTempate.selectList("eval.selectMusicAlbumList");
+		return sqlSessionTempate.selectList("eval.getMusicAlbumList");
+	}
+
+
+	@Override
+	public List<MusicModel> getSearchList(String keyword) {
+		return sqlSessionTempate.selectList("eval.getSearchList",keyword);
 	}
 	
 	
