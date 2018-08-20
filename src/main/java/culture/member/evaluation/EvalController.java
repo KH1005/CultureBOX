@@ -33,7 +33,7 @@ public class EvalController {
 	@RequestMapping(value="/eval/EvalList.cul")		//아이디 값을 세션으로 받아온다. 테스트를 위해 파라미터로 받는다.
 	public String evalList(Model model, MemberModel memberModel, HttpServletRequest request) {
 		String id = request.getParameter("id");	//아이디를 받아온다.
-		
+		System.out.println("asd");
 		memberModel.setMEMBER_ID(id);	//아이디를 빈에 저장하고
 		
 		List<MusicModel> musicList = evalService.selectMusicList(memberModel);	//서비스를 이용해서 디비에서 가져온다.
@@ -151,7 +151,29 @@ public class EvalController {
 		return cList;
 	}
 	
+	@ResponseBody
+	@RequestMapping("/eval/join.cul")
+	public String join() {
+		return "asd";
+	}
+
 	
+	
+	@RequestMapping(value="/eval/MusicAlbumList.cul")
+	@ResponseBody
+	public String musicAlbumList(HttpServletRequest request){
+		System.out.println("in");
+		List<MusicModel> musicList = evalService.getMusicAlbumList();
+		
+		List<Map<String, Object>> musicAlbumList = new ArrayList<Map<String, Object>>();
+		for(int i =0;i<musicList.size();i++) {
+			Map<String, Object> music = new HashMap<String, Object>();
+			music.put("music", musicList.get(i).getMUSIC_ALBUM());
+			musicAlbumList.add(music);
+		}
+		
+		return "check";
+	}
 	
 	@RequestMapping(value="/eval/RecommendArtistList.cul")
 	public String recommendArtistList(Model model, HttpServletRequest request) {

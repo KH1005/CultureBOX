@@ -125,6 +125,12 @@ public class EvalService implements EvalDao{
 	public void deleteComment(int MCOMMENT_IDX) {
 		sqlSessionTempate.delete("eval.deleteComment",MCOMMENT_IDX);
 	}
+
+
+	@Override
+	public List<MusicModel> getMusicAlbumList() {
+		return sqlSessionTempate.selectList("eval.selectMusicAlbumList");
+	}
 	
 	
 	

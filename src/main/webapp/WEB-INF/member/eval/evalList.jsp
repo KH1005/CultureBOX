@@ -9,29 +9,73 @@
 <script type="text/javascript" src="http://localhost:8080/culture/js/jquery.js"></script>
 <script type="text/javascript" src="http://localhost:8080/culture/js/jquery.raty.min.js"></script>
 <script type="text/javascript" src="http://localhost:8080/culture/ajax/ajax.js"></script>
+
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+<script>
+  $( function() {
+    var availableTags = ['oasis','kasabian','카더가든','혁오'];
+    $( "#tags" ).autocomplete({
+      source: function(request, response){
+    	  $.ajax({
+    		  url:"/eval/MusicAlbumList.cul",
+    		  type:"POST",
+    		  dataType:'json',
+    		  success:function(data){
+    			  response($.map(data, function(item){
+    				return{
+    					label:item.music,
+    					value:item.music
+    				}				  
+    			  })
+    			  );
+    		  }
+    		  
+    	  });
+      },
+      minLength:1
+      
+    });
+    
+  });
+  </script>
 </head>
 <body>
 
 <h2>음악 리스트</h2>
+	<form method="post">
+		<div class="ui-widget">
+	  		<input id="tags" type="text" name="issearch" placeholder="Search">
+		</div>
+	</form>
 	<table  class="table" width="700" align="center" id="work" >
-                        <c:forEach items="${musicList }" var="row" varStatus="stat">
-                           <!-- <s:url id="viewURL" action="MemberGoodsList">
-                              <s:param name="goods_number">
-                                 <s:property value="goods_number" />
-                              </s:param>
-                           </s:url> -->
-	
-                           <c:if test="${stat.index %4 eq 0 }">
-                              <tr></tr>
-                           </c:if>
-                           <td width="100px" height="150px" align="center" class="music">
-                           <a class="show" href='http://localhost:8080/culture/eval/EvalDetail.cul?music_index=${row.MUSIC_INDEX }'><img src="http://localhost:8080/culture/a.jpg" width="150px" height="200px"/></a>
-                           <a href="http://localhost:8080/culture/eval/EvalDetail.cul?MUSIC_INDEX=${row.MUSIC_INDEX }&MEMBER_ID=${id}"><div class="hide"><p>${row.MUSIC_ALBUM}</p>
-                           <input type="text" id="MUSIC_INDEX" name="MUSIC_INDEX" value="${row.MUSIC_INDEX}">
-                           </div> </a>
-                        	</td>
-                        	
-                        </c:forEach>
+						<c:choose>
+							<c:when test="${fn:length(musicList) > 0}">
+		                        <c:forEach items="${musicList }" var="row" varStatus="stat">
+		                           <!-- <s:url id="viewURL" action="MemberGoodsList">
+		                              <s:param name="goods_number">
+		                                 <s:property value="goods_number" />
+		                              </s:param>
+		                           </s:url> -->
+			
+		                           <c:if test="${stat.index %4 eq 0 }">
+		                              <tr></tr>
+		                           </c:if>
+		                           <td width="100px" height="150px" align="center" class="music">
+		                           <a class="show" href='http://localhost:8080/culture/eval/EvalDetail.cul?music_index=${row.MUSIC_INDEX }'><img src="http://localhost:8080/culture/a.jpg" width="150px" height="200px"/></a>
+		                           <a href="http://localhost:8080/culture/eval/EvalDetail.cul?MUSIC_INDEX=${row.MUSIC_INDEX }&MEMBER_ID=${id}"><div class="hide"><p>${row.MUSIC_ALBUM}</p>
+		                           <input type="text" id="MUSIC_INDEX" name="MUSIC_INDEX" value="${row.MUSIC_INDEX}">
+		                           </div> </a>
+		                        	</td>
+		                        	
+		                        </c:forEach>
+	                        </c:when>
+	                        <c:otherwise>
+	                        	<p>평가할게 없어요... ㅠ</p>
+	                        </c:otherwise>
+                        </c:choose>
      
                </table>
 

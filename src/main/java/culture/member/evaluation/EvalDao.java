@@ -49,6 +49,7 @@ public interface EvalDao {
 	
 	public void deleteComment(int MCOMMENT_IDX);
 	
+	public List<MusicModel> getMusicAlbumList();
 
 }
 

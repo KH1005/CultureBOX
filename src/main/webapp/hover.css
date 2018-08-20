@@ -7,27 +7,19 @@
 		}
 		#work td .hide {
 			color:#d4df9d;
-<<<<<<< HEAD
-
-=======
->>>>>>> 9d3d4a8f4ca0ca39b0e1c817158870679f95c77f
 			text-align: left;
 			text-align: center;
 			height: 0;
 			overflow: hidden;
 			background:#687b00;
 		}
-<<<<<<< HEAD
+
 		#work td .hide{
 			text-align: center;
 		}
-		
-=======
-		
 		#work td .hide{
 			text-align: center;
 		}
->>>>>>> 9d3d4a8f4ca0ca39b0e1c817158870679f95c77f
 		#work td:hover .hide, #work td.over .hide {
 			cursor: pointer;
 			height: 200px;

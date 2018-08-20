@@ -50,7 +50,7 @@ public class AdminMusicConrtoller {
 		///////////////////////MUSIC 리스트//////////////////////////////////////////////
 		@RequestMapping("/admin/MusicListForm.cul")// 이요청이 들어오면 실행!
 		public ModelAndView AdminMusicList(HttpServletRequest request) throws Exception{
-			System.out.println("111111111111111111111111111111");
+			//System.out.println("111111111111111111111111111111");
 			ModelAndView mav = new ModelAndView();
 			
 			List<AdminMusicModel> AdminMusicList = adminMusicService.AdminMusicList();
