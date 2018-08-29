@@ -34,7 +34,7 @@ public class AdminMusicConrtoller {
 
 
 	     
-		@Resource(name="adminMusicService")  // 의존주입 해서 사용하기 위해
+		@Resource(name="adminMusicService")  // �쓽議댁＜�엯 �빐�꽌 �궗�슜�븯湲� �쐞�빐
 		private AdminMusicService adminMusicService;
 		
 		private int searchNum;
@@ -46,8 +46,8 @@ public class AdminMusicConrtoller {
 		
 		 
 		
-		///////////////////////MUSIC 리스트//////////////////////////////////////////////
-		@RequestMapping("/admin/MusicListForm.cul")// 이요청이 들어오면 실행!
+		///////////////////////MUSIC 由ъ뒪�듃//////////////////////////////////////////////
+		@RequestMapping("/admin/MusicListForm.cul")// �씠�슂泥��씠 �뱾�뼱�삤硫� �떎�뻾!
 		public ModelAndView AdminMusicList(HttpServletRequest request) throws Exception{
 			System.out.println("111111111111111111111111111111");
 			ModelAndView mav = new ModelAndView();
@@ -86,8 +86,8 @@ public class AdminMusicConrtoller {
 		   }
 			
 		
-				mav.addObject("adminMusicListForm", AdminMusicList); // 이 AdminReserveList 모델 객체를 "adminReserveListForm" 이름으로 adminReserveListForm.jsp 에서 사용한다! 
-				mav.setViewName("adminMusicListForm");  // 보여줄jsp  파일 이름! 
+				mav.addObject("adminMusicListForm", AdminMusicList); // �씠 AdminReserveList 紐⑤뜽 媛앹껜瑜� "adminReserveListForm" �씠由꾩쑝濡� adminReserveListForm.jsp �뿉�꽌 �궗�슜�븳�떎! 
+				mav.setViewName("adminMusicListForm");  // 蹂댁뿬以꼓sp  �뙆�씪 �씠由�! 
 				return mav;
 			}
 		
@@ -95,7 +95,7 @@ public class AdminMusicConrtoller {
 		
 		
 		
-		///////////////////////MUSIC 상세보기(댓글추가)//////////////////////////////////////////////
+		///////////////////////MUSIC �긽�꽭蹂닿린(�뙎湲�異붽�)//////////////////////////////////////////////
 		@RequestMapping("/admin/MusicDetail.cul")
 		public ModelAndView AdminMusicDetail(HttpServletRequest request) throws Exception{
 			
@@ -122,7 +122,7 @@ public class AdminMusicConrtoller {
 		
 		}
 		
-		//////////////////////////////////////////수정 폼 띄우기 /////////////////////////////////
+		//////////////////////////////////////////�닔�젙 �뤌 �쓣�슦湲� /////////////////////////////////
 		@RequestMapping("/admin/MusicModifyForm.cul")
 		public ModelAndView adminMusicModifyForm(AdminMusicModel music, HttpServletRequest request) {
 			
@@ -142,7 +142,7 @@ public class AdminMusicConrtoller {
 		}
 		
 		
-		/////////////////////////////수정/////////////////////////////////////////////
+		/////////////////////////////�닔�젙/////////////////////////////////////////////
 		@RequestMapping(value = "/admin/MusicModify.cul")
 		   public ModelAndView adminCultureModify(AdminMusicModel music, BindingResult result,
 		         MultipartHttpServletRequest multipartHttpServletRequest) throws Exception {
@@ -185,7 +185,7 @@ public class AdminMusicConrtoller {
 		
 		
 		
-		///////////////////////MUSIC 삭제//////////////////////////////////////////////
+		///////////////////////MUSIC �궘�젣//////////////////////////////////////////////
 		@RequestMapping("/admin/MusicDelete.cul")
 		public ModelAndView AdminMusicDelete(HttpServletRequest request) throws Exception {
 
@@ -205,7 +205,7 @@ public class AdminMusicConrtoller {
 		}
 		
 
-		/*/////////////////////////////////////글쓰기 폼 이동/////////////////////////////////////*/
+		/*/////////////////////////////////////湲��벐湲� �뤌 �씠�룞/////////////////////////////////////*/
 		@RequestMapping("/admin/MusicJoinForm.cul")
 		public ModelAndView MusicJoinForm(HttpServletRequest request) {
 			ModelAndView mav = new ModelAndView();
@@ -220,7 +220,7 @@ public class AdminMusicConrtoller {
 		
 		
 		
-		/////////////////////////////////글쓰기 ///////////////////////////////////////////
+		/////////////////////////////////湲��벐湲� ///////////////////////////////////////////
 		@RequestMapping("/admin/MusicJoin.cul")
 		public String MusicJoin(AdminMusicModel adminMusicModel,  BindingResult result,
 				MultipartHttpServletRequest multipartHttpServletRequest) throws Exception, Exception{
@@ -229,18 +229,18 @@ public class AdminMusicConrtoller {
 			
 			System.out.println("music_artist: "+adminMusicModel.getMUSIC_ARTIST());
 
-			/*벨리데이트
+			/*踰⑤━�뜲�씠�듃
 			new MusicValidator().validate(adminMusicModel, result);
 			if(result.hasErrors()) {
 				mav.setViewName("adminMusicJoinForm");
 				return "adminMusicJoinForm";
 			}*/
 			
-		/*	줄바꿈
+		/*	以꾨컮轅�
 			String content = reviewModel.getContent().replaceAll("\r\n", "<br />");
 			reviewModel.setContent(content);
 					*/
-			//업로드
+			//�뾽濡쒕뱶
 			MultipartFile multipartFile = multipartHttpServletRequest.getFile("file");
 	    	String filename = multipartFile.getOriginalFilename();
 	    	System.out.println("99999999999999999999999");
@@ -268,7 +268,7 @@ public class AdminMusicConrtoller {
 		public String write(Model model, AdminMusicModel adminMusicModel ) {
 			
 			
-			System.out.println("글쓰기 시작");
+			System.out.println("湲��벐湲� �떆�옉");
 			
 			adminMusicModel.setContent(adminMusicModel.getContent().replaceAll("\n", "").replaceAll("\t", "").replaceAll("\r", "").replaceAll("'", "&apos;"));
 			
@@ -279,8 +279,8 @@ public class AdminMusicConrtoller {
 			index1 += 15;
 			index2 += 32;
 			
-			System.out.println(index1+"  1번인데긋");
-			System.out.println(index2+"  2번인덱스");
+			System.out.println(index1+"  1踰덉씤�뜲湲�");
+			System.out.println(index2+"  2踰덉씤�뜳�뒪");
 			System.out.println(imgName);
 			imgName = imgName.substring(index1, index2);
 			System.out.println(imgName);
@@ -293,7 +293,7 @@ public class AdminMusicConrtoller {
 			return "redirect:MusicListForm.cul";
 		}*/
 		
-		/////////////////////////댓글 삭제//////////////////////////////////
+		/////////////////////////�뙎湲� �궘�젣//////////////////////////////////
 		@RequestMapping("/admin/deleteMusicComment.cul")
 		public ModelAndView commentDelete(HttpServletRequest request, MusicCommentModel musicCommentModel ){
 		
@@ -307,6 +307,20 @@ public class AdminMusicConrtoller {
 		
 		}
 		
+
+//		@RequestMapping(value = "/admin/MusicModifyForm.cul")
+//		public ModelAndView adminMusicModifyForm(AdminMusicModel music, HttpServletRequest request) {
+//			
+//			AdminMusicModel oneMusic = new AdminMusicModel();
+//			oneMusic = adminMusicService.AdminMusicModify(music.getMUSIC_INDEX());
+//			
+//			mav.addObject("music", oneMusic);
+//			mav.setViewName("adminMusicModify");
+//
+//			return mav;
+//		}
+		
+
 		
 		
 		

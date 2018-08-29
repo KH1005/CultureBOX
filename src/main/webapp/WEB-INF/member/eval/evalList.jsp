@@ -4,8 +4,13 @@
 <html>
 <head>
 <%@ include file="/WEB-INF/include/include-header.jspf" %>
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
-<link href="http://localhost:8080/culture/hover.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="<c:url value='/jquery-stars-master/dist/stars.min.js'/>"></script>
+
+<!-- <link href="http://localhost:8080/culture/hover.css" rel="stylesheet" type="text/css"> -->
+<link href="<c:url value='/hover.css'/>" rel="stylesheet" type="text/css">
 <script type="text/javascript" src="http://localhost:8080/culture/js/jquery.js"></script>
 <script type="text/javascript" src="http://localhost:8080/culture/js/jquery.raty.min.js"></script>
 <script type="text/javascript" src="http://localhost:8080/culture/ajax/ajax.js"></script>
@@ -14,42 +19,10 @@
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
-<script>
-  $( function() {
-    var availableTags = ['oasis','kasabian','카더가든','혁오'];
-    $( "#tags" ).autocomplete({
-      source: function(request, response){
-    	  $.ajax({
-    		  url:"/eval/MusicAlbumList.cul",
-    		  type:"POST",
-    		  dataType:'json',
-    		  success:function(data){
-    			  response($.map(data, function(item){
-    				return{
-    					label:item.music,
-    					value:item.music
-    				}				  
-    			  })
-    			  );
-    		  }
-    		  
-    	  });
-      },
-      minLength:1
-      
-    });
-    
-  });
-  </script>
 </head>
 <body>
 
 <h2>음악 리스트</h2>
-	<form method="post">
-		<div class="ui-widget">
-	  		<input id="tags" type="text" name="issearch" placeholder="Search">
-		</div>
-	</form>
 	<table  class="table" width="700" align="center" id="work" >
 						<c:choose>
 							<c:when test="${fn:length(musicList) > 0}">

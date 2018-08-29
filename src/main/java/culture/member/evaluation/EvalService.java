@@ -96,7 +96,7 @@ public class EvalService implements EvalDao{
 
 
 	@Override
-	public List<MusicCommentModel> getMusicComment(int mcomment_musicidx) {
+	public List<Map<String, Object>> getMusicComment(int mcomment_musicidx) {
 		return sqlSessionTempate.selectList("eval.getMusicComment",mcomment_musicidx);
 	}
 
@@ -129,12 +129,20 @@ public class EvalService implements EvalDao{
 
 	@Override
 	public List<MusicModel> getMusicAlbumList() {
-		return sqlSessionTempate.selectList("eval.selectMusicAlbumList");
+		return sqlSessionTempate.selectList("eval.getMusicAlbumList");
 	}
-	
-	
-	
-	
+
+
+	@Override
+	public List<MusicModel> getSearchList(String keyword) {
+		return sqlSessionTempate.selectList("eval.getSearchList",keyword);
+	}
+
+
+	@Override
+	public MusicCommentModel getMyCommentByidx(Map<String, Object> idx) {
+		return sqlSessionTempate.selectOne("eval.getMyCommentByidx",idx);
+	}
 	
 	
 	

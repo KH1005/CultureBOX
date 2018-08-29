@@ -1,9 +1,12 @@
 package culture.member.evaluation;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -19,6 +22,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.fasterxml.jackson.databind.jsonFormatVisitors.JsonArrayFormatVisitor;
+import com.fasterxml.jackson.databind.util.JSONPObject;
 import com.sun.javafx.sg.prism.NGShape.Mode;
 import com.sun.org.apache.xalan.internal.xsltc.compiler.sym;
 
@@ -33,22 +38,22 @@ public class EvalController {
 	@RequestMapping(value="/eval/EvalList.cul")		//아이디 값을 세션으로 받아온다. 테스트를 위해 파라미터로 받는다.
 	public String evalList(Model model, MemberModel memberModel, HttpServletRequest request) {
 		String id = request.getParameter("id");	//아이디를 받아온다.
-		System.out.println("asd");
+		String issearch = request.getParameter("issearch");
 		memberModel.setMEMBER_ID(id);	//아이디를 빈에 저장하고
+		List<MusicModel> musicList;
 		
-		List<MusicModel> musicList = evalService.selectMusicList(memberModel);	//서비스를 이용해서 디비에서 가져온다.
-//		List<String[]> songList  = new ArrayList<String[]>();
-		
-		//노래들
-//		for(int i=0;i<musicList.size();i++) {
-//			String song = musicList.get(i).getMUSIC_SONG();
-//			//System.out.println("song: "+song);
-//			String[] albumSong = song.split("|");
-//			songList.add(albumSong);
-//		}
-		//System.out.println("size: "+musicList.size());
+		if(issearch != null) {
+			//찾는 쿼리 넣어준다.
+			musicList = evalService.getSearchList(issearch);
+			
+			model.addAttribute("musicList",musicList);
+			model.addAttribute("id",id);
+			return "evalList";
+			
+		}
+		musicList = evalService.selectMusicList(memberModel);	//서비스를 이용해서 디비에서 가져온다.
+
 		model.addAttribute("musicList",musicList);
-//		model.addAttribute("songList",songList);
 		model.addAttribute("id",id);
 		
 		return "evalList";
@@ -104,7 +109,9 @@ public class EvalController {
 		String member_id = (String)session.getAttribute("id");
 		String id = request.getParameter("MEMBER_ID");
 		memberModel = evalService.getMemberInfo(id);
-		music = evalService.selectMusic(musicModel);
+		music = evalService.selectMusic(musicModel);	//뮤직 정보를 가져온다.
+		
+		String[] songList = music.getMUSIC_SONG().split("/");
 		
 		evalModel.setMEMBER_ID(id);
 		evalModel.setMUSIC_INDEX(music.getMUSIC_INDEX());
@@ -117,11 +124,12 @@ public class EvalController {
 		Map<String, Object> parameter = new HashMap<String, Object>();
 		parameter.put("MCOMMENT_MUSICIDX", music.getMUSIC_INDEX());
 		parameter.put("MCOMMENT_WRITERID", id);
-		List<MusicCommentModel> commentList = evalService.getMusicComment(music.getMUSIC_INDEX());
+		List<Map<String, Object>> commentList = evalService.getMusicComment(music.getMUSIC_INDEX());
 		MusicCommentModel myComment = evalService.getMyComment(parameter);
 		
 		model.addAttribute("mycomment", myComment);
-	//	model.addAttribute("commentList", commentList);
+		model.addAttribute("songList",songList);
+		model.addAttribute("commentList", commentList);
 		model.addAttribute("music", music);
 		model.addAttribute("star",Integer.parseInt(star));
 		model.addAttribute("member",memberModel);
@@ -135,21 +143,21 @@ public class EvalController {
 	public List<Map<String, Object>> commentList(HttpServletRequest request){
 
 		int idx = Integer.parseInt(request.getParameter("MUSIC_INDEX"));
-		List<MusicCommentModel> commentList = evalService.getMusicComment(idx);
+		List<Map<String, Object>> commentList = evalService.getMusicComment(idx);
 		
 		List<Map<String, Object>> cList = new ArrayList<>();
 		for(int i =0;i<commentList.size();i++) {
 			Map<String, Object> map = new HashMap<String, Object>();
-			map.put("id", commentList.get(i).getMCOMMENT_WRITERID());
-			map.put("content",commentList.get(i).getMCOMMENT_CONTENT() );
-			map.put("index", commentList.get(i).getMCOMMENT_IDX());
-			map.put("musicidx",commentList.get(i).getMCOMMENT_MUSICIDX());
+			map.put("id", commentList.get(i).get("MCOMMENT_WRITERID")); 
+			map.put("content",commentList.get(i).get("MCOMMENT_CONTENT"));
+			map.put("index", commentList.get(i).get("MCOMMENT_IDX"));
+			map.put("musicidx",commentList.get(i).get("MCOMMENT_MUSICIDX"));
 			cList.add(map);
 			
 		}
 		
 		return cList;
-	}
+	} 
 	
 	@ResponseBody
 	@RequestMapping("/eval/join.cul")
@@ -161,9 +169,20 @@ public class EvalController {
 	
 	@RequestMapping(value="/eval/MusicAlbumList.cul")
 	@ResponseBody
-	public String musicAlbumList(HttpServletRequest request){
-		System.out.println("in");
+	public List<String> musicAlbumList(HttpServletRequest request){
 		List<MusicModel> musicList = evalService.getMusicAlbumList();
+		String keyword = request.getParameter("value");
+		
+		if(keyword==null || keyword.equals("")) {
+			return Collections.EMPTY_LIST;
+		}
+		List<String> result = new ArrayList<String>();
+		for(int i=0;i<musicList.size();i++) {
+			if(musicList.get(i).getMUSIC_ALBUM().startsWith(keyword)) {
+				result.add(musicList.get(i).getMUSIC_ALBUM());
+			}
+		}
+		
 		
 		List<Map<String, Object>> musicAlbumList = new ArrayList<Map<String, Object>>();
 		for(int i =0;i<musicList.size();i++) {
@@ -172,7 +191,14 @@ public class EvalController {
 			musicAlbumList.add(music);
 		}
 		
-		return "check";
+		return result;
+//		List<MusicModel> music = evalService.getMusicAlbumList();
+//		List<String> musicList = new ArrayList<>();
+//		for(int i=0;i<music.size();i++) {
+//			musicList.add(music.get(i).getMUSIC_ALBUM());
+//		}
+//		return musicList;
+		
 	}
 	
 	@RequestMapping(value="/eval/RecommendArtistList.cul")
@@ -208,7 +234,6 @@ public class EvalController {
 		HttpSession session = request.getSession();
 		String id = request.getParameter("id");
 		Map<String, Object> parameter = new HashMap<String, Object>();
-		
 		parameter.put("MEMBER_ID", id);
 		List<Map<String, Object>> country = evalService.getCountry(id);
 		
@@ -324,16 +349,19 @@ public class EvalController {
 	@RequestMapping(value="/eval/CommentDelete.cul")
 	public Map<String, Object> commentDelete(HttpServletRequest request){
 		Map<String, Object> map = new HashMap<String, Object>();
+		Map<String , Object> parameter = new HashMap<String, Object>();
 		int idx = Integer.parseInt(request.getParameter("MCOMMENT_IDX"));
 		try {
+			parameter.put("MCOMMENT_IDX", idx);
+			MusicCommentModel mcModel = evalService.getMyCommentByidx(parameter);
 			evalService.deleteComment(idx);
 			map.put("code", "success");
+			map.put("id", mcModel.getMCOMMENT_WRITERID());
+			return map;
 		}catch (Exception e) {
 			map.put("code", "fail");
 			return map;
 		}
-		
-		return map;
 		
 	}
 	

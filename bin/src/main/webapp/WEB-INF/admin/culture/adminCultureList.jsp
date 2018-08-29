@@ -26,9 +26,9 @@
                            <td width="230" align="center">
                            <a class="show" href='http://localhost:8080/culture/admin/CultureDetail.cul?culture_idx=${row.CULTURE_IDX}'><img src="http://localhost:8080/culture/A.jpg" width="150px" height="200px">
                            </a>
-                            <div class="hide"><a href='http://localhost:8080/culture/concert/CultureDetail.cul?culture_idx=${row.CULTURE_IDX}'><p>&nbsp;&nbsp;${row.CULTURE_NAME}</p></a>
-                           <p><fmt:formatDate value="${row.CULTURE_START}" pattern="yyyy.MM.dd"/> ~ <fmt:formatDate value="${row.CULTURE_END}" pattern="yyyy.MM.dd" /></p>
-                           <p>&nbsp;&nbsp;${row.CULTURE_LOCATION}</p>
+                            <div class="hide"><a href='http://localhost:8080/culture/admin/CultureDetail.cul?culture_idx=${row.CULTURE_IDX}'><p>&nbsp;&nbsp;${row.CULTURE_NAME}</p></a>
+<%--                            <p><fmt:formatDate value="${row.CULTURE_START}" pattern="yyyy.MM.dd"/> ~ <fmt:formatDate value="${row.CULTURE_END}" pattern="yyyy.MM.dd" /></p>
+ --%>                           <p>&nbsp;&nbsp;${row.CULTURE_LOCATION}</p>
                            </div>
                              
                           
@@ -37,12 +37,31 @@
                            </a> <br> <br>
                               <br> </td>
                        </c:forEach>
+                       
+                       
+                       <c:url var="viewURL" value="CultureJoinForm.cul">
+						</c:url> <a href="${viewURL}">등록</a></td>
+						
+						<div class="row">
+							<div style="text-align:center;">
+								<div id="dataTables-example_filter" class="dataTables_filter">
+									<form action="">
+									<select class="form-control" name="searchNum" id="searchNum">
+										<option value="0">공연명</option>
+									</select>
+										<input class="form-control" type="text" name="isSearch" id="isSearch"/>
+										<span>
+										<button type="submit" class="btn btn-default">검색</button>
+										</span>
+									</form>
+								</div>							
+							</div>
      
                </table>
       
 
 <!--  등록된 상품이 없을때 -->
-<c:if test="${fn:length(cultureList) le 0}">
+<c:if test="${fn:length(adminCultureList) le 0}">
    등록된 상품이 없습니다
 </c:if> 
 </div>
