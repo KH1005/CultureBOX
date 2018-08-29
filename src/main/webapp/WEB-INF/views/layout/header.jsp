@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<<<<<<< HEAD
+
     <!DOCTYPE html>
 
 
@@ -45,9 +45,8 @@
 			    </div>
 
 			  </header><!-- #header -->
-			  
-=======
-<%@ include file="/WEB-INF/include/include-header.jspf" %>
+
+<%-- <%@ include file="/WEB-INF/include/include-header.jspf" %>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
 <link href="http://localhost:8080/culture/hover.css" rel="stylesheet" type="text/css">
 <script type="text/javascript" src="http://localhost:8080/culture/js/jquery.js"></script>
@@ -108,6 +107,7 @@
 	</div>
 	<a href="http://localhost:8080/culture/download/pdf.cul">티켓</a>
 </form>
+ --%>
 
 
 
@@ -129,6 +129,3 @@
 
 
 
-
-
->>>>>>> 9da6af7afc05766ca62685696835fd23ec448873

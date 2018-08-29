@@ -287,12 +287,41 @@ public class AdminReserveController {
 	   		map.put("code", "success");
 	   
 
-	      
-		/*adminReserveService.AdminReserveModify(reserve);*/
-		
+	      		
 
 		return map;
 	}
+   	//선택값 전체삭제
+   @ResponseBody
+   @RequestMapping("/admin/AdminReserveDeleteAll.cul")
+   public Map<String, Object> AdminReserveDeleteAll(AdminReserveModel reserve, HttpServletRequest request) {
+			System.out.println("in");
+	   		System.out.println("check=======>>>>>>>"+request.getParameter("value"));	
+	   		String reserve_idx = request.getParameter("value");
+	   		Map<String, Object> map = new HashMap<String, Object>();
+	   		
+	   		String[] idxArr = reserve_idx.split("/");
+	   		for(int i=0;i<idxArr.length;i++) {
+	   			
+	   			adminReserveService.AdminReserveDeleteAll(idxArr[i]);
+
+	   		
+	   				//reserve_idx값 다 넘어온다 하나씩 쪼개놨으니까 서비스에서 호출만 하면 돼
+	   				//idxArr[i]이용해서 디비에 보내면돼
+	   			
+	   			
+	   		}
+	   		
+	   		map.put("code", "success");
+	   
+
+	      		
+
+		return map;
+	}
+   
+   
+   
    
    
    

@@ -132,6 +132,7 @@ button, input {
 	      })
 	   }
    
+   
    function checkboxSelectPush(obj) {
 	      var i;
 	      var chk = document.getElementsByName(obj);
@@ -160,7 +161,33 @@ button, input {
 	      })
 	   }
    
-   
+   function checkboxSelectDel(obj) {
+	      var i;
+	      var chk = document.getElementsByName(obj);
+	      var value = "";
+	      var tot = chk.length;
+	      var checked = 0;
+	      
+	      for (i = 0; i < tot; i++) {
+	    	  if (chk[i].checked == true)
+	         value = value + chk[i].value+'/';
+	      
+	      }
+	      alert(value);
+	      
+	      $.ajax({
+	    	  url:"http://localhost:8080/culture/admin/AdminReserveDeleteAll.cul",
+	    	  data: "value="+encodeURIComponent(value),
+	    	  type:"post",
+	    	  success:function(req){
+			      var result = req.code;
+			      alert(result);
+	    		  location.reload();
+	    	  },error:function(){
+	    		  alert('fail');
+	    	  }
+	      })
+	   }
    
    
    
@@ -180,7 +207,6 @@ button, input {
             <div class="about-content col-lg-12">
                <br>
                <p class="text-white link-nav">
-                  <span class="lnr lnr-arrow-right"></span>
                </p>
                <br> <br>
                <h2 class="text-white">회원 예약 목록</h2>
@@ -226,8 +252,7 @@ button, input {
                   <td style="color: gray">${adminReserveListForm.SEAT_NAME}</td>
                   <td style="color: gray">${adminReserveListForm.SEAT_PRICE}</td>
                   <td style="color: gray">${adminReserveListForm.RESERVE_CONFIRM}</td>
-                  <!--             <td><input type="checkbox" name="chk${adminReserveListForm.RESERVE_IDX}" value="1" /></td> 이렇게 넣으면 chk1 chk2 로 됨 오개쩌네 그럼  
- -->
+           <!-- <td><input type="checkbox" name="chk${adminReserveListForm.RESERVE_IDX}" value="1" /></td> 이렇게 넣으면 chk1 chk2 로 됨 오개쩌네 그럼  -->
 
                   <td><input type="checkbox" name="chk[]"
                      value="${adminReserveListForm.RESERVE_IDX}"  id="confirm-checkbox" /></td>
@@ -283,7 +308,7 @@ button, input {
             <td><a href><input type="button" value="확인취소" onclick="checkboxSelectPush('chk[]')" class="genric-btn default-border circle"></td>
             </a>
 
-            <td><a href><input type="button" value="전체삭제" class="genric-btn default-border circle"></a></td>
+            <td><a href><input type="button" value="전체삭제" onclick="checkboxSelectDel('chk[]')" class="genric-btn default-border circle"></a></td>
 
             </div>
 

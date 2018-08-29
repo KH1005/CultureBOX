@@ -28,6 +28,8 @@ public interface AdminReserveDao {
 	public int AdminReserveModifyAll(String idxArr);
 	
 	public int AdminReserveModifyBackAll(String idxArr);
+	
+	public int AdminReserveDeleteAll(String idxArr);
 
 	
 	

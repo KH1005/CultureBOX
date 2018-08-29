@@ -61,6 +61,11 @@ public class AdminReserveService implements AdminReserveDao {
 	@Override
 	public int AdminReserveModifyBackAll(String idxArr) {
 	 return sqlSessionTemplate.update("reserve.reserveModify1", idxArr); 
+	}
+
+	@Override
+	public int AdminReserveDeleteAll(String idxArr) {
+		return sqlSessionTemplate.update("reserve.reserveDelete",idxArr);
 	} 
 
 	
