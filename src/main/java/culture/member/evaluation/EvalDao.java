@@ -39,7 +39,7 @@ public interface EvalDao {
 	
 	public void insertMusicComment(MusicCommentModel musicCommentModel);
 	
-	public List<MusicCommentModel> getMusicComment(int mcomment_musicidx);
+	public List<Map<String, Object>> getMusicComment(int mcomment_musicidx);
 	
 	public MusicCommentModel getMyComment(Map<String, Object> parameter);
 
@@ -52,6 +52,8 @@ public interface EvalDao {
 	public List<MusicModel> getMusicAlbumList();
 	
 	public List<MusicModel> getSearchList(String keyword);
+	
+	public MusicCommentModel getMyCommentByidx(Map<String, Object> parameter);
 
 }
 
