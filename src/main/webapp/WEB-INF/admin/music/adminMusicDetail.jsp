@@ -48,12 +48,12 @@ function load(id, cnt, btn) {
          </tr>		
 		 <tr>
 		 		<td colspan=3 height=600 style="padding: 0px !important;">
-				<img src="http://localhost:8080/culture/${adminMusicDetail.MUSIC_SAVNAME}" width="150px" height="200px"/>				</td>
-               <td>${adminMusicDetail.MUSIC_INDEX}</td>
-				<td>${adminMusicDetail.MUSIC_ALBUM}</td>
-				<td>${adminMusicDetail.MUSIC_ARTIST}</td> 				
- 				<td>${adminMusicDetail.MUSIC_GENRE}</td>
-				<td>${adminMusicDetail.MUSIC_COUNTRY}</td>					
+				<img src="http://localhost:8080/culture/musicimg/${adminMusicModel.MUSIC_SAVNAME}" width="150px" height="200px"/>				</td>
+               <td>${adminMusicModel.MUSIC_INDEX}</td>
+				<td>${adminMusicModel.MUSIC_ALBUM}</td>
+				<td>${adminMusicModel.MUSIC_ARTIST}</td> 				
+ 				<td>${adminMusicModel.MUSIC_GENRE}</td>
+				<td>${adminMusicModel.MUSIC_COUNTRY}</td>					
 			</tr>			
 			<tr>
 			
@@ -64,14 +64,14 @@ function load(id, cnt, btn) {
      		</td>
      			<td>
 			<c:url var="viewURL" value="MusicModifyForm.cul" >
-<%-- 				 <c:param name="MUSIC_INDEX" value="${adminMusicDetail.MUSIC_INDEX}" />
- --%>   			 </c:url> 
+ 				 <c:param name="MUSIC_INDEX" value="${adminMusicModel.MUSIC_INDEX}" />
+    			 </c:url> 
 <%--     		 <a href="http://localhost:8080/culture/admin/MusicModifyForm.cul?MUSIC_INDEX=${adminMusicDetail.MUSIC_INDEX}">수정</a> 
  --%>     		            <a href="${viewURL}">수정</a></td> 
      		
      		 <td>
             <c:url var="viewURL" value="MusicDelete.cul" >
-               <c:param name="MUSIC_INDEX" value="${adminMusicDetail.MUSIC_INDEX}" />
+               <c:param name="MUSIC_INDEX" value="${adminMusicModel.MUSIC_INDEX}" />
             </c:url>
             <a href="${viewURL}">삭제</a> 
     	    </td>

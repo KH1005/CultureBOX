@@ -23,7 +23,6 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
-import culture.admin.culture.AdminCultureModel;
 import culture.admin.member.AdminMemberModel;
 import culture.admin.music.AdminMusicModel;
 import culture.admin.music.AdminMusicService;
@@ -37,42 +36,77 @@ public class AdminMusicConrtoller {
 	     
 		@Resource(name="adminMusicService")  // 의존주입 해서 사용하기 위해
 		private AdminMusicService adminMusicService;
-		ModelAndView mav = new ModelAndView();
 		
-		private static String uploadPath = "C:\\Spring\\cultureBOX\\src\\main\\webapp\\WEB-INF\\";
+		private int searchNum;
+		private String isSearch;
+		private static String uploadPath = "C:\\Spring\\App\\workspace\\cultureBOX\\src\\main\\webapp\\musicimg";
 
 		
 		
 		
-		
-		
+		 
 		
 		///////////////////////MUSIC 리스트//////////////////////////////////////////////
 		@RequestMapping("/admin/MusicListForm.cul")// 이요청이 들어오면 실행!
 		public ModelAndView AdminMusicList(HttpServletRequest request) throws Exception{
-			//System.out.println("111111111111111111111111111111");
+			System.out.println("111111111111111111111111111111");
 			ModelAndView mav = new ModelAndView();
+/*			System.out.println("isSearch=======>>>>>>>"+request.getParameter("isSearch"));
+*/   
 			
 			List<AdminMusicModel> AdminMusicList = adminMusicService.AdminMusicList();
 			System.out.println("222222222222222222222222222222222");
 
+			isSearch = request.getParameter("isSearch");
+/*			if(isSearch != null) isSearch = new String(isSearch.getBytes("8859_1"), "UTF-8");
+*/
+		      if(isSearch != null)
+		      {
+		         searchNum = Integer.parseInt(request.getParameter("searchNum"));
+
+		         if(searchNum==0)
+		            AdminMusicList = adminMusicService.musicSearch0(isSearch);
+		         else if(searchNum==1)
+			        AdminMusicList = adminMusicService.musicSearch1(isSearch);
+		         else if(searchNum==2)
+				    AdminMusicList = adminMusicService.musicSearch2(isSearch);
+
+
+					System.out.println("3333333333333333333333333");
+
+		         
+		      mav.addObject("isSearch", isSearch);
+		      mav.addObject("searchNum", searchNum);
+		      
+		      mav.addObject("adminMusicListForm", AdminMusicList); 
+		      mav.setViewName("adminMusicListForm"); 
+		      
+		      
+		      return mav;
+		   }
+			
+		
 				mav.addObject("adminMusicListForm", AdminMusicList); // 이 AdminReserveList 모델 객체를 "adminReserveListForm" 이름으로 adminReserveListForm.jsp 에서 사용한다! 
 				mav.setViewName("adminMusicListForm");  // 보여줄jsp  파일 이름! 
 				return mav;
 			}
 		
+		
+		
+		
+		
 		///////////////////////MUSIC 상세보기(댓글추가)//////////////////////////////////////////////
 		@RequestMapping("/admin/MusicDetail.cul")
 		public ModelAndView AdminMusicDetail(HttpServletRequest request) throws Exception{
 			
-			System.out.println("111111111111111111111111111111");
+			System.out.println("MusicDetail1111111");
 		
 			
 			ModelAndView mav = new ModelAndView();
 
 			
 			int MUSIC_INDEX = Integer.parseInt(request.getParameter("MUSIC_INDEX"));
-
+			
 
 			AdminMusicModel adminMusicModel= adminMusicService.AdminMusicDetail(MUSIC_INDEX);
 			List<MusicCommentModel> list = adminMusicService.MusicCommentList(adminMusicModel.getMUSIC_INDEX());
@@ -87,7 +121,68 @@ public class AdminMusicConrtoller {
 			return mav;
 		
 		}
+		
+		//////////////////////////////////////////수정 폼 띄우기 /////////////////////////////////
+		@RequestMapping("/admin/MusicModifyForm.cul")
+		public ModelAndView adminMusicModifyForm(AdminMusicModel music, HttpServletRequest request) {
+			
+			System.out.println("MusicModifyForm111111");
+
+			ModelAndView mav = new ModelAndView();
 	
+			AdminMusicModel oneMusic = new AdminMusicModel();
+			oneMusic = adminMusicService.AdminMusicModifyForm(music.getMUSIC_INDEX());
+			
+		
+			 System.out.println("name: "+oneMusic.getMUSIC_INDEX()); 
+			mav.addObject("adminMusicModify", oneMusic);
+			mav.setViewName("adminMusicModify");
+
+			return mav;
+		}
+		
+		
+		/////////////////////////////수정/////////////////////////////////////////////
+		@RequestMapping(value = "/admin/MusicModify.cul")
+		   public ModelAndView adminCultureModify(AdminMusicModel music, BindingResult result,
+		         MultipartHttpServletRequest multipartHttpServletRequest) throws Exception {
+		   System.out.println("MusicModify111111111");
+		   
+			ModelAndView mav = new ModelAndView();
+		   
+		   
+		   
+		        if (multipartHttpServletRequest.getFile("file") != null){
+		       
+		 		   System.out.println("MusicModify222");
+
+		           MultipartFile multipartFile = multipartHttpServletRequest.getFile("file");
+		           String filename = multipartFile.getOriginalFilename();
+		              if (filename != ""){ 
+		            	  System.out.println("MusicModify33");
+		                 music.setMUSIC_SAVNAME(System.currentTimeMillis()+"_"+multipartFile.getOriginalFilename());                   
+		                String savimagename = System.currentTimeMillis()+"_"+multipartFile.getOriginalFilename();                
+		                 try {
+		                  FileCopyUtils.copy(multipartFile.getInputStream(), new FileOutputStream(uploadPath+"/"+savimagename));
+		               } catch (FileNotFoundException e) {
+		                  e.printStackTrace();
+		               } catch (IOException e) {
+		                  e.printStackTrace();
+		               }                                
+		              }
+		        }
+		        else{
+		           music.setMUSIC_SAVNAME(multipartHttpServletRequest.getParameter("MUSIC_SAVNAME"));
+		        }
+		        System.out.println("MusicModify444");
+		        adminMusicService.AdminMusicModify(music);
+		        System.out.println("music:" + music.getMUSIC_INDEX());
+		      
+		      mav.addObject("music", music);
+		      mav.setViewName("redirect:/admin/MusicListForm.cul");
+		      return mav;   
+		   }
+		
 		
 		
 		///////////////////////MUSIC 삭제//////////////////////////////////////////////
@@ -99,7 +194,7 @@ public class AdminMusicConrtoller {
 			String MUSIC_INDEX = request.getParameter("MUSIC_INDEX");
 			/*int MCOMMENT_MUSICIDX = Integer.parseInt(request.getParameter("MCOMMENT_MUSICIDX"));
 			int MUSIC_INDEX = Integer.parseInt(request.getParameter("MUSIC_INDEX"));*/
-			System.out.println("111111111111111111111111111111111");
+			System.out.println("MusicDelete 111111111111111111");
 			adminMusicService.AdminEvalDelete(MUSIC_INDEX);
 			adminMusicService.AdminMusicCommentDelete(MUSIC_INDEX);
 			adminMusicService.AdminMusicDelete(MUSIC_INDEX);
@@ -210,18 +305,6 @@ public class AdminMusicConrtoller {
 		
 			return mav;
 		
-		}
-		
-		@RequestMapping(value = "/admin/CultureModifyForm.cul")
-		public ModelAndView adminMusicModifyForm(AdminMusicModel music, HttpServletRequest request) {
-			
-			AdminMusicModel oneMusic = new AdminMusicModel();
-			oneMusic = adminMusicService.AdminMusicModify(music.getMUSIC_INDEX());
-			
-			mav.addObject("music", oneMusic);
-			mav.setViewName("adminMusicModify");
-
-			return mav;
 		}
 		
 		
