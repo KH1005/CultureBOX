@@ -3,7 +3,7 @@
 
 <mapper namespace="reserve">
 
-<insert id="insertSeat" parameterType="seatBean" useGeneratedKeys="true" keyProperty="SEAT_IDX">
+<insert id="insertSeat" parameterType="seatModel" useGeneratedKeys="true" keyProperty="SEAT_IDX">
 		<![CDATA[
 		insert into SEAT(
 		SEAT_IDX, 
@@ -27,7 +27,7 @@
 	]]>
 </insert>
 
-<insert id="insertReserve" parameterType="reserveBean" useGeneratedKeys="true" keyProperty="RESERVE_IDX">
+<insert id="insertReserve" parameterType="reserveModel" useGeneratedKeys="true" keyProperty="RESERVE_IDX">
 	<![CDATA[
 		insert into RESERVATION(
 		RESERVE_IDX,
@@ -46,19 +46,19 @@
 	]]>
 </insert>
 
-<update id="updateReserve" parameterType="reserveBean">
+<update id="updateReserve" parameterType="reserveModel">
 	update RESERVATION set RESERVE_CONFI`RM = 'N' WHERE RESERVE_NAME = #{RESERVE_ID}
 </update>
 
-<update id="payCheck" parameterType="reserveBean">
+<update id="payCheck" parameterType="reserveModel">
 	update RESERVATION set RESERVE_CONFIRM = 'Y' where RESERVE_IDX = #{RESERVE_IDX}
 </update>
 
-<update id="reservedSeat" parameterType="seatBean">
+<update id="reservedSeat" parameterType="seatModel">
 	update SEAT set SEAT_RESERVED = 'Y' where SEAT_IDX = #{SEAT_IDX}
 </update>
 
-<select id="selectSeat" parameterType="seatBean">
+<select id="selectSeat" parameterType="seatModel">
 	select * from SEAT where SEAT_ID = ${RESERVE_ID} AND SEAT_CNAME = (select CULTURE_NAME from CULTURE where CULTURE_IDX = #{RESERVE_CIDX})
 </select>
 </mapper>

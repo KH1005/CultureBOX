@@ -7,8 +7,8 @@ public class CultureModel {
 	private int CULTURE_IDX;
 	private String CULTURE_NAME;
 	private String CULTURE_CATEGORY;
-	private Date CULTURE_START;
-	private Date CULTURE_END;
+	private String CULTURE_START;
+	private String CULTURE_END;
 	private String CULTURE_ORGNAME;
 	private String CULTURE_SAVNAME;
 	private String CULTURE_LOCATION;
@@ -32,16 +32,18 @@ public class CultureModel {
 	public void setCULTURE_CATEGORY(String cULTURE_CATEGORY) {
 		CULTURE_CATEGORY = cULTURE_CATEGORY;
 	}
-	public Date getCULTURE_START() {
+	
+	public String getCULTURE_START() {
 		return CULTURE_START;
 	}
-	public void setCULTURE_START(Date cULTURE_START) {
+	public void setCULTURE_START(String cULTURE_START) {
 		CULTURE_START = cULTURE_START;
 	}
-	public Date getCULTURE_END() {
+	
+	public String getCULTURE_END() {
 		return CULTURE_END;
 	}
-	public void setCULTURE_END(Date cULTURE_END) {
+	public void setCULTURE_END(String cULTURE_END) {
 		CULTURE_END = cULTURE_END;
 	}
 	public String getCULTURE_ORGNAME() {

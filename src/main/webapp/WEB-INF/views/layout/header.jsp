@@ -1,5 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <!DOCTYPE html>
+
+
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://technext.github.io/interior/css/main.css">
 <%@ include file="/WEB-INF/include/include-header.jspf" %>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
 <link href="http://localhost:8080/culture/hover.css" rel="stylesheet" type="text/css">
@@ -10,9 +17,16 @@
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-이곳은 헤더 입니다~~!
+<style>
+  .banner-area {
+    background: url(file:///C:\\Users\\dustn\\Documents\\CultureBOX\\src\\main\\webapp\\cssimg\\mainback7.jpg) center;
+    background-size: cover;
+    
+} 
 
-<script>
+</style> 
+
+<!-- <script>
   $( function() {
     var availableTags = function(){
   	  $.ajax({
@@ -54,7 +68,43 @@
     });
     
   }); 
-</script>
+</script> -->
+<title>CultureBox</title>
+		<header id="header" class="">
+			  
+		  		<div class="header-top">
+		  			<div class="container">
+		  			</div>
+				</div>
+			    <div class="container main-menu">
+			    	<div class="row align-items-center justify-content-between d-flex">
+				      <div id="logo" align="left">
+				        <a href="index.html"><img src="file:///C:/Users/dustn/Documents/CultureBOX/src/main/webapp/cssimg/logo333.png" alt="" title=""></a>
+				        
+				      </div>
+				      <nav id="nav-menu-container">
+				        <ul class="nav-menu">
+				          <li class="menu-active"><a href="index.html">Home</a></li>
+				          <li><a href="about.html">Music</a></li>
+				          <li class="="menu-has-children"><a href="/culture/concert/CultureList.cul">Concert</a>
+				            <ul>
+				              <li><a href="/culture/concert/CultureCategoryList.cul?culture_category=콘서트">콘서트</a></li>
+				              <li><a href="/culture/concert/CultureCategoryList.cul?culture_category=연극">연극</a></li>
+				                <li><a href="/culture/concert/CultureCategoryList.cul?culture_category=뮤지컬">뮤지컬</a></li>
+				            </ul>
+				           </li>
+				          <li><a href="projects.html">My</a></li>
+
+
+                            
+				        
+ 
+ </ul>
+				      </nav><!-- #nav-menu-container -->		    		
+			    	</div>
+			    </div>
+
+			  </header><!-- #header -->
 <form method="post">
 	<div class="ui-widget" align="center">
 	  	<input id="tags" type="text" name="issearch" placeholder="Search">

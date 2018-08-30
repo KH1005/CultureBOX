@@ -1,11 +1,14 @@
 package culture.member.reservation;
 
+import java.util.List;
+
+import culture.admin.culture.seatModel;
+
 public interface reserveDAO {
 
-	void insertReserve(reserveBean rvBean);
-	void insertSeat(seatBean stBean);
-	void updateReserveSeat(seatBean stBean);
-	void updateReserve(reserveBean rvBean);
-	void updateReservePay(reserveBean rvBean);
-	void selectSeat(reserveBean rvBean);
+	void insertReserve(reserveModel rvBean);
+	void updateReserve(reserveModel rvBean);
+	void updateReservePay(reserveModel rvBean);
+	List<seatModel> selectSeat(int CULTURE_IDX);
+	void selectCulture(int CULTURE_IDX);
 }

@@ -30,12 +30,18 @@
            select * from CULTURE order
            by CULTURE_IDX desc
        </select>
-       
+       <!-- 카테고리 별로 리스트 -->
+       <select id="selectCulture_category" resultMap="cultureRes">
+       select * from CULTURE where CULTURE_CATEGORY = #{CULTURE_CATEGORY}
+       </select>
        <!-- 공연 상세보기 -->
        <select id="selectCulture_ONE" resultMap = "cultureRes" parameterType="cultureModel">
            select * from CULTURE where CULTURE_IDX = #{CULTURE_IDX}
        </select> 
        
+       <select id="selectDate" resultMap="cultureRes">
+       		select CULTURE_START, CULTURE_END from CULTURE 
+       </select>
        <!-- 댓글달기 -->
        <insert id="writeCultureComment" parameterType="int">
 		insert into CULTURE_COMMENT (COMMENT_IDX, COMMENT_CONTENT,COMMENT_CULTUREIDX,COMMENT_WRITEDATE)
@@ -54,5 +60,13 @@
 		delete from CULTURE_COMMENT where COMMENT_IDX=#{COMMENT_IDX} 
 	</delete>
        
-
+       <!-- 댓글 수정 -->
+       <update id="modifyCultureComment" parameterType="cultureCommentModel">
+       update 
+       		CULTURE_COMMENT 
+       set 
+       		COMMENT_CONTENT = #{COMMENT_CONTENT}
+       where 
+       		COMMENT_IDX = #{COMMENT_IDX}
+      </update>
 </mapper>

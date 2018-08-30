@@ -1,12 +1,14 @@
 package culture.member.reservation;
 
+import java.util.List;
+
 import javax.annotation.Resource;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Service;
 
-import culture.member.reservation.reserveBean;
-import culture.member.reservation.seatBean;
+import culture.admin.culture.seatModel;
+import culture.member.reservation.reserveModel;
 
 @Service
 public class reserveService implements reserveDAO {
@@ -15,32 +17,27 @@ public class reserveService implements reserveDAO {
 	private SqlSessionTemplate sqlSessionTemplate;
 	
 	@Override
-	public void insertSeat(seatBean stBean) {
-		sqlSessionTemplate.insert("insertSeat", stBean);
-	}
-	
-	@Override
-	public void insertReserve(reserveBean rvBean) {
+	public void insertReserve(reserveModel rvBean) {
 		sqlSessionTemplate.insert("insertReserve", rvBean);
 	}
 	
 	@Override
-	public void updateReserve(reserveBean rvBean) {
+	public void updateReserve(reserveModel rvBean) {
 		sqlSessionTemplate.update("updateReserve", rvBean);
 	}
 	
 	@Override
-	public void updateReservePay(reserveBean rvBean) {
+	public void updateReservePay(reserveModel rvBean) {
 		sqlSessionTemplate.update("payCheck", rvBean);
 	}
 	
 	@Override
-	public void updateReserveSeat(seatBean stBean) {
-		sqlSessionTemplate.update("reservedSeat", stBean);
-	}
+	public List<seatModel> selectSeat(int CULTURE_IDX) {
+		return sqlSessionTemplate.selectOne("selectSeat", CULTURE_IDX);
+	}	
 	
 	@Override
-	public void selectSeat(reserveBean rvBean) {
-		sqlSessionTemplate.selectOne("selectSeat", rvBean);
-	}	
+	public void selectCulture(int CULTURE_IDX) {
+		sqlSessionTemplate.selectOne("selectCidx", CULTURE_IDX);
+	}
 }
