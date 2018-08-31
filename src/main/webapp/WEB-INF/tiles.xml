@@ -59,13 +59,13 @@
 	
 		<definition name="memberDeleteForm" extends="base_layout">
 		<put-attribute name="title" value="DELETE FORM"/>
-		<put-attribute name="/WEB-INF/member/mypage/deleteform.jsp"/>
+		<put-attribute name="body" value="/WEB-INF/member/mypage/deleteform.jsp"/>
 	</definition>
 	
 	
-		<definition name="memberDelete" extends="base_layout">
-		<put-attribute name="title" value="DELETE FORM"/>
-		<put-attribute name="/WEB-INF/member/mypage/deletesuccess.jsp"/>
+		<definition name="deletesuccess" extends="base_layout">
+		<put-attribute name="title" value="DELETE SUCCESS"/>
+		<put-attribute name="body" value="/WEB-INF/member/mypage/deletesuccess.jsp"/>
 	</definition>
 	
 	

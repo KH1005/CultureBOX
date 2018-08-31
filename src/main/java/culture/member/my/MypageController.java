@@ -110,14 +110,14 @@ public class MypageController {
 		}
 		ImageIO.write(image, fileType, qrFile);
 	}
-	@RequestMapping(value="delete.cul", method=RequestMethod.GET)
+	@RequestMapping(value="/mypage/memberdeleteForm.cul", method=RequestMethod.GET)
    	public ModelAndView memberDeleteForm() {
-   		mav.setViewName("memberDelete");
+   		mav.setViewName("memberDeleteForm");
    		return mav;
    	}
 		
 	
-	@RequestMapping(value="memberDelete.cul", method=RequestMethod.POST)
+	@RequestMapping(value="/mypage/memberDelete.cul", method=RequestMethod.POST)
    	public ModelAndView memberDelete(@ModelAttribute("member") MemberModel member, BindingResult result, HttpSession session, HttpServletRequest request) {
    		
    		MemberModel memberModel; 
@@ -187,7 +187,7 @@ public class MypageController {
 			
 			
 		}
-		@RequestMapping(value="memberModify.cul", method=RequestMethod.POST)
+		@RequestMapping(value="/mypage/memberModify.cul", method=RequestMethod.POST)
 		public ModelAndView memberModify(@ModelAttribute("member") MemberModel memberModel, BindingResult result, HttpSession session){
 			
 			if(session.getAttribute("id") == null){
