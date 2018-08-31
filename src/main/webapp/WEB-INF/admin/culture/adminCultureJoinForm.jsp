@@ -99,7 +99,20 @@ $(function(){
                         <font color="red" ><form:errors path="movie_actor" /></font>
                      </td>
                   </tr>
-                
+                	
+                	<tr>
+                     <th scope="row">좌석 구역</th>
+                     <td><input type="text" id="TITLE" name="CULTURE_AREA" class="wdp_90" ></input>
+                        <font color="red" ><form:errors path="movie_actor" /></font>
+                     </td>
+                  </tr>
+                  
+                  <tr>
+                     <th scope="row">좌석 가격</th>
+                     <td><input type="text" id="TITLE" name="CULTURE_PRICE" class="wdp_90" ></input>
+                        <font color="red" ><form:errors path="movie_actor" /></font>
+                     </td>
+                  </tr>
 
                   <tr>
                      <th scope="row">상세내용</th>

@@ -24,9 +24,9 @@
                               <tr></tr>
                            </c:if>
                            <td width="230" align="center">
-                           <a class="show" href='http://localhost:8080/culture/admin/CultureDetail.cul?culture_idx=${row.CULTURE_IDX}'><img src="http://localhost:8080/culture/A.jpg" width="150px" height="200px">
+                           <a href='http://localhost:8080/culture/admin/CultureDetail.cul?culture_idx=${row.CULTURE_IDX}'><img src="http://localhost:8080/culture/A.jpg" width="150px" height="200px">
                            </a>
-                            <div class="hide"><a href='http://localhost:8080/culture/admin/CultureDetail.cul?culture_idx=${row.CULTURE_IDX}'><p>&nbsp;&nbsp;${row.CULTURE_NAME}</p></a>
+                            <%-- <div class="hide"><a href='http://localhost:8080/culture/admin/CultureDetail.cul?culture_idx=${row.CULTURE_IDX}'><p>&nbsp;&nbsp;${row.CULTURE_NAME}</p></a> --%>
 <%--                            <p><fmt:formatDate value="${row.CULTURE_START}" pattern="yyyy.MM.dd"/> ~ <fmt:formatDate value="${row.CULTURE_END}" pattern="yyyy.MM.dd" /></p>
  --%>                           <p>&nbsp;&nbsp;${row.CULTURE_LOCATION}</p>
                            </div>

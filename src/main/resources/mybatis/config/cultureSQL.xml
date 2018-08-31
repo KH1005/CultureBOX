@@ -49,6 +49,10 @@
 			    order by COMMENT_IDX desc
 	   </select>
 	   
+	   <select id="selectDate" resultMap="cultureRes" parameterType="cultureModel">
+	   select CULTURE_START, CULTURE_END from CULTURE where CULTURE_IDX = #{CULTURE_IDX} 
+	   </select>
+	   
 	   <!-- 댓글 삭제 -->
       <delete id="deleteCultureComment" parameterType="cultureCommentModel">
 		delete from CULTURE_COMMENT where COMMENT_IDX=#{COMMENT_IDX} 

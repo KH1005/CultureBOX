@@ -91,22 +91,35 @@
 		<put-attribute name="title" value="CULTURE DETAIL"/>
 		<put-attribute name="body" value="/WEB-INF/member/culture/cultureDetail.jsp"/>
 	</definition>
+	
+	<definition name="reservation" extends="base_layout">
+		<put-attribute name="title" value="RESERVATION"/>
+		<put-attribute name="body" value="/WEB-INF/admin/reserve/reservation.jsp"/>
+	</definition>
+	
+	<definition name="seatList" template="/WEB-INF/admin/reserve/seatList.jsp"></definition>
+	<definition name="reserveForm" template="/WEB-INF/admin/reserve/reserveForm.jsp"></definition>
+<!-- 	
+	<definition name="seatList" extends="base_layout">
+		<put-attribute name="title" value="seatList"/>
+		<put-attribute name="body" value="/WEB-INF/admin/reserve/seatList.jsp" />
+	</definition>
 
 	<definition name="reserveForm" extends="base_layout">
-		<put-attribute name="title" value="RESERVE FORM"/>
-		<put-attribute name=""></put-attribute>
+		<put-attribute name="title" value="reserveForm"/>
+		<put-attribute name="body" value="/WEB-INF/admin/reserve/reserveForm.jsp" />
 	</definition>
-	
-	<definition name="reservePay" extends="base_layout">
+	 -->
+	<definition name="payForm" extends="base_layout">
 		<put-attribute name="title" value="RESERVE PAYMENT"/>
-		<put-attribute name="body" value="/WEB-INF/member/reserve/reservePay.jsp"/>
+		<put-attribute name="body" value="/WEB-INF/admin/reserve/payForm.jsp"/>
 	</definition>
 	
-	<definition name="reserveResultForm" extends="base_layout">
+	<!-- <definition name="reserveResultForm" extends="base_layout">
 		<put-attribute name="title" value="RESERVATION COMPLETE"/>
 		<put-attribute name="body" value="/WEB-INF/member/reserve/reserveResultForm.jsp"/>
 	</definition>
-	
+	 -->
 	<definition name="evalList" extends="base_layout">
 		<put-attribute name="title" value="EVALUATION MUSIC LIST"/>
 		<put-attribute name="body" value="/WEB-INF/member/eval/evalList.jsp"/>
@@ -210,75 +223,3 @@
 	</definition>
 	
 </tiles-definitions>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
