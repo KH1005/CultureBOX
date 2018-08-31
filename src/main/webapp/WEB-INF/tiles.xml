@@ -71,7 +71,7 @@
 	
 	
 	
-	<definition name="memberModify" extends="base_layout">
+	<definition name="modifyForm" extends="base_layout">
 		<put-attribute name="title" value="MODIFY FORM"/>
 		<put-attribute name="body" value="/WEB-INF/member/mypage/memberModify.jsp"/>
 	</definition>

@@ -95,8 +95,11 @@
 						<div class="sign-in-page__input-group">
 							<label class="sign-input">
 							<input type="text" value="" placeholder="ID" name="MEMBER_ID">
-							</label><label class="sign-input"> <input type="password"
-								value="" name="MEMBER_PASSWORD"  placeholder="Password" minlength="6"></label>
+							</label>
+							<label class="sign-input"> 
+							<input type="password"
+								value="" name="MEMBER_PASSWORD"  placeholder="Password" >
+								</label>
 						</div>
 					<!-- <input class="sign-in-page__submit sign-in-page__submit--invalid" 
 							 value="로그인"> -->
