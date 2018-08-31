@@ -51,7 +51,18 @@
 		DELETE FROM EVALUATION WHERE MUSIC_INDEX = #{MUSIC_INDEX}
 		</delete>
 		
+		<!-- 검색 -->
+		<select id="musicSearch0" resultMap="adminmusicRes" parameterType="String">
+		SELECT * FROM MUSIC WHERE MUSIC_ALBUM like #{search} ORDER BY MUSIC_ALBUM DESC 
+		</select>
 		
+		<select id="musicSearch1" resultMap="adminmusicRes" parameterType="String">
+		SELECT * FROM MUSIC WHERE MUSIC_SONG like #{search} ORDER BY MUSIC_SONG DESC 
+		</select>
+		
+		<select id="musicSearch2" resultMap="adminmusicRes" parameterType="String">
+		SELECT * FROM MUSIC WHERE MUSIC_ARTIST like #{search} ORDER BY MUSIC_ARTIST DESC 
+		</select>
 		
 		
 		<!-- 등록 -->
@@ -66,16 +77,31 @@
 		       MUSIC_GENRE,
 		       MUSIC_SAVNAME,
 		        MUSIC_COUNTRY) 
-		VALUES (MUSIC_SEQ.NEXTVAL, #{MUSIC_ALBUM}, #{MUSIC_SONG}, #{MUSIC_ARTIST}, to_date(#{MUSIC_RELEASE}, 'yyyy-MM-dd'), #{MUSIC_ALBUMINFO}, #{MUSIC_ARTISTINFO}, #{MUSIC_GENRE}, #{MUSIC_SAVNAME}, #{MUSIC_COUNTRY} )
+		VALUES (MUSIC_SEQ.NEXTVAL, #{MUSIC_ALBUM}, #{MUSIC_SONG}, #{MUSIC_ARTIST}, #{MUSIC_RELEASE}, #{MUSIC_ALBUMINFO}, #{MUSIC_ARTISTINFO}, #{MUSIC_GENRE}, #{MUSIC_SAVNAME}, #{MUSIC_COUNTRY} )
 		</insert>  
 		 
 		 <!-- 수정폼 띄우기 -->
-	 <select id="MusicModifyForm" resultMap="adminmusicRes"
+	 <select id="musicModifyForm" resultMap="adminmusicRes"
 		parameterType="int">
 		SELECT * FROM MUSIC WHERE MUSIC_INDEX = #{MUSIC_INDEX}
-
-	</select>  
+	 </select>  
 			
+		<!-- 수정완료 -->
+	<update id="musicModify"  parameterType="AdminMusicModel">
+   
+      UPDATE MUSIC SET MUSIC_ALBUM = #{MUSIC_ALBUM} ,
+      MUSIC_SONG = #{MUSIC_SONG},
+      MUSIC_ARTIST = #{MUSIC_ARTIST} ,
+      MUSIC_RELEASE = #{MUSIC_RELEASE},
+      MUSIC_ALBUMINFO = #{MUSIC_ALBUMINFO},
+      MUSIC_ARTISTINFO = #{MUSIC_ARTISTINFO},
+      MUSIC_GENRE = #{MUSIC_GENRE},
+      MUSIC_SAVNAME = #{MUSIC_SAVNAME},
+      MUSIC_COUNTRY = #{MUSIC_COUNTRY}
+
+      WHERE MUSIC_INDEX = #{MUSIC_INDEX}
+     
+   	  </update>
 			
 		<!-- 댓글 전체 꺼내오기 -->
 	   <select id="selectMusicCommentList" resultMap="musicCommentRes" parameterType="MusicCommentModel">

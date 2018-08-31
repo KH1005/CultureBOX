@@ -22,9 +22,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import culture.member.login.MemberModel;
+import culture.member.evaluation.MemberModel;
 
-import validator.MemberValidator;
 
 @Controller
 @RequestMapping("/member")
@@ -38,7 +37,7 @@ public class MemberController {
 	// 로그인 페이지
 	@RequestMapping(value="/loginForm.cul", method = RequestMethod.GET)
 	public String loginForm(){
-		return "/login/signUpForm";
+		return "/login/loginForm";
 	}
 	//메인페이지 리다이렉트
 	@RequestMapping(value="/mainPage.cul", method = RequestMethod.GET)
@@ -72,14 +71,14 @@ public class MemberController {
 		}
 			
 		// 로그인 실패
-		mav.setViewName("loginError");
+		mav.setViewName("login/loginError");
 		return mav;
 	}
 	
 	
 	
 	// 로그아웃
-	@RequestMapping(value="/logout.cul", method=RequestMethod.POST)
+	@RequestMapping(value="/logout.cul", method=RequestMethod.GET)
 	public String memberLogout(HttpServletRequest request, MemberModel mem){
 		HttpSession session = request.getSession(false);
 		
@@ -89,7 +88,7 @@ public class MemberController {
 		}
 		
 		//mav.setViewName("member/logout");
-		return "/login/signUpForm";
+		return "/login/loginForm";
 	}
 	
 	
@@ -110,7 +109,7 @@ public class MemberController {
 	@RequestMapping(value="/signUp.cul", method=RequestMethod.POST)
 	public ModelAndView signUp(@ModelAttribute("member") MemberModel member, BindingResult result){
 		 //Validate Binding
-		new MemberValidator().validate(member, result);
+	
 			
 		
 		try{
@@ -165,7 +164,7 @@ public class MemberController {
 	
 	@RequestMapping(value="/findIdForm.cul", method = RequestMethod.GET)
 	public ModelAndView findPwForm(){
-		mav.setViewName("idFind");
+		mav.setViewName("/login/idFind");
 		return mav;
 	}
 	
@@ -184,19 +183,19 @@ public class MemberController {
 		if(member == null){
 			memberFindChk = 0;
 			mav.addObject("memberFindChk",memberFindChk);
-			mav.setViewName("idFindError");
+			mav.setViewName("/login/idFindError");
 			return mav;
 		}else{
 			if(member.getMEMBER_NAME().equals(name) && member.getMEMBER_EMAIL().equals(email)){
 				memberFindChk = 1;
 				mav.addObject("member",member);
 				mav.addObject("memberFindChk",memberFindChk);
-				mav.setViewName("idFindOk");
+				mav.setViewName("/login/idFindOK");
 				return mav;
 			}else{
 				memberFindChk = -1;
 				mav.addObject("memberFindChk",memberFindChk);
-				mav.setViewName("idFindError");
+				mav.setViewName("/login/idFindError");
 				return mav;
 			}
 		}

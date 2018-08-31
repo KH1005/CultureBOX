@@ -3,7 +3,7 @@ package culture.member.my;
 import java.util.List;
 import java.util.Map;
 
-import culture.member.login.MemberModel;
+import culture.member.evaluation.MemberModel;
 
 public interface MypageDao {
 	

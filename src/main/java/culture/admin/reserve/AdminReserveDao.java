@@ -2,7 +2,9 @@ package culture.admin.reserve;
 
 import java.util.List;
 
+import culture.admin.music.AdminMusicModel;
 import culture.admin.reserve.AdminReserveModel;
+
 
 public interface AdminReserveDao {
 
@@ -12,8 +14,30 @@ public interface AdminReserveDao {
 	
 	public int AdminReserveDelete(int RESERVE_IDX);
 
+	List<AdminReserveModel> reserveSearch0(String search);
+	
+	List<AdminReserveModel> reserveSearch1(String search);
+		  
+	List<AdminReserveModel> reserveSearch2(String search);
+
+	//결제 완료
+	public int AdminReserveModify(AdminReserveModel reserve);
+
+	public int AdminReserveModifyBack(AdminReserveModel reserve);
+	
+	public int AdminReserveModifyAll(String idxArr);
+	
+	public int AdminReserveModifyBackAll(String idxArr);
+	
+	public int AdminReserveDeleteAll(String idxArr);
+
+	
+	
+	
+	
 	
 	/*public Object insertGoods(AdminReserveModel AdminReserveModel);
+	
 	
 	List<GoodsModel> goodsSearch0(String search);
 	List<GoodsModel> goodsSearch1(String search);

@@ -2,7 +2,7 @@ package culture.interceptor;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import culture.member.login.MemberModel;
+import culture.member.evaluation.MemberModel;
 import org.aopalliance.intercept.Interceptor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

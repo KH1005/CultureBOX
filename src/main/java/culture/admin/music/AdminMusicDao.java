@@ -2,7 +2,6 @@ package culture.admin.music;
 
 import java.util.List;
 
-import culture.admin.culture.AdminCultureModel;
 import culture.admin.member.AdminMemberModel;
 import culture.member.culture.CultureCommentModel;
 
@@ -29,7 +28,19 @@ public interface AdminMusicDao {
 	public Object DeleteMusicComment(MusicCommentModel musicCommentModel);
 	
 	//수정폼 띄우기
-	public AdminMusicModel AdminMusicModify(int idx);
+	public AdminMusicModel AdminMusicModifyForm(int MUSIC_INDEX);
 
+	//수정 완료
+	public int AdminMusicModify(AdminMusicModel music);
+	
+	//음악 리스트 검색
+	List<AdminMusicModel> musicSearch0(String search);
+	
+	List<AdminMusicModel> musicSearch1(String search);
+
+	List<AdminMusicModel> musicSearch2(String search);
+
+	
+	
 	
 }

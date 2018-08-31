@@ -52,9 +52,9 @@
 		<put-attribute name="body" value="/WEB-INF/member/login/loginForm.jsp"/>
 	</definition>
 	
-	<definition name="myPage" extends="base_layout">
-		<put-attribute name="title" value="MY PAGE"/>
-		<put-attribute name="/WEB-INF/member/mypage/myPage.jsp"/>
+		<definition name="myPage" extends="base_layout">
+		<put-attribute name="title" value="LOGIN FORM"/>
+		<put-attribute name="body" value="/WEB-INF/member/mypage/myPage.jsp"/>
 	</definition>
 	
 		<definition name="memberDeleteForm" extends="base_layout">

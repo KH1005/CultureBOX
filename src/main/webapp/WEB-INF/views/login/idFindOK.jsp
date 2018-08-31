@@ -55,9 +55,11 @@
 		if(chk == 0){
 			alert('이름과 이메일이 일치하지 않습니다.');
 			history.back();
-		}else{
-			alert(member.MEMBER_NAME);
-			history.back();
+		}
+		if(chk == 1){
+			alert('${member.MEMBER_NAME}님의 아이디는 ${member.MEMBER_ID} 이고, 비밀번호는 ${member.MEMBER_PASSWORD}입니다');
+				
+			
 		}
 	}
 </script>

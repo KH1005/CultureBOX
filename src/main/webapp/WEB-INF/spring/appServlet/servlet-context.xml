@@ -61,9 +61,9 @@
 	
 	<beans:bean id="pdfView" class="culture.member.my.PDFView"/>
 	
-    <!-- <beans:bean class="org.springframework.web.servlet.view.json.MappingJacksonJsonView" id="jsonView">
+     <beans:bean class="org.springframework.web.servlet.view.json.MappingJacksonJsonView" id="jsonView">
   		<beans:property name="contentType" value="application/json; charset=UTF-8" />
-	</beans:bean>  -->
+	</beans:bean>  
 	
 	<!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory -->
 	<beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">

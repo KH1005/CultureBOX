@@ -34,7 +34,7 @@ import com.google.zxing.common.BitMatrix;
 import com.google.zxing.qrcode.QRCodeWriter;
 import com.google.zxing.qrcode.decoder.ErrorCorrectionLevel;
 
-import culture.member.login.MemberModel;
+import culture.member.evaluation.MemberModel;
 
 /**
  * Handles requests for the application home page.
@@ -161,7 +161,7 @@ public class MypageController {
 	
 		
 		//mypage main
-		@RequestMapping(value="mypage.cul", method=RequestMethod.GET)
+		@RequestMapping(value="/mypage/mypage.cul", method=RequestMethod.GET)
 		public ModelAndView mypage(@ModelAttribute("member") MemberModel member, BindingResult result, HttpServletRequest requeset, HttpSession session){
 			MemberModel MemberModel;
 			String MEMBER_ID;
@@ -174,7 +174,7 @@ public class MypageController {
 		
 		
 		//memberModify
-		@RequestMapping(value="memberModifyForm.cul", method=RequestMethod.GET)
+		@RequestMapping(value="/mypage/memberModifyForm.cul", method=RequestMethod.GET)
 		public ModelAndView ModifyForm(@ModelAttribute("member") MemberModel member, BindingResult result, HttpServletRequest requeset, HttpSession session){
 			MemberModel MemberModel;
 			String MEMBER_ID;

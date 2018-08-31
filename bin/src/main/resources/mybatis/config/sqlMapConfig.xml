@@ -27,12 +27,16 @@
 
 		<typeAlias alias="AdminReserveModel" type="culture.admin.reserve.AdminReserveModel" /> 
 		<typeAlias alias="AdminMusicModel" type="culture.admin.music.AdminMusicModel" /> 
+		<typeAlias alias="MusicCommentModel" type="culture.admin.music.MusicCommentModel" /> 
+		
 		
 		<typeAlias type="culture.member.evaluation.EvalModel" alias="evalModel"/>
 		
 		<typeAlias type="culture.member.evaluation.MemberModel" alias="memberModel"/>
 		
 		<typeAlias type="culture.member.evaluation.MusicModel" alias="musicModel"/>
+		
+		<typeAlias type="culture.member.evaluation.MusicCommentModel" alias="CommentModel"/>
 		
 
 	</typeAliases>
@@ -52,7 +56,7 @@
 		<mapper resource="mybatis/config/adminmusicSQL.xml"/>
 		<mapper resource="mybatis/config/adminreserveSQL.xml"/>
 		<mapper resource="mybatis/config/adminmusicSQL.xml"/>    
-	    
+	    <mapper resource="mybatis/config/mypageSQL.xml"/>
 
 	</mappers>
 

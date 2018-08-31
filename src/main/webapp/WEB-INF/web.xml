@@ -33,7 +33,7 @@
 		<url-pattern>*.cul</url-pattern>
 	</servlet-mapping>
 	
-	<!-- 인코딩 설정 -->
+	<!-- 인코딩 설정 --> 
 	<filter>
 		<filter-name>encodingFilter</filter-name>
 		<filter-class>

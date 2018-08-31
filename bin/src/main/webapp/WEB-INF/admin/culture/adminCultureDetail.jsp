@@ -57,7 +57,11 @@
 }
 
 .btn-wrap {
-	text-align: center;
+	text-align: left;
+}
+
+tr .bbb {
+	text-align: right;
 }
 </style>
 <script type="text/javascript">
@@ -85,41 +89,46 @@
 </head>
 
 <body>
-<form action="CultureDetail.cul" method="get">
 	<div class="culture_grp">
 		<div class="culture_pic">
-			<img src="/project/upload/movie/${adminCultureDetail.CULTURE_SAVNAME}"
+			<img src="/project/upload/movie/${admincultureModel.CULTURE_SAVNAME}"
 				width="200" height="150" />
 		</div>
 		<div class="culture_txt">
-			<p class="tit">${adminCultureDetail.CULTURE_NAME}</p>
+			<p class="tit">${admincultureModel.CULTURE_NAME}</p>
 
 			<tr>
 				<td><strong>공연장소</strong></td>
-				<td>${adminCultureDetail.CULTURE_LOCATION}</td>
+				<td>${admincultureModel.CULTURE_LOCATION}</td>
 			</tr>
 			<br>
 
-			<tr>
+			<%-- <tr>
 				<td><strong>기간</strong></td>
-				<td><fmt:formatDate value="${adminCultureDetail.CULTURE_START}"
+				<td><fmt:formatDate value="${admincultureModel.CULTURE_START}"
 						pattern="yyyy.MM.dd" /> ~ <fmt:formatDate
-						value="${adminCultureDetail.CULTURE_END}" pattern="yyyy.MM.dd" /></td>
-			</tr>
+						value="${admincultureModel.CULTURE_END}" pattern="yyyy.MM.dd" /></td>
+			</tr> --%>
 
-			<div class="culture_btn">
-				<span class="btn btnC_02 btnF_01 mr10"> <input type="button"
-					value="예매하기"
-					onclick="javascript:location.href='<%=cp%>/reserve/reserveMain.mt'" />
-				</span>
+			<c:url var="viewURL" value="CultureDelete.cul">
+				<c:param name="CULTURE_IDX" value="${admincultureModel.CULTURE_IDX}" />
+			</c:url>
+			<a href="${viewURL}">삭제</a>
 
-				
+
+			<td><c:url var="viewURL" value="CultureModifyForm.cul">
+					<c:param name="CULTURE_IDX"
+						value="${admincultureModel.CULTURE_IDX}" />
+				</c:url> <a href="${viewURL}">수정</a></td>
+
+			<div>
+			
 
 			</div>
 		</div>
 	</div>
 	<h3 class="sub_tit">상세정보</h3>
-	<p class="summary">${adminCultureDetail.CULTURE_CONTENT}</p>
+	<p class="summary">${admincultureModel.CULTURE_CONTENT}</p>
 
 	<h3 class="sub_tit">구매 및 환불정보</h3>
 	취소일자에 따라서 아래와 같이 취소 수수료가 부과됩니다. 예매일 기준보다 관람일 기준이 우선 적용됩니다.
@@ -128,29 +137,24 @@
 	<br> My티켓 > 예매/취소내역에서 직접 취소 또는 고객센터(1544-1234)를 통해서 예매를 취소할 수
 	있습니다.
 
+	<table>
+		<tr>
+			<td class="bbb"><br> <br> <a
+				href="javascript:history.back()" class="btn btnC_03 btnF_02 mr10">
+					<span>목록</span>
+			</a></td>
+		</tr>
+	</table>
 
 	<h3 class="sub_tit">관람후기</h3>
 
 	<div class="inner">
 
-		<form class="commentForm" method="post"
-			action="writeCultureComment.cul">
-			<input type="hidden" name="item_no"
-				value="${culture.CULTURE_IDX}" />
 
-
-
-			<div class="textarea_grp" style="width: 1000px;">
-				<textarea name="COMMENT_CONTENT"
-					style="margin: 10px; width: 849px; height: 55px;"></textarea>
-				<input type="submit" name="submit" type="submit" value="작성완료"
-					class="form_select">
-			</div>
-		</form>
-
-	<%-- 	<c:choose>
+		<c:choose>
 			<c:when test="${fn:length(cultureCommentList) > 0}">
-				<div id="contents">
+				<div id="contents"
+					style="height: 546px; width: 600px; margin-left: 0px border-left-width:10px">
 					<div id="js-load" class="main">
 						<ul class="lists">
 							<c:forEach items="${cultureCommentList}" var="row"
@@ -158,36 +162,37 @@
 								<li class="lists__item js-load"><strong>${row.COMMENT_WRITER }</strong>님
 									<fmt:formatDate value="${row.COMMENT_WRITEDATE}"
 										pattern="yy.MM.dd"></fmt:formatDate> <a
-									href='http://localhost:8080/culture/concert/deleteCultureComment.cul?COMMENT_IDX=${row.COMMENT_IDX}&COMMENT_CULTUREIDX=${cultureModel.CULTURE_IDX}'
+									href='http://localhost:8080/culture/admin/CommentDelete.cul?COMMENT_IDX=${row.COMMENT_IDX}&COMMENT_CULTUREIDX=${row.COMMENT_IDX}'
 									class="btn btnC_01 btnP_02"> <span
 										class="btn btnC_05 reply_btn">삭제</span>
 								</a>
 									<p>${row.COMMENT_CONTENT}</p></li>
+
 
 							</c:forEach>
 						</ul>
 						<div id="js-btn-wrap" class="btn-wrap">
 							<a href="javascript:;" class="button">더보기</a>
 						</div>
+						<div class="btn_type_04">
+							<!-- <a href="javascript:history.back()" class="btn btnC_03 btnF_02 mr10">
+		       <span>목록</span></a> -->
+						</div>
+						<!--  <a href="javascript:history.back()" class="btn btnC_03 btnF_02 mr10">
+		       <span>목록</span></a> -->
+
 					</div>
 				</div>
+
 			</c:when>
 			<c:otherwise>
 				<tr>
 					<td colspan="4">등록된 댓글이 없습니다</td>
 				</tr>
 			</c:otherwise>
-		</c:choose> --%>
 
-		<div class="btn_type_04">
-			<a href="javascript:history.back()" class="btn btnC_03 btnF_02 mr10">
-				<span>목록</span>
-			</a>
-		</div>
-		</div>
-		</form>
+		</c:choose>
+	</div>
 </body>
-
-
-
 </html>
+

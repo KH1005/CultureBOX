@@ -7,7 +7,7 @@ import javax.annotation.Resource;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Service;
 
-import culture.member.login.MemberModel;
+import culture.member.evaluation.MemberModel;
 
 @Service
 public class MemberService implements MemberDao{

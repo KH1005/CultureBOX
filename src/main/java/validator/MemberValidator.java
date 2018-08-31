@@ -4,7 +4,7 @@ import org.springframework.validation.Errors;
 import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
 
-import culture.member.login.MemberModel;
+import culture.member.evaluation.MemberModel;
 
 public class MemberValidator implements Validator{
 

@@ -1,6 +1,8 @@
 package culture.member.login;
 
 import java.util.List;
+import culture.member.evaluation.MemberModel;
+
 
 public interface MemberDao {
 	public MemberModel logIn(MemberModel member);
