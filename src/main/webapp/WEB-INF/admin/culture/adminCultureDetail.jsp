@@ -115,6 +115,11 @@ tr .bbb {
 			</c:url>
 			<a href="${viewURL}">삭제</a>
 
+			<c:url var="viewURL1" value="insertSeat.cul">
+				<c:param name="CULTURE_IDX" value="${admincultureModel.CULTURE_IDX}" />
+			</c:url>
+			<a href="${viewURL1}">좌석 추가</a>
+
 
 			<td><c:url var="viewURL" value="CultureModifyForm.cul">
 					<c:param name="CULTURE_IDX"
@@ -167,8 +172,7 @@ tr .bbb {
 										class="btn btnC_05 reply_btn">삭제</span>
 								</a>
 									<p>${row.COMMENT_CONTENT}</p></li>
-
-
+								
 							</c:forEach>
 						</ul>
 						<div id="js-btn-wrap" class="btn-wrap">

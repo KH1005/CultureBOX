@@ -50,6 +50,14 @@ public class CultureController {
 		System.out.println("culture idx: "+cultureModel.getCULTURE_IDX());
 		List<CultureCommentModel> list = cultureService.cultureCommentList(cultureModel.getCULTURE_IDX());
 		System.out.println("size: "+list.size());
+	      String sday = cultureModel.getCULTURE_START();
+	        String eday = cultureModel.getCULTURE_END();
+	        
+	        String start[] = sday.split(" ");
+	        String end[] = eday.split(" ");
+	        
+	        cultureModel.setCULTURE_START(start[0]);
+	        cultureModel.setCULTURE_END(end[0]);
 		mv.addObject("cultureModel",cultureModel);
 		mv.addObject("cultureCommentList",list);
 		

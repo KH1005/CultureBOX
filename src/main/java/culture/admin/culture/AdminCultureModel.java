@@ -14,7 +14,21 @@ public class AdminCultureModel {
 	private String CULTURE_LOCATION;
 	private String CULTURE_CONTENT;
 	private String CULTURE_CHECK;
+	private String CULTURE_AREA;
+	private String CULTURE_PRICE;	
 	
+	public String getCULTURE_AREA() {
+		return CULTURE_AREA;
+	}
+	public void setCULTURE_AREA(String cULTURE_AREA) {
+		CULTURE_AREA = cULTURE_AREA;
+	}
+	public String getCULTURE_PRICE() {
+		return CULTURE_PRICE;
+	}
+	public void setCULTURE_PRICE(String cULTURE_PRICE) {
+		CULTURE_PRICE = cULTURE_PRICE;
+	}
 	public String getCULTURE_CHECK() {
 		return CULTURE_CHECK;
 	}

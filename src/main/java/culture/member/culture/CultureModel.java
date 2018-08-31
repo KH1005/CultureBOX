@@ -13,7 +13,33 @@ public class CultureModel {
 	private String CULTURE_SAVNAME;
 	private String CULTURE_LOCATION;
 	private String CULTURE_CONTENT;
+	private String CULTURE_AREA;
+	private String CULTURE_PRICE;
 	
+	public String getCULTURE_AREA() {
+		return CULTURE_AREA;
+	}
+	public void setCULTURE_AREA(String cULTURE_AREA) {
+		CULTURE_AREA = cULTURE_AREA;
+	}
+	public String getCULTURE_PRICE() {
+		return CULTURE_PRICE;
+	}
+	public void setCULTURE_PRICE(String cULTURE_PRICE) {
+		CULTURE_PRICE = cULTURE_PRICE;
+	}
+	public String getCULTURE_START() {
+		return CULTURE_START;
+	}
+	public void setCULTURE_START(String cULTURE_START) {
+		CULTURE_START = cULTURE_START;
+	}
+	public String getCULTURE_END() {
+		return CULTURE_END;
+	}
+	public void setCULTURE_END(String cULTURE_END) {
+		CULTURE_END = cULTURE_END;
+	}
 	public int getCULTURE_IDX() {
 		return CULTURE_IDX;
 	}
@@ -32,19 +58,7 @@ public class CultureModel {
 	public void setCULTURE_CATEGORY(String cULTURE_CATEGORY) {
 		CULTURE_CATEGORY = cULTURE_CATEGORY;
 	}
-	
-	public String getCULTURE_START() {
-		return CULTURE_START;
-	}
-	public void setCULTURE_START(String cULTURE_START) {
-		CULTURE_START = cULTURE_START;
-	}
-	public String getCULTURE_END() {
-		return CULTURE_END;
-	}
-	public void setCULTURE_END(String cULTURE_END) {
-		CULTURE_END = cULTURE_END;
-	}
+
 	public String getCULTURE_ORGNAME() {
 		return CULTURE_ORGNAME;
 	}
