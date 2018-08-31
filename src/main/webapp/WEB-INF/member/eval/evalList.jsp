@@ -10,10 +10,6 @@
 <script type="text/javascript" src="<c:url value='/jquery-stars-master/dist/stars.min.js'/>"></script>
 
 <!-- <link href="http://localhost:8080/culture/hover.css" rel="stylesheet" type="text/css"> -->
-<link href="<c:url value='/hover.css'/>" rel="stylesheet" type="text/css">
-<script type="text/javascript" src="http://localhost:8080/culture/js/jquery.js"></script>
-<script type="text/javascript" src="http://localhost:8080/culture/js/jquery.raty.min.js"></script>
-<script type="text/javascript" src="http://localhost:8080/culture/ajax/ajax.js"></script>
 
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
@@ -31,10 +27,9 @@
 		                              <s:param name="goods_number">
 		                                 <s:property value="goods_number" />
 		                              </s:param>
-		                           </s:url> -->
-			
+		                           </s:url> -->		
 		                           <c:if test="${stat.index %4 eq 0 }">
-		                              <tr></tr>
+		                           <tr></tr>
 		                           </c:if>
 		                           <td width="100px" height="150px" align="center" class="music">
 		                           <a class="show" href='http://localhost:8080/culture/eval/EvalDetail.cul?music_index=${row.MUSIC_INDEX }'><img src="http://localhost:8080/culture/a.jpg" width="150px" height="200px"/></a>

@@ -3,99 +3,150 @@
 
 <mapper namespace="admin">
 
-	<resultMap id="AdminCultureRes" type="AdminCultureModel">
-		<result column="CULTURE_IDX" property="CULTURE_IDX" />
-		<result column="CULTURE_NAME" property="CULTURE_NAME" />
-		<result column="CULTURE_CATEGORY" property="CULTURE_CATEGORY" />
-		<result column="CULTURE_START" property="CULTURE_START" />
-		<result column="CULTURE_END" property="CULTURE_END" />
-		<result column="CULTURE_ORGNAME" property="CULTURE_ORGNAME" />
-		<result column="CULTURE_SAVNAME" property="CULTURE_SAVNAME" />
-		<result column="CULTURE_LOCATION" property="CULTURE_LOCATION" />
-		<result column="CULTURE_CONTENT" property="CULTURE_CONTENT" />
-		<result column="CULTURE_CHECK" property="CULTURE_CHECK" />
-	</resultMap>
+   <resultMap id="AdminCultureRes" type="AdminCultureModel">
+      <result column="CULTURE_IDX" property="CULTURE_IDX" />
+      <result column="CULTURE_NAME" property="CULTURE_NAME" />
+      <result column="CULTURE_CATEGORY" property="CULTURE_CATEGORY" />
+      <result column="CULTURE_START" property="CULTURE_START" />
+      <result column="CULTURE_END" property="CULTURE_END" />
+      <result column="CULTURE_ORGNAME" property="CULTURE_ORGNAME" />
+      <result column="CULTURE_SAVNAME" property="CULTURE_SAVNAME" />
+      <result column="CULTURE_LOCATION" property="CULTURE_LOCATION" />
+      <result column="CULTURE_CONTENT" property="CULTURE_CONTENT" />
+      <result column="CULTURE_CHECK" property="CULTURE_CHECK" />
+   </resultMap>
+
+   <resultMap type="seatModel" id="SeatRes">
+      <result property="SEAT_IDX" column="SEAT_IDX" />
+      <result property="SEAT_AREA" column="SEAT_AREA" />
+      <result property="SEAT_NUMBER" column="SEAT_NUMBER" />
+      <result property="SEAT_PRICE" column="SEAT_PRICE" />
+      <result property="SEAT_DATE" column="SEAT_DATE" />
+      <result property="SEAT_ID" column="SEAT_ID" />
+      <result property="SEAT_CIDX" column="SEAT_CIDX" />
+      <result property="SEAT_NAME" column="SEAT_NAME" />
+      <result property="SEAT_RESERVED" column="SEAT_RESERVED" />
+   </resultMap>
+
+   <select id="AdminCultureList" resultMap="AdminCultureRes">
+      SELECT * FROM CULTURE
+      ORDER BY CULTURE_IDX DESC
+
+   </select>
+
+   <select id="seatName" resultMap="SeatRes">
+      select SEAT_NAME from SEAT where SEAT_IDX = #{SEAT_IDX}
+   </select>
+
+   <select id="getSeat" resultMap="AdminCultureRes">
+      select * FROM CULTURE where CULTURE_IDX = #{CULTURE_IDX}
+   </select>
 
 
-	<select id="AdminCultureList" resultMap="AdminCultureRes">
-		SELECT * FROM CULTURE
-		ORDER BY CULTURE_IDX DESC
 
-	</select>
+   <select id="AdminCultureDetail" resultMap="AdminCultureRes"
+      parameterType="AdminCultureModel">
+      SELECT * FROM CULTURE WHERE CULTURE_IDX = #{CULTURE_IDX}
 
-	<select id="AdminCultureDetail" resultMap="AdminCultureRes"
-		parameterType="AdminCultureModel">
-		SELECT * FROM CULTURE WHERE CULTURE_IDX = #{CULTURE_IDX}
+   </select>
 
-	</select>
+   <insert id="CultureJoin" parameterType="AdminCultureModel">
+      insert into CULTURE(
+      CULTURE_IDX,
+      CULTURE_NAME,
+      CULTURE_CATEGORY,
+      CULTURE_START,
+      CULTURE_END,
+      CULTURE_SAVNAME,
+      CULTURE_LOCATION,
+      CULTURE_CONTENT,
+      CULTURE_AREA,
+      CULTURE_PRICE
+      )
 
-	<insert id="CultureJoin" parameterType="AdminCultureModel">
-		insert into CULTURE(
-		CULTURE_IDX,
-		CULTURE_NAME,
-		CULTURE_CATEGORY,
-		CULTURE_START,
-		CULTURE_END,
-		CULTURE_SAVNAME,
-		CULTURE_LOCATION,
-		CULTURE_CONTENT)
+      values(CULTURE_seq.NEXTVAL,
+      #{CULTURE_NAME},
+      #{CULTURE_CATEGORY},
+      to_date(#{CULTURE_START}, 'yyyy-MM-dd'),
+      to_date(#{CULTURE_END}, 'yyyy-MM-dd'),
+      #{CULTURE_SAVNAME},
+      #{CULTURE_LOCATION},
+      #{CULTURE_CONTENT},
+      #{CULTURE_AREA},
+      #{CULTURE_PRICE}
+      )
 
-		values(CULTURE_seq.NEXTVAL,
-		#{CULTURE_NAME},
-		#{CULTURE_CATEGORY},
-		to_date(#{CULTURE_START}, 'yyyy-MM-dd'),
-		to_date(#{CULTURE_END}, 'yyyy-MM-dd'),
-		#{CULTURE_SAVNAME},
-		#{CULTURE_LOCATION},
+   </insert>
+   <!-- 수정폼 -->
+   <select id="CultureModify" resultMap="AdminCultureRes"
+      parameterType="int">
+      SELECT * FROM CULTURE WHERE CULTURE_IDX = #{CULTURE_IDX}
 
-		#{CULTURE_CONTENT} )
-
-	</insert>
-
-	<!-- 수정폼 -->
-	<select id="CultureModify" resultMap="AdminCultureRes"
-		parameterType="int">
-		SELECT * FROM CULTURE WHERE CULTURE_IDX = #{CULTURE_IDX}
-
-	</select>
-
-
-	<!-- 수정완료 -->
-	
-	<update id="AdminCultureModify"  parameterType="AdminCultureModel">
-	
-		UPDATE CULTURE SET CULTURE_NAME = #{CULTURE_NAME} ,
-		CULTURE_CATEGORY = #{CULTURE_CATEGORY},
-		CULTURE_START = #{CULTURE_START} ,
-		CULTURE_END = #{CULTURE_END},
-		CULTURE_LOCATION = #{CULTURE_LOCATION},
-		CULTURE_CONTENT = #{CULTURE_CONTENT},
-		CULTURE_SAVNAME = #{CULTURE_SAVNAME},
-		
-		WHERE CULTURE_NAME = #{CULTURE_IDX}
-		
-	</update>
-	
-	<delete id="CultureDelete" parameterType="int">
-		DELETE FROM CULTURE WHERE CULTURE_IDX = #{CULTURE_IDX}
-	</delete>
-	
-	<delete id="CultureCommentDelete" parameterType="int">
-		DELETE FROM CULTURE_COMMENT WHERE COMMENT_IDX = #{COMMENT_IDX}
-	</delete>
-	
-	
-	<!-- 공연검색 -->
-	<select id="cultureSearch0" resultMap="AdminCultureRes" parameterType="String">
-	
-		SELECT * FROM CULTURE
-		WHERE CULTURE_NAME like #{search}
-		
-		ORDER BY CULTURE_NAME DESC
-		
-	</select>
+   </select>
 
 
+   <!-- 수정완료 -->
+
+   <update id="AdminCultureModify"
+      parameterType="AdminCultureModel">
+
+      UPDATE CULTURE SET CULTURE_NAME = #{CULTURE_NAME} ,
+      CULTURE_CATEGORY =
+      #{CULTURE_CATEGORY},
+      CULTURE_START = #{CULTURE_START} ,
+      CULTURE_END =
+      #{CULTURE_END},
+      CULTURE_LOCATION = #{CULTURE_LOCATION},
+      CULTURE_CONTENT
+      = #{CULTURE_CONTENT},
+      CULTURE_SAVNAME = #{CULTURE_SAVNAME}
+
+      WHERE CULTURE_IDX = #{CULTURE_IDX}
+
+   </update>
+
+   <delete id="CultureDelete" parameterType="int">
+      DELETE FROM CULTURE
+      WHERE CULTURE_IDX = #{CULTURE_IDX}
+   </delete>
+
+   <delete id="CultureCommentDelete" parameterType="int">
+      DELETE FROM
+      CULTURE_COMMENT WHERE COMMENT_IDX = #{COMMENT_IDX}
+   </delete>
+
+
+   <!-- 공연검색 -->
+   <select id="cultureSearch0" resultMap="AdminCultureRes"
+      parameterType="String">
+
+      SELECT * FROM CULTURE
+      WHERE CULTURE_NAME LIKE #{search}
+
+      ORDER BY CULTURE_NAME DESC
+
+   </select>
+
+   <insert id="insertSeat" parameterType="seatModel">
+      insert into SEAT(
+      SEAT_IDX,
+      SEAT_AREA,
+      SEAT_NUMBER,
+      SEAT_PRICE,
+      SEAT_DATE,
+      SEAT_CIDX,
+      SEAT_NAME
+      )
+      values(
+      SEAT_SEQ.NEXTVAL,
+      #{SEAT_AREA},
+      #{SEAT_NUMBER},
+      #{SEAT_PRICE},
+      #{SEAT_DATE},
+      #{SEAT_CIDX},
+      #{SEAT_NAME}
+      )
+   </insert>
 
 
 

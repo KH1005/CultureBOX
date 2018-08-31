@@ -116,7 +116,7 @@ button, input {
 	         value = value + chk[i].value+'/';
 	      
 	      }
-	      alert(value);
+	    
 	      
 	      $.ajax({
 	    	  url:"http://localhost:8080/culture/admin/ReserveModifyAll.cul",
@@ -145,9 +145,9 @@ button, input {
 	         value = value + chk[i].value+'/';
 	      
 	      }
-	      alert(value);
 	      
-	      $.ajax({
+	      
+	      $.ajax({ 
 	    	  url:"http://localhost:8080/culture/admin/ReserveModifyBackAll.cul",
 	    	  data: "value="+encodeURIComponent(value),
 	    	  type:"post",
@@ -157,6 +157,7 @@ button, input {
 	    		  location.reload();
 	    	  },error:function(){
 	    		  alert('fail');
+	    		  location.reload();
 	    	  }
 	      })
 	   }
@@ -214,27 +215,24 @@ button, input {
          </div>
       </div>
    </section>
-   <br>
-   <br>
-   <br>
 
 
    <div class="progress-table">
       <table class="board_list" align="center">
          <div class="table-head">
-         <tr>
-            <td align="center">No</td>    
-            <td align="center">예약날짜</td>
-            <td align="center">예약자ID</td>
-            <td align="center">공연명</td>
-            <td align="center">공연장위치</td>
-            <td align="center">좌석구역</td>
-            <td align="center">좌석가격</td>
-            <td align="center">결제여부</td>
-            <td align="center">선택</td>
-            <td align="center">결제관리</td>
-            <td align="center">결제관리</td>
-            <td align="center">관리</td>
+         <tr style="color:#1e8ec0;">
+            <td align="center">No</td>
+            <td align="center">Date</td>
+            <td align="center">ID</td>
+            <td align="center">Concert</td>
+            <td align="center">Location</td>
+            <td align="center">Seat</td>
+            <td align="center">Price</td>
+            <td align="center">Y/N</td>
+            <td align="center">Check</td>
+            <td align="center">Admin</td>  
+            <td align="center">Admin</td>
+            <td align="center">Setting</td>
          </tr>
          </div>
          <tbody>
@@ -277,12 +275,16 @@ button, input {
                            value="${adminReserveListForm.RESERVE_IDX}" />
                      </c:url> <a href="${viewURL}" onclick="return delchk()" class="lnr lnr-trash">
                         </a>
-                  <td>
+                  </td>
             </c:forEach>
-            <br>
-            <br>
-            <br>
-            <br>
+            <!--  등록된 상품이 없을때 -->
+               <c:if test="${fn:length(adminReserveListForm) le 0}">
+                  <tr>
+                     <td colspan="9" style="text-align: center;">등록된 상품이 없습니다</td>
+                  </tr>
+               </c:if>
+          
+            
             </tr>
             <td></td>
             <td></td>
@@ -294,54 +296,51 @@ button, input {
               
             <div class="button-group-area mt-10">
             
-            <td><c:url var="viewURL" value="ReserveListForm.cul">
-               </c:url> <a href="${viewURL}"><input type="button" value="목록" class="genric-btn default-border circle"></a></td>
+            <td><br><br><c:url var="viewURL" value="ReserveListForm.cul">
+               </c:url> <a href="${viewURL}"><input type="button" value="목록" class="genric-btn default-border"></a></td>
                
                
-            <td><input type="button" value="전체선택"
-               onclick="checkboxSelectQue(1,'chk[]')" class="genric-btn default-border circle"/></td>
+            <td><br><br><input type="button" value="전체선택"
+               onclick="checkboxSelectQue(1,'chk[]')" class="genric-btn default-border"/></td>
                
                
-            <td><input type="button" value="결제확인" onclick="checkboxSelectPull('chk[]')" class="genric-btn default-border circle"/></td>
+            <td><br><br><input type="button" value="결제확인" onclick="checkboxSelectPull('chk[]')" class="genric-btn default-border"/></td>
             
             
-            <td><a href><input type="button" value="확인취소" onclick="checkboxSelectPush('chk[]')" class="genric-btn default-border circle"></td>
+            <td><br><br><a href><input type="button" value="확인취소" onclick="checkboxSelectPush('chk[]')" class="genric-btn default-border"></td>
             </a>
 
-            <td><a href><input type="button" value="전체삭제" onclick="checkboxSelectDel('chk[]')" class="genric-btn default-border circle"></a></td>
+            <td><br><br><a href><input type="button" value="전체삭제" onclick="checkboxSelectDel('chk[]')" class="genric-btn default-border"></a></td>
 
             </div>
 
             <tr>
 
 
-               <!--  등록된 상품이 없을때 -->
-               <c:if test="${fn:length(adminReserveListForm) le 0}">
-                  <tr>
-                     <td colspan="9" style="text-align: center;">등록된 상품이 없습니다</td>
-                  </tr>
-               </c:if>
+               
          </tbody>
 
       </table>
    </div>
 
-
-   <div class="button-group-area mt-10" style="text-align:center;" >
-         <form action="" align="center">
-            <select class="" name="searchNum" id="searchNum" >
+            <div class="d7" style="text-align:center;">
+         <form action="">
+            <select class="searchOption btn btn-default" name="searchNum" id="searchNum" >
                <option value="0">아이디</option>
                <option value="1">공연명</option>
                <option value="2">공연장위치</option>
-            </select> <input class="contact_input contact_input_name" type="text" name="isSearch" id="isSearch" /> <span>
+                </select>
+                <input class="contact_input contact_input_name" type="text" name="isSearch" id="isSearch" /><span>
                <button type="submit" class="genric-btn info-border circle">검색</button>
             </span>
-      </td>
-      </form>
+      
+      </form>  
+      </div>    
+      <br>  
       <br>
-      <br>
-   </tr>
-   </div>
+
+
+  
 
 
    <div class="paging" align="center">${pagingHtml}
