@@ -2,20 +2,11 @@
     pageEncoding="UTF-8"%>
 
     <!DOCTYPE html>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-<link rel="stylesheet" href="https://technext.github.io/interior/css/main.css">
-<style>
-  .banner-area {
-    background: url(file:///C:\Spring\App\workspace\cultureBOX\src\main\webapp\WEB-INF\cssimg\mainback7.jpg) center;
-    background-size: cover;
-} 
-
-</style>   
-
 		<title>CultureBox</title>
 		<header id="header" class="">
 			  
@@ -26,18 +17,44 @@
 			    <div class="container main-menu">
 			    	<div class="row align-items-center justify-content-between d-flex">
 				      <div id="logo" align="left">
-				        <a href="index.html"><img src="file:///C:\Spring\App\workspace\cultureBOX\src\main\webapp\WEB-INF\cssimg\logo333.png" alt="" title=""></a>
+				        <a href="index.html"><img src="<c:url value='/interior-master/cultureimg/logo333.png'/>" alt="" title=""></a>
 				      </div>
+				      <!-- 장르 리스트 url -->
+				      <c:url value="/eval/RecommendGenreList.cul" var="genre" >
+				      	<c:param name="id" value="${id }"></c:param>
+				      </c:url>
+				      <!-- 아티스트 리스트 url -->
+				      <c:url value="/eval/RecommendArtistList.cul" var="artist">
+				      	<c:param name="id" value="${id }"></c:param>
+				      </c:url>
+				      <!-- 국가 리스트 url -->
+				      <c:url value="/eval/RecommendCountryList.cul" var="country">
+				      	<c:param name="id" value="${id }"></c:param>
+				      </c:url>
+				      <!-- 평가리스트 -->
+				      <c:url value="/eval/EvalList.cul" var="eval">
+				      	<c:param name="id" value="${id }"></c:param>
+				      </c:url>
+				      <!-- 네비게이션 바 -->
 				      <nav id="nav-menu-container">
 				        <ul class="nav-menu sf-js-enabled sf-arrows" style="touch-action: pan-y;">
-				          <li class="menu-active"><a href="index.html">Home</a></li>
-				          <li><a href="about.html">Music</a></li>
-				          <li><a href="services.html">Concert</a></li>
-				          <li><a href="projects.html">My</a></li>
-
-
-                            
-				        
+				          <li class="menu-active"><a href="index.html">Concert</a></li>
+				           <li><a href="${eval }">Evaluation</a></li>
+				          <li class="menu-has-children"><a href="${genre }">Music</a>
+				            <ul>
+				              <li><a href="${genre }">Genre</a></li>
+				              <li><a href="${artist }">Artist</a></li>
+				              <li><a href="${country }">Country</a></li>
+				            </ul>
+				          </li>
+				          <li class="menu-has-children"><a href="">My</a>
+				            <ul>
+				              <li><a href="blog-home.html">My</a></li>
+				              <li><a href="blog-single.html">Music</a></li>
+				              <li><a href="blog-single.html">Reservation</a></li>
+				              <li><a href="blog-single.html">Withdrawal</a></li>
+				            </ul>
+				          </li>
  
  </ul>
 				      </nav><!-- #nav-menu-container -->		    		
@@ -45,6 +62,7 @@
 			    </div>
 
 			  </header><!-- #header -->
+
 
 <%-- <%@ include file="/WEB-INF/include/include-header.jspf" %>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>

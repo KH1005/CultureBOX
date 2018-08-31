@@ -53,7 +53,12 @@
         width: 400px;
       }
       .click-callback i { margin:0 3px; font-size:16px !important; }
+      .banner-area {
+    background: url(<c:url value='/musicimg/${music.MUSIC_SAVNAME }'/>) center;
+    background-size: cover;
+}
 </style>
+
     
 </head>
 <body>
@@ -64,7 +69,7 @@
 					<div class="row d-flex align-items-center justify-content-center">
 						<div class="about-content col-lg-12">
 							<h1 class="text-white">
-								Project Details				
+								${music.MUSIC_ALBUM }			
 							</h1>	 
 							<p class="text-white link-nav"><a href="index.html">Home </a>  <span class="lnr lnr-arrow-right"></span>  <a href="projects-details.html"> Project Details</a></p>
 						</div>	
@@ -78,7 +83,7 @@
 				<div class="container">
 					<div class="row align-items-center">
 						<div class="col-lg-6 project-details-left">
-							<img class="img-fluid" src="<c:url value='/interior-master/b43bcea82a876165cf9506fe2657af80.jpg'/>" alt="">
+							<img class="img-fluid" src="<c:url value='/musicimg/${music.MUSIC_SAVNAME }'/>" alt="" height="500" width="500">
 						</div>
 						<div class="col-lg-6 project-details-right">
 							<h3 class="pb-20">${music.MUSIC_ALBUM }</h3>
@@ -167,7 +172,7 @@
 		                <div class="menu-content pb-70 col-lg-8">
 		                    <div class="title text-center">
 		                        <h1 class="mb-10">Comment</h1>
-		                        <p>Who are in extremely love with eco friendly system.</p>
+		                        <p>다른회원의 의견을 확인해보세요.</p>
 		                    </div>
 		                </div>
 		            </div>
@@ -206,6 +211,50 @@
 		            </div>
 		        </div>
 		    </section>
+		    
+		    
+		    <!-- 조그만 추천창 -->
+		    <section class="blog-area section-gap">
+				<div class="container">
+					<div class="row d-flex justify-content-center">
+						<div class="menu-content pb-60 col-lg-9">
+							<div class="title text-center">
+								<h1 class="mb-10">${row.MUSIC_GENRE } 장르 추천</h1>
+								<p>지금 보고계신 음악과 같은 장르의 음악을 확인해보세요.</p>
+							</div>
+						</div>
+					</div>							
+					<div class="row">
+						<div class="active-blog-carusel">
+							<c:forEach var="row" items="${recGenre }" varStatus="stat">
+								<div class="single-blog-post item">
+									<div class="thumb">
+										<img class="img-fluid" src="<c:url value='/musicimg/${row.MUSIC_SAVNAME }'/>" alt="">
+									</div>
+									<div class="details">
+										<div class="tags">
+											<ul>
+												<li>
+													<a href="#">${row.MUSIC_GENRE }</a>
+												</li>
+												<li>
+													<a href="#">${row.MUSIC_ARTIST }</a>
+												</li>
+											</ul>
+										</div>
+										<!-- 디테일부분의 url을 넣어준다 -->
+										<a href="#"><h4 class="title">${row.MUSIC_ALBUM }</h4></a>
+										<p>
+											${row.MUSIC_ALBUMINFO }
+										</p>
+										<h6 class="date">${row.MUSIC_RELEASE }</h6>
+									</div>	
+								</div>
+							</c:forEach>
+						</div>
+					</div>
+				</div>	
+			</section>
 		    
 		    
 		    

@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.w3c.dom.ls.LSException;
 
 import com.fasterxml.jackson.databind.jsonFormatVisitors.JsonArrayFormatVisitor;
 import com.fasterxml.jackson.databind.util.JSONPObject;
@@ -46,13 +47,16 @@ public class EvalController {
 			//찾는 쿼리 넣어준다.
 			musicList = evalService.getSearchList(issearch);
 			
+			Collections.shuffle(musicList);
+			
 			model.addAttribute("musicList",musicList);
 			model.addAttribute("id",id);
 			return "evalList";
 			
 		}
 		musicList = evalService.selectMusicList(memberModel);	//서비스를 이용해서 디비에서 가져온다.
-
+		
+		Collections.shuffle(musicList);
 		model.addAttribute("musicList",musicList);
 		model.addAttribute("id",id);
 		
@@ -111,6 +115,22 @@ public class EvalController {
 		memberModel = evalService.getMemberInfo(id);
 		music = evalService.selectMusic(musicModel);	//뮤직 정보를 가져온다.
 		
+		//선택한 장르의 음악을 5개 가져온다.
+		Map<String, Object> recparameter = new HashMap<String, Object>();
+		recparameter.put("MEMBER_ID", id);
+		recparameter.put("MUSIC_GENRE", music.getMUSIC_GENRE());
+		List<MusicModel> recMusic = evalService.getRecommendGenre(recparameter);
+		List<MusicModel> recGenre = new ArrayList<MusicModel>();
+		
+		for(int i=0;i<5;i++) {
+			if(recMusic.size() <= i) {
+				break;
+			}
+			recGenre.add(recMusic.get(i));
+		}
+		
+		Collections.shuffle(recGenre);
+		
 		String[] songList = music.getMUSIC_SONG().split("/");
 		
 		evalModel.setMEMBER_ID(id);
@@ -134,6 +154,7 @@ public class EvalController {
 		model.addAttribute("star",Integer.parseInt(star));
 		model.addAttribute("member",memberModel);
 		model.addAttribute("id",id);
+		model.addAttribute("recGenre",recGenre);
 		
 		return "evalDetail";
 	}
@@ -222,7 +243,7 @@ public class EvalController {
 			top3artist.add(addArtist);
 			System.out.println("artist: "+top3artist.get(i));
 		}
-		
+		Collections.shuffle(recommendArtist);
 		model.addAttribute("artist",recommendArtist);
 		model.addAttribute("id",id);
 		
@@ -260,7 +281,7 @@ public class EvalController {
 			List<MusicModel> nara = evalService.getREcommendCountry(parameter); //순위대로 선호하는 국가를 뽑는다. 
 			recommendCountry.addAll(nara);										//순위대로 검색한 국가리스트를 모두 더한다.
 		}
-		
+		Collections.shuffle(recommendCountry);
 		model.addAttribute("country",recommendCountry);
 		model.addAttribute("id",id);
 		return "recommendCountryList";
@@ -299,7 +320,6 @@ public class EvalController {
 			List<MusicModel> music = evalService.getRecommendGenre(parameter); //순위에 맞는 장르에 해당하는 뮤직 리스트를 보여준다.
 			recommendGenre.addAll(music);	//1,2,3위 장르에 맞는 추천 음악리스트를 모두 불러온다.
 		}
-		System.out.println("size: "+recommendGenre.size());
 		/*
 		 * genre: 1.rock, 2.edm, 3.ballard
 		 * 
@@ -308,7 +328,7 @@ public class EvalController {
 		 * country: 1.US, 2.UK, 3.KR
 		 */
 		
-		
+		Collections.shuffle(recommendGenre);
 		model.addAttribute("genre",recommendGenre);
 		model.addAttribute("id",id);
 		
