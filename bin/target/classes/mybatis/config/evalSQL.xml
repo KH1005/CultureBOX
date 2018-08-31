@@ -33,6 +33,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<result property="MUSIC_COUNTRY" column="MUSIC_COUNTRY"/>
 	</resultMap>
 	
+	<resultMap type="CommentModel" id="musicCommentRes">
+		<result property="MCOMMENT_IDX" column="MCOMMENT_IDX"/>
+		<result property="MCOMMENT_WRITER" column="MCOMMENT_WRITER"/>
+		<result property="MCOMMENT_CONTENT" column="MCOMMENT_CONTENT"/>
+		<result property="MCOMMENT_MUSICIDX" column="MCOMMENT_MUSICIDX"/>
+		<result property="MCOMMENT_WRITEDATE" column="MCOMMENT_WRITEDATE"/>
+		<result property="MCOMMENT_WRITERID" column="MCOMMENT_WRITERID"/>
+	</resultMap>
+	
 	<!-- 내가 평가한 음악 빼고 리스트로 가져온다. -->
 	<select id="evalMusicList" parameterType="string" resultMap="musicRes">
 		select music_album, music_song, music_artist, music_release, music_index, music_albuminfo, music_artistinfo,
@@ -59,7 +68,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<select id="getStar" parameterType="evalModel" resultType="string">
 		select star_count from evaluation where member_id = #{MEMBER_ID} and music_index = #{MUSIC_INDEX}
-	
 	</select>
 	
 	<select id="likeGenre" parameterType="string" resultType="java.util.HashMap">
@@ -70,6 +78,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  		from evaluation where member_id = #{MEMBER_ID}) and member_id = #{MEMBER_ID}) ) group by music_genre order by count(music_genre) desc
 	
 	</select>
+	
 	
 	<select id="likeArtist" parameterType="string" resultType="java.util.HashMap">
 		select count(music_artist), music_artist from(
@@ -114,6 +123,71 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         ) where music_country = #{MUSIC_COUNTRY}
 	</select>
 
+	<select id="getMemberInfo" parameterType="string" resultMap="memberRes">
+		select * from member where member_id = #{MEMBER_ID}
+	</select>
+	
+	<insert id="insertMusicComment" parameterType="CommentModel" >
+		insert into MUSIC_COMMENT(MCOMMENT_IDX,
+								  MCOMMENT_WRITER,
+								  MCOMMENT_CONTENT, 
+								  MCOMMENT_MUSICIDX,
+								  MCOMMENT_WRITEDATE,
+								  MCOMMENT_WRITERID)
+						   values(MUSIC_COMMENT_SEQ.NEXTVAL,
+						   		  #{MCOMMENT_WRITER},
+						   		  #{MCOMMENT_CONTENT},
+						   		  #{MCOMMENT_MUSICIDX},
+						   		  sysdate,
+						   		  #{MCOMMENT_WRITERID}
+						   )
+	
+	</insert>
+	
+	<select id="getMusicComment" parameterType="int" resultType="java.util.HashMap">
+		select MEMBER_ID,MUSIC_INDEX,STAR_COUNT,mcomment_idx, mcomment_writer,
+		 mcomment_content, mcomment_musicidx,mcomment_writedate, mcomment_writerid
+		from (select * from music_comment where mcomment_musicidx = #{MCOMMENT_MUSICIDX}) mc, (select * from evaluation where music_index = #{MCOMMENT_MUSICIDX}) e 
+		where  e.member_id(+) = mc.mcomment_writerid and mc.mcomment_musicidx = #{MCOMMENT_MUSICIDX} order by mc.mcomment_idx desc
+		
+	</select>
+	
+	<select id="getMyComment" parameterType="hashmap" resultMap="musicCommentRes">
+		select * from music_comment where mcomment_musicidx = #{MCOMMENT_MUSICIDX} and mcomment_writerid = #{MCOMMENT_WRITERID}	
+	</select>
+	
+	<delete id="deleteEvaluation" parameterType="hashmap">
+		delete from evaluation where member_id = #{MEMBER_ID} and music_index = #{MUSIC_INDEX}
+	</delete>
+	
+	<update id="updateComment" parameterType="CommentModel">
+		update music_comment set mcomment_content = #{MCOMMENT_CONTENT},
+                         mcomment_writedate = sysdate
+                     where mcomment_idx = #{MCOMMENT_IDX}
+	</update>
+	
+	<delete id="deleteComment" parameterType="string">
+		delete from music_comment where mcomment_idx = #{MCOMMENT_IDX}
+	
+	</delete>
+	<select id="getMyCommentByidx" parameterType="hashmap" resultMap="musicCommentRes">
+		select * from music_comment where mcomment_idx = ${MCOMMENT_IDX}
+	
+	</select>
+	
+	<select id="getMusicAlbumList" resultMap="musicRes">
+		select music_album from music
+	
+	</select>
+	
+	<select id="getSearchList" parameterType="string" resultMap="musicRes">
+		SELECT * FROM MUSIC WHERE MUSIC_ALBUM LIKE '%' ||  #{keyword} || '%' ORDER BY MUSIC_INDEX DESC
+	</select>
+	
+	
+	
+	
+	
 </mapper>
 
 

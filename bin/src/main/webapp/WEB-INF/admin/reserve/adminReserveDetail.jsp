@@ -14,26 +14,27 @@
          <tr>
                 <th>예약번호</th>
                 <th>공연날짜</th>
-                <th>공연 종료날짜</th>
-                <th>공연장 위치</th>
-                <th>예약자아이디</th>
-                <th>좌석 구역</th>
-                <th>좌석번호</th>
+                <th>예약자 아이디</th>
+                <th>공연카테고리</th>
                 <th>공연명</th>
+                <th>공연장 위치</th>
+                <th>좌석 구역</th>
+                <th>좌석 가격</th>
                 <th>결제여부</th>
          </tr>		
 		 <tr>
                 <td>${adminReserveDetail.RESERVE_IDX}</td>
 				<td>${adminReserveDetail.RESERVE_DATE}</td>
 				<td>${adminReserveDetail.RESERVE_ID}</td>
-<%-- 				<td>${adminReserveDetail.RESERVE_SIDX}</td>
- --%>				<td>${adminReserveDetail.RESERVE_CIDX}</td>
-				<td>${adminReserveDetail.RESERVE_CONFIRM}</td>					
+ 				<td>${adminReserveDetail.RESERVE_SIDX}</td>
+ 				<td>${adminReserveDetail.RESERVE_CIDX}</td>
+				<td>${adminReserveDetail.RESERVE_CONFIRM}</td>
+				<td></td>
+			<td></td>
+			<td></td>					
 			</tr>			
 			<tr>
-			<td></td>
-			<td></td>
-			<td></td>
+			
 			<td>
 			<c:url var="viewURL" value="ReserveListForm.cul" >
     </c:url>

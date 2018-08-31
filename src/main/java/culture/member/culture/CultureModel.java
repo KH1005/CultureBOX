@@ -39,7 +39,6 @@ public class CultureModel {
 	public void setCULTURE_START(String cULTURE_START) {
 		CULTURE_START = cULTURE_START;
 	}
-	
 	public String getCULTURE_END() {
 		return CULTURE_END;
 	}

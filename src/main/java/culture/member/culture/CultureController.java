@@ -14,6 +14,7 @@ import com.itextpdf.text.log.SysoCounter;
 
 import culture.member.culture.CultureCommentModel;
 import culture.member.culture.CultureModel;
+import culture.member.evaluation.MemberModel;
 import culture.admin.culture.*;
 
 @Controller
@@ -26,12 +27,13 @@ public class CultureController {
 	
 	//공연 리스트
 	@RequestMapping(value = "/concert/CultureList.cul")
-	public ModelAndView cultureList(HttpServletRequest request) throws Exception {
+	public ModelAndView cultureList(HttpServletRequest request, CultureModel cultureModel) throws Exception {
+		
 		
 		List<CultureModel> culturelist = cultureService.cultureList();
 		
-		
 		mv.addObject("cultureList",culturelist);
+		
 		mv.setViewName("cultureList");
 		
 		return mv;
@@ -51,15 +53,21 @@ public class CultureController {
 			return mv;
 		}
 		
+		
 	//공연 상세보기 (댓글 추가)
 	@RequestMapping("/concert/CultureDetail.cul")
-	public ModelAndView cultureDetail(HttpSession session, HttpServletRequest request) throws Exception{
+	public ModelAndView cultureDetail(HttpServletRequest request) throws Exception{
+		
+		HttpSession session = request.getSession();
 		
 		int culture_idx = Integer.parseInt(request.getParameter("culture_idx"));
-		CultureModel cultureModel = cultureService.cultureDetail(culture_idx);
-		List<CultureCommentModel> list = cultureService.cultureCommentList(cultureModel.getCULTURE_IDX());
-		session.setAttribute("cidx", culture_idx);
 		
+		CultureModel cultureModel = cultureService.cultureDetail(culture_idx); 
+		
+		//댓글
+		List<CultureCommentModel> list = cultureService.cultureCommentList(cultureModel.getCULTURE_IDX());
+		
+		session.setAttribute("cidx", culture_idx);
 		
 		String sday = cultureModel.getCULTURE_START();
         String eday = cultureModel.getCULTURE_END();
@@ -93,7 +101,7 @@ public class CultureController {
 		
 		cultureCommentModel.setCOMMENT_CONTENT(request.getParameter("COMMENT_CONTENT").replaceAll("\r\n", "<br />"));
 		cultureCommentModel.setCOMMENT_CULTUREIDX(comment_cultureidx);
-/*		cultureCommentModel.setCOMMENT_WRITERID("COMMENT_WRITERID");*/
+		cultureCommentModel.setCOMMENT_WRITERID("COMMENT_WRITERID");
 		
 		
 		cultureService.writeCultureComment(cultureCommentModel);

@@ -26,8 +26,8 @@
 		SELECT * FROM RESERVATION
 		WHERE RESERVE_IDX = #{RESERVE_IDX}
 	</select>
-
-	<delete id="reserveDelete" parameterType="Integer">
+	
+	<delete id="reserveDelete" parameterType="AdminReserveModel">
 		DELETE FROM RESERVATION
 		WHERE RESERVE_IDX = #{RESERVE_IDX}
 	</delete>

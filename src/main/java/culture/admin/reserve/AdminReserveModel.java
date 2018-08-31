@@ -5,11 +5,15 @@ import java.util.Date;
 public class AdminReserveModel {
 
 	private int RESERVE_IDX;
-	private Date RESERVE_DATE;  
+	private String RESERVE_DATE;  
 	private String RESERVE_CONFIRM; 
 	private String RESERVE_ID; 
 	private int RESERVE_SIDX; 
 	private int RESERVE_CIDX;
+	private String CULTURE_NAME;
+	private String CULTURE_LOCATION;
+	private String SEAT_NAME;
+	private int SEAT_PRICE;
 	
 	public int getRESERVE_IDX() {
 		return RESERVE_IDX;
@@ -17,10 +21,10 @@ public class AdminReserveModel {
 	public void setRESERVE_IDX(int rESERVE_IDX) {
 		RESERVE_IDX = rESERVE_IDX;
 	}
-	public Date getRESERVE_DATE() {
+	public String getRESERVE_DATE() {
 		return RESERVE_DATE;
 	}
-	public void setRESERVE_DATE(Date rESERVE_DATE) {
+	public void setRESERVE_DATE(String rESERVE_DATE) {
 		RESERVE_DATE = rESERVE_DATE;
 	}
 	public String getRESERVE_CONFIRM() {
@@ -47,6 +51,33 @@ public class AdminReserveModel {
 	public void setRESERVE_CIDX(int rESERVE_CIDX) {
 		RESERVE_CIDX = rESERVE_CIDX;
 	}
+	public String getCULTURE_NAME() {
+		return CULTURE_NAME;
+	}
+	public void setCULTURE_NAME(String cULTURE_NAME) {
+		CULTURE_NAME = cULTURE_NAME;
+	}
+	public String getCULTURE_LOCATION() {
+		return CULTURE_LOCATION;
+	}
+	public void setCULTURE_LOCATION(String cULTURE_LOCATION) {
+		CULTURE_LOCATION = cULTURE_LOCATION;
+	}
+	public String getSEAT_NAME() {
+		return SEAT_NAME;
+	}
+	public void setSEAT_NAME(String sEAT_NAME) {
+		SEAT_NAME = sEAT_NAME;
+	}
+	public int getSEAT_PRICE() {
+		return SEAT_PRICE;
+	}
+	public void setSEAT_PRICE(int sEAT_PRICE) {
+		SEAT_PRICE = sEAT_PRICE;
+	}
+	
+	
+	
 	
 	
 	

@@ -54,9 +54,12 @@
 		<beans:property name="maxUploadSize" value="10485760" />
 	</beans:bean>  
 	
-	<!-- <beans:bean class="org.springframework.web.servlet.view.BeanNameViewResolver" >
+	<!-- pdf다운로드 -->
+	<beans:bean class="org.springframework.web.servlet.view.BeanNameViewResolver" >
 		<beans:property name="order" value="0"></beans:property>
-	</beans:bean> -->
+	</beans:bean> 
+	
+	<beans:bean id="pdfView" class="culture.member.my.PDFView"/>
 	
     <!-- <beans:bean class="org.springframework.web.servlet.view.json.MappingJacksonJsonView" id="jsonView">
   		<beans:property name="contentType" value="application/json; charset=UTF-8" />

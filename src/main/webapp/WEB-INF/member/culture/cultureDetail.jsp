@@ -191,7 +191,8 @@
 							href="http://localhost:8080/culture/concert/CultureList.cul">목록</a>
 					</div>
 				</div>
-
+				
+				
 
 				<div class="col-lg-12 project-desc mt-60">
 					<p>
@@ -366,11 +367,11 @@
 
 
 										<div id="com_Div" class="com_Div">
-											<input type="hidden" value="${row.COMMENT_CONTENT}" id="com_CON"> 
-											<input type="hidden" value="${row.COMMENT_IDX}" id="com_NO"> 
+											<input type="hidden" value="${row.COMMENT_CONTENT}" id="com_CON" name="com_CON"> 
+											<input type="hidden" value="${row.COMMENT_IDX}" id="com_NO" name="com_NO"> 
 												<a href='http://localhost:8080/culture/concert/deleteCultureComment.cul?COMMENT_IDX=${row.COMMENT_IDX}&COMMENT_CULTUREIDX=${cultureModel.CULTURE_IDX}'
 												><font size=2 color="#c6b069">삭제</font></a>|
-											 <a href="#this" id="commentUpdate"><font size=2 color="#c6b069">수정</font></a>
+											    <a href="#this" name="commentUpdate"><font size=2 color="#c6b069">수정</font></a>
 											
 											<p>
 												<font size=2><strong>${row.COMMENT_CONTENT}</strong></font>
@@ -410,7 +411,7 @@
 	
 	<script type="text/javascript">
 		$(document).ready(function() {
-			$("#commentUpdate").on("click", function(e) {
+			$("a[name='commentUpdate']").on("click", function(e) {
 				e.preventDefault();
 				fn_commentModify($(this));
 			})

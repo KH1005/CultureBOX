@@ -1,5 +1,6 @@
 package culture.member.culture;
 import java.util.List;
+import java.util.Map;
 
 import culture.member.culture.CultureCommentModel;
 
@@ -20,4 +21,5 @@ public interface CultureDAO {
 	public void modifyCultureComment(CultureCommentModel cultureCommentModel); //댓글 수정
 
 	public List<CultureModel> selectDate();
+
 }

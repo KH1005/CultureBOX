@@ -84,6 +84,15 @@ public class AdminCultureController {
 		
 		List<CultureCommentModel> list = adminCultureService.cultureCommentList(culture_idx);
 		
+		String sday = admincultureModel.getCULTURE_START();
+        String eday = admincultureModel.getCULTURE_END();
+        
+        String start[] = sday.split(" ");
+        String end[] = eday.split(" ");
+        
+        admincultureModel.setCULTURE_START(start[0]);
+        admincultureModel.setCULTURE_END(end[0]);
+        
 		mav.addObject("admincultureModel", admincultureModel);
 		mav.addObject("cultureCommentList", list);
 
