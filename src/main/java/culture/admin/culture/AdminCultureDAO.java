@@ -26,5 +26,8 @@ public interface AdminCultureDAO {
 	public int AdminCommentDelete(String COMMENT_IDX);
 
 	List<AdminCultureModel> cultureSearch0(String search);
-
+	
+	public void insertSeat(seatModel stModel);
+	
+	public AdminCultureModel getSeat(int CULTURE_IDX);
 }
