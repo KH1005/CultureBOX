@@ -147,6 +147,43 @@ public class EvalController {
 		List<Map<String, Object>> commentList = evalService.getMusicComment(music.getMUSIC_INDEX());
 		MusicCommentModel myComment = evalService.getMyComment(parameter);
 		
+		//별점 데이터 불러오기
+		parameter.put("MUSIC_INDEX", music.getMUSIC_INDEX());
+		List<Map<String, Object>> starInfo = evalService.getMusicEvalInfo(parameter);
+		Integer oneStar = 0;
+		Integer twoStar = 0;
+		Integer threeStar = 0;
+		Integer fourStar = 0;
+		Integer fiveStar = 0;
+		
+		
+		for(int i=0;i<starInfo.size();i++) {
+			String str = String.valueOf(starInfo.get(i).get("STAR_COUNT"));
+			java.math.BigDecimal value = (java.math.BigDecimal)starInfo.get(i).get("COUNT");
+			if(str.equals("1")) {
+				oneStar = Integer.valueOf(value.toString());
+			}else if(str.equals("2")) {
+				twoStar = Integer.valueOf(value.toString());
+			}else if(str.equals("3")) {
+				threeStar = Integer.valueOf(value.toString());
+			}else if(str.equals("4")) {
+				fourStar = Integer.valueOf(value.toString());
+			}else if(str.equals("5")) {
+				fiveStar = Integer.valueOf(value.toString());
+			}
+		}
+		
+		Map<String, Object> meanValue = evalService.getMeanValue(parameter);
+		String mean = String.valueOf(meanValue.get("AVERAGE"));
+		
+		model.addAttribute("mean",mean);
+		
+		model.addAttribute("oneStar",oneStar);
+		model.addAttribute("twoStar",twoStar);
+		model.addAttribute("threeStar",threeStar);
+		model.addAttribute("fourStar",fourStar);
+		model.addAttribute("fiveStar",fiveStar);
+		
 		model.addAttribute("mycomment", myComment);
 		model.addAttribute("songList",songList);
 		model.addAttribute("commentList", commentList);

@@ -21,6 +21,62 @@
 <html>
 <head>
 
+<!-- google chart -->
+<!--Load the AJAX API-->
+        <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+        <!--pie chart-->
+        <script type="text/javascript">
+          google.charts.load("current", {packages:["corechart"]});
+          google.charts.setOnLoadCallback(drawChart);
+          function drawChart() {
+            var data = google.visualization.arrayToDataTable([
+              ['STAR', 'COUNT'],
+              ['1',  ${oneStar}],
+              ['2',  ${twoStar}],
+              ['3', ${threeStar}],
+              ['4', ${fourStar}],
+              ['5', ${fiveStar}]
+            ]);
+
+          var options = {
+            legend: 'none',
+            pieSliceText: 'label',
+            pieStartAngle: 100,
+            colors:['#c6b069','#c6b069','#c6b069','#c6b069','#c6b069']
+          };
+
+            var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+            chart.draw(data, options);
+          }
+        </script>
+        
+        <!--line chart-->
+        <script type="text/javascript">
+          google.charts.load('current', {'packages':['corechart']});
+          google.charts.setOnLoadCallback(drawChart);
+
+          function drawChart() {
+            var data = google.visualization.arrayToDataTable([
+              ['STAR', 'COUNT'],
+              ['1',  ${oneStar}],
+              ['2',  ${twoStar}],
+              ['3',  ${threeStar}],
+              ['4',  ${fourStar}],
+              ['5',  ${fiveStar}]
+            ]);
+
+            var options = {
+              curveType: 'function',
+              legend: { position: 'bottom' },
+              colors:['#c6b069']
+            };
+
+            var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
+
+            chart.draw(data, options);
+          }
+        </script>
+
 <!-- using icon -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
 <script src="<c:url value='/interior-master/js/vendor/jquery-2.2.4.min.js' />"></script>
@@ -95,6 +151,8 @@
 									<li>Rating    </li>
 									<li>Album    </li>
 									<li>Artist   </li>
+									<li>Genre</li>
+									<li>Country</li>
 									<li>Song </li>
 								</ul>
 								<ul class="desc">
@@ -118,8 +176,10 @@
 											</c:otherwise>
 										</c:choose>
 									</li>
-									<li>: ${music.MUSIC_ALBUM }</li>
-									<li>: ${music.MUSIC_ARTIST }</li>
+									<li>:&nbsp; ${music.MUSIC_ALBUM }</li>
+									<li>:&nbsp; ${music.MUSIC_ARTIST }</li>
+									<li>:&nbsp; ${music.MUSIC_GENRE }</li>
+									<li>:&nbsp; ${music.MUSIC_COUNTRY }</li>
 									<li>
 										<c:forEach var="row" items="${songList }" varStatus="stat">
 										    <div>${stat.count}.${row}</div>
@@ -183,7 +243,7 @@
 			                		<c:forEach items="${commentList }" var="row" varStatus="stat">
 					                    <div class="single-testimonial item d-flex flex-row" id="c_${row.MCOMMENT_WRITERID}">
 					                        <div class="thumb">
-					                            <span class="lnr lnr-star" style="font-size: 25px;"></span>
+					                            <span class="lnr lnr-user" style="font-size: 25px;"></span>
 					                        </div>
 					                        <div class="desc">
 					                            <p id="${row.MCOMMENT_WRITERID }">
@@ -211,6 +271,26 @@
 		            </div>
 		        </div>
 		    </section>
+		    
+		    
+		    <!-- 그래프 -->
+		    <div class="whole-wrap">
+				<div class="container">
+					<div class="section-top-border">
+						<h3 class="mb-30">별점그래프&nbsp;&nbsp;&nbsp;평균<span class="fa fa-star checked">${mean}</span></h3>
+						<div class="row">
+							<div class="col-md-6">
+								<div id="piechart" style="width: 400px; height: 400px;"></div>
+							</div>
+							
+							<div class="col-md-6">
+								<div id="curve_chart" style="width: 500px; height: 500px"></div>
+							</div>
+							
+						</div>
+					</div>
+				</div>
+			</div>
 		    
 		    
 		    <!-- 조그만 추천창 -->
