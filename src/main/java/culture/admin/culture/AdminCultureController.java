@@ -39,7 +39,7 @@ public class AdminCultureController {
 
 	ModelAndView mav = new ModelAndView();
 
-	private static final String uploadPath = "C:\\spring\\mavenApp\\cultureBOX\\src\\main\\webapp\\WEB-INF\\image";
+	private static final String uploadPath = "C:\\Users\\dustn\\Documents\\cultureBOX\\src\\main\\webapp\\cultureimg";
 
 	// 공연리스트(검색추가)
 	@RequestMapping(value = "/admin/CultureListForm.cul")

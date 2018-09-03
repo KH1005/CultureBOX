@@ -174,6 +174,7 @@
 							<li>기간</li>
 							<li>장르</li>
 							<li>문의전화</li>
+							<li>가격</li>
 						</ul>
 						<ul class="desc">
 							<li>: ${cultureModel.CULTURE_LOCATION}</li>
@@ -182,6 +183,15 @@
 							</li>
 							<li>: ${cultureModel.CULTURE_CATEGORY}</li>
 							<li>: 070-1544-1545</li>
+							<li style="margin-left: 29px;">
+							   <c:forEach items="${start3}" var="start"  varStatus="stat">
+						 	    ${start}<br>
+						       </c:forEach>
+						   
+						    
+						    
+						    
+							</li>
 						</ul>
 					</div>
 					<div class="social-links mt-30">

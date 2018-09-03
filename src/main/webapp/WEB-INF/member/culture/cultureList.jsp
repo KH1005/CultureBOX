@@ -78,11 +78,7 @@
                                     <img class='max-small' src="http://localhost:8080/culture/cultureimg/${row.CULTURE_SAVNAME}" alt="">
                                  <div class="content-details fadeIn-bottom">
                                    <h4 class="content-title mx-auto">${row.CULTURE_NAME}<br><br>
-                                   
-                                   
-                                   <fmt:parseDate var="dateString" value="${row.CULTURE_START}" pattern="yyyy-MM-dd-HH:mm:ss" /><fmt:formatDate value="${dateString}" pattern="yyyy.MM.dd" />
-
-                                   <%--  ${row.CULTURE_START} ~&nbsp; ${row.CULTURE_END} --%>
+                                   ${cultureModel.CULTURE_START}~${cultureModel.CULTURE_END}
                                     <br><br>
                                     ${row.CULTURE_LOCATION}
                                    </h4>

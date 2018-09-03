@@ -13,6 +13,8 @@
        <result property = "CULTURE_SAVNAME" column = "CULTURE_SAVNAME" />
        <result property = "CULTURE_LOCATION" column = "CULTURE_LOCATION" />
        <result property = "CULTURE_CONTENT" column = "CULTURE_CONTENT" />
+       <result property = "CULTURE_AREA" column = "CULTURE_AREA" />
+       <result property = "CULTURE_PRICE" column = "CULTURE_PRICE" />
    </resultMap>
    
    

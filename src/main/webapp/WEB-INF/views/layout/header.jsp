@@ -35,7 +35,14 @@
 				        <ul class="nav-menu sf-js-enabled sf-arrows" style="touch-action: pan-y;">
 				          <li class="menu-active"><a href="index.html">Home</a></li>
 				          <li><a href="about.html">Music</a></li>
-				          <li><a href="services.html">Concert</a></li>
+				          <li class="menu-has-children"><a href="http://localhost:8080/culture/concert/CultureList.cul" class="sf-with-ul">Performance</a>
+				            <ul style="display: none;">
+				              <li><a href="/culture/concert/CultureCategoryList.cul?culture_category=콘서트">concert</a></li>
+				              <li><a href="/culture/concert/CultureCategoryList.cul?culture_category=연극">play</a></li>
+				              <li><a href="/culture/concert/CultureCategoryList.cul?culture_category=뮤지컬">musical</a></li>
+				             
+				            </ul>
+				          </li>
 				          <li><a href="projects.html">My</a></li>
 
 
