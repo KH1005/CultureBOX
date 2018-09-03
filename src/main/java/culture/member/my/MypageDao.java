@@ -17,6 +17,8 @@ public interface MypageDao {
 	
 	public MemberModel getMember(String MEMBER_ID);
 	
+	public List<Map<String, Object>> getMyEvalList(Map<String, Object> parameter);
+	
 	
 
 }

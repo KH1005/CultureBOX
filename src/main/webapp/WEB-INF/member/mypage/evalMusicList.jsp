@@ -57,7 +57,7 @@
 					<div class="row d-flex align-items-center justify-content-center">
 						<div class="about-content col-lg-12">
 							<h1 class="text-white">
-								Evaluation				
+								My Evaluation				
 							</h1>	
 							<p class="text-white link-nav"><a href="index.html">Home </a>  <span class="lnr lnr-arrow-right"></span>  <a href="services.html"> Services</a></p>
 						</div>	
@@ -79,8 +79,8 @@
 					</div>							
 					<div class="row">
 						<c:choose>
-							<c:when test="${fn:length(musicList) > 0 }">
-								<c:forEach items="${musicList }" var="row" varStatus="stat">
+							<c:when test="${fn:length(myEvalList) > 0 }">
+								<c:forEach items="${myEvalList }" var="row" varStatus="stat">
 									<div class="col-lg-4">
 										<div class="single-gallery">
 											<div class="content">
@@ -100,9 +100,9 @@
 							<c:otherwise>
 								<div class="row d-flex justify-content-center">
 									<div class="col-md-12 pb-40 header-text text-center">
-										<h1 class="pb-10">평가할게 없어요...ㅠㅠ</h1>
+										<h1 class="pb-10">평가한게 없어요...ㅠㅠ</h1>
 										<p>
-											데이터에 있는 음악들을 모두 평가하셨습니다~ 음악만 듣고 사셨나봐요 
+											평하를 더 해주세요~
 										</p>
 									</div>
 								</div>

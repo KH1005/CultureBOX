@@ -6,6 +6,8 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOError;
 import java.io.IOException;
+import java.sql.ParameterMetaData;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Hashtable;
 import java.util.List;
@@ -208,6 +210,24 @@ public class MypageController {
 			
 			mav.setViewName("signUpForm");
 			return mav;
+		}
+		
+		@RequestMapping("/mypage/myEval.cul")
+		public String myEvalList(Model model, HttpServletRequest request) {
+			HttpSession session =  request.getSession();
+			String id = (String)session.getAttribute("id");
+			
+			Map<String, Object> parameter = new HashMap<String, Object>();
+			parameter.put("MEMBER_ID", id);
+			
+			List<Map<String, Object>> myEvalList = mypageService.getMyEvalList(parameter); 
+			for(int i=0;i<myEvalList.size();i++) {
+				System.out.println(myEvalList.get(i));
+			}
+
+			model.addAttribute("myEvalList",myEvalList);
+			
+			return "evalMusicList";
 		}
 	
 }

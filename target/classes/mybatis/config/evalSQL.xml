@@ -184,7 +184,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		SELECT * FROM MUSIC WHERE MUSIC_ALBUM LIKE '%' ||  #{keyword} || '%' ORDER BY MUSIC_INDEX DESC
 	</select>
 	
+	<select id="getMusicEvalInfo" parameterType="hashmap" resultType="java.util.HashMap">
+		select star_count,count(*) as count from evaluation where music_index = #{MUSIC_INDEX} 
+		group by star_count order by star_count desc
+	</select>
 	
+	<select id="getMeanValue" parameterType="hashmap" resultType="java.util.HashMap">
+		SELECT AVG(STAR_COUNT) AVERAGE FROM EVALUATION WHERE MUSIC_INDEX = #{MUSIC_INDEX}
+	</select>
 	
 	
 	

@@ -21,6 +21,62 @@
 <html>
 <head>
 
+<!-- google chart -->
+<!--Load the AJAX API-->
+        <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+        <!--pie chart-->
+        <script type="text/javascript">
+          google.charts.load("current", {packages:["corechart"]});
+          google.charts.setOnLoadCallback(drawChart);
+          function drawChart() {
+            var data = google.visualization.arrayToDataTable([
+              ['STAR', 'COUNT'],
+              ['1',  ${oneStar}],
+              ['2',  ${twoStar}],
+              ['3', ${threeStar}],
+              ['4', ${fourStar}],
+              ['5', ${fiveStar}]
+            ]);
+
+          var options = {
+            legend: 'none',
+            pieSliceText: 'label',
+            pieStartAngle: 100,
+            colors:['#c6b069','#c6b069','#c6b069','#c6b069','#c6b069']
+          };
+
+            var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+            chart.draw(data, options);
+          }
+        </script>
+        
+        <!--line chart-->
+        <script type="text/javascript">
+          google.charts.load('current', {'packages':['corechart']});
+          google.charts.setOnLoadCallback(drawChart);
+
+          function drawChart() {
+            var data = google.visualization.arrayToDataTable([
+              ['STAR', 'COUNT'],
+              ['1',  ${oneStar}],
+              ['2',  ${twoStar}],
+              ['3',  ${threeStar}],
+              ['4',  ${fourStar}],
+              ['5',  ${fiveStar}]
+            ]);
+
+            var options = {
+              curveType: 'function',
+              legend: { position: 'bottom' },
+              colors:['#c6b069']
+            };
+
+            var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
+
+            chart.draw(data, options);
+          }
+        </script>
+
 <!-- using icon -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
 <script src="<c:url value='/interior-master/js/vendor/jquery-2.2.4.min.js' />"></script>
@@ -53,7 +109,12 @@
         width: 400px;
       }
       .click-callback i { margin:0 3px; font-size:16px !important; }
+      .banner-area {
+    background: url(<c:url value='/musicimg/${music.MUSIC_SAVNAME }'/>) center;
+    background-size: cover;
+}
 </style>
+
     
 </head>
 <body>
@@ -64,7 +125,7 @@
 					<div class="row d-flex align-items-center justify-content-center">
 						<div class="about-content col-lg-12">
 							<h1 class="text-white">
-								Project Details				
+								${music.MUSIC_ALBUM }			
 							</h1>	 
 							<p class="text-white link-nav"><a href="index.html">Home </a>  <span class="lnr lnr-arrow-right"></span>  <a href="projects-details.html"> Project Details</a></p>
 						</div>	
@@ -78,7 +139,7 @@
 				<div class="container">
 					<div class="row align-items-center">
 						<div class="col-lg-6 project-details-left">
-							<img class="img-fluid" src="<c:url value='/interior-master/b43bcea82a876165cf9506fe2657af80.jpg'/>" alt="">
+							<img class="img-fluid" src="<c:url value='/musicimg/${music.MUSIC_SAVNAME }'/>" alt="" height="500" width="500">
 						</div>
 						<div class="col-lg-6 project-details-right">
 							<h3 class="pb-20">${music.MUSIC_ALBUM }</h3>
@@ -90,6 +151,8 @@
 									<li>Rating    </li>
 									<li>Album    </li>
 									<li>Artist   </li>
+									<li>Genre</li>
+									<li>Country</li>
 									<li>Song </li>
 								</ul>
 								<ul class="desc">
@@ -113,8 +176,10 @@
 											</c:otherwise>
 										</c:choose>
 									</li>
-									<li>: ${music.MUSIC_ALBUM }</li>
-									<li>: ${music.MUSIC_ARTIST }</li>
+									<li>:&nbsp; ${music.MUSIC_ALBUM }</li>
+									<li>:&nbsp; ${music.MUSIC_ARTIST }</li>
+									<li>:&nbsp; ${music.MUSIC_GENRE }</li>
+									<li>:&nbsp; ${music.MUSIC_COUNTRY }</li>
 									<li>
 										<c:forEach var="row" items="${songList }" varStatus="stat">
 										    <div>${stat.count}.${row}</div>
@@ -167,7 +232,7 @@
 		                <div class="menu-content pb-70 col-lg-8">
 		                    <div class="title text-center">
 		                        <h1 class="mb-10">Comment</h1>
-		                        <p>Who are in extremely love with eco friendly system.</p>
+		                        <p>다른회원의 의견을 확인해보세요.</p>
 		                    </div>
 		                </div>
 		            </div>
@@ -178,7 +243,7 @@
 			                		<c:forEach items="${commentList }" var="row" varStatus="stat">
 					                    <div class="single-testimonial item d-flex flex-row" id="c_${row.MCOMMENT_WRITERID}">
 					                        <div class="thumb">
-					                            <span class="lnr lnr-star" style="font-size: 25px;"></span>
+					                            <span class="lnr lnr-user" style="font-size: 25px;"></span>
 					                        </div>
 					                        <div class="desc">
 					                            <p id="${row.MCOMMENT_WRITERID }">
@@ -206,6 +271,70 @@
 		            </div>
 		        </div>
 		    </section>
+		    
+		    
+		    <!-- 그래프 -->
+		    <div class="whole-wrap">
+				<div class="container">
+					<div class="section-top-border">
+						<h3 class="mb-30">별점그래프&nbsp;&nbsp;&nbsp;평균<span class="fa fa-star checked">${mean}</span></h3>
+						<div class="row">
+							<div class="col-md-6">
+								<div id="piechart" style="width: 400px; height: 400px;"></div>
+							</div>
+							
+							<div class="col-md-6">
+								<div id="curve_chart" style="width: 500px; height: 500px"></div>
+							</div>
+							
+						</div>
+					</div>
+				</div>
+			</div>
+		    
+		    
+		    <!-- 조그만 추천창 -->
+		    <section class="blog-area section-gap">
+				<div class="container">
+					<div class="row d-flex justify-content-center">
+						<div class="menu-content pb-60 col-lg-9">
+							<div class="title text-center">
+								<h1 class="mb-10">${row.MUSIC_GENRE } 장르 추천</h1>
+								<p>지금 보고계신 음악과 같은 장르의 음악을 확인해보세요.</p>
+							</div>
+						</div>
+					</div>							
+					<div class="row">
+						<div class="active-blog-carusel">
+							<c:forEach var="row" items="${recGenre }" varStatus="stat">
+								<div class="single-blog-post item">
+									<div class="thumb">
+										<img class="img-fluid" src="<c:url value='/musicimg/${row.MUSIC_SAVNAME }'/>" alt="">
+									</div>
+									<div class="details">
+										<div class="tags">
+											<ul>
+												<li>
+													<a href="#">${row.MUSIC_GENRE }</a>
+												</li>
+												<li>
+													<a href="#">${row.MUSIC_ARTIST }</a>
+												</li>
+											</ul>
+										</div>
+										<!-- 디테일부분의 url을 넣어준다 -->
+										<a href="#"><h4 class="title">${row.MUSIC_ALBUM }</h4></a>
+										<p>
+											${row.MUSIC_ALBUMINFO }
+										</p>
+										<h6 class="date">${row.MUSIC_RELEASE }</h6>
+									</div>	
+								</div>
+							</c:forEach>
+						</div>
+					</div>
+				</div>	
+			</section>
 		    
 		    
 		    

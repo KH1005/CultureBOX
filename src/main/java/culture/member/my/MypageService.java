@@ -14,38 +14,38 @@ import culture.member.evaluation.MemberModel;
 public class MypageService implements MypageDao{
 	
 	@Resource(name="sqlSessionTemplate")
-	private SqlSessionTemplate sqlSessionTemplate1;
+	private SqlSessionTemplate sqlSessionTemplate;
 	
 	@Override
 	public List<Map<String, Object>> reserveList(Map<String, Object> parameter) {
 		System.out.println(parameter.get("RESERVE_ID"));
-		return sqlSessionTemplate1.selectList("mypage.reserveList",parameter);
+		return sqlSessionTemplate.selectList("mypage.reserveList",parameter);
 	}
 
 	@Override
 	public void updateQRcode(Map<String, Object> parameter) {
-		sqlSessionTemplate1.update("mypage.updateQRcode",parameter);
+		sqlSessionTemplate.update("mypage.updateQRcode",parameter);
 		
 	}
-	
-	
-	@Resource(name = "sqlSessionTemplate")
-	private SqlSessionTemplate sqlSessionTemplate;
 
 	@Override
 	public MemberModel getMember(String MEMBER_ID) {
-		return sqlSessionTemplate1.selectOne("member.getMember", MEMBER_ID);
+		return sqlSessionTemplate.selectOne("member.getMember", MEMBER_ID);
 	}
 
 	@Override
 	public Object memberModify(MemberModel memberModel) {
-		return sqlSessionTemplate1.update("member.updateMember", memberModel);
+		return sqlSessionTemplate.update("member.updateMember", memberModel);
 	}
 
 	@Override
 	public Object memberDelete(String MEMBER_ID) {
-		return sqlSessionTemplate1.delete("member.deleteMember", MEMBER_ID);
+		return sqlSessionTemplate.delete("member.deleteMember", MEMBER_ID);
     }
 
-
+	@Override
+	public List<Map<String, Object>> getMyEvalList(Map<String, Object> parameter) {
+		return sqlSessionTemplate.selectList("mypage.getMyEvalList", parameter);
+	}
+	
 }
