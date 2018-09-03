@@ -20,6 +20,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
@@ -32,6 +34,8 @@ import com.google.zxing.common.BitMatrix;
 import com.google.zxing.qrcode.QRCodeWriter;
 import com.google.zxing.qrcode.decoder.ErrorCorrectionLevel;
 
+import culture.member.evaluation.MemberModel;
+
 /**
  * Handles requests for the application home page.
  */
@@ -40,7 +44,7 @@ public class MypageController {
 	
 	@Resource(name="mypageService")
 	MypageService mypageService;
-	
+	ModelAndView mav = new ModelAndView();
 	private static final Logger logger = LoggerFactory.getLogger(MypageController.class);
 	
 	@RequestMapping(value = "/download/pdf.cul", method = RequestMethod.GET)
@@ -106,7 +110,105 @@ public class MypageController {
 		}
 		ImageIO.write(image, fileType, qrFile);
 	}
+	@RequestMapping(value="/mypage/memberdeleteForm.cul", method=RequestMethod.GET)
+   	public ModelAndView memberDeleteForm() {
+   		mav.setViewName("memberDeleteForm");
+   		return mav;
+   	}
+		
 	
+	@RequestMapping(value="/mypage/memberDelete.cul", method=RequestMethod.POST)
+   	public ModelAndView memberDelete(@ModelAttribute("member") MemberModel member, BindingResult result, HttpSession session, HttpServletRequest request) {
+   		
+   		MemberModel memberModel; 
+   		
+   		String id;
+   		String password;
+   		password = request.getParameter("MEMBER_PASSWORD");
+   		int deleteCheck;
+   		id = session.getAttribute("id").toString();
+   		memberModel = (MemberModel) mypageService.getMember(id);
+   		System.out.print(memberModel);
+   		
+   		if(memberModel.getMEMBER_PASSWORD().equals(password)) {
+   			System.out.print(password);
+   		
+   			deleteCheck = 1;
+   			
+   			mypageService.memberDelete(id);
+   			session.removeAttribute("id");
+   			session.removeAttribute("name");
+   			session.removeAttribute("email");
+   			session.removeAttribute("password");
+   			
+   			mav.addObject("deleteCheck", deleteCheck);
+   			mav.setViewName("deletesuccess");
+   	   		return mav;
+   		}
+   		else {
+   			deleteCheck = -1; 
+   		}
+   		
+   		mav.addObject("deleteCheck", deleteCheck);
+   		mav.setViewName("deletesuccess");
+   		return mav;
+   	}
+	
+	
+	
+	
+	
+	
+		
+		//mypage main
+		@RequestMapping(value="/mypage/mypage.cul", method=RequestMethod.GET)
+		public ModelAndView mypage(@ModelAttribute("member") MemberModel member, BindingResult result, HttpServletRequest requeset, HttpSession session){
+			MemberModel MemberModel;
+			String MEMBER_ID;
+							
+			mav.setViewName("myPage");
+			return mav;
+			
+			
+		}
+		
+		
+		//memberModify
+		@RequestMapping(value="/mypage/memberModifyForm.cul", method=RequestMethod.GET)
+		public ModelAndView ModifyForm(@ModelAttribute("member") MemberModel member, BindingResult result, HttpServletRequest requeset, HttpSession session){
+			MemberModel MemberModel;
+			String MEMBER_ID;
+			
+			MEMBER_ID = session.getAttribute("id").toString();
+			MemberModel = (MemberModel)mypageService.getMember(MEMBER_ID);
+				
+			mav.setViewName("modifyForm");
+			return mav;
+			
+			
+		}
+		@RequestMapping(value="/mypage/memberModify.cul", method=RequestMethod.POST)
+		public ModelAndView memberModify(@ModelAttribute("member") MemberModel memberModel, BindingResult result, HttpSession session){
+			
+			if(session.getAttribute("id") == null){
+				mav.setViewName("signUpForm");
+				return mav;
+			}
+			
+		/*	MemberModel memberModel = new MemberModel();*/
+		
+			if(session.getAttribute("id") != null){
+				mypageService.memberModify(memberModel);
+			
+				
+				
+				mav.setViewName("myPage");
+				return mav;
+			}
+			
+			mav.setViewName("signUpForm");
+			return mav;
+		}
 	
 }
 

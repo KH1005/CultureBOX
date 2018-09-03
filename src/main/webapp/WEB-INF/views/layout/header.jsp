@@ -34,6 +34,24 @@
 				          <li><a href="about.html">Music</a></li>
 				          <li><a href="services.html">Concert</a></li>
 				          <li><a href="projects.html">My</a></li>
+				          <%
+				        
+				          // 현재 로그인된 아이디가 없다면 (= session에 저장된 id가 없다면)
+				          if(session.getAttribute("id") == null) {
+				              %>
+				        
+				              <%
+				          } 
+				          // 현재 로그인된 아이디가 있다면 (= session에 저장된 id가 있다면)
+				          else {
+				          
+				              %>
+				            
+				             <li><a href="logout.cul">logOut</a></li>
+				           
+				              <%
+				          }
+				      %>
 
 
                             
