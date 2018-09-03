@@ -91,7 +91,7 @@
 		<put-attribute name="body" value="/WEB-INF/member/mypage/reserveTicket.jsp"/>
 	</definition>
 	
-	<definition name="evalMusicList" extends="evalMusicList">
+	<definition name="evalMusicList" extends="base_layout">
 		<put-attribute name="title" value="MY MUSIC EVALUATION LIST"/>
 		<put-attribute name="body" value="/WEB-INF/member/mypage/evalMusicList.jsp"/>
 	</definition>

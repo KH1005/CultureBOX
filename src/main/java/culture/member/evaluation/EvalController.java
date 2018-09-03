@@ -174,7 +174,12 @@ public class EvalController {
 		}
 		
 		Map<String, Object> meanValue = evalService.getMeanValue(parameter);
-		String mean = String.valueOf(meanValue.get("AVERAGE"));
+		String mean = "";
+		if(meanValue==null || meanValue.equals("")) {
+			 mean = "0";
+		}else {
+			 mean = String.valueOf(meanValue.get("AVERAGE"));
+		}
 		
 		model.addAttribute("mean",mean);
 		
