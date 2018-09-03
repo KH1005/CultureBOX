@@ -5,7 +5,14 @@ public class MemberModel {
 	private String MEMBER_PASSWORD;
 	private String MEMBER_NAME;
 	private String MEMBER_EMAIL;
+	private String MEMBER_PASSWORD2;
 	
+	public String getMEMBER_PASSWORD2() {
+		return MEMBER_PASSWORD2;
+	}
+	public void setMEMBER_PASSWORD2(String mEMBER_PASSWORD2) {
+		MEMBER_PASSWORD2 = mEMBER_PASSWORD2;
+	}
 	public String getMEMBER_ID() {
 		return MEMBER_ID;
 	}

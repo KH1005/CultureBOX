@@ -52,14 +52,28 @@
 		<put-attribute name="body" value="/WEB-INF/member/login/loginForm.jsp"/>
 	</definition>
 	
-	<definition name="myPage" extends="base_layout">
-		<put-attribute name="title" value="MY PAGE"/>
-		<put-attribute name="/WEB-INF/member/mypage/myPage.jsp"/>
+		<definition name="myPage" extends="base_layout">
+		<put-attribute name="title" value="LOGIN FORM"/>
+		<put-attribute name="body" value="/WEB-INF/member/mypage/myPage.jsp"/>
 	</definition>
+	
+		<definition name="memberDeleteForm" extends="base_layout">
+		<put-attribute name="title" value="DELETE FORM"/>
+		<put-attribute name="body" value="/WEB-INF/member/mypage/deleteform.jsp"/>
+	</definition>
+	
+	
+		<definition name="deletesuccess" extends="base_layout">
+		<put-attribute name="title" value="DELETE SUCCESS"/>
+		<put-attribute name="body" value="/WEB-INF/member/mypage/deletesuccess.jsp"/>
+	</definition>
+	
+	
+	
 	
 	<definition name="modifyForm" extends="base_layout">
 		<put-attribute name="title" value="MODIFY FORM"/>
-		<put-attribute name="body" value="/WEB-INF/member/mypage/modifyForm.jsp"/>
+		<put-attribute name="body" value="/WEB-INF/member/mypage/memberModify.jsp"/>
 	</definition>
 	
 	<definition name="reserveList" extends="base_layout">
