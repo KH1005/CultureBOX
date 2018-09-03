@@ -90,7 +90,7 @@
 					$.ajax({
 						async : true,
 						type : 'POST',
-						data : userid,
+						data : JSON.stringify(userid),
 						url : "idcheck.cul",
 						dataType : "json",
 						contentType : "application/json; charset=UTF-8",
@@ -230,11 +230,11 @@
 						<div class="form-group">
 		
 
-<tr>
-			<td rowspan="1"><input type="text" class="form-control"
-				id="MEMBER_ID" placeholder="한글 및 특수문자 사용불가" /></td>
-			<td><input type="button" value="중복확인" id="idck" class="btn btn-info"></td>
-</tr>
+
+		<input type="text" class="form-control"
+				id="MEMBER_ID" placeholder="한글 및 특수문자 사용불가" /> &nbsp;
+		<input type="button" value="중복확인" id="idck" class="btn btn-info">
+
 
 		</div>
 
