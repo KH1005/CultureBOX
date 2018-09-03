@@ -230,23 +230,23 @@
 						<div class="form-group">
 		
 
-
-			<input type="text" class="form-control" path="MEMBER_ID"
-				id="MEMBER_ID" placeholder="한글 및 특수문자 사용불가" />
-			<input type="button" value="중복확인" id="idck" class="btn btn-info">
-
+<tr>
+			<td rowspan="1"><input type="text" class="form-control"
+				id="MEMBER_ID" placeholder="한글 및 특수문자 사용불가" /></td>
+			<td><input type="button" value="중복확인" id="idck" class="btn btn-info"></td>
+</tr>
 
 		</div>
 
 		<div class="form-group">
 		
 			<input type="text" class="form-control" id="MEMBER_NAME"
-				path="MEMBER_NAME" placeholder="이름을 입력해 주세요" />
+				 placeholder="이름을 입력해 주세요" />
 		</div>
 		<div class="form-group">
 		
 			<input type="email" class="form-control" id="MEMBER_EMAIL"
-				path="MEMBER_EMAIL" placeholder="이메일 주소를 입력해주세요" />
+				 placeholder="이메일 주소를 입력해주세요" />
 				<!-- <input type="button" value="중복확인" id="eck"> -->
 				
 	
@@ -255,7 +255,7 @@
 
 		
 		<input type="password" name="MEMBER_PASSWORD" id="MEMBER_PASSWORD"
-			path="MEMBER_PASSWORD" class="form-control" required  placeholder="비밀번호를 입력하세요" />
+			 class="form-control" required  placeholder="비밀번호를 입력하세요" />
 		<br>
 		<div class="alert alert-success" id="alert-success">비밀번호가 일치합니다.</div>
 
@@ -293,7 +293,7 @@
 			</div>
 		</div>
 		</form:form>
-	</div>
+	
 
 
 </body>
