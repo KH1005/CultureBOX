@@ -102,7 +102,7 @@
 									<div class="col-md-12 pb-40 header-text text-center">
 										<h1 class="pb-10">평가한게 없어요...ㅠㅠ</h1>
 										<p>
-											평하를 더 해주세요~
+											평가를 더 해주세요~
 										</p>
 									</div>
 								</div>
