@@ -100,7 +100,7 @@
 							<c:otherwise>
 								<div class="row d-flex justify-content-center">
 									<div class="col-md-12 pb-40 header-text text-center">
-										<h1 class="pb-10">평가할게 없어요...ㅠㅠ</h1>
+										<h1 class="pb-10">추천할게 없어요...ㅠㅠ</h1>
 										<p>
 											데이터에 있는 음악들을 모두 평가하셨습니다~ 음악만 듣고 사셨나봐요 
 										</p>

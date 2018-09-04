@@ -79,7 +79,7 @@ public class MemberController {
 		/*	if(result != null){
 				System.out.println("로그인 성공");*/
 		
-			mav.setViewName("evalList");
+			mav.setViewName("redirect:http://localhost:8080/culture/eval/EvalList.cul");
 			return mav;
 	/*	}*/
 		}
@@ -97,7 +97,6 @@ public class MemberController {
 		HttpSession session = request.getSession(false);
 		
 		if(session != null){
-			System.out.println("로그아웃 성공");
 			session.invalidate();
 		}
 		
@@ -129,7 +128,7 @@ public class MemberController {
 		try{
 			
 			memberService.signUp(member);
-			mav.setViewName("memberMain");
+			mav.setViewName("/login/loginForm");
 			System.out.println("success in");
 			return mav;
 		}catch(DuplicateKeyException e){

@@ -127,7 +127,7 @@
 </script>
 <style type="text/css">
 .banner-area {
-    background: url(<c:url value='/culture/cultureimg/${cultureModel.CULTURE_SAVNAME }'/>) center;
+    background: url(<c:url value='/cultureimg/${cultureModel.CULTURE_SAVNAME }'/>) center;
     background-size: cover;
 }
 </style>
