@@ -136,11 +136,8 @@ function load(id, cnt, btn) {
                            <li>: ${adminMusicModel.MUSIC_ARTIST}</li>  
                            <li>: ${adminMusicModel.MUSIC_GENRE}</li>
                            <li>: ${adminMusicModel.MUSIC_COUNTRY}</li>  
-                           <li>:
-                              <c:forEach var="row" items="${songList }" varStatus="stat">
-                                  <div>${stat.count}.${row}</div>
-                                 
-                               </c:forEach>
+                           <li>: ${adminMusicModel.MUSIC_SONG}
+                            
                            </li>
                         </ul>                     
                      </div>   </div></div></div>

@@ -54,6 +54,10 @@ public interface EvalDao {
 	public List<MusicModel> getSearchList(String keyword);
 	
 	public MusicCommentModel getMyCommentByidx(Map<String, Object> parameter);
+	
+	public List<Map<String , Object>> getMusicEvalInfo(Map<String, Object> parameter);
+	
+	public Map<String, Object> getMeanValue(Map<String, Object> parameter);
 
 }
 

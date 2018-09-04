@@ -122,6 +122,9 @@
                                     ~&nbsp; ${admincultureModel.CULTURE_END}
                                     <br><br>${row.CULTURE_LOCATION}
                                    </h4>
+
+                         
+ 
                                  
                                    <a href='http://localhost:8080/culture/admin/CultureDetail.cul?culture_idx=${row.CULTURE_IDX}' class="primary-btn text-uppercase mt-20">More Details</a>
                                  </div>

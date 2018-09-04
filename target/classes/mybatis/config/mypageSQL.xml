@@ -19,7 +19,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		update from culture set culture_qrcode = #{CULTURE_QRCODE} where culture_idx = #{CULTURE_IDX}
 	</update>
 
-
+	<select id="getMyEvalList" parameterType="hashmap" resultType="hashmap">
+		SELECT MUSIC_ALBUM, MUSIC_SONG, MUSIC_ARTIST, MUSIC_RELEASE, MUSIC_INDEX, MUSIC_ALBUMINFO, MUSIC_ARTISTINFO, MUSIC_GENRE,
+		MUSIC_ORGNAME, MUSIC_SAVNAME FROM MUSIC WHERE MUSIC_INDEX IN (SELECT MUSIC_INDEX FROM EVALUATION WHERE MEMBER_ID = #{MEMBER_ID})
+		ORDER BY MUSIC_INDEX DESC
+	</select>
 
 
 

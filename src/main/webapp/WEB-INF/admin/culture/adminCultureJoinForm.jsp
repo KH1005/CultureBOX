@@ -128,6 +128,7 @@ input[type="text"], input[type="email"], input[type="password"], input[type="num
                      </td>
                   </tr>
 
+
                   <tr>
                      <th scope="row">상세내용</th>
                      <td><input type="text" style="width:350px; height:400px;" id="TITLE" name="CULTURE_CONTENT" class="background-white form-control border-color-primary" ></input>

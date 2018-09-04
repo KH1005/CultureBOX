@@ -26,6 +26,8 @@
 
         <typeAlias alias="seatModel" type="culture.admin.culture.seatModel"/>
         
+		<typeAlias alias="reserveModel" type="culture.member.reservation.reserveModel" />
+
 		<typeAlias alias="AdminReserveModel" type="culture.admin.reserve.AdminReserveModel" /> 
 		<typeAlias alias="AdminMusicModel" type="culture.admin.music.AdminMusicModel" /> 
 		<typeAlias alias="MusicCommentModel" type="culture.admin.music.MusicCommentModel" /> 
@@ -49,7 +51,7 @@
 	  <mapper resource="mybatis/config/adminCultureSQL.xml"/> 
 	 <mapper resource="mybatis/config/cultureSQL.xml" /> 
 	
-		<!-- <mapper resource="mybatis/config/memberSQL.xml" /> -->
+		<mapper resource="mybatis/config/memberSQL.xml" /> 
 
 		<mapper resource="mybatis/config/evalSQL.xml"/>
 	

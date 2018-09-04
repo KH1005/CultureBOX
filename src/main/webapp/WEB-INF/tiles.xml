@@ -52,14 +52,28 @@
 		<put-attribute name="body" value="/WEB-INF/member/login/loginForm.jsp"/>
 	</definition>
 	
-	<definition name="myPage" extends="base_layout">
-		<put-attribute name="title" value="MY PAGE"/>
-		<put-attribute name="/WEB-INF/member/mypage/myPage.jsp"/>
+		<definition name="myPage" extends="base_layout">
+		<put-attribute name="title" value="LOGIN FORM"/>
+		<put-attribute name="body" value="/WEB-INF/member/mypage/myPage.jsp"/>
 	</definition>
+	
+		<definition name="memberDeleteForm" extends="base_layout">
+		<put-attribute name="title" value="DELETE FORM"/>
+		<put-attribute name="body" value="/WEB-INF/member/mypage/deleteform.jsp"/>
+	</definition>
+	
+	
+		<definition name="deletesuccess" extends="base_layout">
+		<put-attribute name="title" value="DELETE SUCCESS"/>
+		<put-attribute name="body" value="/WEB-INF/member/mypage/deletesuccess.jsp"/>
+	</definition>
+	
+	
+	
 	
 	<definition name="modifyForm" extends="base_layout">
 		<put-attribute name="title" value="MODIFY FORM"/>
-		<put-attribute name="body" value="/WEB-INF/member/mypage/modifyForm.jsp"/>
+		<put-attribute name="body" value="/WEB-INF/member/mypage/memberModify.jsp"/>
 	</definition>
 	
 	<definition name="reserveList" extends="base_layout">
@@ -77,7 +91,7 @@
 		<put-attribute name="body" value="/WEB-INF/member/mypage/reserveTicket.jsp"/>
 	</definition>
 	
-	<definition name="evalMusicList" extends="evalMusicList">
+	<definition name="evalMusicList" extends="base_layout">
 		<put-attribute name="title" value="MY MUSIC EVALUATION LIST"/>
 		<put-attribute name="body" value="/WEB-INF/member/mypage/evalMusicList.jsp"/>
 	</definition>
@@ -91,22 +105,35 @@
 		<put-attribute name="title" value="CULTURE DETAIL"/>
 		<put-attribute name="body" value="/WEB-INF/member/culture/cultureDetail.jsp"/>
 	</definition>
+	
+	<definition name="reservation" extends="base_layout">
+		<put-attribute name="title" value="RESERVATION"/>
+		<put-attribute name="body" value="/WEB-INF/admin/reserve/reservation.jsp"/>
+	</definition>
+	
+	<definition name="seatList" template="/WEB-INF/admin/reserve/seatList.jsp"></definition>
+	<definition name="reserveForm" template="/WEB-INF/admin/reserve/reserveForm.jsp"></definition>
+<!-- 	
+	<definition name="seatList" extends="base_layout">
+		<put-attribute name="title" value="seatList"/>
+		<put-attribute name="body" value="/WEB-INF/admin/reserve/seatList.jsp" />
+	</definition>
 
 	<definition name="reserveForm" extends="base_layout">
-		<put-attribute name="title" value="RESERVE FORM"/>
-		<put-attribute name=""></put-attribute>
+		<put-attribute name="title" value="reserveForm"/>
+		<put-attribute name="body" value="/WEB-INF/admin/reserve/reserveForm.jsp" />
 	</definition>
-	
-	<definition name="reservePay" extends="base_layout">
+	 -->
+	<definition name="payForm" extends="base_layout">
 		<put-attribute name="title" value="RESERVE PAYMENT"/>
-		<put-attribute name="body" value="/WEB-INF/member/reserve/reservePay.jsp"/>
+		<put-attribute name="body" value="/WEB-INF/admin/reserve/payForm.jsp"/>
 	</definition>
 	
-	<definition name="reserveResultForm" extends="base_layout">
+	<!-- <definition name="reserveResultForm" extends="base_layout">
 		<put-attribute name="title" value="RESERVATION COMPLETE"/>
 		<put-attribute name="body" value="/WEB-INF/member/reserve/reserveResultForm.jsp"/>
 	</definition>
-	
+	 -->
 	<definition name="evalList" extends="base_layout">
 		<put-attribute name="title" value="EVALUATION MUSIC LIST"/>
 		<put-attribute name="body" value="/WEB-INF/member/eval/evalList.jsp"/>
@@ -210,75 +237,3 @@
 	</definition>
 	
 </tiles-definitions>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

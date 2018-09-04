@@ -4,70 +4,6 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <html lang="ko">
-<!-- <head>
-<style>
-.img {
-    width: 400px; height: 400px;
-}
-
-.contact_input {
-   display: inline-block;
-   width: calc(13% - 10px);
-   height: 42px;
-   border: none;
-   outline: none;
-   border-bottom: solid 1px #cccccc;
-   background: transparent;
-   -webkit-transition: all 200ms ease;
-   -moz-transition: all 200ms ease;
-   -ms-transition: all 200ms ease;
-   -o-transition: all 200ms ease;
-   transition: all 200ms ease;
-}
-
-button, input, optgroup, select, textarea {
-   margin: 0;
-   font-family: inherit;
-   font-size: inherit;
-   line-height: inherit;
-}
-
-button, input {
-   overflow: visible;
-}
-
-
-</style>
-
-
-
-      Mobile Specific Meta
-      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-      Favicon
-      <link rel="shortcut icon" href="img/fav.png">
-      Author Meta
-      <meta name="author" content="colorlib">
-      Meta Description
-      <meta name="description" content="">
-      Meta Keyword
-      <meta name="keywords" content="">
-      meta character set
-      <meta charset="UTF-8">
-      
-      <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,400,300,500,600,700" rel="stylesheet"> 
-         
-         CSS
-         =============================================
-         <link rel="stylesheet" href="http://localhost:8080/culture/interior-master/css/linearicons.css">
-         <link rel="stylesheet" href="http://localhost:8080/culture/interior-master/css/font-awesome.min.css">
-         <link rel="stylesheet" href="http://localhost:8080/culture/interior-master/css/bootstrap.css">
-      <link rel="stylesheet" href="http://localhost:8080/culture/interior-master/css/magnific-popup.css">
-         <link rel="stylesheet" href="http://localhost:8080/culture/interior-master/css/nice-select.css">                     
-         <link rel="stylesheet" href="http://localhost:8080/culture/interior-master/css/animate.min.css">
-         <link rel="stylesheet" href="http://localhost:8080/culture/interior-master/css/owl.carousel.css">
-         <link rel="stylesheet" href="http://localhost:8080/culture/interior-master/css/main.css">
-
- -->
  <head>
 
       <!-- Mobile Specific Meta -->
@@ -138,15 +74,7 @@ $(function() {
             </div>
          </section>
 		<br><br>
-   <!-- <section class="gallery-area pb-120">
-            <div class="container">
-               <div class="row d-flex justify-content-center">
-                  <div class="col-md-12 pb-40 header-text text-center">
-                     <h1 class="pb-10">음악 리스트</h1>
-                  </div>
-               </div>   
-               </div>
-               </section>       -->            
+            
     <br>
     <br>
 

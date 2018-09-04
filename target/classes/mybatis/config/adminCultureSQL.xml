@@ -3,6 +3,7 @@
 
 <mapper namespace="admin">
 
+
    <resultMap id="AdminCultureRes" type="AdminCultureModel">
       <result column="CULTURE_IDX" property="CULTURE_IDX" />
       <result column="CULTURE_NAME" property="CULTURE_NAME" />
@@ -168,6 +169,7 @@
       )
    </insert>
 
+	
 
 
 

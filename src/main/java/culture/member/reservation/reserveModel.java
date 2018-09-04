@@ -5,14 +5,21 @@ import java.util.*;
 import org.springframework.stereotype.Repository;;
 
 @Repository
-public class reserveBean {
+public class reserveModel {
 
 	private int RESERVE_IDX;
 	private String RESERVE_DATE;
 	private String RESERVE_CONFIRM;
 	private String RESERVE_ID;
 	private int RESERVE_CIDX;
+	private int RESERVE_SIDX;
 
+	public int getRESERVE_SIDX() {
+		return RESERVE_SIDX;
+	}
+	public void setRESERVE_SIDX(int rESERVE_SIDX) {
+		RESERVE_SIDX = rESERVE_SIDX;
+	}
 	public int getRESERVE_IDX() {
 		return RESERVE_IDX;
 	}

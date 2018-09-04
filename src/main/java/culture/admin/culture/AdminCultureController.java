@@ -315,7 +315,7 @@ select culture_seq.currval from dual   넣고*/
                   e.printStackTrace();
                }                                
               }
-        
+
         else  {
             culture.setCULTURE_SAVNAME("NULL");
          }
@@ -411,3 +411,5 @@ select culture_seq.currval from dual   넣고*/
          return mav;
       }*/
    }
+
+   
