@@ -1,6 +1,7 @@
 package culture.member.login;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -22,7 +23,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import culture.member.evaluation.EvalService;
 import culture.member.evaluation.MemberModel;
+import culture.member.evaluation.MusicModel;
 
 @Controller
 @RequestMapping("/member")
@@ -30,6 +33,11 @@ public class MemberController {
 
 	@Resource(name = "memberService")
 	private MemberService memberService;
+
+	
+	@Resource(name="evalService")
+	private EvalService evalService;
+	
 
 	ModelAndView mav = new ModelAndView();
 
@@ -39,10 +47,25 @@ public class MemberController {
 		return "/login/loginForm";
 	}
 
+
 	// 메인페이지 리다이렉트
-	@RequestMapping(value = "/mainPage.cul", method = RequestMethod.GET)
+/*	@RequestMapping(value = "/mainPage.cul", method = RequestMethod.GET)
 	public ModelAndView mainPage() {
 		mav.setViewName("memberMain");
+		return mav;
+	}*/
+	//메인페이지 리다이렉트
+	@RequestMapping(value="/mainPage.cul", method = RequestMethod.GET)
+	public ModelAndView mainPage(HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		String id = (String)session.getAttribute("id");
+		MemberModel memberModel = new MemberModel();
+		memberModel.setMEMBER_ID(id);
+		
+		List<MusicModel> musicList = evalService.selectMusicList(memberModel);
+		Collections.shuffle(musicList);
+		mav.addObject("musicList",musicList);
+		mav.setViewName("evalList");
 		return mav;
 	}
 
@@ -67,9 +90,10 @@ public class MemberController {
 			session.setAttribute("email", result.getMEMBER_EMAIL());
 			System.out.println("1111111111111111");
 
-			mav.setViewName("adminMusicListForm");
+	         mav.setViewName("redirect:/admin/MusicListForm.cul");
 			return mav;
 		
+
 		}
 
 		else if (result != null) {
@@ -85,6 +109,9 @@ public class MemberController {
 			 */
 
 			mav.setViewName("memberMain");
+
+			mav.setViewName("redirect:http://localhost:8080/culture/eval/EvalList.cul");
+
 			return mav;
 			/* } */
 		}
@@ -116,15 +143,21 @@ public class MemberController {
 	public String memberLogout(HttpServletRequest request, MemberModel mem) {
 		HttpSession session = request.getSession(false);
 
+
 		if (session != null) {
 			System.out.println("로그아웃 성공");
+
+		
+		if(session != null){
+
 			session.invalidate();
 		}
 
-		// mav.setViewName("member/logout");
+		//mav.setViewName("member/logout");
+		
+	}
 		return "/login/loginForm";
 	}
-
 	// 유효성 검사시 에러발생시 넘어가게 하는 로직
 	@ModelAttribute("member")
 	public MemberModel formBack() {
@@ -139,7 +172,7 @@ public class MemberController {
 		try {
 
 			memberService.signUp(member);
-			mav.setViewName("memberMain");
+			mav.setViewName("/login/loginForm");
 			System.out.println("success in");
 			return mav;
 		} catch (DuplicateKeyException e) {

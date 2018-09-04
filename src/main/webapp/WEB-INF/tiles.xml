@@ -19,7 +19,7 @@
 	
 	<definition name="loginForm" extends="base_layout">
 		<put-attribute name="title" value="LOGIN FORM"/>
-		<put-attribute name="body" value="/WEB-INF/member/login/loginForm"/>
+		<put-attribute name="body" value="/WEB-INF/member/login/loginForm.jsp"/>
 	</definition>
 	
 	<definition name="signUp" extends="base_layout">
