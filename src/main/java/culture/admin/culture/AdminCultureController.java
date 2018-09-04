@@ -75,26 +75,52 @@ public class AdminCultureController {
       }
 
    // 공연 상세보기 (댓글 추가)
-   @RequestMapping("/admin/CultureDetail.cul")
-   public ModelAndView AdminCultureDetail(HttpServletRequest request) throws Exception {
+      @RequestMapping("/admin/CultureDetail.cul")
+      public ModelAndView AdminCultureDetail(HttpServletRequest request) throws Exception {
 
-      
-      int culture_idx = Integer.parseInt(request.getParameter("culture_idx"));
+         
+         int culture_idx = Integer.parseInt(request.getParameter("culture_idx"));
 
-      AdminCultureModel admincultureModel = adminCultureService.AdminCultureDetail(culture_idx);
-   /*   System.out.println("culture idx:" +admincultureModel.getCULTURE_IDX());*/
-      
-      List<CultureCommentModel> list = adminCultureService.cultureCommentList(culture_idx);
-      
-      mav.addObject("admincultureModel", admincultureModel);
-      mav.addObject("cultureCommentList", list);
+         AdminCultureModel admincultureModel = adminCultureService.AdminCultureDetail(culture_idx);
+      /*   System.out.println("culture idx:" +admincultureModel.getCULTURE_IDX());*/
+         
+         List<CultureCommentModel> list = adminCultureService.cultureCommentList(culture_idx);
+         
+         String sday = admincultureModel.getCULTURE_START();
+           String eday = admincultureModel.getCULTURE_END();
+           
+           String start[] = sday.split(" ");
+           String end[] = eday.split(" ");
+           
+           admincultureModel.setCULTURE_START(start[0]);
+           admincultureModel.setCULTURE_END(end[0]);
+           
+           //좌석가격 가져오는 부분
+           String area = admincultureModel.getCULTURE_AREA(); //구역  "a,b,c,d"
+           String price = admincultureModel.getCULTURE_PRICE(); //가격 "1000,2000,3000,4000"
+           
+           String start1[] = area.split(","); // ,로 구분하여 자른다 (a  b   c   d) 각각 저장
+           String start2[] = price.split(",");
+           
+           String start3[] = new String[start1.length];
+           
+           for(int i=0; i<start1.length; i++){
+              start3[i] = start1[i]+"-"+start2[i];
+           }
+          
+           
+         mav.addObject("admincultureModel", admincultureModel);
+         mav.addObject("cultureCommentList", list);
+         mav.addObject("start3",start3);
 
-      mav.setViewName("adminCultureDetail");
+         mav.setViewName("adminCultureDetail");
 
-      return mav;
+         return mav;
 
-   }
+      }
 
+   
+   
    // 댓글 삭제
    @RequestMapping("/admin/CommentDelete.cul")
    public ModelAndView commentDelete(HttpServletRequest request, CultureCommentModel cultureCommentModel) {

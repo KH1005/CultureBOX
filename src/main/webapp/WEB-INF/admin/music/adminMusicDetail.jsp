@@ -71,26 +71,27 @@ function delchk(){
 }
 </script>
 <script type="text/javascript">
-$(window).on('load', function () {
-    load('#js-load', '4');
-    $("#js-btn-wrap .button").on("click", function () {
-        load('#js-load', '4', '#js-btn-wrap');
-    })
-});
- 
-function load(id, cnt, btn) {
-    var girls_list = id + " .js-load:not(.active)";
-    var girls_length = $(girls_list).length;
-    var girls_total_cnt;
-    if (cnt < girls_length) {
-        girls_total_cnt = cnt;
-    } else {
-        girls_total_cnt = girls_length;
-        $('.button').hide()
-    }
-    $(girls_list + ":lt(" + girls_total_cnt + ")").addClass("active");
-}
+   $(window).on('load', function() {
+      load('#js-load', '4');
+      $("#js-btn-wrap .button").on("click", function() {
+         load('#js-load', '4', '#js-btn-wrap');
+      })
+   });
+
+   function load(id, cnt, btn) {
+      var girls_list = id + " .js-load:not(.active)";
+      var girls_length = $(girls_list).length;
+      var girls_total_cnt;
+      if (cnt < girls_length) {
+         girls_total_cnt = cnt;
+      } else {
+         girls_total_cnt = girls_length;
+         $('.button').hide()
+      }
+      $(girls_list + ":lt(" + girls_total_cnt + ")").addClass("active");
+   }
 </script>
+
 </head>  
 <body>
 
@@ -132,82 +133,112 @@ function load(id, cnt, btn) {
                         </ul>
                         <ul class="desc">
                      
-                           <li>: ${adminMusicModel.MUSIC_ALBUM}</li>
-                           <li>: ${adminMusicModel.MUSIC_ARTIST}</li>  
-                           <li>: ${adminMusicModel.MUSIC_GENRE}</li>
-                           <li>: ${adminMusicModel.MUSIC_COUNTRY}</li>  
-                           <li>: ${adminMusicModel.MUSIC_SONG}
-                            
-                           </li>
+                           <li>:${adminMusicModel.MUSIC_ALBUM}</li>
+                           <li>:${adminMusicModel.MUSIC_ARTIST}</li>  
+                           <li>:${adminMusicModel.MUSIC_GENRE}</li>
+                           <li>:${adminMusicModel.MUSIC_COUNTRY}</li>  
+                           <li>:${adminMusicModel.MUSIC_SONG }</li>
+                              <%-- <c:forEach var="row" items="${songList }" varStatus="stat">
+                                  <div>${stat.count}.${row}</div>
+                                 
+                               </c:forEach>
+                           </li> --%>
                         </ul>                     
-                     </div>   </div></div></div>
+                     </div>   
                           
                      <div class="social-links mt-30">  
                      <c:url var="viewURL" value="MusicListForm.cul" >
                               </c:url>
-                        <a href="${viewURL}">목록</a>
+                        <a href="${viewURL}"><span class="lnr lnr-undo"></span></a>&nbsp;&nbsp;&nbsp;  
                         <c:url var="viewURL" value="MusicModifyForm.cul" >
                          <c:param name="MUSIC_INDEX" value="${adminMusicModel.MUSIC_INDEX}" />
                          </c:url> 
-                        <a href="${viewURL}">수정</a>  
+                        <a href="${viewURL}"><span class="lnr lnr-cog"></span></a>&nbsp;&nbsp;&nbsp;    
                          <c:url var="viewURL" value="MusicDelete.cul" >
                <c:param name="MUSIC_INDEX" value="${adminMusicModel.MUSIC_INDEX}" />
             </c:url>
-                        <a href="${viewURL}" onclick="return delchk()">삭제</a>   
-               
-         <!-- End banner Area -->   
+                        <a href="${viewURL}" onclick="return delchk()"><span class="lnr lnr-trash"></span></a>   
+               </div></div></div></div>
+         <!-- End banner Area -->     
       
     <br/>
-    
-    
+   
      <br/>
      
      
-    <div class="">
-     <c:choose>
-         <c:when test="${fn:length(musicCommentList) > 0}">
-         <div id="contents" style="height:546px; width:600px; margin-left:0px border-left-width:10px">
-         <div id="js-load" class="main">
-          <ul class="lists">
-            <c:forEach items="${musicCommentList}" var="row"  varStatus="stat" >
-                <li class="lists__item js-load">
-                   <strong>${row.MCOMMENT_WRITER }</strong>님 
-                   <fmt:formatDate value="${row.MCOMMENT_WRITEDATE}" pattern="yy.MM.dd"></fmt:formatDate>
-                    <a href='http://localhost:8080/culture/admin/deleteMusicComment.cul?MCOMMENT_IDX=${row.MCOMMENT_IDX}&MCOMMENT_MUSICIDX=${adminMusicModel.MUSIC_INDEX}'
-                     class="btn btnC_01 btnP_02" onclick="return delchk()"> <span class="btn btnC_05 reply_btn">삭제</span>
-               </a>
-               <p>${row.MCOMMENT_CONTENT}</p>
-                </li>
-              
-         </c:forEach> 
-          </ul></div></div>
-          
-          
-          
-          
-          
-             <div id="js-btn-wrap" class="btn-wrap"><a href="javascript:;" class="button">더보기</a></div>
-             <div class="btn_type_04">
-                <!-- <a href="javascript:history.back()" class="btn btnC_03 btnF_02 mr10">
-             <span>목록</span></a> -->
-                <!--  <a href="javascript:history.back()" class="btn btnC_03 btnF_02 mr10">
-             <span>목록</span></a> -->
+                     
+               
+     
+     
+  <p>
+            <br> <br>
+         <div>
+            <h3>관람후기</h3>
+         </div>
+
+         
+
+         <c:choose>
+            <c:when test="${fn:length(musicCommentList) > 0}">
+               <div id="contents"
+                  style="height: 500px; width: 600px; margin-left: 0px border-left-width:10px">
+                  
+                  <div id="js-load" class="main">
+                     <ul class="lists">
+                        <c:forEach items="${musicCommentList}" var="row"
+                           varStatus="stat">
+                           <li class="lists__item js-load">
+
+
+
+                              <div style="float: left; font-size: 12px;">
+                                 <span style="display: inline-block;">${row.MCOMMENT_WRITER }님</span>
+                                 <span style="display: inline-block; margin-right: 10px;">|
+                                    <fmt:formatDate value="$${row.MCOMMENT_WRITEDATE}"
+                                       pattern="yy.MM.dd"></fmt:formatDate>
+                                 </span>
+                              </div>
+
+
+                              <div id="com_Div" class="com_Div">
+                                 <input type="hidden" value="$${row.MCOMMENT_CONTENT}" id="com_CON" name="com_CON"> 
+                                 <input type="hidden" value="${row.MCOMMENT_IDX}" id="com_NO" name="com_NO">  
+                                    <a href='http://localhost:8080/culture/admin/deleteMusicComment.cul?MCOMMENT_IDX=${row.MCOMMENT_IDX}&MCOMMENT_MUSICIDX=${adminMusicModel.MUSIC_INDEX}'
+                                    onclick="return delchk()"><font size=2 color="#c6b069">삭제</font></a>
+                                 
+                                 <p>
+                                    <font size=2><strong>${row.MCOMMENT_CONTENT}</strong></font>
+                                 </p>
+                              </div>
+
+
+                           </li>
+
+                        </c:forEach>
+
+                     </ul>
+
+                     <div id="js-btn-wrap" class="btn-wrap">
+                        <a href="javascript:;" class="button"><font color="#c6b069">더보기</font></a>
+                     </div>
+                     <div class="btn_type_04"></div>
+                  </div>
                </div>
-         </c:when>
+
+            </c:when>
             <c:otherwise>
+               <br>
+               <br>
                <tr>
-               <td colspan="4">등록된 댓글이 없습니다</td>
+                  <td colspan="4"><font size=2>등록된 후기가 없습니다</font></td>
                </tr>
             </c:otherwise>
-          
-   </c:choose>
-   
-   
 
-    
+         </c:choose>
+      </div>
+   </section> 
  
-   	
-    </div></div></section> 
+    
     </body>  
     
           <!-- sweet alert -->
@@ -217,7 +248,7 @@ function load(id, cnt, btn) {
          <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
          <script src="<c:url value='/interior-master/js/vendor/bootstrap.min.js'/>"></script>         
          <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBhOdIF3Y9382fqJYt5I_sswSrEw5eihAA"></script>
-         <script src="<c:url value='/interior-master/js/easing.min.js'/>"></script>         
+           <script src="<c:url value='/interior-master/js/easing.min.js'/>"></script>         
          <script src="<c:url value='/interior-master/js/hoverIntent.js'/>"></script>
          <script src="<c:url value='/interior-master/js/superfish.min.js'/>"></script>   
          <script src="<c:url value='/interior-master/js/jquery.ajaxchimp.min.js'/>"></script>
