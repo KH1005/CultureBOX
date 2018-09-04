@@ -35,6 +35,10 @@
 .max-small {
     width: 350px; height: 400px;
 }
+.banner-area {
+    background: url(<c:url value='/interior-master/cultureimg/culturemain2.jpg'/>) center;
+    background-size: cover;
+}
 </style>
 <!-- 프로그래밍 언어: <input id='my-language' type='text'>
  -->
@@ -50,7 +54,7 @@
                      <h1 class="text-white">
                         Culture List
                      </h1>    
-                     
+                     <p class="text-white link-nav"><a href="index.html">Home </a>  <span class="lnr lnr-arrow-right"></span>  <a href="services.html"> Services</a></p>
                   </div>   
                </div>
             </div>

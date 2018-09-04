@@ -1,5 +1,7 @@
 <!DOCTYPE html>
 <html>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <title>LoginForm</title>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -32,7 +34,7 @@
 </style>
 <body>
 	<div id="bg">
-		<img src="C:\Users\user\Desktop\culture\src\main\webapp\img\sky2.gif" alt="">
+		<img src="<c:url value='/interior-master/cultureimg/sky2.gif'/>" alt="">
 	</div>
 	<div data-react-router-class="MyRoutes">
 
@@ -52,7 +54,7 @@
 				<div class="sign-in-page__centerer">
 					<div class="sign-in-page__label">
 					
-				  <img src="C:\Users\user\Desktop\culture\src\main\webapp\img\logo333.png" alt=""> 
+				  <img src="<c:url value='/interior-master/cultureimg/logo333.png'/>" alt="">
 					
 					<br>
 			
