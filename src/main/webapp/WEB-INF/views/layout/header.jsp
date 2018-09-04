@@ -55,6 +55,12 @@
 				              <li><a href="blog-single.html">Withdrawal</a></li>
 				            </ul>
 				          </li>
+				          <c:if test="${id != null}">
+				         <a href="/culture/member/logout.cul"> <span>Logout</span>
+				          
+				          
+				          
+				          </c:if>
  
  </ul>
 				      </nav><!-- #nav-menu-container -->		    		

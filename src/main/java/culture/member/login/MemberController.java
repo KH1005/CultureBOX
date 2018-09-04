@@ -24,197 +24,189 @@ import org.springframework.web.servlet.ModelAndView;
 
 import culture.member.evaluation.MemberModel;
 
-
 @Controller
 @RequestMapping("/member")
 public class MemberController {
-	
-	@Resource(name="memberService")
+
+	@Resource(name = "memberService")
 	private MemberService memberService;
-	
+
 	ModelAndView mav = new ModelAndView();
-	
+
 	// 로그인 페이지
-	@RequestMapping(value="/loginForm.cul", method = RequestMethod.GET)
-	public String loginForm(){
+	@RequestMapping(value = "/loginForm.cul", method = RequestMethod.GET)
+	public String loginForm() {
 		return "/login/loginForm";
 	}
-	//메인페이지 리다이렉트
-	@RequestMapping(value="/mainPage.cul", method = RequestMethod.GET)
+
+	// 메인페이지 리다이렉트
+	@RequestMapping(value = "/mainPage.cul", method = RequestMethod.GET)
 	public ModelAndView mainPage() {
 		mav.setViewName("memberMain");
-		return mav; 
+		return mav;
 	}
-	
-	
-	// 로그인 
+
+	// 로그인
 	@SuppressWarnings("unused")
-	@RequestMapping(value="/login.cul", method = RequestMethod.POST)
-	public ModelAndView memberLogin(HttpServletRequest request, MemberModel member){
-		
+	@RequestMapping(value = "/login.cul", method = RequestMethod.POST)
+	public ModelAndView memberLogin(HttpServletRequest request, MemberModel member) {
+
 		MemberModel result = memberService.logIn(member);
+		String admin = result.getMEMBER_ID();
 		
-		if(result != null) {
+		System.out.println(admin);
+		
+		
+		if (admin.equals("admin1")) {
 			HttpSession session = request.getSession();
-			
+
 			session.setAttribute("member", result);
 			session.setAttribute("id", result.getMEMBER_ID());
-			session.setAttribute("name" ,result.getMEMBER_NAME());
-			session.setAttribute("password" ,result.getMEMBER_PASSWORD());
-			session.setAttribute("email", result.getMEMBER_EMAIL());	
-		/*	if(result != null){
-				System.out.println("로그인 성공");*/
+			session.setAttribute("name", result.getMEMBER_NAME());
+			session.setAttribute("password", result.getMEMBER_PASSWORD());
+			session.setAttribute("email", result.getMEMBER_EMAIL());
+			System.out.println("1111111111111111");
+
+			mav.setViewName("adminMusicListForm");
+			return mav;
 		
+		}
+
+		else if (result != null) {
+			HttpSession session = request.getSession();
+
+			session.setAttribute("member", result);
+			session.setAttribute("id", result.getMEMBER_ID());
+			session.setAttribute("name", result.getMEMBER_NAME());
+			session.setAttribute("password", result.getMEMBER_PASSWORD());
+			session.setAttribute("email", result.getMEMBER_EMAIL());
+			/*
+			 * if(result != null){ System.out.println("로그인 성공");
+			 */
+
 			mav.setViewName("memberMain");
 			return mav;
-	/*	}*/
+			/* } */
 		}
-			
+
 		// 로그인 실패
 		mav.setViewName("login/loginError");
 		return mav;
 	}
-	
-	
-	
+
+	/*
+	 * String name = request.getParameter("MEMBER_NAME"); String email =
+	 * request.getParameter("MEMBER_EMAIL");
+	 * 
+	 * member.setMEMBER_NAME(name); member.setMEMBER_EMAIL(email);
+	 * 
+	 * member = memberService.findId(member);
+	 * 
+	 * if(member == null){ memberFindChk = 0;
+	 * mav.addObject("memberFindChk",memberFindChk);
+	 * mav.setViewName("/login/idFindError"); return mav; }else{
+	 * if(member.getMEMBER_NAME().equals(name) &&
+	 * member.getMEMBER_EMAIL().equals(email)){ memberFindChk = 1;
+	 * mav.addObject("member",member); mav.addObject("memberFindChk",memberFindChk);
+	 * mav.setViewName("/login/idFindOK"); return mav; }else{
+	 */
+
 	// 로그아웃
-	@RequestMapping(value="/logout.cul", method=RequestMethod.GET)
-	public String memberLogout(HttpServletRequest request, MemberModel mem){
+	@RequestMapping(value = "/logout.cul", method = RequestMethod.GET)
+	public String memberLogout(HttpServletRequest request, MemberModel mem) {
 		HttpSession session = request.getSession(false);
-		
-		if(session != null){
+
+		if (session != null) {
 			System.out.println("로그아웃 성공");
 			session.invalidate();
 		}
-		
-		//mav.setViewName("member/logout");
+
+		// mav.setViewName("member/logout");
 		return "/login/loginForm";
 	}
-	
-	
-	
-	
-	
-	
-	// 유효성 검사시 에러발생시 넘어가게 하는 로직 
+
+	// 유효성 검사시 에러발생시 넘어가게 하는 로직
 	@ModelAttribute("member")
-	public MemberModel formBack(){
+	public MemberModel formBack() {
 		return new MemberModel();
 	}
-	
-		
-	
-	
+
 	// 회원가입완료
-	@RequestMapping(value="/signUp.cul", method=RequestMethod.POST)
-	public ModelAndView signUp(@ModelAttribute("member") MemberModel member, BindingResult result){
-		 //Validate Binding
-	
-			
-		
-		try{
-			
+	@RequestMapping(value = "/signUp.cul", method = RequestMethod.POST)
+	public ModelAndView signUp(@ModelAttribute("member") MemberModel member, BindingResult result) {
+		// Validate Binding
+
+		try {
+
 			memberService.signUp(member);
 			mav.setViewName("memberMain");
 			System.out.println("success in");
 			return mav;
-		}catch(DuplicateKeyException e){
-			
+		} catch (DuplicateKeyException e) {
+
 			result.reject("invalid", null);
 			mav.setViewName("memberInfo");
 			return mav;
 		}
 	}
-	/*로그인폼*/
-	@RequestMapping(value="/signUpForm.cul", method = RequestMethod.GET)
+
+	/* 로그인폼 */
+	@RequestMapping(value = "/signUpForm.cul", method = RequestMethod.GET)
 	public String signUpForm() {
 		return "/login/signUpForm";
 	}
-	
-	/*id 중복체크*/
-	@RequestMapping(value="/idcheck.cul", produces="application/json" ,  method = RequestMethod.POST)
+
+	/* id 중복체크 */
+	@RequestMapping(value = "/idcheck.cul", produces = "application/json", method = RequestMethod.POST)
 	@ResponseBody
-	 public Map<Object, Object> idcheck(@RequestBody String userid){
+	public Map<Object, Object> idcheck(@RequestBody String userid) {
 		System.out.println(userid);
-	    int count = 0;
-	    Map<Object, Object> map = new HashMap<Object, Object>();
-	 
-	    count = memberService.idcheck(userid);
-	    map.put("count", count);
-	    System.out.println(count);
-	    return map;
+		int count = 0;
+		Map<Object, Object> map = new HashMap<Object, Object>();
+
+		count = memberService.idcheck(userid);
+		map.put("count", count);
+		System.out.println(count);
+		return map;
 	}
-	 
 
-
-
-
-
-	
-
-	
-	
-	
-
-     
-	
-	
-
-	
-	
-	@RequestMapping(value="/findIdForm.cul", method = RequestMethod.GET)
-	public ModelAndView findPwForm(){
+	@RequestMapping(value = "/findIdForm.cul", method = RequestMethod.GET)
+	public ModelAndView findPwForm() {
 		mav.setViewName("/login/idFind");
 		return mav;
 	}
-	
+
 	@RequestMapping(value = "/findId.cul", method = RequestMethod.POST)
-	public ModelAndView findId(@ModelAttribute("member") MemberModel member, HttpServletRequest request){
-		
+	public ModelAndView findId(@ModelAttribute("member") MemberModel member, HttpServletRequest request) {
+
 		int memberFindChk;
 		String name = request.getParameter("MEMBER_NAME");
 		String email = request.getParameter("MEMBER_EMAIL");
-		
+
 		member.setMEMBER_NAME(name);
 		member.setMEMBER_EMAIL(email);
-		
+
 		member = memberService.findId(member);
-		
-		if(member == null){
+
+		if (member == null) {
 			memberFindChk = 0;
-			mav.addObject("memberFindChk",memberFindChk);
+			mav.addObject("memberFindChk", memberFindChk);
 			mav.setViewName("/login/idFindError");
 			return mav;
-		}else{
-			if(member.getMEMBER_NAME().equals(name) && member.getMEMBER_EMAIL().equals(email)){
+		} else {
+			if (member.getMEMBER_NAME().equals(name) && member.getMEMBER_EMAIL().equals(email)) {
 				memberFindChk = 1;
-				mav.addObject("member",member);
-				mav.addObject("memberFindChk",memberFindChk);
+				mav.addObject("member", member);
+				mav.addObject("memberFindChk", memberFindChk);
 				mav.setViewName("/login/idFindOK");
 				return mav;
-			}else{
+			} else {
 				memberFindChk = -1;
-				mav.addObject("memberFindChk",memberFindChk);
+				mav.addObject("memberFindChk", memberFindChk);
 				mav.setViewName("/login/idFindError");
 				return mav;
 			}
 		}
 	}
-	
-	
-	
-	
-	     }
 
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-
+}

@@ -18,7 +18,7 @@ public class LoginInterceptor extends HandlerInterceptorAdapter{
 	 
 
 	        if(memberModel != null){
-	            response.sendRedirect("/culture/member/mainPage.cul");
+	            response.sendRedirect("/culture/eval/EvalList.cul");
 	            return false;
 	        }
 
