@@ -17,4 +17,7 @@ public interface CultureDAO {
 	public Object writeCultureComment(CultureCommentModel cultureCommentModel); //댓글 작성
 	
 	public Object deleteCultureComment(CultureCommentModel cultureCommentModel); //댓글 삭제
+	
+	public void modifyCultureComment(CultureCommentModel cultureCommentModel); //댓글 수정
+	
 }
