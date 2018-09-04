@@ -10,7 +10,7 @@ public interface CultureDAO {
 	
 	public List<CultureModel> cultureCategoryList(String CULTURE_CATEGORY); //카테고리별 리스트
 	
-	public CultureModel cultureDetail(int CULTURE_IDX); //글 1개 출력
+	public CultureModel cultureDetail(int CULTURE_IDX); //상세보기
 	
 	public List<CultureCommentModel> cultureCommentList(int COMMENT_CULTUREIDX_IDX); //댓글 리스트
 	
@@ -20,6 +20,6 @@ public interface CultureDAO {
 	
 	public void modifyCultureComment(CultureCommentModel cultureCommentModel); //댓글 수정
 
-	public List<CultureModel> selectDate();
+	public List<CultureModel> selectDate(); //날짜
 
 }

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="reserve">
+<mapper namespace="adminreserve">
 
 	<resultMap id="adminreserveRes" type="AdminReserveModel">
 		<result column="RESERVE_IDX" property="RESERVE_IDX" />
@@ -12,9 +12,37 @@
 		<result column="RCULTURE_NAME" property="RCULTURE_NAME" />
 	</resultMap>
 	
+	<resultMap type="seatModel" id="SeatRes">
+		<result property="SEAT_IDX" column="SEAT_IDX"/>
+		<result property="SEAT_AREA" column="SEAT_AREA"/>
+		<result property="SEAT_NUMBER" column="SEAT_NUMBER"/>
+		<result property="SEAT_PRICE" column="SEAT_PRICE"/>
+		<result property="SEAT_DATE" column="SEAT_DATE"/>
+		<result property="SEAT_ID" column="SEAT_ID"/>
+		<result property="SEAT_CIDX" column="SEAT_CIDX"/>
+		<result property="SEAT_NAME" column="SEAT_NAME"/>
+		<result property="SEAT_RESERVED" column="SEAT_RESERVED"/>
+	</resultMap>
+
+	<insert id="insertReserve" parameterType="AdminReserveModel">
+	insert into RESERVATION (
+	RESERVE_IDX,
+	RESERVE_DATE,
+	RESERVE_ID,
+	RESERVE_CIDX,
+	RESERVE_SIDX,
+	RESERVE_CONFIRM
+	)
+	VALUES(
+	RESERVATION_SEQ.NEXTVAL,
+	#{RESERVE_DATE},
+	#{RESERVE_ID},
+	#{RESERVE_CIDX},
+	#{RESERVE_SIDX},
+	'N'
+	) 
+	</insert>
 	
-
-
 	<!-- 공통으로 사용할 select 의 -->
 	<select id="reserveList" resultMap="adminreserveRes">
 	select RESERVE_IDX, RESERVE_CONFIRM, RESERVE_ID, RESERVE_DATE, CULTURE_NAME, CULTURE_LOCATION, SEAT_NAME, SEAT_PRICE from (select * from RESERVATION inner join CULTURE on 
@@ -62,7 +90,17 @@
 	</select>
 
 
+	<select id="selectSeat1" resultMap="SeatRes">
+	SELECT SEAT_IDX, SEAT_AREA, SEAT_NUMBER, SEAT_PRICE, SEAT_DATE, SEAT_CIDX, SEAT_RESERVED, SEAT_NAME FROM SEAT WHERE SEAT_CIDX = #{SEAT_CIDX} 
+	</select>
 
+	<select id="selectSeat2" resultMap="SeatRes">
+	SELECT SEAT_IDX, SEAT_AREA, SEAT_NUMBER, SEAT_PRICE, SEAT_DATE, SEAT_CIDX, SEAT_RESERVED, SEAT_NAME FROM SEAT WHERE SEAT_CIDX = #{SEAT_CIDX} AND SEAT_DATE = #{SEAT_DATE} 
+	</select>
+
+	<select id="availableSeat" resultMap="SeatRes">
+	select * from SEAT where SEAT_CIDX = #{SEAT_CIDX} AND SEAT_DATE = #{SEAT_DATE} AND SEAT_RESERVED = 'N' 
+	</select>
 
 
 

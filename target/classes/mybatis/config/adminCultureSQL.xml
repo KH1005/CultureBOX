@@ -15,7 +15,18 @@
 		<result column="CULTURE_CONTENT" property="CULTURE_CONTENT" />
 		<result column="CULTURE_CHECK" property="CULTURE_CHECK" />
 	</resultMap>
-
+	
+	<resultMap type="seatModel" id="SeatRes">
+		<result property="SEAT_IDX" column="SEAT_IDX"/>
+		<result property="SEAT_AREA" column="SEAT_AREA"/>
+		<result property="SEAT_NUMBER" column="SEAT_NUMBER"/>
+		<result property="SEAT_PRICE" column="SEAT_PRICE"/>
+		<result property="SEAT_DATE" column="SEAT_DATE"/>
+		<result property="SEAT_ID" column="SEAT_ID"/>
+		<result property="SEAT_CIDX" column="SEAT_CIDX"/>
+		<result property="SEAT_NAME" column="SEAT_NAME"/>
+		<result property="SEAT_RESERVED" column="SEAT_RESERVED"/>
+	</resultMap>
 
 	<select id="AdminCultureList" resultMap="AdminCultureRes">
 		SELECT * FROM CULTURE
@@ -23,11 +34,23 @@
 
 	</select>
 
+	<select id="seatName" resultMap="SeatRes">
+	select SEAT_NAME from SEAT where SEAT_IDX = #{SEAT_IDX} 
+	</select>
+
+	<select id="getSeat" resultMap="AdminCultureRes">
+	select * FROM CULTURE where CULTURE_IDX = #{CULTURE_IDX} 
+	</select>
+
 	<select id="AdminCultureDetail" resultMap="AdminCultureRes"
 		parameterType="AdminCultureModel">
 		SELECT * FROM CULTURE WHERE CULTURE_IDX = #{CULTURE_IDX}
 
 	</select>
+	
+	<update id="seatReserve" parameterType="seatModel">
+	update SEAT set SEAT_RESERVED = 'Y' where SEAT_IDX = #{SEAT_IDX} 
+	</update>
 
 	<insert id="CultureJoin" parameterType="AdminCultureModel">
 		insert into CULTURE(
@@ -38,7 +61,10 @@
 		CULTURE_END,
 		CULTURE_SAVNAME,
 		CULTURE_LOCATION,
-		CULTURE_CONTENT)
+		CULTURE_CONTENT,
+		CULTURE_AREA,
+		CULTURE_PRICE
+		)
 
 		values(CULTURE_seq.NEXTVAL,
 		#{CULTURE_NAME},
@@ -47,8 +73,10 @@
 		to_date(#{CULTURE_END}, 'yyyy-MM-dd'),
 		#{CULTURE_SAVNAME},
 		#{CULTURE_LOCATION},
-
-		#{CULTURE_CONTENT} )
+		#{CULTURE_CONTENT}, 
+		#{CULTURE_AREA},
+		#{CULTURE_PRICE}
+		)
 
 	</insert>
 
@@ -95,7 +123,26 @@
 		
 	</select>
 
-
+	<insert id="insertSeat" parameterType="seatModel">
+	insert into SEAT(
+	SEAT_IDX,
+	SEAT_AREA,
+	SEAT_NUMBER,
+	SEAT_PRICE,
+	SEAT_DATE,
+	SEAT_CIDX,
+	SEAT_NAME
+	)
+	values(
+	SEAT_SEQ.NEXTVAL,
+	#{SEAT_AREA},
+	#{SEAT_NUMBER},
+	#{SEAT_PRICE},
+	#{SEAT_DATE},
+	#{SEAT_CIDX},
+	#{SEAT_NAME}
+	) 
+	</insert>
 
 
 

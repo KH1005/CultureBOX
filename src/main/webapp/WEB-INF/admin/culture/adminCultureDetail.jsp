@@ -156,6 +156,7 @@
 	</section>
 	<!-- End banner Area -->
 
+
 	<!-- Start project-details Area -->
 	<section class="project-details-area section-gap">
 		<div class="container">
@@ -174,6 +175,7 @@
 							<li>기간</li>
 							<li>장르</li>
 							<li>문의전화</li>
+							<li>가격</li>
 						</ul>
 						<ul class="desc">
 							<li>: ${admincultureModel.CULTURE_LOCATION}</li>
@@ -182,6 +184,10 @@
 							</li>
 							<li>: ${admincultureModel.CULTURE_CATEGORY}</li>
 							<li>: 070-1544-1545</li>
+							<li style="margin-left: 29px;">
+							   <c:forEach items="${start3}" var="start"  varStatus="stat">
+						 	    ${start}<br>
+						       </c:forEach>
 						</ul>
 					</div>
 					<div class="social-links mt-30">
@@ -197,6 +203,12 @@
 					<c:param name="CULTURE_IDX"
 						value="${admincultureModel.CULTURE_IDX}" />
 				    </c:url> <a href="${viewURL}"  class="genric-btn primary radius">수정</a>
+				    
+				    <c:url var="viewURL1" value="insertSeat.cul">
+				    <c:param name="CULTURE_IDX" value="${admincultureModel.CULTURE_IDX}" />
+		         	</c:url>
+			         <a href="${viewURL1}" class="genric-btn primary radius">좌석 추가</a>
+				    
 					</div>
 				</div>
 				
@@ -324,33 +336,14 @@
 				</div>
 			</div>
 
+
 			<p>
 				<br> <br>
 			<div>
 				<h3>관람후기</h3>
 			</div>
 
-			<!-- <table> -->
-		<%-- 	<div class="inner">
-
-				<form class="commentForm" method="post"
-					action="writeCultureComment.cul">
-					<input type="hidden" name="item_no"
-						value="${cultureModel.CULTURE_IDX}" />
-
-					<div class="textarea_grp" style="width: 1000px;">
-						<textarea name="COMMENT_CONTENT" rows="5"
-							class="form-control search_box_input"
-							placeholder="게시물 성격에 맞지 않거나 비방 댓글은 통보없이 삭제 됩니다."></textarea>
-
-						<div style="text-align: right;">
-							<input type="submit" value="댓글등록"
-								class="genric-btn primary radius">
-						</div>
-					</div>
-
-				</form>
-			</div> --%>
+			
 
 			<c:choose>
 				<c:when test="${fn:length(cultureCommentList) > 0}">

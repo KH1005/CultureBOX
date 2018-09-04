@@ -1,6 +1,6 @@
-package culture.member.reservation;
+package culture.admin.culture;
 
-public class seatBean {
+public class seatModel {
 	
 	private int SEAT_IDX;
 	private String SEAT_AREA;
@@ -9,19 +9,26 @@ public class seatBean {
 	private String SEAT_RESERVED;
 	private String SEAT_DATE;
 	private String SEAT_ID;
-	private String SEAT_CNAME;
+	private String SEAT_CIDX;
+	private String SEAT_NAME;
 	
+	public String getSEAT_NAME() {
+		return SEAT_NAME;
+	}
+	public void setSEAT_NAME(String sEAT_NAME) {
+		SEAT_NAME = sEAT_NAME;
+	}
 	public String getSEAT_ID() {
 		return SEAT_ID;
 	}
 	public void setSEAT_ID(String sEAT_ID) {
 		SEAT_ID = sEAT_ID;
 	}
-	public String getSEAT_CNAME() {
-		return SEAT_CNAME;
+	public String getSEAT_CIDX() {
+		return SEAT_CIDX;
 	}
-	public void setSEAT_CNAME(String sEAT_CNAME) {
-		SEAT_CNAME = sEAT_CNAME;
+	public void setSEAT_CIDX(String sEAT_CIDX) {
+		SEAT_CIDX = sEAT_CIDX;
 	}
 	public String getSEAT_DATE() {
 		return SEAT_DATE;

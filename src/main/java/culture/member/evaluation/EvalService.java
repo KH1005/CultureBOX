@@ -143,6 +143,18 @@ public class EvalService implements EvalDao{
 	public MusicCommentModel getMyCommentByidx(Map<String, Object> idx) {
 		return sqlSessionTempate.selectOne("eval.getMyCommentByidx",idx);
 	}
+
+
+	@Override
+	public List<Map<String, Object>> getMusicEvalInfo(Map<String, Object> parameter) {
+		return sqlSessionTempate.selectList("eval.getMusicEvalInfo",parameter);
+	}
+
+
+	@Override
+	public Map<String, Object> getMeanValue(Map<String, Object> parameter) {
+		return sqlSessionTempate.selectOne("eval.getMeanValue",parameter);
+	}
 	
 	
 	

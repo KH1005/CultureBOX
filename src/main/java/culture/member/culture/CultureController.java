@@ -90,7 +90,6 @@ public class CultureController {
         for(int i=0; i<start1.length; i++){
         	start3[i] = start1[i]+"-"+start2[i];
         }
-      /*  String result = start1.concat(start2);*/
        
         mv.addObject("start3",start3);
 		mv.addObject("cultureModel",cultureModel);
@@ -126,6 +125,7 @@ public class CultureController {
 		
 	}
 	
+	//댓글 삭제
 	@RequestMapping("/concert/deleteCultureComment.cul")
 	public ModelAndView commentDelete(HttpServletRequest request, CultureCommentModel cultureCommentModel ){
 	
@@ -139,6 +139,7 @@ public class CultureController {
 	
 	}
 	
+	//댓글 수정
 	@RequestMapping("/concert/modifyCultureComment.cul")
 	public ModelAndView commentModify(HttpServletRequest request, CultureCommentModel cultureCommentModel, CultureModel cultureModel) {
 		ModelAndView mv = new ModelAndView();

@@ -9,7 +9,7 @@ public class seatModel {
 	private String SEAT_RESERVED;
 	private String SEAT_DATE;
 	private String SEAT_ID;
-	private String SEAT_CIDX;
+	private int SEAT_CIDX;
 	private String SEAT_NAME;
 	
 	public String getSEAT_NAME() {
@@ -24,10 +24,10 @@ public class seatModel {
 	public void setSEAT_ID(String sEAT_ID) {
 		SEAT_ID = sEAT_ID;
 	}
-	public String getSEAT_CIDX() {
+	public int getSEAT_CIDX() {
 		return SEAT_CIDX;
 	}
-	public void setSEAT_CIDX(String sEAT_CIDX) {
+	public void setSEAT_CIDX(int sEAT_CIDX) {
 		SEAT_CIDX = sEAT_CIDX;
 	}
 	public String getSEAT_DATE() {

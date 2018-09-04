@@ -16,6 +16,18 @@ public class CultureModel {
 	private String CULTURE_AREA;
 	private String CULTURE_PRICE;
 	
+	public String getCULTURE_START() {
+		return CULTURE_START;
+	}
+	public void setCULTURE_START(String cULTURE_START) {
+		CULTURE_START = cULTURE_START;
+	}
+	public String getCULTURE_END() {
+		return CULTURE_END;
+	}
+	public void setCULTURE_END(String cULTURE_END) {
+		CULTURE_END = cULTURE_END;
+	}
 	public int getCULTURE_IDX() {
 		return CULTURE_IDX;
 	}
@@ -34,19 +46,7 @@ public class CultureModel {
 	public void setCULTURE_CATEGORY(String cULTURE_CATEGORY) {
 		CULTURE_CATEGORY = cULTURE_CATEGORY;
 	}
-	
-	public String getCULTURE_START() {
-		return CULTURE_START;
-	}
-	public void setCULTURE_START(String cULTURE_START) {
-		CULTURE_START = cULTURE_START;
-	}
-	public String getCULTURE_END() {
-		return CULTURE_END;
-	}
-	public void setCULTURE_END(String cULTURE_END) {
-		CULTURE_END = cULTURE_END;
-	}
+
 	public String getCULTURE_ORGNAME() {
 		return CULTURE_ORGNAME;
 	}

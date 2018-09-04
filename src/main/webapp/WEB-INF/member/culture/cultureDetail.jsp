@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+   pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
@@ -8,8 +8,7 @@
 <script src="<c:url value='/js/common.js'/>"></script>
 <head>
 <!-- Mobile Specific Meta -->
-<meta name="viewport"
-	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <!-- Favicon-->
 <link rel="shortcut icon" href="img/fav.png">
 <!-- Author Meta -->
@@ -22,32 +21,32 @@
 <meta charset="UTF-8">
 <script src="../common/js/html5shiv.js"></script>
 <script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+   src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <meta name="viewport"
-	content="width=device-width, maximum-scale=1, minimum-scale=1, user-scalable=no" />
+   content="width=device-width, maximum-scale=1, minimum-scale=1, user-scalable=no" />
 <meta name="format-detection" content="telephone=no">
 <script src="js/jquery-1.11.2.min.js"></script>
 <script type="text/javascript" src="js/js-load.js"></script>
 
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta name="viewport"
-	content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+   content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 <meta charset="UTF-8" />
 
 <!-- Site Title -->
 <title>Interior</title>
 
 <link
-	href="https://fonts.googleapis.com/css?family=Poppins:100,200,400,300,500,600,700"
-	rel="stylesheet">
+   href="https://fonts.googleapis.com/css?family=Poppins:100,200,400,300,500,600,700"
+   rel="stylesheet">
 <!--
-			CSS
-			============================================= -->
+         CSS
+         ============================================= -->
 <link rel="stylesheet" href="<c:url value='/interior-master/css/linearicons.css'/>">
 <link rel="stylesheet" href="<c:url value='/interior-master/css/font-awesome.min.css'/>">
 <link rel="stylesheet" href="<c:url value='/interior-master/css/bootstrap.css'/>">
 <link rel="stylesheet" href="<c:url value='/interior-master/css/magnific-popup.css'/>">
-<link rel="stylesheet" href="<c:url value='/interior-master/css/nice-select.css'/>">							
+<link rel="stylesheet" href="<c:url value='/interior-master/css/nice-select.css'/>">                     
 <link rel="stylesheet" href="<c:url value='/interior-master/css/animate.min.css'/>">
 <link rel="stylesheet" href="<c:url value='/interior-master/css/owl.carousel.css'/>">
 <link rel="stylesheet" href="<c:url value='/interior-master/css/main.css'/>">
@@ -55,81 +54,82 @@
 <style type="text/css">
 
 .js-load {
-	display: none;
+   display: none;
 }
 
 .js-load.active {
-	display: block;
+   display: block;
 }
 
 .is_comp.js-load:after {
-	display: none;
+   display: none;
 }
 
 .btn-wrap, .lists, .main {
-	display: block;
+   display: block;
 }
 
 .btn-wrap {
-	text-align: left;
+   text-align: left;
 }
 
 .table_goods_info th {
-	background: #ffffff;
-	color: #5e5e5e;
-	border: 1px solid #e2e2e2;
-	text-align: left;
-	font-size: 10px;
-	letter-spacing: -1px;
-	letter-spacing: -1px;
-	padding: 0 5px;
+   background: #ffffff;
+   color: #5e5e5e;
+   border: 1px solid #e2e2e2;
+   text-align: left;
+   font-size: 10px;
+   letter-spacing: -1px;
+   letter-spacing: -1px;
+   padding: 0 5px;
 }
 
 .table_goods_info td {
-	background: #ffffff;
-	border-collapse: collapse;
-	border: 1px solid #e2e2e2;
-	padding: 4px 10px 7px;
-	font-size: 10px;
+   background: #ffffff;
+   border-collapse: collapse;
+   border: 1px solid #e2e2e2;
+   padding: 4px 10px 7px;
+   font-size: 10px;
 }
 
 .com_Div {
-	border: 1px solid #ccc;
-	padding: 10px;
-	margin-top: 10px;
+   border: 1px solid #ccc;
+   padding: 10px;
+   margin-top: 10px;
 }
 
 #box1 {
-	align: right;
+   align: right;
 }
 </style>
 
 <script type="text/javascript">
-	$(window).on('load', function() {
-		load('#js-load', '4');
-		$("#js-btn-wrap .button").on("click", function() {
-			load('#js-load', '4', '#js-btn-wrap');
-		})
-	});
+   $(window).on('load', function() {
+      load('#js-load', '4');
+      $("#js-btn-wrap .button").on("click", function() {
+         load('#js-load', '4', '#js-btn-wrap');
+      })
+   });
 
-	function load(id, cnt, btn) {
-		var girls_list = id + " .js-load:not(.active)";
-		var girls_length = $(girls_list).length;
-		var girls_total_cnt;
-		if (cnt < girls_length) {
-			girls_total_cnt = cnt;
-		} else {
-			girls_total_cnt = girls_length;
-			$('.button').hide()
-		}
-		$(girls_list + ":lt(" + girls_total_cnt + ")").addClass("active");
-	}
+   function load(id, cnt, btn) {
+      var girls_list = id + " .js-load:not(.active)";
+      var girls_length = $(girls_list).length;
+      var girls_total_cnt;
+      if (cnt < girls_length) {
+         girls_total_cnt = cnt;
+      } else {
+         girls_total_cnt = girls_length;
+         $('.button').hide()
+      }
+      $(girls_list + ":lt(" + girls_total_cnt + ")").addClass("active");
+   }
 </script>
 
 </head>
 
 <body>
-	<header id="header" id="home">
+
+	<!-- <header id="header" id="home">
 
 		<div class="container main-menu">
 			<div class="row align-items-center justify-content-between d-flex">
@@ -140,7 +140,7 @@
 				
 			</div>
 		</div>
-	</header>
+	</header> -->
 	<!-- #header -->
 
 	<!-- start banner Area -->
@@ -196,7 +196,7 @@
 					</div>
 					<div class="social-links mt-30">
 						<a class="genric-btn primary radius"
-							href="http://localhost:8080/culture/reserve/seatList.cul?culture_idx=${cultureModel.CULTURE_IDX}">예매하기</a>
+							href="http://localhost:8080/culture/reserve/reservationForm.cul?culture_idx=${cultureModel.CULTURE_IDX}">예매하기</a>
 						<a class="genric-btn primary radius"
 							href="http://localhost:8080/culture/concert/CultureList.cul">목록</a>
 					</div>
@@ -563,7 +563,6 @@
 <script src="<c:url value='/interior-master/js/jquery.nice-select.min.js'/>"></script>			
 <script src="<c:url value='/interior-master/js/mail-script.js'/>"></script>	
 <script src="<c:url value='/interior-master/js/main.js'/>"></script>	
+	</body>
 	
-	
-</body>
 </html>

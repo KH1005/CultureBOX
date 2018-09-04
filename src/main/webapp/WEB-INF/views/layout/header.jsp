@@ -2,23 +2,11 @@
     pageEncoding="UTF-8"%>
 
     <!DOCTYPE html>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-<link rel="stylesheet" href="https://technext.github.io/interior/css/main.css">
-
-<%@ include file="/WEB-INF/include/include-header.jspf" %>
-
-<style>
-  .banner-area {
-    background: url(file:///C:\Spring\App\workspace\cultureBOX\src\main\webapp\WEB-INF\cssimg\mainback7.jpg) center;
-    background-size: cover;
-} 
-
-</style>   
-
 		<title>CultureBox</title>
 		<header id="header" class="">
 			  
@@ -29,13 +17,28 @@
 			    <div class="container main-menu">
 			    	<div class="row align-items-center justify-content-between d-flex">
 				      <div id="logo" align="left">
-				        <a href="index.html"><img src="file:///C:\Spring\App\workspace\cultureBOX\src\main\webapp\WEB-INF\cssimg\logo333.png" alt="" title=""></a>
+				        <a href="index.html"><img src="<c:url value='/interior-master/cultureimg/logo333.png'/>" alt="" title=""></a>
 				      </div>
+				      <!-- 장르 리스트 url -->
+				      <c:url value="/eval/RecommendGenreList.cul" var="genre" >
+				      	<c:param name="id" value="${id }"></c:param>
+				      </c:url>
+				      <!-- 아티스트 리스트 url -->
+				      <c:url value="/eval/RecommendArtistList.cul" var="artist">
+				      	<c:param name="id" value="${id }"></c:param>
+				      </c:url>
+				      <!-- 국가 리스트 url -->
+				      <c:url value="/eval/RecommendCountryList.cul" var="country">
+				      	<c:param name="id" value="${id }"></c:param>
+				      </c:url>
+				      <!-- 평가리스트 -->
+				      <c:url value="/eval/EvalList.cul" var="eval">
+				      	<c:param name="id" value="${id }"></c:param>
+				      </c:url>
+				      <!-- 네비게이션 바 -->
 				      <nav id="nav-menu-container">
 				        <ul class="nav-menu sf-js-enabled sf-arrows" style="touch-action: pan-y;">
-				          <li class="menu-active"><a href="index.html">Home</a></li>
-				          <li><a href="about.html">Music</a></li>
-				          <li class="menu-has-children"><a href="http://localhost:8080/culture/concert/CultureList.cul" class="sf-with-ul">Performance</a>
+				           <li class="menu-has-children"><a href="http://localhost:8080/culture/concert/CultureList.cul" class="sf-with-ul">Performance</a>
 				            <ul style="display: none;">
 				              <li><a href="/culture/concert/CultureCategoryList.cul?culture_category=콘서트">concert</a></li>
 				              <li><a href="/culture/concert/CultureCategoryList.cul?culture_category=연극">play</a></li>
@@ -43,11 +46,22 @@
 				             
 				            </ul>
 				          </li>
-				          <li><a href="projects.html">My</a></li>
-
-
-                            
-				        
+				           <li><a href="${eval }">Evaluation</a></li>
+				          <li class="menu-has-children"><a href="${genre }">Music</a>
+				            <ul>
+				              <li><a href="${genre }">Genre</a></li>
+				              <li><a href="${artist }">Artist</a></li>
+				              <li><a href="${country }">Country</a></li>
+				            </ul>
+				          </li>
+				          <li class="menu-has-children"><a href="">My</a>
+				            <ul>
+				              <li><a href="blog-home.html">My</a></li>
+				              <li><a href="/culture/mypage/myEval.cul">Music</a></li>
+				              <li><a href="blog-single.html">Reservation</a></li>
+				              <li><a href="blog-single.html">Withdrawal</a></li>
+				            </ul>
+				          </li>
  
  </ul>
 				      </nav><!-- #nav-menu-container -->		    		
@@ -56,8 +70,8 @@
 
 			  </header><!-- #header -->
 
+
 <%-- <%@ include file="/WEB-INF/include/include-header.jspf" %>
->>>>>>> 9d9c398a7afbaeacb96d7da774b36e102fff906b
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
 <link href="http://localhost:8080/culture/hover.css" rel="stylesheet" type="text/css">
 <script type="text/javascript" src="http://localhost:8080/culture/js/jquery.js"></script>
@@ -67,16 +81,9 @@
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-<style>
-  .banner-area {
-    background: url(file:///C:\\Users\\dustn\\Documents\\CultureBOX\\src\\main\\webapp\\cssimg\\mainback7.jpg) center;
-    background-size: cover;
-    
-} 
+이곳은 헤더 입니다~~!
 
-</style> 
-
-<!-- <script>
+<script>
   $( function() {
     var availableTags = function(){
   	  $.ajax({
@@ -118,43 +125,7 @@
     });
     
   }); 
-</script> -->
-<title>CultureBox</title>
-		<header id="header" class="">
-			  
-		  		<div class="header-top">
-		  			<div class="container">
-		  			</div>
-				</div>
-			    <div class="container main-menu">
-			    	<div class="row align-items-center justify-content-between d-flex">
-				      <div id="logo" align="left">
-				        <a href="index.html"><img src="file:///C:/Users/dustn/Documents/CultureBOX/src/main/webapp/cssimg/logo333.png" alt="" title=""></a>
-				        
-				      </div>
-				      <nav id="nav-menu-container">
-				        <ul class="nav-menu">
-				          <li class="menu-active"><a href="index.html">Home</a></li>
-				          <li><a href="about.html">Music</a></li>
-				          <li class="="menu-has-children"><a href="/culture/concert/CultureList.cul">Concert</a>
-				            <ul>
-				              <li><a href="/culture/concert/CultureCategoryList.cul?culture_category=콘서트">콘서트</a></li>
-				              <li><a href="/culture/concert/CultureCategoryList.cul?culture_category=연극">연극</a></li>
-				                <li><a href="/culture/concert/CultureCategoryList.cul?culture_category=뮤지컬">뮤지컬</a></li>
-				            </ul>
-				           </li>
-				          <li><a href="projects.html">My</a></li>
-
-
-                            
-				        
- 
- </ul>
-				      </nav><!-- #nav-menu-container -->		    		
-			    	</div>
-			    </div>
-
-			  </header><!-- #header -->
+</script>
 <form method="post">
 	<div class="ui-widget" align="center">
 	  	<input id="tags" type="text" name="issearch" placeholder="Search">
@@ -162,24 +133,3 @@
 	<a href="http://localhost:8080/culture/download/pdf.cul">티켓</a>
 </form>
  --%>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

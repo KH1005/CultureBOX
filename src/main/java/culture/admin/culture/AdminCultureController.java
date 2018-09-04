@@ -8,6 +8,7 @@ import java.util.List;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -93,8 +94,23 @@ public class AdminCultureController {
         admincultureModel.setCULTURE_START(start[0]);
         admincultureModel.setCULTURE_END(end[0]);
         
+        //좌석가격 가져오는 부분
+        String area = admincultureModel.getCULTURE_AREA(); //구역  "a,b,c,d"
+        String price = admincultureModel.getCULTURE_PRICE(); //가격 "1000,2000,3000,4000"
+        
+        String start1[] = area.split(","); // ,로 구분하여 자른다 (a  b   c   d) 각각 저장
+        String start2[] = price.split(",");
+        
+        String start3[] = new String[start1.length];
+        
+        for(int i=0; i<start1.length; i++){
+        	start3[i] = start1[i]+"-"+start2[i];
+        }
+       
+        
 		mav.addObject("admincultureModel", admincultureModel);
 		mav.addObject("cultureCommentList", list);
+		mav.addObject("start3",start3);
 
 		mav.setViewName("adminCultureDetail");
 
@@ -235,8 +251,67 @@ public class AdminCultureController {
 			return mav;
 		}
 		
-		
-
+		@RequestMapping(value = "/admin/insertSeat.cul")
+		public ModelAndView insertSeat(HttpServletRequest request, HttpSession session, AdminCultureModel cultureModel) throws Exception {
+			ModelAndView mv = new ModelAndView();
+			String areaC;
+			String priceC;
+			int DifDate;
+			
+			seatModel stModel = new seatModel();
+			
+			int CULTURE_IDX = Integer.parseInt(request.getParameter("CULTURE_IDX"));
+			
+			System.out.println(CULTURE_IDX);
+			
+			cultureModel = adminCultureService.getSeat(CULTURE_IDX);
+			
+			if(cultureModel == null) {
+				System.out.println("null");
+			} else {
+				System.out.println("nt null");
+			}
+			areaC = cultureModel.getCULTURE_AREA();
+			priceC = cultureModel.getCULTURE_PRICE();
+			
+			String start = cultureModel.getCULTURE_START();
+			String end = cultureModel.getCULTURE_END();
+			
+			String[] startS = start.split("-");
+			String[] endS = end.split("-");
+			
+			String dayY = startS[0];
+			String dayM = startS[1];
+			
+			String[] areaS = areaC.split(",");
+			String[] priceS = priceC.split(",");
+			
+			String[] startS2 = startS[2].split(" ");
+			String[] endS2 = endS[2].split(" ");
+			String daydd = startS2[0];
+			
+			DifDate = Integer.parseInt(endS2[0]) - Integer.parseInt(startS2[0]);
+			
+			for(int t = 0; t <= DifDate; t++) {
+					int dayD = Integer.parseInt(daydd) + t;
+				for(int i = 0; i < areaS.length; i++) {
+					stModel.setSEAT_AREA(areaS[i]);
+					stModel.setSEAT_PRICE(Integer.parseInt(priceS[i]));
+					for(int k = 1; k <= 10; k++) {
+						stModel.setSEAT_CIDX(Integer.parseInt(request.getParameter("CULTURE_IDX")));
+						stModel.setSEAT_NUMBER(k);
+						stModel.setSEAT_DATE(dayY.concat("-").concat(dayM).concat("-").concat(String.valueOf(dayD)));
+						stModel.setSEAT_NAME(stModel.getSEAT_AREA().concat("-").concat(String.valueOf(k)));
+						
+						adminCultureService.insertSeat(stModel);
+					}
+				}
+			}
+			
+			mav.setViewName("redirect:/admin/CultureListForm.cul");
+			
+			return mv;
+		}
 	}
 
 
