@@ -78,7 +78,8 @@ public class AdminCultureController {
 	public ModelAndView AdminCultureDetail(HttpServletRequest request) throws Exception {
 
 		
-		int culture_idx = Integer.parseInt(request.getParameter("culture_idx"));
+		int culture_idx = Integer.parseInt(request.getParameter(""
+				+ "culture_idx"));
 
 		AdminCultureModel admincultureModel = adminCultureService.AdminCultureDetail(culture_idx);
 	/*	System.out.println("culture idx:" +admincultureModel.getCULTURE_IDX());*/

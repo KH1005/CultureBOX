@@ -62,6 +62,7 @@ public class MemberController {
 			session.setAttribute("name" ,result.getMEMBER_NAME());
 			session.setAttribute("password" ,result.getMEMBER_PASSWORD());
 			session.setAttribute("email", result.getMEMBER_EMAIL());	
+			System.out.println("id" + result.getMEMBER_ID());
 		/*	if(result != null){
 				System.out.println("로그인 성공");*/
 		

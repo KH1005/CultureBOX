@@ -38,8 +38,10 @@ import com.google.zxing.qrcode.QRCodeWriter;
 import com.google.zxing.qrcode.decoder.ErrorCorrectionLevel;
 
 import culture.member.culture.CultureModel;
+import culture.member.culture.CultureService;
 import culture.member.evaluation.MemberModel;
 import culture.member.evaluation.MusicModel;
+import culture.member.reservation.reserveModel;
 
 /**
  * Handles requests for the application home page.
@@ -234,16 +236,22 @@ public class MypageController {
 		@RequestMapping(value="/mypage/memberOrderList.cul")
 		public String reserveList(Model model, HttpServletRequest request) {
 			HttpSession session = request.getSession();
-			String id = (String)session.getAttribute("id");
+			
+			/*String id=(String)session.getAttribute("id");*/
+		     String id="pray";
 			
 			Map<String, Object> parameter = new HashMap<String, Object>();
 			
-			parameter.put("MEMBER_ID", id);
+		    parameter.put("RESERVE_ID", id);
+			
 			
 			List<Map<String, Object>> reserveList = mypageService.reserveList(parameter);
-			
+			for(int i=0; i<reserveList.size(); i++) {
+				System.out.println(reserveList.get(i));
+			}
+		
 			model.addAttribute("reserveList",reserveList);
-			model.addAttribute("id",id);
+/*		model.addAttribute("id",id);*/
 			
 			return "reserveList";
 		}
