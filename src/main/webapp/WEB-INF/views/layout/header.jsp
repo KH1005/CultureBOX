@@ -49,12 +49,18 @@
 				          </li>
 				          <li class="menu-has-children"><a href="">My</a>
 				            <ul>
-				              <li><a href="blog-home.html">My</a></li>
+				              <li><a href="/culture/mypage/mypage.cul">My</a></li>
 				              <li><a href="/culture/mypage/myEval.cul">Music</a></li>
 				              <li><a href="blog-single.html">Reservation</a></li>
 				              <li><a href="blog-single.html">Withdrawal</a></li>
 				            </ul>
 				          </li>
+				          <c:if test="${id != null}">
+				         <a href="/culture/member/logout.cul"> <span>Logout</span>
+				          
+				          
+				          
+				          </c:if>
  
  </ul>
 				      </nav><!-- #nav-menu-container -->		    		
