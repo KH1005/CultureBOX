@@ -90,7 +90,7 @@
 					$.ajax({
 						async : true,
 						type : 'POST',
-						data : userid,
+						data : JSON.stringify(userid),
 						url : "idcheck.cul",
 						dataType : "json",
 						contentType : "application/json; charset=UTF-8",
@@ -203,7 +203,7 @@
 	</div>
 	<div data-react-router-class="MyRoutes">
 
-		\	<nav class="gnb gnb--sign_in">
+			<nav class="gnb gnb--sign_in">
 				 <!-- <a class="" href="image/logo.png" data-reactid=".1dyxnvjby0w.0.0.0"></a> -->
 				 
 				<!-- <div class="gnb__right-navs">
@@ -230,22 +230,23 @@
 						<div class="form-group">
 		
 
-<tr>
-			<td rowspan="1"><input type="text" class="form-control"
-				id="MEMBER_ID" placeholder="한글 및 특수문자 사용불가" /></td>
-			<td><input type="button" value="중복확인" id="idck" class="btn btn-info"></td>
-</tr>
+
+		<input type="text" class="form-control"
+				id="MEMBER_ID" name="MEMBER_ID" path="MEMBER_ID" placeholder="한글 및 특수문자 사용불가" />
+				
+		<input type="button" value="중복확인" id="idck" class="btn btn-info">
+
 
 		</div>
 
 		<div class="form-group">
 		
-			<input type="text" class="form-control" id="MEMBER_NAME"
+			<input type="text" class="form-control" name="MEMBER_NAME" id="MEMBER_NAME"
 				 placeholder="이름을 입력해 주세요" />
 		</div>
 		<div class="form-group">
 		
-			<input type="email" class="form-control" id="MEMBER_EMAIL"
+			<input type="email" class="form-control" name="MEMBER_EMAIL" id="MEMBER_EMAIL"
 				 placeholder="이메일 주소를 입력해주세요" />
 				<!-- <input type="button" value="중복확인" id="eck"> -->
 				
@@ -254,7 +255,7 @@
 		</div>
 
 		
-		<input type="password" name="MEMBER_PASSWORD" id="MEMBER_PASSWORD"
+		<input type="password" name="MEMBER_PASSWORD"  id="MEMBER_PASSWORD"
 			 class="form-control" required  placeholder="비밀번호를 입력하세요" />
 		<br>
 		<div class="alert alert-success" id="alert-success">비밀번호가 일치합니다.</div>
@@ -263,7 +264,7 @@
 			않습니다.</div>
 
 		
-		<input type="password" name="reuserPwd" id="MEMBER_PASSWORD2"
+		<input type="password" name="MEMBER_PASSWORD2" id="MEMBER_PASSWORD2"
 			class="form-control" required placeholder="비밀번호를 다시 입력하세요"  />
 		<br> 
 		<br>
