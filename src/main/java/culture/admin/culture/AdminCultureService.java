@@ -83,8 +83,15 @@ public class AdminCultureService implements AdminCultureDAO {
       sqlSessionTemplate.insert("insertSeat", stModel);
    }
    
+   @Override
    public AdminCultureModel getSeat(int CULTURE_IDX) {
       return sqlSessionTemplate.selectOne("admin.getSeat", CULTURE_IDX);
    }
 
+   @Override
+   public int CultureJoinSeat() {
+	return sqlSessionTemplate.selectOne("admin.CultureJoinSeat");
+   }
+
+   
 }

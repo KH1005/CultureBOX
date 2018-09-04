@@ -30,4 +30,6 @@ public interface AdminCultureDAO {
    public void insertSeat(seatModel stModel);
 
    public AdminCultureModel getSeat(int CULTURE_IDX);
+   //좌석추가로직
+   public int CultureJoinSeat();
 }

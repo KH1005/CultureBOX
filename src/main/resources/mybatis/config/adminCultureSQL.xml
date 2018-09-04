@@ -77,6 +77,26 @@
       )
 
    </insert>
+   
+   
+   
+   
+   <select id="CultureJoinSeat" resultType="int" parameterType="AdminCultureModel">
+		select culture_seq.currval from dual
+   </select>
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
    <!-- 수정폼 -->
    <select id="CultureModify" resultMap="AdminCultureRes"
       parameterType="int">

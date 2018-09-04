@@ -115,10 +115,10 @@ tr .bbb {
          </c:url>
          <a href="${viewURL}">삭제</a>
 
-         <c:url var="viewURL1" value="insertSeat.cul">
+        <%--  <c:url var="viewURL1" value="insertSeat.cul">
             <c:param name="CULTURE_IDX" value="${admincultureModel.CULTURE_IDX}" />
          </c:url>
-         <a href="${viewURL1}">좌석 추가</a>
+         <a href="${viewURL1}">좌석 추가</a> --%>
 
 
          <td><c:url var="viewURL" value="CultureModifyForm.cul">
