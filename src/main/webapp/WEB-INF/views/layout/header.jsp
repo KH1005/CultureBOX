@@ -20,6 +20,7 @@
                   <div id="logo" align="left">
                     <a href="index.html"><img src="<c:url value='/interior-master/cultureimg/logo333.png'/>" alt="" title=""></a>
                   </div>
+                  
                   <!-- 장르 리스트 url -->
                   <c:url value="/eval/RecommendGenreList.cul" var="genre" >
                      <c:param name="id" value="${id }"></c:param>
@@ -39,7 +40,7 @@
                   <!-- 네비게이션 바 -->
                   <nav id="nav-menu-container">
                     <ul class="nav-menu sf-js-enabled sf-arrows" style="touch-action: pan-y;">
-                      <li class="menu-active"><a href="index.html">Concert</a></li>
+                      <li class="menu-active"><a href="/culture/concert/CultureList.cul">Concert</a></li>
                        <li><a href="${eval }">Evaluation</a></li>
                       <li class="menu-has-children"><a href="${genre }">Music</a>
                         <ul>
@@ -56,62 +57,42 @@
                           <li><a href="blog-single.html">Withdrawal</a></li>
                         </ul>
                       </li>
-<%--                       <c:if test="${id != null}">
- --%>                     <a href="/culture/member/logout.cul"> <span>Logout</span>
-                      
-                      
-                      
-<%--                       </c:if>
- --%> 
- </ul>
-                  </nav><!-- #nav-menu-container -->                
+                    <a href="/culture/member/logout.cul"> <span>Logout</span></a>
+ 					</ul>
+                  </nav>                
                 </div>
              </div>
  				</c:if>
-           </header><!-- #header -->
-
-
-
-
-
-		<%-- 			<c:if test="${id =='admin1'}">
-                     <a href="/culture/member/logout.cul"> <span>Logout</span> 
-                      
-                      
-                      
-                      </c:if>
-
- --%>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+ 				
+ 				
+ 				
+ 				
+ 				<c:if test="${id == 'admin1'}">
+              <div class="container main-menu">
+                <div class="row align-items-center justify-content-between d-flex">
+                  <div id="logo" align="left">
+                    <a href="index.html"><img src="<c:url value='/interior-master/cultureimg/logo333.png'/>" alt="" title=""></a>
+                  </div>
+                  <!-- 평가리스트 -->
+                  <c:url value="/admin/MusicListForm.cul" var="music">
+                     <c:param name="id" value="${id }"></c:param>
+                  </c:url>
+                  <!-- 평가리스트 -->
+                  <c:url value="/admin/ReserveListForm.cul" var="reserve">
+                     <c:param name="id" value="${id }"></c:param>
+                  </c:url>
+                  <!-- 네비게이션 바 -->
+                  <nav id="nav-menu-container">
+                    <ul class="nav-menu sf-js-enabled sf-arrows" style="touch-action: pan-y;">
+                      <li class="menu-active"><a href="/culture/admin/CultureListForm.cul">Concert</a></li>
+                      <li class="menu-has-children"><a href="${music }">Music</a></li>
+                      <li class="menu-has-children"><a href="${reserve }">Reservation</a>
+                      </li>
+                    <a href="/culture/member/logout.cul"> <span>Logout</span></a>
+ 					</ul>
+                  </nav>                
+                </div>
+             </div>
+ 				</c:if>
+				
+           </header>
