@@ -38,7 +38,7 @@
 				      <!-- 네비게이션 바 -->
 				      <nav id="nav-menu-container">
 				        <ul class="nav-menu sf-js-enabled sf-arrows" style="touch-action: pan-y;">
-				          <li class="menu-active"><a href="index.html">Concert</a></li>
+				          <li class="menu-active"><a href="/culture/concert/CultureList.cul">Concert</a></li>
 				           <li><a href="${eval }">Evaluation</a></li>
 				          <li class="menu-has-children"><a href="${genre }">Music</a>
 				            <ul>
@@ -50,7 +50,7 @@
 				          <li class="menu-has-children"><a href="">My</a>
 				            <ul>
 				              <li><a href="blog-home.html">My</a></li>
-				              <li><a href="blog-single.html">Music</a></li>
+				              <li><a href="/culture/mypage/myEval.cul">Music</a></li>
 				              <li><a href="blog-single.html">Reservation</a></li>
 				              <li><a href="blog-single.html">Withdrawal</a></li>
 				            </ul>

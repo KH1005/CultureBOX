@@ -125,22 +125,17 @@
       $(girls_list + ":lt(" + girls_total_cnt + ")").addClass("active");
    }
 </script>
+<style type="text/css">
+.banner-area {
+    background: url(<c:url value='/cultureimg/${cultureModel.CULTURE_SAVNAME }'/>) center;
+    background-size: cover;
+}
+</style>
 
 </head>
 
 <body>
-   <header id="header" id="home">
-
-      <div class="container main-menu">
-         <div class="row align-items-center justify-content-between d-flex">
-            <div id="logo">
-               <a href="index.html"><img src="img/logo.png" alt="" title="" /></a>
-            </div>
-
-            
-         </div>
-      </div>
-   </header>
+   
    <!-- #header -->
 
    <!-- start banner Area -->
