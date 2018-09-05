@@ -81,10 +81,10 @@
 					</div>				
 
 <body>
-<a href="memberOrderList.cul">예약 내역</a><br/>
-		<a href="memberModifyForm.cul">PROFILE 회원정보</a><br/>
-		<a href="myEval.cul">내가 평가한 음악</a><br/>
-		<a href="memberdeleteForm.cul">회원탈퇴</a><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+<a href="memberOrderList.cul">예약 내역</a><br/><br/>
+		<a href="memberModifyForm.cul">PROFILE 회원정보</a><br/><br/>
+		<a href="myEval.cul">내가 평가한 음악</a><br/><br/>
+		<a href="memberdeleteForm.cul">회원탈퇴</a><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
 
 
 
