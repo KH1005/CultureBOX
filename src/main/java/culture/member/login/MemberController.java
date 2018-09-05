@@ -75,13 +75,13 @@ public class MemberController {
    public ModelAndView memberLogin(HttpServletRequest request, MemberModel member) {
 
       MemberModel result = memberService.logIn(member);
-
+  
       
-    
       
-     if(result == null) {
-    	
-    	 mav.setViewName("/login/loginError");
+      
+     if (result == null) {
+    	 System.out.println(result);
+    	 mav.setViewName("login/loginError");
     	 return mav;
       }
       

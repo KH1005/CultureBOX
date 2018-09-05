@@ -57,6 +57,14 @@
       <delete id="deleteCultureComment" parameterType="cultureCommentModel">
 		delete from CULTURE_COMMENT where COMMENT_IDX=#{COMMENT_IDX} 
 	</delete>
-       
+        
+        <update id="modifyCultureComment" parameterType="cultureCommentModel">
+       update 
+             CULTURE_COMMENT 
+       set 
+             COMMENT_CONTENT = #{COMMENT_CONTENT}
+       where 
+             COMMENT_IDX = #{COMMENT_IDX}
+      </update>
 
 </mapper>

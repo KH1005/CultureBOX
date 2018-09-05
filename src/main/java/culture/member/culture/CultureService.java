@@ -37,6 +37,11 @@ public class CultureService implements CultureDAO {
 		// TODO Auto-generated method stub
 		return sqlSessionTemplate.delete("culture.deleteCultureComment",cultureCommentModel);
 	}
+	@Override
+	public void modifyCultureComment(CultureCommentModel cultureCommentModel) {
+		  // TODO Auto-generated method stub
+	      sqlSessionTemplate.update("culture.modifyCultureComment",cultureCommentModel);
+	   }
 	
 	
 	

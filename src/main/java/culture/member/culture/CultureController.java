@@ -42,14 +42,19 @@ public class CultureController {
 	
 	//공연 상세보기 (댓글 추가)
 	@RequestMapping("/concert/CultureDetail.cul")
-	public ModelAndView cultureDetail(HttpServletRequest request) throws Exception{
-		
-		int culture_idx = Integer.parseInt(request.getParameter("culture_idx"));
-		
-		CultureModel cultureModel = cultureService.cultureDetail(culture_idx);
-		System.out.println("culture idx: "+cultureModel.getCULTURE_IDX());
-		List<CultureCommentModel> list = cultureService.cultureCommentList(cultureModel.getCULTURE_IDX());
-		System.out.println("size: "+list.size());
+	   public ModelAndView cultureDetail(HttpServletRequest request) throws Exception{
+	      
+	      HttpSession session = request.getSession();
+	      
+	      int culture_idx = Integer.parseInt(request.getParameter("culture_idx"));
+	      
+	      CultureModel cultureModel = cultureService.cultureDetail(culture_idx); 
+	      //댓글
+	      List<CultureCommentModel> list = cultureService.cultureCommentList(cultureModel.getCULTURE_IDX());
+	   
+	      session.setAttribute("cidx", culture_idx);
+	      
+	      //날짜
 	      String sday = cultureModel.getCULTURE_START();
 	        String eday = cultureModel.getCULTURE_END();
 	        
@@ -58,14 +63,30 @@ public class CultureController {
 	        
 	        cultureModel.setCULTURE_START(start[0]);
 	        cultureModel.setCULTURE_END(end[0]);
-		mv.addObject("cultureModel",cultureModel);
-		mv.addObject("cultureCommentList",list);
-		
-		mv.setViewName("cultureDetail");
-		
-		return mv;
-	
-	}
+	      
+	        //좌석가격 가져오는 부분
+	        String area = cultureModel.getCULTURE_AREA(); //구역  "a,b,c,d"
+	        String price = cultureModel.getCULTURE_PRICE(); //가격 "1000,2000,3000,4000"
+	        
+	        String start1[] = area.split(","); // ,로 구분하여 자른다 (a  b   c   d) 각각 저장
+	        String start2[] = price.split(",");
+	        
+	        String start3[] = new String[start1.length];
+	        
+	        for(int i=0; i<start1.length; i++){
+	           start3[i] = start1[i]+"-"+start2[i];
+	        }
+	       
+	        mv.addObject("start3",start3);
+	      mv.addObject("cultureModel",cultureModel);
+	      mv.addObject("cultureCommentList",list);
+	   
+	      mv.setViewName("cultureDetail");
+	      
+	      return mv;
+	   
+	   }
+	   
 	
 	//댓글달기f
 	@RequestMapping("/concert/writeCultureComment.cul")
@@ -113,6 +134,18 @@ public class CultureController {
 		return "asd";
 	}
 	
+	@RequestMapping("/concert/modifyCultureComment.cul")
+	   public ModelAndView commentModify(HttpServletRequest request, CultureCommentModel cultureCommentModel, CultureModel cultureModel) {
+	      ModelAndView mv = new ModelAndView();
+	      cultureService.modifyCultureComment(cultureCommentModel);
+	      
+	      mv.addObject("culture_idx",cultureModel.getCULTURE_IDX());
+	   
+	      mv.setViewName("redirect:/concert/CultureDetail.cul");
+	      return mv;
+	      
+	   }
+	   
 
 	
 	

@@ -8,8 +8,7 @@
 <script src="<c:url value='/js/common.js'/>"></script>
 <head>
 <!-- Mobile Specific Meta -->
-<meta name="viewport"
-   content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <!-- Favicon-->
 <link rel="shortcut icon" href="img/fav.png">
 <!-- Author Meta -->
@@ -134,8 +133,21 @@
 
 </head>
 
-<body>
-   
+<body> 
+   <!-- #header -->
+
+   <!-- <header id="header" id="home">
+
+      <div class="container main-menu">
+         <div class="row align-items-center justify-content-between d-flex">
+            <div id="logo">
+               <a href="index.html"><img src="img/logo.png" alt="" title="" /></a>
+            </div>
+
+            
+         </div>
+      </div>
+   </header> -->
    <!-- #header -->
 
    <!-- start banner Area -->
@@ -169,6 +181,7 @@
                      <li>기간</li>
                      <li>장르</li>
                      <li>문의전화</li>
+                     <li>가격</li>
                   </ul>
                   <ul class="desc">
                      <li>: ${cultureModel.CULTURE_LOCATION}</li>
@@ -177,6 +190,15 @@
                      </li>
                      <li>: ${cultureModel.CULTURE_CATEGORY}</li>
                      <li>: 070-1544-1545</li>
+                     <li style="margin-left: 29px;">
+                        <c:forEach items="${start3}" var="start"  varStatus="stat">
+                          ${start}<br>
+                         </c:forEach>
+                     
+                      
+                      
+                      
+                     </li>
                   </ul>
                </div>
                <div class="social-links mt-30">
@@ -187,40 +209,7 @@
                </div>
             </div>
             
-            <div class="button-group-area mt-40">
-                                <c:choose>
-                         <c:when test="${mycomment != null}">
-                         
-                            <div class="single-testimonial item d-flex flex-row" id="comment">
-                                    <div class="desc">
-                                       <div class="row">
-                                        <div class="col-lg-12">
-                                            <a href='http://localhost:8080/culture/concert/deleteCultureComment.cul?COMMENT_IDX=${row.COMMENT_IDX}&COMMENT_CULTUREIDX=${cultureModel.CULTURE_IDX}'><span class="lnr lnr-pencil" style="font-size:25px;"></span></a>
-                                            &nbsp;|&nbsp;&nbsp;
-                                              <a href="#this" id="commentUpdate"><span class="lnr lnr-trash" style="font-size:25px;"></span></a>
-                                         
-                                         </div>
-                                  </div>
-                                        <p id="commenttd">
-                                            ${mycomment.COMMENT_CONTENT}
-                                        </p>    
-                                    </div>
-                                </div>
-                                
-                                
-                         </c:when>
-                         <c:otherwise>
-                            <div id="comment">
-                               <div class="row">
-                                  <div class="col-lg-12">
-                                      <a href="#" id="showModal" class="genric-btn primary e-large">코멘트 남기기</a>
-                                   </div>
-                               </div>
-                            </div>
-                         </c:otherwise>
-                      </c:choose>
-                       </div>      
-
+            
 
             <div class="col-lg-12 project-desc mt-60">
                <p>
@@ -399,7 +388,7 @@
                                  <input type="hidden" value="${row.COMMENT_IDX}" id="com_NO" name="com_NO"> 
                                     <a href='http://localhost:8080/culture/concert/deleteCultureComment.cul?COMMENT_IDX=${row.COMMENT_IDX}&COMMENT_CULTUREIDX=${cultureModel.CULTURE_IDX}'
                                     ><font size=2 color="#c6b069">삭제</font></a>|
-                                     <a href="#this" id="commentUpdate"><font size=2 color="#c6b069">수정</font></a>
+                                     <a href="#this" name="commentUpdate"><font size=2 color="#c6b069">수정</font></a>
                                  
                                  <p>
                                     <font size=2><strong>${row.COMMENT_CONTENT}</strong></font>
@@ -439,7 +428,7 @@
    
    <script type="text/javascript">
       $(document).ready(function() {
-         $("#commentUpdate").on("click", function(e) {
+         $("a[name='commentUpdate']").on("click", function(e) {
             e.preventDefault();
             fn_commentModify($(this));
          })
@@ -581,7 +570,6 @@
 <script src="<c:url value='/interior-master/js/jquery.nice-select.min.js'/>"></script>         
 <script src="<c:url value='/interior-master/js/mail-script.js'/>"></script>   
 <script src="<c:url value='/interior-master/js/main.js'/>"></script>   
+   </body>
    
-   
-</body>
 </html>

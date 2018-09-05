@@ -53,6 +53,8 @@
 						<tbody>
 
 							<tr>
+								<input type="hidden" name="CULTURE_IDX" value="${culture.CULTURE_IDX }">
+							
 								<th scope="row">공연명</th>
 								<td><input type="text" id="CULTURE_NAME"
 									name="CULTURE_NAME" class="wdp_90"
