@@ -156,7 +156,7 @@
       <div class="container">
          <div class="row d-flex align-items-center justify-content-center">
             <div class="about-content col-lg-12">
-               <h1 class="text-white">Culture Details</h1>
+               <h1 class="text-white">${cultureModel.CULTURE_NAME}</h1>
             </div>
          </div>
       </div>

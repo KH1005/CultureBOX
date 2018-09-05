@@ -7,7 +7,7 @@
 <!-- Mobile Specific Meta -->
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <!-- Favicon-->
-<link rel="shortcut icon" href="img/fav.png">
+<link rel="shortcut icon" href="/img/fav.png">
       <!-- Author Meta -->
 <meta name="author" content="colorlib">
       <!-- Meta Description -->
@@ -54,9 +54,10 @@
       }
       .click-callback i { margin:0 3px; font-size:16px !important; }
       .banner-area {
-    background: url(<c:url value='/musicimg/${music.MUSIC_SAVNAME }'/>) center;
+    background: url(<c:url value='/musicimg/${adminMusicModel.MUSIC_SAVNAME }'/>) center;
     background-size: cover;
 }
+
 </style>
 <script type="text/javascript">
 function delchk(){

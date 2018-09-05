@@ -6,7 +6,7 @@
 <!-- Mobile Specific Meta -->
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <!-- Favicon-->
-<link rel="shortcut icon" href="img/fav.png">
+<link rel="icon" type="image/png" href="">
 		<!-- Author Meta -->
 <meta name="author" content="colorlib">
 		<!-- Meta Description -->
@@ -61,7 +61,7 @@
 							<h1 class="text-white">
 								Evaluation				
 							</h1>	
-							<p class="text-white link-nav"><a href="index.html">Home </a>  <span class="lnr lnr-arrow-right"></span>  <a href="services.html"> Services</a></p>
+							<p>다양한 음악들을 평가해보세요</p>
 						</div>	
 					</div>
 				</div>
