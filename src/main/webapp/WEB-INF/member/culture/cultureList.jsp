@@ -53,8 +53,8 @@
                   <div class="about-content col-lg-12">
                      <h1 class="text-white">
                         Culture List
-                     </h1>    
-                     <p class="text-white link-nav"><a href="index.html">Home </a>  <span class="lnr lnr-arrow-right"></span>  <a href="services.html"> Services</a></p>
+                     </h1>   
+                     <p>culture BOX에서 다양한 공연을 확인해보세요</p> 
                   </div>   
                </div>
             </div>

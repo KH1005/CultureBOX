@@ -59,7 +59,7 @@
 							<h1 class="text-white">
 								Recommend Music				
 							</h1>	
-							<p class="text-white link-nav"><a href="index.html">Home </a>  <span class="lnr lnr-arrow-right"></span>  <a href="services.html"> Services</a></p>
+							<p>가장 좋아하는 아티스트를 추천해드렸어요</p>
 						</div>	
 					</div>
 				</div>
@@ -102,7 +102,7 @@
 									<div class="col-md-12 pb-40 header-text text-center">
 										<h1 class="pb-10">추천할게 없어요...ㅠㅠ</h1>
 										<p>
-											데이터에 있는 음악들을 모두 평가하셨습니다~ 음악만 듣고 사셨나봐요 
+											평가데이터를 늘려주세요
 										</p>
 									</div>
 								</div>

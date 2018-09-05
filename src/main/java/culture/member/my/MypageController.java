@@ -36,6 +36,7 @@ import com.google.zxing.common.BitMatrix;
 import com.google.zxing.qrcode.QRCodeWriter;
 import com.google.zxing.qrcode.decoder.ErrorCorrectionLevel;
 
+import culture.member.evaluation.EvalService;
 import culture.member.evaluation.MemberModel;
 
 /**
@@ -228,6 +229,106 @@ public class MypageController {
 			model.addAttribute("myEvalList",myEvalList);
 			
 			return "evalMusicList";
+		}
+		
+		@Resource(name="evalService")
+		private EvalService evalService;
+		
+		@RequestMapping("/mypage/myMusicTaste.cul")
+		public String myMusicTaste(HttpServletRequest request, Model model) {
+			HttpSession session = request.getSession();
+			String id = (String)session.getAttribute("id");
+			Map<String, Object> parameter = new HashMap<String, Object>();
+			parameter.put("MEMBER_ID", id);
+			
+			List<Map<String, Object>> artist = evalService.getArtist(id);
+			List<String> top3artist = new ArrayList<String>();
+			for(int i=0;i<artist.size();i++) {
+				if(artist.get(i).get("MUSIC_ARTIST").equals("") || artist.get(i).get("MUSIC_ARTIST") == null) {
+					break;
+				}
+				top3artist.add((String)artist.get(i).get("MUSIC_ARTIST"));
+			}
+			
+			List<Map<String, Object>> country = evalService.getCountry(id);
+			List<String> top3country = new ArrayList<String>();
+			for(int i =0;i<country.size();i++) {
+				if(country.get(i).get("MUSIC_COUNTRY").equals("") || country.get(i).get("MUSIC_COUNTRY") == null) {
+					break;
+				}
+				top3country.add((String)country.get(i).get("MUSIC_COUNTRY"));
+			}
+			
+			List<Map<String, Object>> genre = evalService.getGenre(id);
+			List<String> top3genre = new ArrayList<String>();
+			for(int i=0;i<genre.size();i++) {
+				if(genre.get(i).get("MUSIC_GENRE").equals("") || genre.get(i).get("MUSIC_GENRE")== null) {
+					break;
+				}
+				top3genre.add((String)genre.get(i).get("MUSIC_GENRE"));
+			}
+			
+			Map<String, Object> count = mypageService.getMyEvalCount(parameter);
+			String evalCount = String.valueOf(count.get("COUNT"));
+			
+			Map<String, Object> mean = mypageService.getMyEvalMean(parameter);
+			String evalMean = String.valueOf(mean.get("AVERAGE"));
+			
+			List<Map<String, Object>> star = mypageService.getStar(parameter);
+			String maxStar = String.valueOf(star.get(0).get("STAR_COUNT"));
+			
+			int oneStar = 0;
+			int twoStar = 0;
+			int threeStar = 0;
+			int fourStar = 0;
+			int fiveStar = 0;
+			
+			for(int i=0;i<star.size();i++) {
+				String sss = String.valueOf(star.get(i).get("STAR_COUNT")); //1,2,3,4,5인지 정하는 변수
+				java.math.BigDecimal aa = (java.math.BigDecimal)star.get(i).get("COUNT");			//각각의 별점이 몇개 받았는지
+				if(sss.equals("1")) {
+					oneStar = Integer.valueOf(aa.toString());
+				}else if(sss.equals("2")) {
+					twoStar = Integer.valueOf(aa.toString());
+				}else if(sss.equals("3")) {
+					threeStar = Integer.valueOf(aa.toString());
+				}else if(sss.equals("4")) {
+					fourStar = Integer.valueOf(aa.toString());
+				}else if(sss.equals("5")) {
+					fiveStar = Integer.valueOf(aa.toString());
+				}
+			}
+			String myType = "";
+			
+			if(Integer.valueOf(evalCount.toString()) <= 5) {
+				myType = "음악을 알아가는 단계인 '음알못'";
+			}else if(6 < Integer.valueOf(evalCount.toString()) || Integer.valueOf(evalCount.toString())<= 15){
+				myType = "음악을 좀 들었네요? ";
+			}else if(16 < Integer.valueOf(evalCount.toString())) {
+				myType = "당신은 음악없이 못사는 '음악중독자'네요";
+			}
+			
+			model.addAttribute("oneStar",oneStar);
+			model.addAttribute("twoStar",twoStar);
+			model.addAttribute("threeStar",threeStar);
+			model.addAttribute("fourStar",fourStar);
+			model.addAttribute("fiveStar",fiveStar);
+			
+			//top3 favorite country
+			model.addAttribute("top3country",top3country);
+			//top3 favorite artist
+			model.addAttribute("top3artist",top3artist);
+			//top3 favorite genre
+			model.addAttribute("top3genre",top3genre);
+			//내가 평가한 별의 개수
+			model.addAttribute("evalCount",evalCount);
+			//내가 준 별의 평균
+			model.addAttribute("evalMean",evalMean);
+			//많이준 별점
+			model.addAttribute("maxStar",maxStar);
+			
+			model.addAttribute("myType",myType);
+			return "myPage";
 		}
 	
 }

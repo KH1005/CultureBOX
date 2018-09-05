@@ -15,7 +15,7 @@
         <setting name="defaultStatementTimeout"   value="25000"/>  
 	</settings>
 	
-	<!-- 모델등록 -->
+	<!-- 모델등록 --> 
 	<typeAliases>
 		<typeAlias alias="AdminMemberModel" type="culture.admin.member.AdminMemberModel"/>
 		<typeAlias alias="AdminCultureModel" type="culture.admin.culture.AdminCultureModel"/>

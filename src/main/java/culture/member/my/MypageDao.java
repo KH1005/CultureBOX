@@ -19,6 +19,11 @@ public interface MypageDao {
 	
 	public List<Map<String, Object>> getMyEvalList(Map<String, Object> parameter);
 	
+	public Map<String, Object> getMyEvalCount(Map<String, Object> parameter);
+	
+	public Map<String, Object> getMyEvalMean(Map<String, Object> parameter);
+
+	public List<Map<String, Object>> getStar(Map<String, Object> parameter);
 	
 
 }
