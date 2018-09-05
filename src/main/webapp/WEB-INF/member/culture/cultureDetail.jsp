@@ -124,10 +124,17 @@
       $(girls_list + ":lt(" + girls_total_cnt + ")").addClass("active");
    }
 </script>
+<style type="text/css">
+.banner-area {
+    background: url(<c:url value='/cultureimg/${cultureModel.CULTURE_SAVNAME }'/>) center;
+    background-size: cover;
+}
+</style>
 
 </head>
 
-<body>
+<body> 
+   <!-- #header -->
 
 	<!-- <header id="header" id="home">
 
@@ -333,13 +340,17 @@
 			</div>
 
 			<!-- <table> -->
+		
 			<div class="inner">
-
+         
 				<form class="commentForm" method="post"
 					action="writeCultureComment.cul">
 					<input type="hidden" name="item_no"
 						value="${cultureModel.CULTURE_IDX}" />
-
+	                   <c:if test="${id == null}">
+                  				<input type="text" style="align:center; margin: 10px; width: 950px; height: 55px;" value="로그인 후에  댓글 작성이 가능합니다." readonly="readonly"/>
+	      	 				</c:if>
+	      	    	<c:if test="${id != null}">
 					<div class="textarea_grp" style="width: 1000px;">
 						<textarea name="COMMENT_CONTENT" rows="5"
 							class="form-control search_box_input"
@@ -350,8 +361,9 @@
 								class="genric-btn primary radius">
 						</div>
 					</div>
-
+                   </c:if>
 				</form>
+	
 			</div>
 
 			<c:choose>
@@ -368,7 +380,7 @@
 
 
 										<div style="float: left; font-size: 12px;">
-											<span style="display: inline-block;">${row.COMMENT_WRITER}님</span>
+											<span style="display: inline-block;">${row.COMMENT_WRITERID}님</span>
 											<span style="display: inline-block; margin-right: 10px;">|
 												<fmt:formatDate value="${row.COMMENT_WRITEDATE}"
 													pattern="yy.MM.dd"></fmt:formatDate>
@@ -377,15 +389,20 @@
 
 
 										<div id="com_Div" class="com_Div">
-											<input type="hidden" value="${row.COMMENT_CONTENT}" id="com_CON" name="com_CON"> 
+											<input type="hidden" value="${row
+											.COMMENT_CONTENT}" id="com_CON" name="com_CON"> 
 											<input type="hidden" value="${row.COMMENT_IDX}" id="com_NO" name="com_NO"> 
+											
+											<c:if test="${id == row.COMMENT_WRITERID}">
 												<a href='http://localhost:8080/culture/concert/deleteCultureComment.cul?COMMENT_IDX=${row.COMMENT_IDX}&COMMENT_CULTUREIDX=${cultureModel.CULTURE_IDX}'
 												><font size=2 color="#c6b069">삭제</font></a>|
 											    <a href="#this" name="commentUpdate"><font size=2 color="#c6b069">수정</font></a>
-											
-											<p>
+											</c:if>
+											<div align="left">
+											<p align="left">
 												<font size=2><strong>${row.COMMENT_CONTENT}</strong></font>
 											</p>
+											</div>
 										</div>
 
 
@@ -395,9 +412,9 @@
 
 							</ul>
 
-							<div id="js-btn-wrap" class="btn-wrap">
+							 <div id="js-btn-wrap" class="btn-wrap">
 								<a href="javascript:;" class="button"><font color="#c6b069">더보기</font></a>
-							</div>
+							</div> 
 							<div class="btn_type_04"></div>
 						</div>
 					</div>
@@ -460,95 +477,7 @@
 	<!-- End project-details Area -->
 
 	<!-- Start brands Area -->
-	<section class="brands-area pb-60 pt-60">
-		<div class="container no-padding">
-			<div class="brand-wrap">
-				<div
-					class="row align-items-center active-brand-carusel justify-content-start no-gutters">
-					<div class="col single-brand">
-						<a href="#"><img class="mx-auto" src="img/l1.png" alt=""></a>
-					</div>
-					<div class="col single-brand">
-						<a href="#"><img class="mx-auto" src="img/l2.png" alt=""></a>
-					</div>
-					<div class="col single-brand">
-						<a href="#"><img class="mx-auto" src="img/l3.png" alt=""></a>
-					</div>
-					<div class="col single-brand">
-						<a href="#"><img class="mx-auto" src="img/l4.png" alt=""></a>
-					</div>
-					<div class="col single-brand">
-						<a href="#"><img class="mx-auto" src="img/l5.png" alt=""></a>
-					</div>
-				</div>
-			</div>
-		</div>
-	</section>
-	<!-- End brands Area -->
-
-	<!-- start footer Area -->
-	<footer class="footer-area section-gap">
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-5 col-md-6 col-sm-6">
-					<div class="single-footer-widget">
-						<h6>About Us</h6>
-						<p>If you own an Iphone, you’ve probably already worked out
-							how much fun it is to use it to watch movies-it has that.</p>
-						<p class="footer-text">
-							<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-							Copyright &copy;
-							<script>
-								document.write(new Date().getFullYear());
-							</script>
-							All rights reserved | This template is made with <i
-								class="fa fa-heart-o" aria-hidden="true"></i> by <a
-								href="https://colorlib.com" target="_blank">Colorlib</a> and
-							distributed by <a href="https://themewagon.com/" target="_blank">ThemeWagon</a>
-							<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-						</p>
-					</div>
-				</div>
-				<div class="col-lg-5  col-md-6 col-sm-6">
-					<div class="single-footer-widget">
-						<h6>Newsletter</h6>
-						<p>Stay update with our latest</p>
-						<div class="" id="mc_embed_signup">
-							<form target="_blank" novalidate="true"
-								action="https://spondonit.us12.list-manage.com/subscribe/post?u=1462626880ade1ac87bd9c93a&amp;id=92a4423d01"
-								method="get" class="form-inline">
-								<input class="form-control" name="EMAIL"
-									placeholder="Email Address" onfocus="this.placeholder = ''"
-									onblur="this.placeholder = 'Email Address'" required=""
-									type="email">
-								<button class="click-btn btn btn-default">
-									<i class="lnr lnr-arrow-right" aria-hidden="true"></i>
-								</button>
-								<div style="position: absolute; left: -5000px;">
-									<input name="b_36c4fd991d266f23781ded980_aefe40901a"
-										tabindex="-1" value="" type="text">
-								</div>
-								<div class="info"></div>
-							</form>
-						</div>
-					</div>
-				</div>
-				<div class="col-lg-2 col-md-6 col-sm-6 social-widget">
-					<div class="single-footer-widget">
-						<h6>Follow Us</h6>
-						<p>Let us be social</p>
-						<div class="footer-social d-flex align-items-center">
-							<a href="#"><i class="fa fa-facebook"></i></a> <a href="#"><i
-								class="fa fa-twitter"></i></a> <a href="#"><i
-								class="fa fa-dribbble"></i></a> <a href="#"><i
-								class="fa fa-behance"></i></a>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</footer>
-	<!-- End footer Area -->
+	
 
 <script src="<c:url value='/interior-master/js/vendor/jquery-2.2.4.min.js'/>"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
@@ -562,7 +491,8 @@
 <script src="<c:url value='/interior-master/js/owl.carousel.min.js'/>"></script>				
 <script src="<c:url value='/interior-master/js/jquery.nice-select.min.js'/>"></script>			
 <script src="<c:url value='/interior-master/js/mail-script.js'/>"></script>	
-<script src="<c:url value='/interior-master/js/main.js'/>"></script>	
+<script src="<c:url value='/interior-master/js/main.js'/>"></script>	 
+
 	</body>
 	
 </html>

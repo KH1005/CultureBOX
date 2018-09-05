@@ -86,8 +86,8 @@
                                     <img class='max-small' src="http://localhost:8080/culture/cultureimg/${row.CULTURE_SAVNAME}" alt="">
                                  <div class="content-details fadeIn-bottom">
                                    <h4 class="content-title mx-auto">${row.CULTURE_NAME}<br><br>
-
-                                   ${cultureModel.CULTURE_START}~${cultureModel.CULTURE_END}
+                                    ${row.CULTURE_START}~${row.CULTURE_END}
+                             
                                     <br><br>
                                     ${row.CULTURE_LOCATION}
 

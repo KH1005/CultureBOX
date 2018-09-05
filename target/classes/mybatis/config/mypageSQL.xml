@@ -5,14 +5,30 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="mypage">
+	<resultMap id="reserveRes" type="reserveModel">
+			<result column="RESERVE_IDX" property="RESERVE_IDX"/>
+			<result column="RESERVE_CONFIRM" property="RESERVE_CONFIRMs"/>
+			<result column="RESERVE_ID" property="RESERVE_ID"/>
+			<result column="RESERVE_CIDX" property="RESERVE_CIDX"/>
+			<result column="RESERVE_DATE" property="RESERVE_DATE"/>
+			<result column="RESERVE_SIDX" property="RESERVE_SIDX"/>		
+	</resultMap>
 
 
 	<select id="reserveList" parameterType="hashmap" resultType="java.util.HashMap">
-		select RESERVE_IDX, RESERVE_CONFIRM, RESERVE_ID, RESERVE_DATE, CULTURE_NAME, CULTURE_LOCATION, SEAT_NAME, SEAT_PRICE from 
+		select RESERVE_IDX, RESERVE_CONFIRM, RESERVE_ID, RESERVE_DATE, CULTURE_NAME, CULTURE_LOCATION, CULTURE_IDX , SEAT_NAME, SEAT_PRICE from 
    		(select * from RESERVATION inner join CULTURE on 
    		RESERVATION.RESERVE_CIDX = CULTURE.CULTURE_IDX inner join 
   		 SEAT on RESERVATION.RESERVE_SIDX = SEAT.SEAT_IDX ORDER BY RESERVE_IDX DESC)
-   		where reserve_id = #{RESERVE_ID}
+   		where reserve_id = #{RESERVE_ID} and culture_idx=#{CULTURE_IDX}
+	</select>
+	
+	<select id="memberOrderList" parameterType="hashmap" resultType="java.util.HashMap">
+		select RESERVE_IDX, RESERVE_CONFIRM, RESERVE_ID, RESERVE_DATE, CULTURE_NAME, CULTURE_LOCATION, CULTURE_IDX , SEAT_NAME, SEAT_PRICE from 
+   		(select * from RESERVATION inner join CULTURE on 
+   		RESERVATION.RESERVE_CIDX = CULTURE.CULTURE_IDX inner join 
+  		 SEAT on RESERVATION.RESERVE_SIDX = SEAT.SEAT_IDX ORDER BY RESERVE_IDX DESC)
+   		where reserve_id = #{RESERVE_ID} 
 	</select>
 	
 	<update id="updateQRcode" parameterType="hashmap">
@@ -24,6 +40,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		MUSIC_ORGNAME, MUSIC_SAVNAME FROM MUSIC WHERE MUSIC_INDEX IN (SELECT MUSIC_INDEX FROM EVALUATION WHERE MEMBER_ID = #{MEMBER_ID})
 		ORDER BY MUSIC_INDEX DESC
 	</select>
+	
+	<delete id="reserveCancel" parameterType="reserveModel">
+         delete from RESERVATION where RESERVE_IDX = #{RESERVE_IDX}
+    </delete>    
 
 
 

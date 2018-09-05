@@ -9,6 +9,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Service;
 
 import culture.member.evaluation.MemberModel;
+import culture.member.reservation.reserveModel;
 
 @Service("mypageService")
 public class MypageService implements MypageDao{
@@ -21,6 +22,13 @@ public class MypageService implements MypageDao{
 		System.out.println(parameter.get("RESERVE_ID"));
 		return sqlSessionTemplate.selectList("mypage.reserveList",parameter);
 	}
+	
+	@Override
+	public List<Map<String, Object>> memberOrderList(Map<String, Object> parameter) {
+		System.out.println(parameter.get("RESERVE_ID"));
+		return sqlSessionTemplate.selectList("mypage.memberOrderList",parameter);
+	}
+	
 
 	@Override
 	public void updateQRcode(Map<String, Object> parameter) {
@@ -47,5 +55,14 @@ public class MypageService implements MypageDao{
 	public List<Map<String, Object>> getMyEvalList(Map<String, Object> parameter) {
 		return sqlSessionTemplate.selectList("mypage.getMyEvalList", parameter);
 	}
+
+	
+
+	@Override
+	public int reserveCancel(int RESERVE_IDX) {
+		// TODO Auto-generated method stub
+		return sqlSessionTemplate.delete("mypage.reserveCancel", RESERVE_IDX);
+	}
+
 	
 }

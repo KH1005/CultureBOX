@@ -38,7 +38,7 @@ th {
 }
 
 td {
-   height: 50px;
+   height: 10px;
    text-align: center;
 }
 
@@ -70,6 +70,13 @@ button, input {
 
 </style>
 
+<script type="text/javascript">
+function delchk(){
+    return confirm("예매를 취소하시겠습니까?");
+    
+    
+}
+</script>
 </head>
 <body>
    <section class="banner-area relative" id="home">
@@ -98,54 +105,40 @@ button, input {
             <td align="center">Location</td>
             <td align="center">Seat</td>
             <td align="center">Price</td>
-            <td align="center">ticket</td>  
+            <td align="center">ticket</td>
+            <td align="center">cancel</td>    
          </tr>
          </div>
          <tbody>
-            <c:forEach var="reserveList"
-               items="${reserveList}" varStatus="stat" var="row">
+            <c:forEach var="memberOrderList"
+               items="${memberOrderList}" varStatus="stat" >
                <!--  컨트롤러에서 보내준 값과 일치시켜야한다(대소문자까지!) -->
                <tr>
-               
-                 <%--  <td>${adminReserveListForm.RESERVE_IDX}<!--   클릭을 하면 위 viewRRL 부분 매핑을 실행하기 위함 -->
-                  </td> --%>
-                  <td style="color: gray">${row.RESERVE_IDX}</td>
-                  <td style="color: gray">${row.RESERVE_DATE}</td>
-                  <td style="color: gray">${row.RESERVE_ID} </td>
-                  <td style="color: gray">${row.CULTURE_NAME}</td>
-                  <td style="color: gray">${row.CULTURE_LOCATION}</td>
-                  <td style="color: gray">${row.SEAT_NAME}</td>
-                  <td style="color: gray">${row.SEAT_PRICE}</td>
-                  <td style="color: gray"></td>
-           <!-- <td><input type="checkbox" name="chk${adminReserveListForm.RESERVE_IDX}" value="1" /></td> 이렇게 넣으면 chk1 chk2 로 됨 오개쩌네 그럼  -->
-
-                 <%--  <td><input type="checkbox" name="chk[]"
-                     value="${adminReserveListForm.RESERVE_IDX}"  id="confirm-checkbox" /></td> --%>
-                  <!--이름에 인덱스 줄수있거든이름 name 에? ㅇㅇㅇ 예 시 -->
-                  <div class="button-group-area mt-40">
-                  <td><c:url var="viewURL" value="ReserveModify.cul">
+                  <td style="color: gray">${memberOrderList.RESERVE_IDX}</td>
+                  <td style="color: gray">${memberOrderList.RESERVE_DATE}</td>
+                  <td style="color: gray">${memberOrderList.RESERVE_ID} </td>
+                  <td style="color: gray">${memberOrderList.CULTURE_NAME}</td>
+                  <td style="color: gray">${memberOrderList.CULTURE_LOCATION}</td>
+                  <td style="color: gray">${memberOrderList.SEAT_NAME}</td>
+                  <td style="color: gray">${memberOrderList.SEAT_PRICE}</td>
+                  <td style="color: gray">
+                 <!--  <a href="" class="genric-btn success medium"> -->
+                 <c:url var="viewURL" value="/download/pdf.cul">
+                   <c:param name="id" value="${memberOrderList.RESERVE_ID}" />
+                   <c:param name="cidx" value="${memberOrderList.CULTURE_IDX}"/>
+                 </c:url>
+                    <a href="${viewURL}" class="genric-btn success medium">티켓출력</a>
+                  </td> 
+                  <td style="color: gray"><c:url var="viewURL" value="reserveCancel.cul">
                         <c:param name="RESERVE_IDX"
-                           value="${row.RESERVE_IDX}" />
-                     </c:url> <a href="${viewURL}"><input type="button" value="티켓 출력"
-                        class="genric-btn success medium"></a></td> 
-
-
-            <%--       <td><c:url var="viewURL" value="ReserveModifyBack.cul">
-                        <c:param name="RESERVE_IDX"
-                           value="${adminReserveListForm.RESERVE_IDX}" />
-                     </c:url> <a href="${viewURL}"><input type="button" value="결제취소"
-                        class="genric-btn success-border medium"></a></td> --%>
-
-
-                <%--   <td><c:url var="viewURL" value="ReserveDelete.cul">
-                        <c:param name="RESERVE_IDX"
-                           value="${adminReserveListForm.RESERVE_IDX}" />
+                           value="${memberOrderList.RESERVE_IDX}" />
                      </c:url> <a href="${viewURL}" onclick="return delchk()" class="lnr lnr-trash">
                         </a>
-                  </td> --%>
+                  </td>
+         
             </c:forEach>
             <!--  등록된 상품이 없을때 -->
-               <c:if test="${fn:length(reserveList) le 0}">
+               <c:if test="${fn:length(memberOrderList) le 0}">
                   <tr>
                      <td colspan="9" style="text-align: center;">예약 내역이 없습니다.</td>
                   </tr>
@@ -153,37 +146,7 @@ button, input {
           
             
             </tr>
-            <td></td>
-            <td></td>
-            <td></td>  
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-              
-            <div class="button-group-area mt-10">
-            
-            <td><br><br><c:url var="viewURL" value="ReserveListForm.cul">
-               </c:url> <a href="${viewURL}"><input type="button" value="목록" class="genric-btn default-border"></a></td>
-               
-               
-            <td><br><br><input type="button" value="전체선택"
-               onclick="checkboxSelectQue(1,'chk[]')" class="genric-btn default-border"/></td>
-               
-               
-            <td><br><br><input type="button" value="결제확인" onclick="checkboxSelectPull('chk[]')" class="genric-btn default-border"/></td>
-            
-            
-            <td><br><br><a href><input type="button" value="확인취소" onclick="checkboxSelectPush('chk[]')" class="genric-btn default-border"></td>
-            </a>
-
-            <td><br><br><a href><input type="button" value="전체삭제" onclick="checkboxSelectDel('chk[]')" class="genric-btn default-border"></a></td>
-
-            </div>
-
-            <tr>
-
-
+          
                
          </tbody>
 
@@ -191,13 +154,6 @@ button, input {
    </div>
 
           
-      <br>  
-      <br>
-
-
-  
-
-
    <div class="paging" align="center">${pagingHtml}
 </body>
 <br>

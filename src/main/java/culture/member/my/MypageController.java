@@ -54,8 +54,7 @@ public class MypageController {
 	ModelAndView mav = new ModelAndView();
 	private static final Logger logger = LoggerFactory.getLogger(MypageController.class);
 	
-	@RequestMapping(value = ""
-			+ "", method = RequestMethod.GET)
+	@RequestMapping(value = "/download/pdf.cul" , method = RequestMethod.GET)
 	public ModelAndView downloadPdf(Model model, HttpSession session, HttpServletRequest request) {
 	  Map<String, Object> parameter = new HashMap<String, Object>();
 	  parameter.put("RESERVE_ID", request.getParameter("id"));
@@ -234,47 +233,36 @@ public class MypageController {
 		
 		//예약내역 리스트
 		@RequestMapping(value="/mypage/memberOrderList.cul")
-		public String reserveList(Model model, HttpServletRequest request) {
+		public ModelAndView memberOrderList(Model model, HttpServletRequest request) {
 			HttpSession session = request.getSession();
 			
-			/*String id=(String)session.getAttribute("id");*/
-		     String id="pray";
+			String id=(String)session.getAttribute("id");
+		
 			
 			Map<String, Object> parameter = new HashMap<String, Object>();
-			
 		    parameter.put("RESERVE_ID", id);
 			
-			
-			List<Map<String, Object>> reserveList = mypageService.reserveList(parameter);
-			for(int i=0; i<reserveList.size(); i++) {
-				System.out.println(reserveList.get(i));
+			List<Map<String, Object>> memberOrderList = mypageService.memberOrderList(parameter);
+			for(int i=0; i<memberOrderList.size(); i++) {
+				System.out.println(memberOrderList.get(i));
 			}
 		
-			model.addAttribute("reserveList",reserveList);
-/*		model.addAttribute("id",id);*/
+			mav.addObject("memberOrderList",memberOrderList);
 			
-			return "reserveList";
+			mav.setViewName("reserveList");
+			return mav;
 		}
 		
-		
-		
-	
+		//예약 삭제
+		 @RequestMapping(value="/mypage/reserveCancel.cul")
+	        public ModelAndView reserveCancel(HttpServletRequest request, reserveModel reservemodel){
+	        	
+			    int RESERVE_IDX = Integer.parseInt(request.getParameter("RESERVE_IDX"));
+	        	mypageService.reserveCancel(RESERVE_IDX);
+	        	
+	        	
+	        	mav.setViewName("redirect:/mypage/memberOrderList.cul"); 
+	        	return mav;
+	        }
+			
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

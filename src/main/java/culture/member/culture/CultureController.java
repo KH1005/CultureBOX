@@ -24,13 +24,25 @@ public class CultureController {
 	private CultureService cultureService;
 	
 	ModelAndView mv = new ModelAndView();
+	String id;
 	
 	//공연 리스트
 	@RequestMapping(value = "/concert/CultureList.cul")
 	public ModelAndView cultureList(HttpServletRequest request, CultureModel cultureModel) throws Exception {
-		
+	
 		
 		List<CultureModel> culturelist = cultureService.cultureList();
+		
+		for(int i=0;i<culturelist.size();i++){
+	           String sday = culturelist.get(i).getCULTURE_START();
+	           String eday = culturelist.get(i).getCULTURE_END();
+	           
+	           String start[] = sday.split(" ");
+	           String end[] = eday.split(" ");
+	           
+	           culturelist.get(i).setCULTURE_START(start[0]);
+	           culturelist.get(i).setCULTURE_END(end[0]);
+	         }
 		
 		mv.addObject("cultureList",culturelist);
 		
@@ -59,6 +71,7 @@ public class CultureController {
 	public ModelAndView cultureDetail(HttpServletRequest request) throws Exception{
 		
 		HttpSession session = request.getSession();
+		String id = (String)session.getAttribute("id");
 		
 		int culture_idx = Integer.parseInt(request.getParameter("culture_idx"));
 		
@@ -105,16 +118,30 @@ public class CultureController {
 	
 	//댓글달기
 	@RequestMapping("/concert/writeCultureComment.cul")
-	public ModelAndView commentWrite(HttpServletRequest request, CultureCommentModel cultureCommentModel) {
+	public ModelAndView commentWrite(HttpServletRequest request, CultureCommentModel cultureCommentModel, HttpSession session) {
 		
 		ModelAndView mv = new ModelAndView();
+		
+		try{
+			id = session.getAttribute("id").toString();
+		
+			
+			if(id == null){
+				mv.setViewName("/member/loginForm");
+				return mv;
+			}
+		}
+		catch(NullPointerException np) {
+			mv.setViewName("pet_img/commentConfirm");
+			
+			return mv;
+		}
 		
 		int comment_cultureidx = Integer.parseInt(request.getParameter("item_no"));
 		
 		cultureCommentModel.setCOMMENT_CONTENT(request.getParameter("COMMENT_CONTENT").replaceAll("\r\n", "<br />"));
 		cultureCommentModel.setCOMMENT_CULTUREIDX(comment_cultureidx);
-		cultureCommentModel.setCOMMENT_WRITERID("COMMENT_WRITERID");
-		
+		cultureCommentModel.setCOMMENT_WRITERID(id);
 		
 		cultureService.writeCultureComment(cultureCommentModel);
 
