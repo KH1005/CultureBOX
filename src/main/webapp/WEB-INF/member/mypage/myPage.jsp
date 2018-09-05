@@ -1,9 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=utf-8"
-	pageEncoding="utf-8"%>
-
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
@@ -51,16 +47,11 @@
     background-size: cover;
 }
 </style>
-<script type="text/javascript">
-
-   function back() {
-      history.back();
-   }
-   
-</script>
-<head>
 
 </head>
+
+
+
 <!-- start banner Area -->
 			<section class="banner-area relative" id="home">	
 				<div class="overlay overlay-bg"></div>
@@ -68,77 +59,32 @@
 					<div class="row d-flex align-items-center justify-content-center">
 						<div class="about-content col-lg-12">
 							<h1 class="text-white">
-												
+								My Page				
 							</h1>	
-							<p class="text-white link-nav"><a href="index.html"></a> <!--  <span class="lnr lnr-arrow-right"></span -->>  <a href="services.html"></a></p>
+							<p class="text-white link-nav"><a href="index.html">Home </a>  <span class="lnr lnr-arrow-right"></span>  <a href="services.html"></a></p>
 						</div>	
 					</div>
 				</div>
-			</section><br/><br/>
+			</section>
 			<!-- End banner Area -->
+
+			<!-- Start gallery Area -->
+			<section class="gallery-area pb-120">
+				<div class="container">
+					<div class="row d-flex justify-content-center">
+						<div class="col-md-12 pb-40 header-text text-center">
+							<h1 class="pb-10">Our Recent Works may impress you</h1>
+							<p>
+								Who are in extremely love with eco friendly system.
+							</p>
+						</div>
+					</div>				
+
 <body>
-<div class="row d-flex justify-content-center">
-
-
-<c:if test="${deleteCheck == 1 }">
-
-<article class="container">
-
-                </div>
-            </div>
-
-
- 
-      <strong>탈퇴가 완료되었습니다.</strong>
-           돌아올꺼지?
-             
-             
-             <br>
-              <div id="buttonmain">
-     
-        
-      </a>
-   </div>
-</div>
-    
-    
-
-   
-
-   
-      <a href="/culture/mypage/loginForm.cul" class="btn btnC_04 btnF_02">
-         <span>메인으로</span>
-      </a>
-
-
-</c:if>
-
-<c:if test="${deleteCheck == -1 }">
-
-
-
-                </div>
-            </div>
-
-
- 
-      <h1><strong>${name}</strong> 님 </h1>
-            <h1><strong>password가</strong> <strong>틀렸습니다</strong>.</h1>
-             <h1>다시 작성해주세요</h1>
-             
-             <!-- ㅁㅁㅁ -->
-             <br>
-              <div id="buttonmain">
-      <a href="/culture/mypage/memberdeleteForm.cul">
-        <span>돌아가기</span>
-      </a>
-   </div>
-
-    
-     <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
-    
-</c:if>
-
+<a href="memberOrderList.cul">예약 내역</a><br/><br/>
+		<a href="memberModifyForm.cul">PROFILE 회원정보</a><br/><br/>
+		
+		<a href="memberdeleteForm.cul">회원탈퇴</a><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
 
 
 
@@ -168,3 +114,6 @@
 			<script type="text/javascript" src="https://unpkg.com/rmodal/dist/rmodal.js"></script>
 </body>
 </html>
+
+
+

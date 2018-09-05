@@ -1,10 +1,11 @@
-<%@ page language="java" contentType="text/html; charset=utf-8"
-	pageEncoding="utf-8"%>
-
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%
+	String cp = request.getContextPath();
+%>
+
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
 <!-- Mobile Specific Meta -->
@@ -51,16 +52,31 @@
     background-size: cover;
 }
 </style>
+
 <script type="text/javascript">
+	function check() {
+		var f = document.memberModifyForm;
 
-   function back() {
-      history.back();
-   }
-   
+		if (f.MEMBER_PASSWORD.value == "") {
+			alert("비밀번호를 입력하세요");
+			f.passwd.focus();
+			return false;
+
+		} else if (f.MEMBER_PASSWORD.value != f.MEMBER_PASSWORD2.value) {
+			alert("비밀번호가 일치하지 않습니다");
+			f.MEMBER_PASSWORD.value = "";
+			f.MEMBER_PASSWORD2.value = "";
+			f.MEMBER_PASSWORD.focus();
+			return false;
+		} else if (f.MEMBER_EMAIL.value == "") {
+			alert("이메일을 제대로 입력해주세요");
+			f.MEMBER_EMAIL.focus();
+			return false;
+		}
+
+		return true;
+	}
 </script>
-<head>
-
-</head>
 <!-- start banner Area -->
 			<section class="banner-area relative" id="home">	
 				<div class="overlay overlay-bg"></div>
@@ -68,78 +84,89 @@
 					<div class="row d-flex align-items-center justify-content-center">
 						<div class="about-content col-lg-12">
 							<h1 class="text-white">
-												
+								Modify				
 							</h1>	
-							<p class="text-white link-nav"><a href="index.html"></a> <!--  <span class="lnr lnr-arrow-right"></span -->>  <a href="services.html"></a></p>
+							<p class="text-white link-nav"><a href="index.html">Home </a>  <span class="lnr lnr-arrow-right"></span>  <a href="services.html"> Services</a></p>
 						</div>	
 					</div>
 				</div>
-			</section><br/><br/>
+			</section>
 			<!-- End banner Area -->
+
+			<!-- Start gallery Area -->
+			<section class="gallery-area pb-120">
+				<div class="container">
+					<div class="row d-flex justify-content-center">
+						<div class="col-md-12 pb-40 header-text text-center">
+							<h1 class="pb-10">Our Recent Works may impress you</h1>
+							<p>
+								Who are in extremely love with eco friendly system.
+							</p>
+						</div>
+					</div>				
+
 <body>
-<div class="row d-flex justify-content-center">
+
+<form:form action="memberModify.cul" method="post"
+	name="memberModifyForm" onsubmit="return check()">
+	
+										<div class="single-gallery">
+	<table>
+
+		<colgroup>
+			<col style="width: 120px" />
+			<col />
+		</colgroup>
+		<tbody>
+			<tr>
+				<th scope="row">아이디</th>
+				<td>${id} <input type="hidden" name="MEMBER_ID" id="MEMBER_ID" />
+				</td>
+			</tr>
+			<tr>
+				<th scope="row">비밀번호</th>
+				<td><input type="password" class="txt w200"
+					id="MEMBER_PASSWORD" name="MEMBER_PASSWORD" /> <span
+					class="bk pt_red"></span></td>
+			</tr>
+			<tr>
+				<th scope="row">비밀번호 확인</th>
+				<td><input type="password" class="txt w200"
+					id="MEMBER_PASSWORD2" name="MEMBER_PASSWORD2" /></td>
+			</tr>
+			<tr>
+				<th scope="row">이름</th>
+				<td>${name} <input type="hidden" class="txt w200"
+					name="MEMBER_NAME" id="MEMBER_NAME" />
+				</td>
+			</tr>
 
 
-<c:if test="${deleteCheck == 1 }">
+			<tr>
+				<th scope="row">이메일</th>
+				<td><input type="text" class="txt w200" name="MEMBER_EMAIL"
+					 value=""  placeholder= "${email}" id="MEMBER_EMAIL" /></td>
+			</tr> 
+		</tbody>
+	</table>
 
-<article class="container">
-
-                </div>
-            </div>
 
 
- 
-      <strong>탈퇴가 완료되었습니다.</strong>
-           돌아올꺼지?
-             
-             
-             <br>
-              <div id="buttonmain">
-     
-        
-      </a>
-   </div>
+	<div class="zopim" __jx__id="___$_4 ___$_4"
+		data-test-id="ChatWidgetWindow"
+		style="margin-top: 0px; margin-right: 0px; margin-bottom: 0px; padding: 0px; border: 0px; background: transparent; overflow: hidden; position: fixed; z-index: 16000001; right: 10px; bottom: 0px; border-top-left-radius: 5px; border-top-right-radius: 5px; display: none; width: 350px; height: 450px; box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 3px 2px;">
+		<iframe frameborder="0"
+			style="background-color: transparent; vertical-align: text-bottom; position: relative; width: 100%; height: 100%; min-width: 100%; min-height: 100%; max-width: 100%; max-height: 100%; margin: 0px; overflow: hidden; display: block;"
+			src="about:blank" data-test-id="ChatWidgetWindow-iframe"></iframe>
+<!-- 	</div> -->
+
+<!-- 	<div class="btn_type_04"> -->
+		<a href="mypage.cul"> <span>취소</span>
+		</a> <input type="submit" value="확인" />
 </div>
-    
-    
+</div>
 
-   
-
-   
-      <a href="/culture/mypage/loginForm.cul" class="btn btnC_04 btnF_02">
-         <span>메인으로</span>
-      </a>
-
-
-</c:if>
-
-<c:if test="${deleteCheck == -1 }">
-
-
-
-                </div>
-            </div>
-
-
- 
-      <h1><strong>${name}</strong> 님 </h1>
-            <h1><strong>password가</strong> <strong>틀렸습니다</strong>.</h1>
-             <h1>다시 작성해주세요</h1>
-             
-             <!-- ㅁㅁㅁ -->
-             <br>
-              <div id="buttonmain">
-      <a href="/culture/mypage/memberdeleteForm.cul">
-        <span>돌아가기</span>
-      </a>
-   </div>
-
-    
-     <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
-    
-</c:if>
-
-
+</form:form>
 
 
 <!-- End gallery Area -->

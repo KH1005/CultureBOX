@@ -51,13 +51,6 @@
     background-size: cover;
 }
 </style>
-<script type="text/javascript">
-
-   function back() {
-      history.back();
-   }
-   
-</script>
 <head>
 
 </head>
@@ -76,70 +69,69 @@
 				</div>
 			</section><br/><br/>
 			<!-- End banner Area -->
-<body>
+<body><br/><br/><br/>
 <div class="row d-flex justify-content-center">
+<!-- 
+	<br/><br/><br/><br/><a href="#" class="active" id="login-form-link">비밀번호 입력후 탈퇴를 진행하세요</a>
+<br/><br/><br/>
+ -->
+
+	<script type="text/javascript">
+		function memberDeleteChk() {
+			if (document.memberDeleteform.MEMBER_PASSWORD.value == "") {
+				alert("비밀번호를 입력하세요.");
+				document.memberDeleteform.MEMBER_PASSWORD.focus();
+				return false;
+			}
+			return true;
+		}
+	</script>
+
+	
+	<form:form commandName="member"  action="memberDelete.cul" method="post"
+		name="memberDeleteform" 	onsubmit="return memberDeleteChk()">
+
+		<input type="password" name="MEMBER_PASSWORD"  path="MEMBER_PASSWORD"
+			 placeholder="비밀번호를 입력해주세요" value="" />
+
+		<br>
+		<br>
+		<br>
 
 
-<c:if test="${deleteCheck == 1 }">
-
-<article class="container">
-
-                </div>
-            </div>
+		<input type="submit" name="memberDeleteform" value="탈퇴" >
 
 
- 
-      <strong>탈퇴가 완료되었습니다.</strong>
-           돌아올꺼지?
-             
-             
-             <br>
-              <div id="buttonmain">
-     
-        
-      </a>
-   </div>
+		<a href="mypage.cul"> <span>취소</span>
+		</a>
+
+
+	</form:form>
+
+
+	<script>
+		$(function() {
+
+			$('#login-form-link').click(function(e) {
+				$("#login-form").delay(100).fadeIn(100);
+				$("#register-form").fadeOut(100);
+				$('#register-form-link').removeClass('active');
+				$(this).addClass('active');
+				e.preventDefault();
+			});
+			$('#register-form-link').click(function(e) {
+				$("#register-form").delay(100).fadeIn(100);
+				$("#login-form").fadeOut(100);
+				$('#login-form-link').removeClass('active');
+				$(this).addClass('active');
+				e.preventDefault();
+			});
+
+		});
+	</script>
+	<br>
+<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
 </div>
-    
-    
-
-   
-
-   
-      <a href="/culture/mypage/loginForm.cul" class="btn btnC_04 btnF_02">
-         <span>메인으로</span>
-      </a>
-
-
-</c:if>
-
-<c:if test="${deleteCheck == -1 }">
-
-
-
-                </div>
-            </div>
-
-
- 
-      <h1><strong>${name}</strong> 님 </h1>
-            <h1><strong>password가</strong> <strong>틀렸습니다</strong>.</h1>
-             <h1>다시 작성해주세요</h1>
-             
-             <!-- ㅁㅁㅁ -->
-             <br>
-              <div id="buttonmain">
-      <a href="/culture/mypage/memberdeleteForm.cul">
-        <span>돌아가기</span>
-      </a>
-   </div>
-
-    
-     <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
-    
-</c:if>
-
-
 
 
 <!-- End gallery Area -->
