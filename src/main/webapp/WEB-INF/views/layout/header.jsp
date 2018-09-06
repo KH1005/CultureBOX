@@ -54,7 +54,7 @@
                         <ul>
                           <li><a href="/culture/mypage/myMusicTaste.cul">My Music Taste</a></li>
                           <li><a href="/culture/mypage/myEval.cul">My Music</a></li>
-                          <li><a href="blog-single.html">Reservation</a></li>
+                          <li><a href="">Reservation</a></li>
                           <li><a href="/culture/mypage/memberdeleteForm.cul">Withdrawal</a></li>
                         </ul>
                       </li>
