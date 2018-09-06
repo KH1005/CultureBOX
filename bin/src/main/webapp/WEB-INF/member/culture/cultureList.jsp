@@ -62,29 +62,13 @@ nav ul li:first-child {
 </style>
 
       </head>
+      
       <body>   
            
          <!-- start banner Area -->
          
          <!-- End banner Area -->   
-<div align="center">
-      <nav>
-         <ul>
-            <li><a href="/culture/concert/CultureList.cul">전체보기</a>
-            <li><a
-               href="/culture/concert/CultureCategoryList.cul?culture_category=콘서트">콘서트</a></li>
 
-
-            <li><a
-               href="/culture/concert/CultureCategoryList.cul?culture_category=연극">연극</a></li>
-
-
-            <li><a
-               href="/culture/concert/CultureCategoryList.cul?culture_category=뮤지컬">뮤지컬</a></li>
-
-         </ul>
-      </nav>
-   </div>
 
          <!-- Start gallery Area -->
          <section class="gallery-area section-gap">

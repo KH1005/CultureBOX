@@ -1,12 +1,13 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+   pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
-<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>   
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <html lang="ko">
 <head>
-
+<<<<<<< HEAD
 <link rel="stylesheet" href="https://cdn.linearicons.com/free/1.0.0/icon-font.min.css">
 <link rel="stylesheet" type="text/css"
    href="https://technext.github.io/interior/css/main.css">
@@ -14,6 +15,157 @@
    href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
    <!-- jquery -->
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+=======
+<!-- Mobile Specific Meta -->
+<!-- using icon -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+<script src="<c:url value='/interior-master/js/vendor/jquery-2.2.4.min.js' />"></script>
+<script type="text/javascript" src="<c:url value='/jquery-stars-master/dist/stars.min.js'/>"></script>
+
+<link rel="stylesheet" type="text/css" href="<c:url value='/css/ui.css'/>" />
+<link href="https://fonts.googleapis.com/css?family=Poppins:100,200,400,300,500,600,700" rel="stylesheet"> 
+<!--CSS   ============================================= -->
+<link rel="stylesheet" href="<c:url value='/interior-master/css/linearicons.css'/>">
+<link rel="stylesheet" href="<c:url value='/interior-master/css/font-awesome.min.css'/>">
+<link rel="stylesheet" href="<c:url value='/interior-master/css/bootstrap.css'/>">
+<link rel="stylesheet" href="<c:url value='/interior-master/css/magnific-popup.css'/>">
+<link rel="stylesheet" href="<c:url value='/interior-master/css/nice-select.css'/>">                     
+<link rel="stylesheet" href="<c:url value='/interior-master/css/animate.min.css'/>">
+<link rel="stylesheet" href="<c:url value='/interior-master/css/owl.carousel.css'/>">
+<link rel="stylesheet" href="<c:url value='/interior-master/css/main.css'/>">
+         
+
+<link href="<c:url value='/rating.css'/>" rel="stylesheet" type="text/css">
+<link rel="stylesheet" href="https://unpkg.com/animate.css/animate.css" type="text/css" />
+<link rel="stylesheet" href="https://unpkg.com/rmodal/dist/rmodal.css" type="text/css" />
+  
+
+<script type="text/javascript">
+   /* function return_validation(){
+    var Del = confirm("정말 삭제하시겠습니까??")
+    if(Del == true)
+    { 
+    alert("삭제 되었습니다.")
+    return false;
+    } else  
+    return true;
+
+    } */
+   function delchk(searchVal, viewURL, searchNum) {
+      return confirm("삭제하시겠습니까?");
+   }
+
+   function checkboxSelectQue(n, obj) {
+      var i;
+      var chk = document.getElementsByName(obj);
+      var value = "";
+      var tot = chk.length;
+      for (i = 0; i < tot; i++) {
+         if (n == 1)
+            chk[i].checked = true; //전체선택
+         if (n == 2)
+            chk[i].checked = false; //전체취소
+         if (n == 3)
+            chk[i].checked = !chk[i].checked; //반전
+         value = value + chk[i].value+'/';
+      }
+    
+   }
+   
+   
+   function checkboxSelectPull(obj) {
+         var i;
+         var chk = document.getElementsByName(obj);
+         var value = "";
+         var tot = chk.length;
+         var checked = 0;
+         
+         for (i = 0; i < tot; i++) {
+            if (chk[i].checked == true)
+            value = value + chk[i].value+'/';
+         
+         }
+       
+         
+         $.ajax({
+            url:"http://localhost:8080/culture/admin/ReserveModifyAll.cul",
+            data: "value="+encodeURIComponent(value),
+            type:"post",
+            success:function(req){
+               var result = req.code;
+               alert(result);
+               location.reload();
+            },error:function(){
+               alert('fail');
+            }
+         })
+      }
+   
+   
+   function checkboxSelectPush(obj) {
+         var i;
+         var chk = document.getElementsByName(obj);
+         var value = "";
+         var tot = chk.length;
+         var checked = 0;
+         
+         for (i = 0; i < tot; i++) {
+            if (chk[i].checked == true)
+            value = value + chk[i].value+'/';
+         
+         }
+         
+         
+         $.ajax({ 
+            url:"http://localhost:8080/culture/admin/ReserveModifyBackAll.cul",
+            data: "value="+encodeURIComponent(value),
+            type:"post",
+            success:function(req){
+               var result = req.code;
+               alert(result);
+               location.reload();
+            },error:function(){
+               alert('fail');
+               location.reload();
+            }
+         })
+      }
+   
+   function checkboxSelectDel(obj) {
+         var i;
+         var chk = document.getElementsByName(obj);
+         var value = "";
+         var tot = chk.length;
+         var checked = 0;
+         
+         for (i = 0; i < tot; i++) {
+            if (chk[i].checked == true)
+            value = value + chk[i].value+'/';
+         
+         }
+         alert(value);
+         
+         $.ajax({
+            url:"http://localhost:8080/culture/admin/AdminReserveDeleteAll.cul",
+            data: "value="+encodeURIComponent(value),
+            type:"post",
+            success:function(req){
+               var result = req.code;
+               alert(result);
+               location.reload();
+            },error:function(){
+               alert('fail');
+            }
+         })
+      }
+   
+   
+   
+   
+</script>
+
+
+>>>>>>> bb0f3cdf9a06ea99d004057872bb7080bc430150
 <style>
 .banner-area {
    background:
@@ -69,134 +221,6 @@ button, input {
 }
 
 </style>
-
-
-<script type="text/javascript">
-   /* function return_validation(){
-    var Del = confirm("정말 삭제하시겠습니까??")
-    if(Del == true)
-    { 
-    alert("삭제 되었습니다.")
-    return false;
-    } else  
-    return true;
-
-    } */
-   function delchk(searchVal, viewURL, searchNum) {
-      return confirm("삭제하시겠습니까?");
-   }
-
-   function checkboxSelectQue(n, obj) {
-      var i;
-      var chk = document.getElementsByName(obj);
-      var value = "";
-      var tot = chk.length;
-      for (i = 0; i < tot; i++) {
-         if (n == 1)
-            chk[i].checked = true; //전체선택
-         if (n == 2)
-            chk[i].checked = false; //전체취소
-         if (n == 3)
-            chk[i].checked = !chk[i].checked; //반전
-         value = value + chk[i].value+'/';
-      }
-    
-   }
-   
-   
-   function checkboxSelectPull(obj) {
-	      var i;
-	      var chk = document.getElementsByName(obj);
-	      var value = "";
-	      var tot = chk.length;
-	      var checked = 0;
-	      
-	      for (i = 0; i < tot; i++) {
-	    	  if (chk[i].checked == true)
-	         value = value + chk[i].value+'/';
-	      
-	      }
-	    
-	      
-	      $.ajax({
-	    	  url:"http://localhost:8080/culture/admin/ReserveModifyAll.cul",
-	    	  data: "value="+encodeURIComponent(value),
-	    	  type:"post",
-	    	  success:function(req){
-			      var result = req.code;
-			      alert(result);
-	    		  location.reload();
-	    	  },error:function(){
-	    		  alert('fail');
-	    	  }
-	      })
-	   }
-   
-   
-   function checkboxSelectPush(obj) {
-	      var i;
-	      var chk = document.getElementsByName(obj);
-	      var value = "";
-	      var tot = chk.length;
-	      var checked = 0;
-	      
-	      for (i = 0; i < tot; i++) {
-	    	  if (chk[i].checked == true)
-	         value = value + chk[i].value+'/';
-	      
-	      }
-	      
-	      
-	      $.ajax({ 
-	    	  url:"http://localhost:8080/culture/admin/ReserveModifyBackAll.cul",
-	    	  data: "value="+encodeURIComponent(value),
-	    	  type:"post",
-	    	  success:function(req){
-			      var result = req.code;
-			      alert(result);
-	    		  location.reload();
-	    	  },error:function(){
-	    		  alert('fail');
-	    		  location.reload();
-	    	  }
-	      })
-	   }
-   
-   function checkboxSelectDel(obj) {
-	      var i;
-	      var chk = document.getElementsByName(obj);
-	      var value = "";
-	      var tot = chk.length;
-	      var checked = 0;
-	      
-	      for (i = 0; i < tot; i++) {
-	    	  if (chk[i].checked == true)
-	         value = value + chk[i].value+'/';
-	      
-	      }
-	      alert(value);
-	      
-	      $.ajax({
-	    	  url:"http://localhost:8080/culture/admin/AdminReserveDeleteAll.cul",
-	    	  data: "value="+encodeURIComponent(value),
-	    	  type:"post",
-	    	  success:function(req){
-			      var result = req.code;
-			      alert(result);
-	    		  location.reload();
-	    	  },error:function(){
-	    		  alert('fail');
-	    	  }
-	      })
-	   }
-   
-   
-   
-   
-</script>
-
-
-
 
 
 </head>
@@ -342,8 +366,37 @@ button, input {
 
   
 
-
+    
    <div class="paging" align="center">${pagingHtml}
+</body>
+
+ <!-- sweet alert -->
+         <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+          
+          
+         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+         <script src="<c:url value='/interior-master/js/vendor/bootstrap.min.js'/>"></script>         
+         <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBhOdIF3Y9382fqJYt5I_sswSrEw5eihAA"></script>
+           <script src="<c:url value='/interior-master/js/easing.min.js'/>"></script>         
+         <script src="<c:url value='/interior-master/js/hoverIntent.js'/>"></script>
+         <script src="<c:url value='/interior-master/js/superfish.min.js'/>"></script>   
+         <script src="<c:url value='/interior-master/js/jquery.ajaxchimp.min.js'/>"></script>
+         <script src="<c:url value='/interior-master/js/jquery.magnific-popup.min.js'/>"></script>   
+         <script src="<c:url value='/interior-master/js/owl.carousel.min.js'/>"></script>                  
+         <script src="<c:url value='/interior-master/js/jquery.nice-select.min.js'/>"></script>                     
+         <script src="<c:url value='/interior-master/js/mail-script.js'/>"></script>   
+         <script src="<c:url value='/interior-master/js/main.js'/>"></script>   
+         
+         <!-- rating star -->
+          <%-- <script type="text/javascript" src="<c:url value='/js/jquery.js'/>"></script>
+         <script type="text/javascript" src="<c:url value='/js/jquery.raty.min.js'/>"></script> --%>
+         
+         
+         <script type="text/javascript" src="https://unpkg.com/rmodal/dist/rmodal.js"></script>
 
 </body>
+<br>
+<br>
+<br>
+<br>
 </html>

@@ -17,49 +17,39 @@
 	
 	<!-- 모델등록 --> 
 	<typeAliases>
-		<typeAlias alias="AdminMemberModel" type="culture.admin.member.AdminMemberModel"/>
-		<typeAlias alias="AdminCultureModel" type="culture.admin.culture.AdminCultureModel"/>
-
+		<typeAlias type="culture.admin.member.AdminMemberModel" alias="AdminMemberModel"/>
+		<typeAlias type="culture.admin.culture.AdminCultureModel" alias="AdminCultureModel"/>
+		
 		<!-- admin -->
 		<typeAlias type="culture.member.culture.CultureModel" alias="cultureModel" />
 		<typeAlias type="culture.member.culture.CultureCommentModel" alias="cultureCommentModel" />
 
-        <typeAlias alias="seatModel" type="culture.admin.culture.seatModel"/>
-        
-		<typeAlias alias="reserveModel" type="culture.member.reservation.reserveModel" />
-
 		<typeAlias alias="AdminReserveModel" type="culture.admin.reserve.AdminReserveModel" /> 
 		<typeAlias alias="AdminMusicModel" type="culture.admin.music.AdminMusicModel" /> 
 		<typeAlias alias="MusicCommentModel" type="culture.admin.music.MusicCommentModel" /> 
-		
+
 		
 		<typeAlias type="culture.member.evaluation.EvalModel" alias="evalModel"/>
-		
 		<typeAlias type="culture.member.evaluation.MemberModel" alias="memberModel"/>
-		
 		<typeAlias type="culture.member.evaluation.MusicModel" alias="musicModel"/>
+		<typeAlias type="culture.member.evaluation.MusicCommentModel" alias="CommentModel" />
 		
-		<typeAlias type="culture.member.evaluation.MusicCommentModel" alias="CommentModel"/>
+		<typeAlias type="culture.admin.music.MusicCommentModel" alias="MusicCommentModel" /> 
 		
-
+		<typeAlias type="culture.member.reservation.reserveModel" alias="reserveModel"/>
+		<typeAlias type="culture.admin.culture.seatModel" alias="seatModel"/>
 	</typeAliases>
 	
 	<!-- xml문서 Mapping -->
 	<mappers>
-
-	  <mapper resource="mybatis/config/adminMemberSQL.xml" />
-	  <mapper resource="mybatis/config/adminCultureSQL.xml"/> 
-	 <mapper resource="mybatis/config/cultureSQL.xml" /> 
-	
-		<mapper resource="mybatis/config/memberSQL.xml" /> 
-
-		<mapper resource="mybatis/config/evalSQL.xml"/>
-	
-
-		<mapper resource="mybatis/config/adminmusicSQL.xml"/>
-		<mapper resource="mybatis/config/adminreserveSQL.xml"/>
-		<mapper resource="mybatis/config/adminmusicSQL.xml"/>    
-	    <mapper resource="mybatis/config/mypageSQL.xml"/>
+    <mapper resource="mybatis/config/adminCultureSQL.xml"/> 
+	<mapper resource="mybatis/config/adminMemberSQL.xml" />
+	<mapper resource="mybatis/config/adminmusicSQL.xml"/>
+	<mapper resource="mybatis/config/adminreserveSQL.xml"/>
+	<mapper resource="mybatis/config/cultureSQL.xml" /> 
+	<mapper resource="mybatis/config/evalSQL.xml"/>  
+	<mapper resource="mybatis/config/memberSQL.xml" /> 
+	<mapper resource="mybatis/config/mypageSQL.xml"/>
 
 	</mappers>
 

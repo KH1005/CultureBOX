@@ -1,9 +1,12 @@
 package culture.member.reservation;
 
 import java.util.ArrayList;
+
+import java.util.List;
+
 import java.util.Date;
 import java.util.HashMap;
-import java.util.List;
+
 import java.util.Map;
 
 import javax.annotation.Resource;
@@ -36,6 +39,7 @@ public class reserveController  {
    @Resource
    private CultureService cService;
    
+ 
    @RequestMapping(value="/reserve/reservationForm.cul")
       public ModelAndView reservationForm(HttpServletRequest request, HttpSession session, CultureModel ctModel, seatModel stModel) {
          ModelAndView mv = new ModelAndView();
@@ -171,10 +175,50 @@ public class reserveController  {
 	   mv.addObject("stName", stName);
 	   mv.addObject("id", id);
 	   mv.setViewName("payForm");
+
 	   
 	   return mv;
    }
    
+
+   @RequestMapping(value="/reserve/payForm.cul", method=RequestMethod.GET)
+   public ModelAndView payForm(HttpServletRequest request, HttpSession session, reserveModel rvBean) {
+      ModelAndView mv = new ModelAndView();
+      /*
+      if(session.getAttribute(id) == null) {
+         mv.setViewName("Login.box");
+         
+         return mv;
+      }
+      */
+      rvBean.setRESERVE_ID((String)session.getAttribute("id"));
+      rvBean.setRESERVE_CIDX((int)session.getAttribute("cidx"));
+         
+      return mv;
+   }
+   
+   @RequestMapping(value="/reserve/payForm.cul", method=RequestMethod.POST)
+   public ModelAndView pay(HttpServletRequest request) {
+      ModelAndView mv = new ModelAndView();
+      
+      mv.setViewName("/reserve/payComplete.cul");
+      
+      return mv;
+   }
+   
+   @RequestMapping(value="/reserve/payComplete.cul", method=RequestMethod.GET)
+   public ModelAndView payComplete(HttpServletRequest request, HttpSession session) {
+      ModelAndView mv = new ModelAndView();
+      
+      /*if(session.getAttribute(id) == null) {
+         mv.setViewName("Login.box");
+      }
+      */
+      mv.setViewName("");
+      
+      return mv;
+   }
+
    @RequestMapping(value="/reserve/reserveForm.cul")
    public ModelAndView reserveForm(HttpServletRequest request, HttpSession session, CultureModel ctModel, seatModel stModel) {
 	  ModelAndView mv = new ModelAndView();	
@@ -236,6 +280,8 @@ public class reserveController  {
    
    @RequestMapping(value="/reserve/seatList.cul")
    public ModelAndView seatList(HttpServletRequest request, HttpSession session, CultureModel ctModel, seatModel stModel) {
+	   
+   
 	   ModelAndView mv = new ModelAndView();
 	   
 	   stModel.setSEAT_CIDX(Integer.parseInt(request.getParameter("culture_idx")));
@@ -263,8 +309,6 @@ public class reserveController  {
 	   
 	   return mv;
 	   }
-   }
-  
-   }
-   
+}
+}
    

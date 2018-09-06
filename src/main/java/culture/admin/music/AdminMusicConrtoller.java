@@ -30,6 +30,7 @@ import culture.admin.music.AdminMusicModel;
 import culture.admin.music.AdminMusicService;
 import culture.admin.reserve.AdminReserveModel;
 import culture.member.culture.CultureCommentModel;
+import culture.member.evaluation.MusicModel;
 
 @Controller
 public class AdminMusicConrtoller {
@@ -99,25 +100,31 @@ public class AdminMusicConrtoller {
 		
 		///////////////////////상세보기//////////////////////////////////////////////
 		@RequestMapping("/admin/MusicDetail.cul")
-		public ModelAndView AdminMusicDetail(HttpServletRequest request) throws Exception{
+		public ModelAndView AdminMusicDetail(AdminMusicModel adminMusicModel, HttpServletRequest request) throws Exception{
 			
 			System.out.println("MusicDetail1111111");
-		
+			AdminMusicModel music = new AdminMusicModel();
+
 			
 			ModelAndView mav = new ModelAndView();
+			
+			
+			music = adminMusicService.selectMusic(adminMusicModel);	//뮤직 정보를 가져온다.
+			String[] songList = music.getMUSIC_SONG().split("/");
 
 			
 			int MUSIC_INDEX = Integer.parseInt(request.getParameter("MUSIC_INDEX"));
 			
 
-			AdminMusicModel adminMusicModel= adminMusicService.AdminMusicDetail(MUSIC_INDEX);
+			AdminMusicModel AdminMusicModel = adminMusicService.AdminMusicDetail(MUSIC_INDEX);
 			List<MusicCommentModel> list = adminMusicService.MusicCommentList(adminMusicModel.getMUSIC_INDEX());
 
 			System.out.println("222222222222222222222222222222222");
 
 			mav.addObject("musicCommentList",list);
+			mav.addObject("songList",songList);
 
-			mav.addObject("adminMusicModel", adminMusicModel);
+			mav.addObject("adminMusicModel", AdminMusicModel);
 			mav.setViewName("adminMusicDetail");  
 
 			return mav;

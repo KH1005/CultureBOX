@@ -48,12 +48,6 @@ public class MemberController {
    }
 
 
-   // 메인페이지 리다이렉트
-/*   @RequestMapping(value = "/mainPage.cul", method = RequestMethod.GET)
-   public ModelAndView mainPage() {
-      mav.setViewName("memberMain");
-      return mav;
-   }*/
    //메인페이지 리다이렉트
    @RequestMapping(value="/mainPage.cul", method = RequestMethod.GET)
    public ModelAndView mainPage(HttpServletRequest request) {
@@ -246,5 +240,5 @@ public class MemberController {
          }
       }
    }
-
 }
+

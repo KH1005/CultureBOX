@@ -16,18 +16,6 @@ public class CultureModel {
 	private String CULTURE_AREA;
 	private String CULTURE_PRICE;
 	
-	public String getCULTURE_AREA() {
-		return CULTURE_AREA;
-	}
-	public void setCULTURE_AREA(String cULTURE_AREA) {
-		CULTURE_AREA = cULTURE_AREA;
-	}
-	public String getCULTURE_PRICE() {
-		return CULTURE_PRICE;
-	}
-	public void setCULTURE_PRICE(String cULTURE_PRICE) {
-		CULTURE_PRICE = cULTURE_PRICE;
-	}
 	public String getCULTURE_START() {
 		return CULTURE_START;
 	}
@@ -83,6 +71,19 @@ public class CultureModel {
 	public void setCULTURE_CONTENT(String cULTURE_CONTENT) {
 		CULTURE_CONTENT = cULTURE_CONTENT;
 	}
+	public String getCULTURE_AREA() {
+		return CULTURE_AREA;
+	}
+	public void setCULTURE_AREA(String cULTURE_AREA) {
+		CULTURE_AREA = cULTURE_AREA;
+	}
+	public String getCULTURE_PRICE() {
+		return CULTURE_PRICE;
+	}
+	public void setCULTURE_PRICE(String cULTURE_PRICE) {
+		CULTURE_PRICE = cULTURE_PRICE;
+	}
+	
 	
 	
 }

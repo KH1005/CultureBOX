@@ -18,7 +18,7 @@
       <meta name="keywords" content="">
       <!-- meta character set -->
       <meta charset="UTF-8">
-      
+
       <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,400,300,500,600,700" rel="stylesheet"> 
          <!--
          CSS
@@ -27,7 +27,7 @@
 <link rel="stylesheet" href="<c:url value='/interior-master/css/font-awesome.min.css'/>">
 <link rel="stylesheet" href="<c:url value='/interior-master/css/bootstrap.css'/>">
 <link rel="stylesheet" href="<c:url value='/interior-master/css/magnific-popup.css'/>">
-<link rel="stylesheet" href="<c:url value='/interior-master/css/nice-select.css'/>">                     
+<link rel="stylesheet" href="<c:url value='/interior-master/css/nice-select.css'/>">							
 <link rel="stylesheet" href="<c:url value='/interior-master/css/animate.min.css'/>">
 <link rel="stylesheet" href="<c:url value='/interior-master/css/owl.carousel.css'/>">
 <link rel="stylesheet" href="<c:url value='/interior-master/css/main.css'/>">
@@ -36,67 +36,68 @@
 .max-small {
     width: 350px; height: 400px;
 }
+
 </style>
 <!-- 프로그래밍 언어: <input id='my-language' type='text'>
  -->
  </head>
 <body>
-           
-           
-          <section class="banner-area relative" id="home">   
-            <div class="overlay overlay-bg"></div>
-            <div class="container">            
-               <div class="row d-flex align-items-center justify-content-center">
-                  <div class="about-content col-lg-12">
-                     <h1 class="text-white">
-                        Admin Culture List
-                     </h1>    
-                     
-                  </div>   
-               </div>
-            </div>
-         </section> 
-         <br><br>
-         
-            <div class="d7" style="text-align:center;">
-               <form action="">
-                  <select class="searchOption btn btn-default"  name="searchNum" id="searchNum">
-                     <option value="0">공연명</option>
-                     
-                  </select>
-                    <input type="text" name="isSearch" id="isSearch"  placeholder="검색어 입력">
-                    <button type="submit" class="genric-btn primary small">검색</button>
-               </form>
-            </div>
-         
-         
-         
-           <!--      <div style="margin-left: 725px; text-align:center;">
-                       <div style="text-align:center;">
-                        
-                        <form action="">
-                           <select name="searchNum" id="searchNum">
-                              <option value="0">공연명</option>
-                           </select>
-            
-                              <input type="text" name="isSearch" id="isSearch" />
-                              <span>
-                              <button type="submit" class="genric-btn primary radius">검색</button>
-                              </span>
-                         </form> 
+			  
+			  
+			 <section class="banner-area relative" id="home">	
+				<div class="overlay overlay-bg"></div>
+				<div class="container">				
+					<div class="row d-flex align-items-center justify-content-center">
+						<div class="about-content col-lg-12">
+							<h1 class="text-white">
+								Admin Culture List
+							</h1>	 
+							
+						</div>	
+					</div>
+				</div>
+			</section> 
+			<br><br>
+			
+				 <div style="text-align:center;">
+					<form action="">
+						<select  class="searchOption btn btn-default"   name="searchNum" id="searchNum">
+							<option value="0">공연명</option>
+							
+						</select>
+					  	<input type="text" name="isSearch" id="isSearch"  placeholder="검색어 입력">
+					  	<button type="submit" class="genric-btn primary small">검색</button>
+					</form>
+				</div> 
+				
+			
+			
+			  <!--  	 <div style="margin-left: 725px; text-align:center;">
+							  <div style="text-align:center;">
+								
+								<form action="">
+									<select name="searchNum" id="searchNum">
+										<option value="0">공연명</option>
+									</select>
+				
+										<input type="text" name="isSearch" id="isSearch" />
+										<span>
+										<button type="submit" class="genric-btn primary radius">검색</button>
+										</span>
+								 </form> 
 
-                                          
-                     </div>   
-                     
-            </div>  -->
-                  
-               
-               <div class="row" style="margin-left: 1300px;">
-                <c:url var="viewURL" value="CultureJoinForm.cul">
-                  </c:url> <a href="${viewURL}" class="genric-btn primary radius">등록</a>
-               </div>
+														
+							</div>   
+							
+				</div>  -->
+						
+					
+					<div class="row" style="margin-left: 1300px;">
+					 <c:url var="viewURL" value="CultureJoinForm.cul">
+						</c:url> <a href="${viewURL}" class="genric-btn primary radius">등록</a>
+					</div>
     
-           
+			  
           <section class="gallery-area pb-120">
             <div class="container">
                <div class="row d-flex justify-content-center">
@@ -118,14 +119,20 @@
                                     <img class='max-small' src="http://localhost:8080/culture/cultureimg/${row.CULTURE_SAVNAME}"  alt="">
                                  <div class="content-details fadeIn-bottom">
                                    <h4 class="content-title mx-auto">${row.CULTURE_NAME}<br><br>
-                                    ${admincultureModel.CULTURE_START}<br>
-                                    ~&nbsp; ${admincultureModel.CULTURE_END}
+                                    ${row.CULTURE_START}<br>
+                                    ~&nbsp; ${row.CULTURE_END}
+<<<<<<< HEAD
                                     <br><br>${row.CULTURE_LOCATION}
                                    </h4>
 
-                         
- 
+=======
+                                    <br>
+                                    <br>${row.CULTURE_LOCATION}
+                                   </h4>
+
+                        
                                  
+>>>>>>> bb0f3cdf9a06ea99d004057872bb7080bc430150
                                    <a href='http://localhost:8080/culture/admin/CultureDetail.cul?culture_idx=${row.CULTURE_IDX}' class="primary-btn text-uppercase mt-20">More Details</a>
                                  </div>
                                </a>
@@ -145,6 +152,7 @@
     
 <script src="<c:url value='/interior-master/js/vendor/jquery-2.2.4.min.js'/>"></script>         
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+
 <script src="<c:url value='/interior-master/js/vendor/bootstrap.min.js'/>"></script>          
 <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBhOdIF3Y9382fqJYt5I_sswSrEw5eihAA"></script>
 <script src="<c:url value='/interior-master/js/easing.min.js'/>"></script>         
@@ -156,6 +164,7 @@
 <script src="<c:url value='/interior-master/js/jquery.nice-select.min.js'/>"></script>                   
 <script src="<c:url value='/interior-master/js/mail-script.js'/>"></script>    
 <script src="<c:url value='/interior-master/js/main.js'/>"></script>      
+
  
 </body>
 </html>

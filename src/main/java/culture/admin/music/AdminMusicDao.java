@@ -21,6 +21,7 @@ public interface AdminMusicDao {
 	//글쓰기
 	public Object AdminMusicinsert(AdminMusicModel adminMusicModel);
 	
+	public AdminMusicModel selectMusic(AdminMusicModel adminMusicModel);
 	//댓글 리스트
 	public List<MusicCommentModel> MusicCommentList(int MCOMMENT_MUSICIDX_IDX); 
 

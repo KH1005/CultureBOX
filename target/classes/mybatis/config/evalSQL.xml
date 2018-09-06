@@ -79,7 +79,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	</select>
 	
-	
 	<select id="likeArtist" parameterType="string" resultType="java.util.HashMap">
 		select count(music_artist), music_artist from(
  		select music_artist
@@ -144,12 +143,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	</insert>
 	
-	<select id="getMusicComment" parameterType="int" resultType="java.util.HashMap">
-		select MEMBER_ID,MUSIC_INDEX,STAR_COUNT,mcomment_idx, mcomment_writer,
-		 mcomment_content, mcomment_musicidx,mcomment_writedate, mcomment_writerid
-		from (select * from music_comment where mcomment_musicidx = #{MCOMMENT_MUSICIDX}) mc, (select * from evaluation where music_index = #{MCOMMENT_MUSICIDX}) e 
-		where  e.member_id(+) = mc.mcomment_writerid and mc.mcomment_musicidx = #{MCOMMENT_MUSICIDX} order by mc.mcomment_idx desc
-		
+	<select id="getMusicComment" parameterType="int" resultMap="musicCommentRes">
+		select * from music_comment where mcomment_musicidx = #{MCOMMENT_MUSICIDX} order by mcomment_idx desc
 	</select>
 	
 	<select id="getMyComment" parameterType="hashmap" resultMap="musicCommentRes">
@@ -170,10 +165,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		delete from music_comment where mcomment_idx = #{MCOMMENT_IDX}
 	
 	</delete>
-	<select id="getMyCommentByidx" parameterType="hashmap" resultMap="musicCommentRes">
-		select * from music_comment where mcomment_idx = ${MCOMMENT_IDX}
-	
-	</select>
 	
 	<select id="getMusicAlbumList" resultMap="musicRes">
 		select music_album from music
@@ -192,6 +183,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="getMeanValue" parameterType="hashmap" resultType="java.util.HashMap">
 		SELECT AVG(STAR_COUNT) AVERAGE FROM EVALUATION WHERE MUSIC_INDEX = #{MUSIC_INDEX}
 	</select>
+
 	
 	
 	

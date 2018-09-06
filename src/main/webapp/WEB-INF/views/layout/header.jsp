@@ -41,7 +41,18 @@
                   <!-- 네비게이션 바 -->
                   <nav id="nav-menu-container">
                     <ul class="nav-menu sf-js-enabled sf-arrows" style="touch-action: pan-y;">
-                      <li class="menu-active"><a href="/culture/concert/CultureList.cul">Concert</a></li>
+
+                      <li class="menu-has-children"><a href="/culture/concert/CultureList.cul">Performance</a>
+                        <ul>
+                          <li><a href="/culture/concert/CultureCategoryList.cul?culture_category=콘서트">concert</a></li>
+                          <li><a href="/culture/concert/CultureCategoryList.cul?culture_category=연극">play</a></li>
+                          <li><a href="/culture/concert/CultureCategoryList.cul?culture_category=뮤지컬">musical</a></li>
+                        </ul>
+                      
+                      </li>
+
+                      
+
                        <li><a href="${eval }">Evaluation</a></li>
                       <li class="menu-has-children"><a href="${genre }">Music</a>
                         <ul>
@@ -50,25 +61,30 @@
                           <li><a href="${country }">Country</a></li>
                         </ul>
                       </li>
-                      <li class="menu-has-children"><a href="/culture/mypage/mypage.cul">My</a>
+                     <li class="menu-has-children"><a href="/culture/mypage/memberModifyForm.cul">My</a>
                         <ul>
                           <li><a href="/culture/mypage/myMusicTaste.cul">My Music Taste</a></li>
                           <li><a href="/culture/mypage/myEval.cul">My Music</a></li>
-                          <li><a href="">Reservation</a></li>
+                          <li><a href="/culture/mypage/memberOrderList.cul">Reservation</a></li>
                           <li><a href="/culture/mypage/memberdeleteForm.cul">Withdrawal</a></li>
                         </ul>
                       </li>
                     <a href="/culture/member/logout.cul"> <span>Logout</span></a>
- 					</ul>
+                </ul>
                   </nav>                
                 </div>
              </div>
- 				</c:if>
+             </c:if>
+             
+             
+             
+          
  				
  				
  				
  				
  				<c:if test="${id == 'admin1'}">
+
               <div class="container main-menu">
                 <div class="row align-items-center justify-content-between d-flex">
                   <div id="logo" align="left">
@@ -90,10 +106,13 @@
                       <li class="menu-has-children"><a href="${reserve }">Reservation</a>
                       </li>
                     <a href="/culture/member/logout.cul"> <span>Logout</span></a>
- 					</ul>
+
+                </ul>
                   </nav>                
                 </div>
              </div>
- 				</c:if>
-				
+             </c:if>
+            
            </header>
+
+ 					

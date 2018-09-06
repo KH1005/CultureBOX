@@ -15,57 +15,57 @@ public class AdminReserveService implements AdminReserveDao {
 
 	@Override
 	public List<AdminReserveModel> AdminReserveList() {
-		return sqlSessionTemplate.selectList("reserve.reserveList"); // 네임 스페이스.해당쿼리문!
+		return sqlSessionTemplate.selectList("adminreserve.reserveList"); // 네임 스페이스.해당쿼리문!
 	}
 
 	@Override
 	public AdminReserveModel AdminReserveDetail(int RESERVE_IDX) {
-		return sqlSessionTemplate.selectOne("reserve.reserveDetail",RESERVE_IDX);
+		return sqlSessionTemplate.selectOne("adminreserve.reserveDetail",RESERVE_IDX);
 	}
 
 	@Override
 	public int AdminReserveDelete(int RESERVE_IDX) {
-		return sqlSessionTemplate.update("reserve.reserveDelete",RESERVE_IDX);
+		return sqlSessionTemplate.update("adminreserve.reserveDelete",RESERVE_IDX);
 	}
      //검색
 	@Override
 	   public List<AdminReserveModel> reserveSearch0(String search) {
-	      return  sqlSessionTemplate.selectList("reserve.ReserveSearch0", "%"+search+"%");
+	      return  sqlSessionTemplate.selectList("adminreserve.ReserveSearch0", "%"+search+"%");
 	   }
 
 	@Override
 	public List<AdminReserveModel> reserveSearch1(String search) {
-	      return  sqlSessionTemplate.selectList("reserve.ReserveSearch1", "%"+search+"%");
+	      return  sqlSessionTemplate.selectList("adminreserve.ReserveSearch1", "%"+search+"%");
 	}
 	
 	@Override
 	public List<AdminReserveModel> reserveSearch2(String search) {
-	      return  sqlSessionTemplate.selectList("reserve.ReserveSearch2", "%"+search+"%");
+	      return  sqlSessionTemplate.selectList("adminreserve.ReserveSearch2", "%"+search+"%");
 	}
 	//결제확인
 	@Override
 	public int AdminReserveModify(AdminReserveModel reserve) {
-	   return sqlSessionTemplate.update("reserve.reserveModify0",reserve); 
+	   return sqlSessionTemplate.update("adminreserve.reserveModify0",reserve); 
 	}
 
 	@Override
 	public int AdminReserveModifyBack(AdminReserveModel reserve) {
-		   return sqlSessionTemplate.update("reserve.reserveModify1",reserve); 
+		   return sqlSessionTemplate.update("adminreserve.reserveModify1",reserve); 
 	}
 
 	@Override
 	public int AdminReserveModifyAll(String idxArr) {
-		   return sqlSessionTemplate.update("reserve.reserveModify0", idxArr); 
+		   return sqlSessionTemplate.update("adminreserve.reserveModify0", idxArr); 
 	}
 
 	@Override
 	public int AdminReserveModifyBackAll(String idxArr) {
-	 return sqlSessionTemplate.update("reserve.reserveModify1", idxArr); 
+	 return sqlSessionTemplate.update("adminreserve.reserveModify1", idxArr); 
 	}
 
 	@Override
 	public int AdminReserveDeleteAll(String idxArr) {
-		return sqlSessionTemplate.update("reserve.reserveDelete",idxArr);
+		return sqlSessionTemplate.update("adminreserve.reserveDelete",idxArr);
 	} 
 
 	

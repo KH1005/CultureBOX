@@ -10,9 +10,12 @@
        <result property = "CULTURE_START" column ="CULTURE_START" />
        <result property = "CULTURE_END" column = "CULTURE_END" />
        <result property = "CULTURE_ORGNAME" column = "CULTURE_ORGNAME" />
+       
        <result property = "CULTURE_SAVNAME" column = "CULTURE_SAVNAME" />
        <result property = "CULTURE_LOCATION" column = "CULTURE_LOCATION" />
        <result property = "CULTURE_CONTENT" column = "CULTURE_CONTENT" />
+       <result property = "CULTURE_AREA" column = "CULTURE_AREA" />
+       <result property = "CULTURE_PRICE" column = "CULTURE_PRICE" />
    </resultMap>
    
    
@@ -30,16 +33,23 @@
            select * from CULTURE order
            by CULTURE_IDX desc
        </select>
-       
+       <!-- 카테고리 별로 리스트 -->
+       <select id="selectCulture_category" resultMap="cultureRes">
+       select * from CULTURE where CULTURE_CATEGORY = #{CULTURE_CATEGORY}
+       </select>
        <!-- 공연 상세보기 -->
        <select id="selectCulture_ONE" resultMap = "cultureRes" parameterType="cultureModel">
            select * from CULTURE where CULTURE_IDX = #{CULTURE_IDX}
        </select> 
        
+       <!-- <select id="selectDate" resultMap="cultureRes">
+       		select CULTURE_START, CULTURE_END from CULTURE 
+       </select> -->
+       
        <!-- 댓글달기 -->
        <insert id="writeCultureComment" parameterType="int">
-		insert into CULTURE_COMMENT (COMMENT_IDX, COMMENT_CONTENT,COMMENT_CULTUREIDX,COMMENT_WRITEDATE)
-                values(COMMENT_SEQ.NEXTVAL,#{COMMENT_CONTENT},#{COMMENT_CULTUREIDX},SYSDATE)
+		insert into CULTURE_COMMENT (COMMENT_IDX, COMMENT_CONTENT,COMMENT_CULTUREIDX,COMMENT_WRITEDATE,COMMENT_WRITERID)
+                values(COMMENT_SEQ.NEXTVAL,#{COMMENT_CONTENT},#{COMMENT_CULTUREIDX},SYSDATE,#{COMMENT_WRITERID})
 	   </insert>
 	   
 	   <!-- 댓글 전체 꺼내오기 -->
@@ -49,22 +59,27 @@
 			    order by COMMENT_IDX desc
 	   </select>
 	   
+
 	   <select id="selectDate" resultMap="cultureRes" parameterType="cultureModel">
 	   select CULTURE_START, CULTURE_END from CULTURE where CULTURE_IDX = #{CULTURE_IDX} 
 	   </select>
+
 	   
 	   <!-- 댓글 삭제 -->
       <delete id="deleteCultureComment" parameterType="cultureCommentModel">
 		delete from CULTURE_COMMENT where COMMENT_IDX=#{COMMENT_IDX} 
 	</delete>
-        
-        <update id="modifyCultureComment" parameterType="cultureCommentModel">
+
+       
+       <!-- 댓글 수정 -->
+       <update id="modifyCultureComment" parameterType="cultureCommentModel">
        update 
-             CULTURE_COMMENT 
+       		CULTURE_COMMENT 
        set 
-             COMMENT_CONTENT = #{COMMENT_CONTENT}
+       		COMMENT_CONTENT = #{COMMENT_CONTENT}
        where 
-             COMMENT_IDX = #{COMMENT_IDX}
+       		COMMENT_IDX = #{COMMENT_IDX}
       </update>
 
+        
 </mapper>

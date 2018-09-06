@@ -17,7 +17,7 @@ public class reserveService implements reserveDAO {
 	@Resource
 	private SqlSessionTemplate sqlSessionTemplate;
 	
-	@Override
+    @Override
 	public void insertReserve(reserveModel rvModel) {
 		sqlSessionTemplate.insert("reserve.insertReserve", rvModel);
 	}
@@ -57,3 +57,4 @@ public class reserveService implements reserveDAO {
 		sqlSessionTemplate.update("admin.seatReserve", stModel);
 	}
 }
+

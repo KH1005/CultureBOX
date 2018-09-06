@@ -8,6 +8,7 @@ import java.io.IOError;
 import java.io.IOException;
 import java.sql.ParameterMetaData;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Hashtable;
 import java.util.List;
@@ -35,9 +36,12 @@ import com.google.zxing.WriterException;
 import com.google.zxing.common.BitMatrix;
 import com.google.zxing.qrcode.QRCodeWriter;
 import com.google.zxing.qrcode.decoder.ErrorCorrectionLevel;
-
 import culture.member.evaluation.EvalService;
+import culture.member.culture.CultureModel;
+import culture.member.culture.CultureService;
 import culture.member.evaluation.MemberModel;
+import culture.member.evaluation.MusicModel;
+import culture.member.reservation.reserveModel;
 
 /**
  * Handles requests for the application home page.
@@ -50,7 +54,7 @@ public class MypageController {
 	ModelAndView mav = new ModelAndView();
 	private static final Logger logger = LoggerFactory.getLogger(MypageController.class);
 	
-	@RequestMapping(value = "/download/pdf.cul", method = RequestMethod.GET)
+	@RequestMapping(value = "/download/pdf.cul" , method = RequestMethod.GET)
 	public ModelAndView downloadPdf(Model model, HttpSession session, HttpServletRequest request) {
 	  Map<String, Object> parameter = new HashMap<String, Object>();
 	  parameter.put("RESERVE_ID", request.getParameter("id"));
@@ -160,11 +164,7 @@ public class MypageController {
 	
 	
 	
-	
-	
-	
-		
-		//mypage main
+	    //mypage main
 		@RequestMapping(value="/mypage/mypage.cul", method=RequestMethod.GET)
 		public ModelAndView mypage(@ModelAttribute("member") MemberModel member, BindingResult result, HttpServletRequest requeset, HttpSession session){
 			MemberModel MemberModel;
@@ -231,6 +231,7 @@ public class MypageController {
 			
 			return "evalMusicList";
 		}
+
 		
 		@Resource(name="evalService")
 		private EvalService evalService;
@@ -331,23 +332,38 @@ public class MypageController {
 			model.addAttribute("myType",myType);
 			return "myPage";
 		}
-	
+		//예약내역 리스트
+		@RequestMapping(value="/mypage/memberOrderList.cul")
+		public ModelAndView memberOrderList(Model model, HttpServletRequest request) {
+			HttpSession session = request.getSession();
+			
+			String id=(String)session.getAttribute("id");
+		
+			
+			Map<String, Object> parameter = new HashMap<String, Object>();
+		    parameter.put("RESERVE_ID", id);
+			
+			List<Map<String, Object>> memberOrderList = mypageService.memberOrderList(parameter);
+			for(int i=0; i<memberOrderList.size(); i++) {
+				System.out.println(memberOrderList.get(i));
+			}
+		
+			mav.addObject("memberOrderList",memberOrderList);
+			
+			mav.setViewName("reserveList");
+			return mav;
+		}
+		
+		//예약 삭제
+		 @RequestMapping(value="/mypage/reserveCancel.cul")
+	        public ModelAndView reserveCancel(HttpServletRequest request, reserveModel reservemodel){
+	        	
+			    int RESERVE_IDX = Integer.parseInt(request.getParameter("RESERVE_IDX"));
+	        	mypageService.reserveCancel(RESERVE_IDX);
+	        	
+	        	
+	        	mav.setViewName("redirect:/mypage/memberOrderList.cul"); 
+	        	return mav;
+	        }
+			
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

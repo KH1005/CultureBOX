@@ -16,3 +16,4 @@ public interface reserveDAO {
 	seatModel seatName(seatModel stModel);
 	void seatReserve(seatModel stModel);
 } 
+

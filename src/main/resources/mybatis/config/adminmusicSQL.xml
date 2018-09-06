@@ -38,6 +38,13 @@
 		SELECT * FROM MUSIC WHERE MUSIC_INDEX = #{MUSIC_INDEX}
 		</select>
 		 
+		 <select id="selectMusic" parameterType="int" resultMap="adminmusicRes">
+		select * from music where music_index = #{MUSIC_INDEX}
+		</select>
+	
+		 
+		 
+		 
 		 <!--  삭제 -->
 		<delete id="musicDelete" parameterType="Integer">
 		DELETE FROM MUSIC WHERE MUSIC_INDEX = #{MUSIC_INDEX}
