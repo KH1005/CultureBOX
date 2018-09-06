@@ -89,7 +89,26 @@
                   <beans:bean id="mypageInterceptor" class="culture.interceptor.MypageInterceptor"></beans:bean>            
         </mvc:interceptor>  
         
+         <mvc:interceptor>
+            <mvc:mapping path="/reserve/**" />
+                  <beans:bean id="reserveInterceptor" class="culture.interceptor.ReserveInterceptor"></beans:bean>            
+        </mvc:interceptor>  
+        
+           <mvc:interceptor>
+            <mvc:mapping path="/concert/**" />
+                  <beans:bean id="concertInterceptor" class="culture.interceptor.ConcertInterceptor"></beans:bean>            
+        </mvc:interceptor> 
+        
+             <mvc:interceptor>
+            <mvc:mapping path="/eval/**" />
+                  <beans:bean id="evalInterceptor" class="culture.interceptor.EvalInterceptor"></beans:bean>            
+        </mvc:interceptor>  
          
+         
+                <mvc:interceptor>
+            <mvc:mapping path="/admin/**" />
+                  <beans:bean id="adminInterceptor" class="culture.interceptor.AdminInterceptor"></beans:bean>            
+        </mvc:interceptor> 
         
         
         

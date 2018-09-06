@@ -42,6 +42,16 @@ public class MypageService implements MypageDao{
 	public Object memberDelete(String MEMBER_ID) {
 		return sqlSessionTemplate.delete("member.deleteMember", MEMBER_ID);
     }
+	
+	@Override 
+	public Object memberDelete2(String MEMBER_ID) {
+		return sqlSessionTemplate.delete("member.deleteMember2", MEMBER_ID);
+	}
+	
+	@Override 
+	public Object memberDelete3(String MEMBER_ID) {
+		return sqlSessionTemplate.delete("member.deleteMember3", MEMBER_ID);
+	}
 
 	@Override
 	public List<Map<String, Object>> getMyEvalList(Map<String, Object> parameter) {

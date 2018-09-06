@@ -50,6 +50,12 @@
     background: url(<c:url value='/interior-master/cultureimg/mainback7.jpg'/>) center;
     background-size: cover;
 }
+
+
+#box3 {
+	text-align: center;
+}
+
 </style>
 <script type="text/javascript">
 
@@ -77,6 +83,8 @@
 			</section><br/><br/>
 			<!-- End banner Area -->
 <body>
+<br/><br/><br/><br/><br/>
+<div id="box3">
 <div class="row d-flex justify-content-center">
 
 
@@ -84,8 +92,7 @@
 
 <article class="container">
 
-                </div>
-            </div>
+           
 
 
  
@@ -99,14 +106,14 @@
         
       </a>
    </div>
-</div>
+
     
     
 
    
 
    
-      <a href="/culture/mypage/loginForm.cul" class="btn btnC_04 btnF_02">
+      <a href="/culture/member/loginForm.cul" class="genric-btn primary e-large">
          <span>메인으로</span>
       </a>
 
@@ -117,8 +124,7 @@
 
 
 
-                </div>
-            </div>
+               
 
 
  
@@ -166,5 +172,8 @@
 			
 			
 			<script type="text/javascript" src="https://unpkg.com/rmodal/dist/rmodal.js"></script>
+			</div>
+			</div>
+			<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
 </body>
 </html>

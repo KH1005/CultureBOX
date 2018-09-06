@@ -15,6 +15,10 @@ public interface MypageDao {
 	
 	public Object memberDelete(String MEMBER_ID);
 	
+	public Object memberDelete2(String MEMBER_ID);
+	
+	public Object memberDelete3(String MEMBER_ID);
+	
 	public MemberModel getMember(String MEMBER_ID);
 	
 	public List<Map<String, Object>> getMyEvalList(Map<String, Object> parameter);
@@ -25,5 +29,5 @@ public interface MypageDao {
 
 	public List<Map<String, Object>> getStar(Map<String, Object> parameter);
 	
-
+    
 }

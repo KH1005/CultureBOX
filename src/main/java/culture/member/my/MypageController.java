@@ -137,7 +137,8 @@ public class MypageController {
    			System.out.print(password);
    		
    			deleteCheck = 1;
-   			
+   			mypageService.memberDelete3(id);
+   			mypageService.memberDelete2(id);
    			mypageService.memberDelete(id);
    			session.removeAttribute("id");
    			session.removeAttribute("name");

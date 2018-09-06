@@ -93,6 +93,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<delete id="deleteMember" parameterType="String">
 		delete from MEMBER where MEMBER_ID = #{MEMBER_ID}
 	</delete>
+	<delete id="deleteMember2" parameterType="String">
+		delete from EVALUATION where MEMBER_ID = #{MEMBER_ID}
+	</delete>
+	<delete id="deleteMember3" parameterType="String">
+		delete from MUSIC_COMMENT where MCOMMENT_WRITERID = #{MEMBER_ID}
+	</delete>
 
 
 

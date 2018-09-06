@@ -33,6 +33,8 @@
 
 <!DOCTYPE html>
 <html>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <title>Login</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -65,11 +67,11 @@
 </style>
 <body>
 	<div id="bg">
-		<img src="C:\Users\user\Desktop\culture\src\main\webapp\img\sky2.gif" alt="">
+		<img src="<c:url value='/interior-master/cultureimg/sky2.gif'/>" alt="">
 	</div>
 	<div data-react-router-class="MyRoutes">
 
-		\	<nav class="gnb gnb--sign_in">
+			<nav class="gnb gnb--sign_in">
 				 <!-- <a class="" href="image/logo.png" data-reactid=".1dyxnvjby0w.0.0.0"></a> -->
 				 
 				<!-- <div class="gnb__right-navs">
@@ -85,7 +87,7 @@
 				<div class="sign-in-page__centerer">
 					<div class="sign-in-page__label">
 					
-				 <img src="C:\Users\user\Desktop\culture\src\main\webapp\img\logo333.png" alt="">
+				 <img src="<c:url value='/interior-master/cultureimg/logo333.png'/>" alt="">
 					
 					<br>
 			
@@ -95,8 +97,11 @@
 						<div class="sign-in-page__input-group">
 							<label class="sign-input">
 							<input type="text" value="" placeholder="ID" name="MEMBER_ID">
-							</label><label class="sign-input"> <input type="password"
-								value="" name="MEMBER_PASSWORD"  placeholder="Password" minlength="6"></label>
+							</label>
+							<label class="sign-input"> 
+							<input type="password"
+								value="" name="MEMBER_PASSWORD"  placeholder="Password" >
+								</label>
 						</div>
 					<!-- <input class="sign-in-page__submit sign-in-page__submit--invalid" 
 							 value="로그인"> -->

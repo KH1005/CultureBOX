@@ -65,7 +65,7 @@
 							<label class="sign-input">
 							<input type="text" value="" placeholder="Id 혹은 비밀번호가 맞지 않습니다" name="MEMBER_ID" >
 							</label><label class="sign-input"> <input type="password"
-								value="" name="MEMBER_PASSWORD"  placeholder="" minlength="6"></label>
+								value="" name="MEMBER_PASSWORD"  placeholder="" ></label>
 						</div>
 					<!-- <input class="sign-in-page__submit sign-in-page__submit--invalid" 
 							 value="로그인"> -->
