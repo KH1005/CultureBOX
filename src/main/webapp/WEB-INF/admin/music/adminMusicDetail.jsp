@@ -1,34 +1,48 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-
+   pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <!DOCTYPE html>
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+<html lang="zxx" class="no-js">
+<script src="<c:url value='/js/common.js'/>"></script>
+<head>
 <!-- Mobile Specific Meta -->
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="viewport"
+   content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <!-- Favicon-->
 <link rel="shortcut icon" href="img/fav.png">
-      <!-- Author Meta -->
+<!-- Author Meta -->
 <meta name="author" content="colorlib">
-      <!-- Meta Description -->
+<!-- Meta Description -->
 <meta name="description" content="">
-      <!-- Meta Keyword -->
+<!-- Meta Keyword -->
 <meta name="keywords" content="">
-      <!-- meta character set -->
+<!-- meta character set -->
 <meta charset="UTF-8">
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
-<html>
-<head>
+<script src="../common/js/html5shiv.js"></script>
+<script
+   src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<meta name="viewport"
+   content="width=device-width, maximum-scale=1, minimum-scale=1, user-scalable=no" />
+<meta name="format-detection" content="telephone=no">
+<script src="js/jquery-1.11.2.min.js"></script>
+<script type="text/javascript" src="js/js-load.js"></script>
 
-<!-- using icon -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
-<script src="<c:url value='/interior-master/js/vendor/jquery-2.2.4.min.js' />"></script>
-<script type="text/javascript" src="<c:url value='/jquery-stars-master/dist/stars.min.js'/>"></script>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport"
+   content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+<meta charset="UTF-8" />
 
-<link rel="stylesheet" type="text/css" href="<c:url value='/css/ui.css'/>" />
-<link href="https://fonts.googleapis.com/css?family=Poppins:100,200,400,300,500,600,700" rel="stylesheet"> 
-<!--CSS   ============================================= -->
+<!-- Site Title -->
+<title>Interior</title>
+
+<link
+   href="https://fonts.googleapis.com/css?family=Poppins:100,200,400,300,500,600,700"
+   rel="stylesheet">
+<!--
+         CSS
+         ============================================= -->
 <link rel="stylesheet" href="<c:url value='/interior-master/css/linearicons.css'/>">
 <link rel="stylesheet" href="<c:url value='/interior-master/css/font-awesome.min.css'/>">
 <link rel="stylesheet" href="<c:url value='/interior-master/css/bootstrap.css'/>">
@@ -37,16 +51,57 @@
 <link rel="stylesheet" href="<c:url value='/interior-master/css/animate.min.css'/>">
 <link rel="stylesheet" href="<c:url value='/interior-master/css/owl.carousel.css'/>">
 <link rel="stylesheet" href="<c:url value='/interior-master/css/main.css'/>">
-         
 
-<link href="<c:url value='/rating.css'/>" rel="stylesheet" type="text/css">
-<link rel="stylesheet" href="https://unpkg.com/animate.css/animate.css" type="text/css" />
-<link rel="stylesheet" href="https://unpkg.com/rmodal/dist/rmodal.css" type="text/css" />
-<style>
-   .verticalLine {
-      border-left: thick solid #777;
-      padding-left: 12px;
-   }
+<style type="text/css">
+
+.js-load {
+   display: none;
+}
+
+.js-load.active {
+   display: block;
+}
+
+.is_comp.js-load:after {
+   display: none;
+}
+
+.btn-wrap, .lists, .main {
+   display: block;
+}
+
+.btn-wrap {
+   text-align: left;
+}
+
+.table_goods_info th {
+   background: #ffffff;
+   color: #5e5e5e;
+   border: 1px solid #e2e2e2;
+   text-align: left;
+   font-size: 10px;
+   letter-spacing: -1px;
+   letter-spacing: -1px;
+   padding: 0 5px;
+}
+
+.table_goods_info td {
+   background: #ffffff;
+   border-collapse: collapse;
+   border: 1px solid #e2e2e2;
+   padding: 4px 10px 7px;
+   font-size: 10px;
+}
+
+.com_Div {
+   border: 1px solid #ccc;
+   padding: 10px;
+   margin-top: 10px;
+}
+
+#box1 {
+   align: right;
+}
 </style>
 <style type="text/css">
       .modal .modal-dialog {  
@@ -54,22 +109,10 @@
       }
       .click-callback i { margin:0 3px; font-size:16px !important; }
       .banner-area {
-    background: url(<c:url value='/musicimg/${music.MUSIC_SAVNAME }'/>) center;
+    background: url(<c:url value='/musicimg/${adminMusicModel.MUSIC_SAVNAME }'/>) center;
     background-size: cover;
 }
 </style>
-<script type="text/javascript">
-function delchk(){
-    return confirm("삭제하시겠습니까?");
-
-}
-</script>
-<script>
-function delchk(){
-    return confirm("삭제하시겠습니까?");
-
-}
-</script>
 <script type="text/javascript">
    $(window).on('load', function() {
       load('#js-load', '4');
@@ -91,7 +134,12 @@ function delchk(){
       $(girls_list + ":lt(" + girls_total_cnt + ")").addClass("active");
    }
 </script>
+<script type="text/javascript">
+function delchk(){   
+    return confirm("삭제하시겠습니까?");
 
+}
+</script>
 </head>  
 <body>
 
@@ -137,12 +185,11 @@ function delchk(){
                            <li>:${adminMusicModel.MUSIC_ARTIST}</li>  
                            <li>:${adminMusicModel.MUSIC_GENRE}</li>
                            <li>:${adminMusicModel.MUSIC_COUNTRY}</li>  
-                           <li>:${adminMusicModel.MUSIC_SONG }</li>
-                              <%-- <c:forEach var="row" items="${songList }" varStatus="stat">
+                              <li><c:forEach var="row" items="${songList }" varStatus="stat">
                                   <div>${stat.count}.${row}</div>
                                  
                                </c:forEach>
-                           </li> --%>
+                           </li> 
                         </ul>                     
                      </div>   
                           
@@ -158,7 +205,7 @@ function delchk(){
                <c:param name="MUSIC_INDEX" value="${adminMusicModel.MUSIC_INDEX}" />
             </c:url>
                         <a href="${viewURL}" onclick="return delchk()"><span class="lnr lnr-trash"></span></a>   
-               </div></div></div></div>
+               </div>  </div>  </div>
          <!-- End banner Area -->     
       
     <br/>
@@ -169,15 +216,14 @@ function delchk(){
                      
                
      
-     
   <p>
             <br> <br>
          <div>
-            <h3>관람후기</h3>
+            <h3>Comment</h3>
          </div>
 
-         
-
+        
+			 <div style="overflow:auto;">
          <c:choose>
             <c:when test="${fn:length(musicCommentList) > 0}">
                <div id="contents"
@@ -194,17 +240,16 @@ function delchk(){
                               <div style="float: left; font-size: 12px;">
                                  <span style="display: inline-block;">${row.MCOMMENT_WRITER }님</span>
                                  <span style="display: inline-block; margin-right: 10px;">|
-                                    <fmt:formatDate value="$${row.MCOMMENT_WRITEDATE}"
-                                       pattern="yy.MM.dd"></fmt:formatDate>
+                                    <fmt:formatDate value="${row.MCOMMENT_WRITEDATE}" pattern="yy.MM.dd"></fmt:formatDate>
                                  </span>
                               </div>
 
 
                               <div id="com_Div" class="com_Div">
-                                 <input type="hidden" value="$${row.MCOMMENT_CONTENT}" id="com_CON" name="com_CON"> 
+                                 <input type="hidden" value="${row.MCOMMENT_CONTENT}" id="com_CON" name="com_CON"> 
                                  <input type="hidden" value="${row.MCOMMENT_IDX}" id="com_NO" name="com_NO">  
                                     <a href='http://localhost:8080/culture/admin/deleteMusicComment.cul?MCOMMENT_IDX=${row.MCOMMENT_IDX}&MCOMMENT_MUSICIDX=${adminMusicModel.MUSIC_INDEX}'
-                                    onclick="return delchk()"><font size=2 color="#c6b069">삭제</font></a>
+                                    onclick="return delchk()"><font size=2 color=#00a8f0>삭제</font></a>
                                  
                                  <p>
                                     <font size=2><strong>${row.MCOMMENT_CONTENT}</strong></font>
@@ -216,32 +261,31 @@ function delchk(){
 
                         </c:forEach>
 
-                     </ul>
+                     </ul>  
 
                      <div id="js-btn-wrap" class="btn-wrap">
-                        <a href="javascript:;" class="button"><font color="#c6b069">더보기</font></a>
+                        <a href="javascript:;" class="button"><font color=#00a8f0>더보기</font></a>
                      </div>
                      <div class="btn_type_04"></div>
                   </div>
                </div>
-
+			</div>
             </c:when>
+            
+            
             <c:otherwise>
                <br>
                <br>
                <tr>
-                  <td colspan="4"><font size=2>등록된 후기가 없습니다</font></td>
+                  <td colspan="4"><font size=2>등록된 댓글이 없습니다.</font></td>
                </tr>
             </c:otherwise>
-
          </c:choose>
-      </div>
+         
+      </div> 
    </section> 
- 
-    
-    </body>  
-    
-          <!-- sweet alert -->
+
+       <!-- sweet alert -->
          <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
           
           
@@ -263,6 +307,9 @@ function delchk(){
          <script type="text/javascript" src="<c:url value='/js/jquery.raty.min.js'/>"></script> --%>
          
          
-         <script type="text/javascript" src="https://unpkg.com/rmodal/dist/rmodal.js"></script>
+         <script type="text/javascript" src="https://unpkg.com/rmodal/dist/rmodal.js"></script>  
+    </body>  
+    
+       
     </html>
      

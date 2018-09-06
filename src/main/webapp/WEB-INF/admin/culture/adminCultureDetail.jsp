@@ -104,11 +104,23 @@
 }
 </style>
 
+
+<style type="text/css">
+.banner-area {
+    background: url(<c:url value='/cultureimg/${admincultureModel.CULTURE_SAVNAME }'/>) center;
+    background-size: cover;
+}
+</style>
+
+
+
+
 <script type="text/javascript">
    $(window).on('load', function() {
       load('#js-load', '4');
       $("#js-btn-wrap .button").on("click", function() {
          load('#js-load', '4', '#js-btn-wrap');
+         
       })
    });
 
@@ -204,11 +216,7 @@
                   value="${admincultureModel.CULTURE_IDX}" />
                 </c:url> <a href="${viewURL}"  class="genric-btn primary radius">수정</a>
                 
-                <c:url var="viewURL1" value="insertSeat.cul">
-                <c:param name="CULTURE_IDX" value="${admincultureModel.CULTURE_IDX}" />
-                  </c:url>
-                  <a href="${viewURL1}" class="genric-btn primary radius">좌석 추가</a>
-                
+               
                </div>
             </div>
             
@@ -344,7 +352,7 @@
          </div>
 
          
-
+			 <div style="overflow:auto;">
          <c:choose>
             <c:when test="${fn:length(cultureCommentList) > 0}">
                <div id="contents"
@@ -377,18 +385,20 @@
                                     <font size=2><strong>${row.COMMENT_CONTENT}</strong></font>
                                  </p>
                               </div>
-
+ 
+<!--                      <div style="overflow:scroll; width:300px; height:150px; padding:10px; background-color:gold;">
+ -->                     
 
                            </li>
 
                         </c:forEach>
-
-                     </ul>
-
-                     <div id="js-btn-wrap" class="btn-wrap">
+					<div id="js-btn-wrap" class="btn-wrap">
                         <a href="javascript:;" class="button"><font color="#c6b069">더보기</font></a>
                      </div>
-                     <div class="btn_type_04"></div>
+                     
+                     </ul>
+						
+					
                   </div>
                </div>
 
@@ -402,10 +412,10 @@
             </c:otherwise>
 
          </c:choose>
-      </div>
+      </div> 
    </section>
    
-
+  
 
    <!-- End project-details Area -->
 

@@ -118,13 +118,13 @@
                                     <img class='max-small' src="http://localhost:8080/culture/cultureimg/${row.CULTURE_SAVNAME}"  alt="">
                                  <div class="content-details fadeIn-bottom">
                                    <h4 class="content-title mx-auto">${row.CULTURE_NAME}<br><br>
-                                    ${admincultureModel.CULTURE_START}<br>
-                                    ~&nbsp; ${admincultureModel.CULTURE_END}
-                                    <br><br>${row.CULTURE_LOCATION}
+                                    ${row.CULTURE_START}<br>
+                                    ~&nbsp; ${row.CULTURE_END}
+                                    <br>
+                                    <br>${row.CULTURE_LOCATION}
                                    </h4>
 
-                         
- 
+                        
                                  
                                    <a href='http://localhost:8080/culture/admin/CultureDetail.cul?culture_idx=${row.CULTURE_IDX}' class="primary-btn text-uppercase mt-20">More Details</a>
                                  </div>

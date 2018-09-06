@@ -35,6 +35,11 @@
 .max-small {
     width: 350px; height: 400px;
 }
+
+.banner-area {
+    background: url(<c:url value='/interior-master/cultureimg/mainback7.jpg'/>) center;  
+    background-size: cover;
+}
 </style>
 <!-- 프로그래밍 언어: <input id='my-language' type='text'>
  -->

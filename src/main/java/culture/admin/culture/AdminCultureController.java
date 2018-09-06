@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -46,9 +47,21 @@ public class AdminCultureController {
 
    // 공연리스트(검색추가)
       @RequestMapping(value = "/admin/CultureListForm.cul")
-      public ModelAndView adminCultureList(HttpServletRequest request) throws Exception {
+      public ModelAndView adminCultureList(HttpServletRequest request, AdminCultureModel admincultureModel) throws Exception {
 
          List<AdminCultureModel> adminCultureList = adminCultureService.adminCultureList();
+         //날짜
+         
+         for(int i=0;i<adminCultureList.size();i++){
+           String sday = adminCultureList.get(i).getCULTURE_START();
+           String eday = adminCultureList.get(i).getCULTURE_END();
+           
+           String start[] = sday.split(" ");
+           String end[] = eday.split(" ");
+           
+           adminCultureList.get(i).setCULTURE_START(start[0]);
+           adminCultureList.get(i).setCULTURE_END(end[0]);
+         }
          
          isSearch = request.getParameter("isSearch");
          if(isSearch != null)
@@ -68,7 +81,6 @@ public class AdminCultureController {
 
          return mav;
       }
-
          mav.addObject("adminCultureList", adminCultureList); 
          mav.setViewName("adminCultureList");
          return mav;
@@ -197,6 +209,7 @@ public class AdminCultureController {
       System.out.println("5555555555555555");
 
       int CULTURE_IDX = adminCultureService.CultureJoinSeat();
+      String dayDD;
       
       cultureModel = adminCultureService.getSeat(CULTURE_IDX);
       System.out.println("check: "+cultureModel.getCULTURE_AREA());
@@ -229,13 +242,18 @@ public class AdminCultureController {
       System.out.println("333333333333333333333");
       for(int t = 0; t <= DifDate; t++) {
             int dayD = Integer.parseInt(daydd) + t;
+            if(dayD < 10) {
+            	dayDD = "0"+(String.valueOf(dayD));
+            } else {
+            	dayDD = (String.valueOf(dayD));
+            }
          for(int i = 0; i < areaS.length; i++) {
             stModel.setSEAT_AREA(areaS[i]);
             stModel.setSEAT_PRICE(Integer.parseInt(priceS[i]));
             for(int k = 1; k <= 10; k++) {
                stModel.setSEAT_CIDX(CULTURE_IDX);
                stModel.setSEAT_NUMBER(k);
-               stModel.setSEAT_DATE(dayY.concat("-").concat(dayM).concat("-").concat(String.valueOf(dayD)));
+               stModel.setSEAT_DATE(dayY.concat("-").concat(dayM).concat("-").concat(dayDD));
                stModel.setSEAT_NAME(stModel.getSEAT_AREA().concat("-").concat(String.valueOf(k)));
                
                adminCultureService.insertSeat(stModel);
@@ -245,7 +263,6 @@ public class AdminCultureController {
       }
       System.out.println(CULTURE_IDX);
 
-      
       
       
       //넣고

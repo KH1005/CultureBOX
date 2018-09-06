@@ -121,8 +121,6 @@ $(function() {
                                     <img class='max-small' src="http://localhost:8080/culture/musicimg/${adminMusicListForm.MUSIC_SAVNAME }" alt="">
                                  <div class="content-details fadeIn-bottom">
                                    <h4 class="content-title mx-auto">${adminMusicListForm.MUSIC_ALBUM}</h4>
-                                   
-                                   
                                    <a href="${viewURL}" class="primary-btn text-uppercase mt-20">More Details</a>
                                  </div>
                                </a>
