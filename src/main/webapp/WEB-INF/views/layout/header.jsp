@@ -50,7 +50,7 @@
                           <li><a href="${country }">Country</a></li>
                         </ul>
                       </li>
-                      <li class="menu-has-children"><a href="/culture/mypage/memberModifyForm.cul">My</a>
+                      <li class="menu-has-children"><a href="/culture/mypage/mypage.cul">My</a>
                         <ul>
                           <li><a href="/culture/mypage/myMusicTaste.cul">My Music Taste</a></li>
                           <li><a href="/culture/mypage/myEval.cul">My Music</a></li>
