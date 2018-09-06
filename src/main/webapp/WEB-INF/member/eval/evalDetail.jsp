@@ -126,8 +126,7 @@
 						<div class="about-content col-lg-12">
 							<h1 class="text-white">
 								${music.MUSIC_ALBUM }			
-							</h1>	 
-							<p class="text-white link-nav"><a href="index.html">Home </a>  <span class="lnr lnr-arrow-right"></span>  <a href="projects-details.html"> Project Details</a></p>
+							</h1>	
 						</div>	
 					</div>
 				</div>

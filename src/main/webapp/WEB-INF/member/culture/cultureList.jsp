@@ -36,8 +36,10 @@
     width: 350px; height: 400px;
 }
 
+
 .banner-area {
     background: url(<c:url value='/interior-master/cultureimg/mainback7.jpg'/>) center;  
+
     background-size: cover;
 }
 </style>
@@ -54,8 +56,8 @@
                   <div class="about-content col-lg-12">
                      <h1 class="text-white">
                         Culture List
-                     </h1>    
-                     
+                     </h1>   
+                     <p>culture BOX에서 다양한 공연을 확인해보세요</p> 
                   </div>   
                </div>
             </div>
