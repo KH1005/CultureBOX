@@ -89,6 +89,9 @@
                   <beans:bean id="mypageInterceptor" class="culture.interceptor.MypageInterceptor"></beans:bean>            
         </mvc:interceptor>  
         
+         
+        
+        
         
               
     </mvc:interceptors>

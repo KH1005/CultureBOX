@@ -17,6 +17,7 @@
       <result column="CULTURE_CHECK" property="CULTURE_CHECK" />
    </resultMap>
 
+
    <resultMap type="seatModel" id="SeatRes">
       <result property="SEAT_IDX" column="SEAT_IDX" />
       <result property="SEAT_AREA" column="SEAT_AREA" />

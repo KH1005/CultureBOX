@@ -48,8 +48,11 @@
     background: url(<c:url value='/interior-master/cultureimg/mainback7.jpg'/>) center;
     background-size: cover;
 }
-</style>
 
+.max-small {
+    width: 350px; height: 400px;
+}
+</style>
 </head>
 <body>
 <!-- start banner Area -->
@@ -89,9 +92,9 @@
 											<div class="content">
 											    <a href="#" target="_blank">
 											      <div class="content-overlay"></div>
-											  		 <img class="content-image img-fluid d-block mx-auto" src="<c:url value='/musicimg/${row.MUSIC_SAVNAME }'/>" alt="">
+											  		 <img class='max-small' src="<c:url value='/musicimg/${row.MUSIC_SAVNAME }'/>" alt="">
 											      <div class="content-details fadeIn-bottom">
-											        <h3 class="content-title mx-auto">${row.MUSIC_ALBUM }</h3>
+											        <h4 class="content-title mx-auto">${row.MUSIC_ALBUM }</h4>
 											        <a href="http://localhost:8080/culture/eval/EvalDetail.cul?MUSIC_INDEX=${row.MUSIC_INDEX }&MEMBER_ID=${id}" class="primary-btn text-uppercase mt-20">More Details</a>
 											      </div>
 											    </a>

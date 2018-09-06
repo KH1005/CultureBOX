@@ -121,9 +121,18 @@
                                    <h4 class="content-title mx-auto">${row.CULTURE_NAME}<br><br>
                                     ${row.CULTURE_START}<br>
                                     ~&nbsp; ${row.CULTURE_END}
+<<<<<<< HEAD
                                     <br><br>${row.CULTURE_LOCATION}
                                    </h4>
 
+=======
+                                    <br>
+                                    <br>${row.CULTURE_LOCATION}
+                                   </h4>
+
+                        
+                                 
+>>>>>>> bb0f3cdf9a06ea99d004057872bb7080bc430150
                                    <a href='http://localhost:8080/culture/admin/CultureDetail.cul?culture_idx=${row.CULTURE_IDX}' class="primary-btn text-uppercase mt-20">More Details</a>
                                  </div>
                                </a>

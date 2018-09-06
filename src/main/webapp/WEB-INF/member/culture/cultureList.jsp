@@ -42,8 +42,11 @@
 .max-small {
     width: 350px; height: 400px;
 }
+
+
 .banner-area {
-    background: url(<c:url value='/interior-master/cultureimg/culturemain2.jpg'/>) center;
+    background: url(<c:url value='/interior-master/cultureimg/mainback7.jpg'/>) center;  
+
     background-size: cover;
 }
 </style>

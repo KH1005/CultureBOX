@@ -69,12 +69,17 @@ public class MemberController {
    public ModelAndView memberLogin(HttpServletRequest request, MemberModel member) {
 
       MemberModel result = memberService.logIn(member);
-      String admin = result.getMEMBER_ID();
-      
-      System.out.println(admin);
+  
       
       
-      if (admin.equals("admin1")) {
+      
+     if (result == null) {
+    	 System.out.println(result);
+    	 mav.setViewName("login/loginError");
+    	 return mav;
+      }
+      
+      if (result.getMEMBER_ID().equals("admin1")) {
          HttpSession session = request.getSession();
 
          session.setAttribute("member", result);
@@ -236,6 +241,4 @@ public class MemberController {
       }
    }
 }
-
-
 
