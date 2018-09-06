@@ -47,7 +47,7 @@
 <link rel="stylesheet" href="https://unpkg.com/rmodal/dist/rmodal.css" type="text/css" />
 <style type="text/css">
 .banner-area {
-    background: url(<c:url value='/interior-master/cultureimg/mainback7.jpg'/>) center;
+    background: url(<c:url value='/interior-master/cultureimg/myself.jpg'/>) center;
     background-size: cover;
 }
 </style>
@@ -61,20 +61,20 @@
 					<div class="row d-flex align-items-center justify-content-center">
 						<div class="about-content col-lg-12">
 							<h1 class="text-white">
-												
+								Withrawal				
 							</h1>	
-							<p class="text-white link-nav"><a href="index.html"></a> <!--  <span class="lnr lnr-arrow-right"></span -->>  <a href="services.html"></a></p>
+							<p>회원탈퇴 페이지에요 ㅠㅠ</p>
 						</div>	
 					</div>
 				</div>
-			</section><br/><br/>
+			</section>
 			<!-- End banner Area -->
-<body><br/><br/><br/>
-<div class="row d-flex justify-content-center">
-<!-- 
-	<br/><br/><br/><br/><a href="#" class="active" id="login-form-link">비밀번호 입력후 탈퇴를 진행하세요</a>
-<br/><br/><br/>
- -->
+<body>
+
+
+	<a href="#" class="active" id="login-form-link">비밀번호 입력후 탈퇴를 진행하세요</a>
+
+
 
 	<script type="text/javascript">
 		function memberDeleteChk() {
@@ -87,8 +87,7 @@
 		}
 	</script>
 
-	
-	<form:form commandName="member"  action="memberDelete.cul" method="post"
+	<form:form commandName="member" action="memberDelete.cul" method="post"
 		name="memberDeleteform" 	onsubmit="return memberDeleteChk()">
 
 		<input type="password" name="MEMBER_PASSWORD"  path="MEMBER_PASSWORD"
@@ -99,11 +98,12 @@
 		<br>
 
 
-		<input type="submit" name="memberDeleteform" value="탈퇴" >
+		<input type="submit" name="memberDeleteform" value="탈퇴">
 
 
 		<a href="mypage.cul"> <span>취소</span>
 		</a>
+
 
 
 	</form:form>
@@ -130,33 +130,6 @@
 		});
 	</script>
 	<br>
-<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
-</div>
 
 
-<!-- End gallery Area -->
-               
-			<!-- sweet alert -->
-			<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-		    
-			<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-			<script src="<c:url value='/interior-master/js/vendor/bootstrap.min.js'/>"></script>			
-			<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBhOdIF3Y9382fqJYt5I_sswSrEw5eihAA"></script>
-  			<script src="<c:url value='/interior-master/js/easing.min.js'/>"></script>			
-			<script src="<c:url value='/interior-master/js/hoverIntent.js'/>"></script>
-			<script src="<c:url value='/interior-master/js/superfish.min.js'/>"></script>	
-			<script src="<c:url value='/interior-master/js/jquery.ajaxchimp.min.js'/>"></script>
-			<script src="<c:url value='/interior-master/js/jquery.magnific-popup.min.js'/>"></script>	
-			<script src="<c:url value='/interior-master/js/owl.carousel.min.js'/>"></script>						
-			<script src="<c:url value='/interior-master/js/jquery.nice-select.min.js'/>"></script>							
-			<script src="<c:url value='/interior-master/js/mail-script.js'/>"></script>	
-			<script src="<c:url value='/interior-master/js/main.js'/>"></script>	
-			
-			<!-- rating star -->
-		    <%-- <script type="text/javascript" src="<c:url value='/js/jquery.js'/>"></script>
-			<script type="text/javascript" src="<c:url value='/js/jquery.raty.min.js'/>"></script> --%>
-			
-			
-			<script type="text/javascript" src="https://unpkg.com/rmodal/dist/rmodal.js"></script>
 </body>
-</html>
