@@ -20,6 +20,6 @@ public interface CultureDAO {
 	
 	public void modifyCultureComment(CultureCommentModel cultureCommentModel); //댓글 수정
 
-	public List<CultureModel> selectDate(); //날짜
+    public List<CultureModel> selectDate(); //날짜
 
 }

@@ -23,6 +23,8 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.sun.xml.internal.ws.wsdl.writer.document.StartWithExtensionsType;
+
 import culture.admin.member.AdminMemberModel;
 import culture.admin.music.AdminMusicModel;
 import culture.admin.music.AdminMusicService;
@@ -46,7 +48,7 @@ public class AdminMusicConrtoller {
 		
 		 
 		
-		///////////////////////MUSIC 由ъ뒪�듃//////////////////////////////////////////////
+		///////////////////////MUSIC 리스트//////////////////////////////////////////////
 		@RequestMapping("/admin/MusicListForm.cul")// �씠�슂泥��씠 �뱾�뼱�삤硫� �떎�뻾!
 		public ModelAndView AdminMusicList(HttpServletRequest request) throws Exception{
 			System.out.println("111111111111111111111111111111");
@@ -95,7 +97,7 @@ public class AdminMusicConrtoller {
 		
 		
 		
-		///////////////////////MUSIC �긽�꽭蹂닿린(�뙎湲�異붽�)//////////////////////////////////////////////
+		///////////////////////상세보기//////////////////////////////////////////////
 		@RequestMapping("/admin/MusicDetail.cul")
 		public ModelAndView AdminMusicDetail(HttpServletRequest request) throws Exception{
 			
@@ -122,7 +124,7 @@ public class AdminMusicConrtoller {
 		
 		}
 		
-		//////////////////////////////////////////�닔�젙 �뤌 �쓣�슦湲� /////////////////////////////////
+		//////////////////////////////////////////수정폼띄우기 /////////////////////////////////
 		@RequestMapping("/admin/MusicModifyForm.cul")
 		public ModelAndView adminMusicModifyForm(AdminMusicModel music, HttpServletRequest request) {
 			
@@ -142,7 +144,7 @@ public class AdminMusicConrtoller {
 		}
 		
 		
-		/////////////////////////////�닔�젙/////////////////////////////////////////////
+		/////////////////////////////수정완료/////////////////////////////////////////////
 		@RequestMapping(value = "/admin/MusicModify.cul")
 		   public ModelAndView adminCultureModify(AdminMusicModel music, BindingResult result,
 		         MultipartHttpServletRequest multipartHttpServletRequest) throws Exception {
@@ -160,8 +162,14 @@ public class AdminMusicConrtoller {
 		           String filename = multipartFile.getOriginalFilename();
 		              if (filename != ""){ 
 		            	  System.out.println("MusicModify33");
-		                 music.setMUSIC_SAVNAME(System.currentTimeMillis()+"_"+multipartFile.getOriginalFilename());                   
-		                String savimagename = System.currentTimeMillis()+"_"+multipartFile.getOriginalFilename();                
+		                /* music.setMUSIC_SAVNAME(System.currentTimeMillis()+"_"+multipartFile.getOriginalFilename());                   
+		                String savimagename = System.currentTimeMillis()+"_"+multipartFile.getOriginalFilename();*/
+		            	String originalname = multipartFile.getOriginalFilename();
+		            	System.out.println(originalname);
+		            	String extraction = originalname.substring(originalname.indexOf("."));
+		            	System.out.println(extraction);
+		                music.setMUSIC_SAVNAME(System.currentTimeMillis()+"_"+"music"+extraction);                   
+		                String savimagename = System.currentTimeMillis()+"_"+"music"+extraction; 
 		                 try {
 		                  FileCopyUtils.copy(multipartFile.getInputStream(), new FileOutputStream(uploadPath+"/"+savimagename));
 		               } catch (FileNotFoundException e) {
@@ -185,7 +193,7 @@ public class AdminMusicConrtoller {
 		
 		
 		
-		///////////////////////MUSIC �궘�젣//////////////////////////////////////////////
+		///////////////////////MUSIC 삭제(댓글까지)//////////////////////////////////////////////
 		@RequestMapping("/admin/MusicDelete.cul")
 		public ModelAndView AdminMusicDelete(HttpServletRequest request) throws Exception {
 
@@ -205,7 +213,7 @@ public class AdminMusicConrtoller {
 		}
 		
 
-		/*/////////////////////////////////////湲��벐湲� �뤌 �씠�룞/////////////////////////////////////*/
+		/*/////////////////////////////////////음악 등록 폼/////////////////////////////////////*/
 		@RequestMapping("/admin/MusicJoinForm.cul")
 		public ModelAndView MusicJoinForm(HttpServletRequest request) {
 			ModelAndView mav = new ModelAndView();
@@ -220,7 +228,7 @@ public class AdminMusicConrtoller {
 		
 		
 		
-		/////////////////////////////////湲��벐湲� ///////////////////////////////////////////
+		/////////////////////////////////등록 완료 ///////////////////////////////////////////
 		@RequestMapping("/admin/MusicJoin.cul")
 		public String MusicJoin(AdminMusicModel adminMusicModel,  BindingResult result,
 				MultipartHttpServletRequest multipartHttpServletRequest) throws Exception, Exception{
@@ -245,8 +253,17 @@ public class AdminMusicConrtoller {
 	    	String filename = multipartFile.getOriginalFilename();
 	    	System.out.println("99999999999999999999999");
 	        	if (filename != ""){ 
-				    adminMusicModel.setMUSIC_SAVNAME(System.currentTimeMillis()+"_"+multipartFile.getOriginalFilename());
-				    String savimagename = System.currentTimeMillis()+"_"+multipartFile.getOriginalFilename();
+				   /* adminMusicModel.setMUSIC_SAVNAME(System.currentTimeMillis()+"_"+multipartFile.getOriginalFilename());
+				    String savimagename = System.currentTimeMillis()+"_"+multipartFile.getOriginalFilename();*/
+	        		
+	        		String originalname = multipartFile.getOriginalFilename();
+	            	System.out.println(originalname);
+	            	String extraction = originalname.substring(originalname.indexOf("."));
+	            	System.out.println(extraction);
+	        		
+	        		
+	            	adminMusicModel.setMUSIC_SAVNAME(System.currentTimeMillis()+"_"+"music"+extraction);                   
+		                String savimagename = System.currentTimeMillis()+"_"+"music"+extraction; 
 			        FileCopyUtils.copy(multipartFile.getInputStream(), new FileOutputStream(uploadPath+"/"+savimagename));
 			        adminMusicModel.setMUSIC_SAVNAME(savimagename);
 			        System.out.println("0000000000000000000000");
@@ -264,6 +281,7 @@ public class AdminMusicConrtoller {
 			
 			return "redirect:MusicListForm.cul";
 		}
+		
 		/*@RequestMapping("/admin/MusicJoin.cul")
 		public String write(Model model, AdminMusicModel adminMusicModel ) {
 			
@@ -293,7 +311,7 @@ public class AdminMusicConrtoller {
 			return "redirect:MusicListForm.cul";
 		}*/
 		
-		/////////////////////////�뙎湲� �궘�젣//////////////////////////////////
+		/////////////////////////댓글 삭제//////////////////////////////////
 		@RequestMapping("/admin/deleteMusicComment.cul")
 		public ModelAndView commentDelete(HttpServletRequest request, MusicCommentModel musicCommentModel ){
 		
@@ -301,7 +319,7 @@ public class AdminMusicConrtoller {
 			System.out.println("value: "+musicCommentModel.getMCOMMENT_IDX());
 			adminMusicService.DeleteMusicComment(musicCommentModel);
 		
-			mav.setViewName("redirect:MusicDetail.cul?MUSIC_INDEX="+musicCommentModel.getMCOMMENT_MUSICIDX());
+			mav.setViewName("redirect:/admin/MusicDetail.cul?MUSIC_INDEX="+musicCommentModel.getMCOMMENT_MUSICIDX());
 		
 			return mav;
 		

@@ -6,7 +6,7 @@
 <!-- Mobile Specific Meta -->
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <!-- Favicon-->
-<link rel="shortcut icon" href="img/fav.png">
+<link rel="icon" type="image/png" href="">
 		<!-- Author Meta -->
 <meta name="author" content="colorlib">
 		<!-- Meta Description -->
@@ -25,6 +25,7 @@
 <script src="<c:url value='/interior-master/js/vendor/jquery-2.2.4.min.js' />"></script>
 <script type="text/javascript" src="<c:url value='/jquery-stars-master/dist/stars.min.js'/>"></script>
 
+
 <link rel="stylesheet" type="text/css" href="<c:url value='/css/ui.css'/>" />
 <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,400,300,500,600,700" rel="stylesheet"> 
 <!--CSS	============================================= -->
@@ -37,6 +38,7 @@
 <link rel="stylesheet" href="<c:url value='/interior-master/css/owl.carousel.css'/>">
 <link rel="stylesheet" href="<c:url value='/interior-master/css/main.css'/>">
 			
+
 
 <link href="<c:url value='/rating.css'/>" rel="stylesheet" type="text/css">
 <link rel="stylesheet" href="https://unpkg.com/animate.css/animate.css" type="text/css" />
@@ -59,7 +61,7 @@
 							<h1 class="text-white">
 								Evaluation				
 							</h1>	
-							<p class="text-white link-nav"><a href="index.html">Home </a>  <span class="lnr lnr-arrow-right"></span>  <a href="services.html"> Services</a></p>
+							<p>다양한 음악들을 평가해보세요</p>
 						</div>	
 					</div>
 				</div>
@@ -79,6 +81,7 @@
 					</div>							
 					<div class="row">
 						<c:choose>
+
 							<c:when test="${fn:length(musicList) > 0 }">
 								<c:forEach items="${musicList }" var="row" varStatus="stat">
 									<div class="col-lg-4">
@@ -135,6 +138,7 @@
 			
 			
 			<script type="text/javascript" src="https://unpkg.com/rmodal/dist/rmodal.js"></script>
+
 </body>
 </html>
    

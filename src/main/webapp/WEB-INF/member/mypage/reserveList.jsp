@@ -14,61 +14,6 @@
    href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
    <!-- jquery -->
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
-<style>
-.banner-area {
-   background:
-      url(file:///C:/spring/mavenApp/cultureBOX/src/main/webapp/cssimg/mainback7.jpg)
-      center;
-   background-size: cover;
-}
-
-table {
-   width: 50%;
-   border-top: 1px solid #444444;
-   border-collapse: collapse;
-   width: 1100px;
-   height: 500px;
-}
-
-th {
-   font-size: 20px;
-   font-weight: 500;
-   height: 69px;
-   text-align: center;
-}
-
-td {
-   height: 10px;
-   text-align: center;
-}
-
-.contact_input {
-    display: inline-block;
-    width: calc(13% - 10px);
-    height: 42px;
-    border: none;
-    outline: none;
-    border-bottom: solid 1px #cccccc;
-    background: transparent;  
-    -webkit-transition: all 200ms ease;
-    -moz-transition: all 200ms ease;
-    -ms-transition: all 200ms ease;
-    -o-transition: all 200ms ease;
-    transition: all 200ms ease;
-}
-
-button, input, optgroup, select, textarea {
-    margin: 0;
-    font-family: inherit;
-    font-size: inherit;
-    line-height: inherit;
-}
-
-button, input {
-    overflow: visible;
-}
-
-</style>
 
 <script type="text/javascript">
 function delchk(){
@@ -77,7 +22,33 @@ function delchk(){
     
 }
 </script>
-</head>
+<!-- using icon -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+<script src="<c:url value='/interior-master/js/vendor/jquery-2.2.4.min.js' />"></script>
+<script type="text/javascript" src="<c:url value='/jquery-stars-master/dist/stars.min.js'/>"></script>
+
+<link rel="stylesheet" type="text/css" href="<c:url value='/css/ui.css'/>" />
+<link href="https://fonts.googleapis.com/css?family=Poppins:100,200,400,300,500,600,700" rel="stylesheet"> 
+<!--CSS	============================================= -->
+<link rel="stylesheet" href="<c:url value='/interior-master/css/linearicons.css'/>">
+<link rel="stylesheet" href="<c:url value='/interior-master/css/font-awesome.min.css'/>">
+<link rel="stylesheet" href="<c:url value='/interior-master/css/bootstrap.css'/>">
+<link rel="stylesheet" href="<c:url value='/interior-master/css/magnific-popup.css'/>">
+<link rel="stylesheet" href="<c:url value='/interior-master/css/nice-select.css'/>">							
+<link rel="stylesheet" href="<c:url value='/interior-master/css/animate.min.css'/>">
+<link rel="stylesheet" href="<c:url value='/interior-master/css/owl.carousel.css'/>">
+<link rel="stylesheet" href="<c:url value='/interior-master/css/main.css'/>">
+			
+
+<link href="<c:url value='/rating.css'/>" rel="stylesheet" type="text/css">
+<link rel="stylesheet" href="https://unpkg.com/animate.css/animate.css" type="text/css" />
+<link rel="stylesheet" href="https://unpkg.com/rmodal/dist/rmodal.css" type="text/css" />
+<style type="text/css">
+.banner-area {
+    background: url(<c:url value='/interior-master/cultureimg/myself.jpg'/>) center;
+    background-size: cover;
+}
+</style>
 <body>
    <section class="banner-area relative" id="home">
       <div class="overlay overlay-bg"></div>
@@ -155,6 +126,28 @@ function delchk(){
 
           
    <div class="paging" align="center">${pagingHtml}
+   			<!-- sweet alert -->
+			<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+		    
+			<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+			<script src="<c:url value='/interior-master/js/vendor/bootstrap.min.js'/>"></script>			
+			<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBhOdIF3Y9382fqJYt5I_sswSrEw5eihAA"></script>
+  			<script src="<c:url value='/interior-master/js/easing.min.js'/>"></script>			
+			<script src="<c:url value='/interior-master/js/hoverIntent.js'/>"></script>
+			<script src="<c:url value='/interior-master/js/superfish.min.js'/>"></script>	
+			<script src="<c:url value='/interior-master/js/jquery.ajaxchimp.min.js'/>"></script>
+			<script src="<c:url value='/interior-master/js/jquery.magnific-popup.min.js'/>"></script>	
+			<script src="<c:url value='/interior-master/js/owl.carousel.min.js'/>"></script>						
+			<script src="<c:url value='/interior-master/js/jquery.nice-select.min.js'/>"></script>							
+			<script src="<c:url value='/interior-master/js/mail-script.js'/>"></script>	
+			<script src="<c:url value='/interior-master/js/main.js'/>"></script>	
+			
+			<!-- rating star -->
+		    <%-- <script type="text/javascript" src="<c:url value='/js/jquery.js'/>"></script>
+			<script type="text/javascript" src="<c:url value='/js/jquery.raty.min.js'/>"></script> --%>
+			
+			
+			<script type="text/javascript" src="https://unpkg.com/rmodal/dist/rmodal.js"></script>
 </body>
 <br>
 <br>

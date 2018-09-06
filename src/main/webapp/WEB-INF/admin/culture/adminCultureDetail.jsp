@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+   pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
@@ -8,8 +8,9 @@
 <script src="<c:url value='/js/common.js'/>"></script>
 <head>
 <!-- Mobile Specific Meta -->
-<meta name="viewport"
-	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="viewport" , content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+
 <!-- Favicon-->
 <link rel="shortcut icon" href="img/fav.png">
 <!-- Author Meta -->
@@ -22,32 +23,31 @@
 <meta charset="UTF-8">
 <script src="../common/js/html5shiv.js"></script>
 <script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+   src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <meta name="viewport"
-	content="width=device-width, maximum-scale=1, minimum-scale=1, user-scalable=no" />
+   content="width=device-width, maximum-scale=1, minimum-scale=1, user-scalable=no" />
 <meta name="format-detection" content="telephone=no">
 <script src="js/jquery-1.11.2.min.js"></script>
 <script type="text/javascript" src="js/js-load.js"></script>
 
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport"
-	content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+<meta name="viewport" , content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+ 
 <meta charset="UTF-8" />
 
 <!-- Site Title -->
-<title>Interior</title>
+<title>admin Culture Detail</title>
 
-<link
-	href="https://fonts.googleapis.com/css?family=Poppins:100,200,400,300,500,600,700"
+<link href="https://fonts.googleapis.com/css?family=Poppins:100,200,400,300,500,600,700"
 	rel="stylesheet">
-<!--
-			CSS
-			============================================= -->
+
+
 <link rel="stylesheet" href="<c:url value='/interior-master/css/linearicons.css'/>">
 <link rel="stylesheet" href="<c:url value='/interior-master/css/font-awesome.min.css'/>">
 <link rel="stylesheet" href="<c:url value='/interior-master/css/bootstrap.css'/>">
 <link rel="stylesheet" href="<c:url value='/interior-master/css/magnific-popup.css'/>">
-<link rel="stylesheet" href="<c:url value='/interior-master/css/nice-select.css'/>">							
+<link rel="stylesheet" href="<c:url value='/interior-master/css/nice-select.css'/>">                     
 <link rel="stylesheet" href="<c:url value='/interior-master/css/animate.min.css'/>">
 <link rel="stylesheet" href="<c:url value='/interior-master/css/owl.carousel.css'/>">
 <link rel="stylesheet" href="<c:url value='/interior-master/css/main.css'/>">
@@ -55,19 +55,19 @@
 <style type="text/css">
 
 .js-load {
-	display: none;
+   display: none;
 }
 
 .js-load.active {
-	display: block;
+   display: block;
 }
 
 .is_comp.js-load:after {
-	display: none;
+   display: none;
 }
 
 .btn-wrap, .lists, .main {
-	display: block;
+   display: block;
 }
 
 .btn-wrap {
@@ -101,34 +101,40 @@
 
 #box1 {
 	align: right;
+   text-align: left;
 }
+
+/* #box1 {
+   align: right;
+} */
 </style>
 
 <script type="text/javascript">
-	$(window).on('load', function() {
-		load('#js-load', '4');
-		$("#js-btn-wrap .button").on("click", function() {
-			load('#js-load', '4', '#js-btn-wrap');
-		})
-	});
+   $(window).on('load', function() {
+      load('#js-load', '4');
+      $("#js-btn-wrap .button").on("click", function() {
+         load('#js-load', '4', '#js-btn-wrap');
+      })
+   });
 
-	function load(id, cnt, btn) {
-		var girls_list = id + " .js-load:not(.active)";
-		var girls_length = $(girls_list).length;
-		var girls_total_cnt;
-		if (cnt < girls_length) {
-			girls_total_cnt = cnt;
-		} else {
-			girls_total_cnt = girls_length;
-			$('.button').hide()
-		}
-		$(girls_list + ":lt(" + girls_total_cnt + ")").addClass("active");
-	}
+   function load(id, cnt, btn) {
+      var girls_list = id + " .js-load:not(.active)";
+      var girls_length = $(girls_list).length;
+      var girls_total_cnt;
+      if (cnt < girls_length) {
+         girls_total_cnt = cnt;
+      } else {
+         girls_total_cnt = girls_length;
+         $('.button').hide()
+      }
+      $(girls_list + ":lt(" + girls_total_cnt + ")").addClass("active");
+   }
 </script>
 
 </head>
 
 <body>
+
 	<header id="header" id="home">
 
 		<div class="container main-menu">
@@ -359,7 +365,7 @@
 
 
 										<div style="float: left; font-size: 12px;">
-											<span style="display: inline-block;">${row.COMMENT_WRITER}님</span>
+											<span style="display: inline-block;">${row.COMMENT_WRITERID}님</span>
 											<span style="display: inline-block; margin-right: 10px;">|
 												<fmt:formatDate value="${row.COMMENT_WRITEDATE}"
 													pattern="yy.MM.dd"></fmt:formatDate>
@@ -514,6 +520,8 @@
 <script src="<c:url value='/interior-master/js/mail-script.js'/>"></script>	
 <script src="<c:url value='/interior-master/js/main.js'/>"></script>	
 	
-	
+
+   
+
 </body>
 </html>

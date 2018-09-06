@@ -246,12 +246,8 @@ public class AdminReserveController {
 	   		for(int i=0;i<idxArr.length;i++) {
 	   			
 	   			adminReserveService.AdminReserveModifyAll(idxArr[i]);
-
-	   		
 	   				//reserve_idx값 다 넘어온다 하나씩 쪼개놨으니까 서비스에서 호출만 하면 돼
 	   				//idxArr[i]이용해서 디비에 보내면돼
-	   			
-	   			
 	   		}
 	   		
 	   		map.put("code", "success");
@@ -276,12 +272,7 @@ public class AdminReserveController {
 	   		for(int i=0;i<idxArr.length;i++) {
 	   			
 	   			adminReserveService.AdminReserveModifyBackAll(idxArr[i]);
-
-	   		
-	   				//reserve_idx값 다 넘어온다 하나씩 쪼개놨으니까 서비스에서 호출만 하면 돼
-	   				//idxArr[i]이용해서 디비에 보내면돼
-	   			
-	   			
+	   				
 	   		}
 	   		
 	   		map.put("code", "success");

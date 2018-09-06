@@ -59,7 +59,7 @@
 							<h1 class="text-white">
 								Recommend Music				
 							</h1>	
-							<p class="text-white link-nav"><a href="index.html">Home </a>  <span class="lnr lnr-arrow-right"></span>  <a href="services.html"> Services</a></p>
+							<p>가장 좋아하는 국가를 추천해드렸어요</p>
 						</div>	
 					</div>
 				</div>

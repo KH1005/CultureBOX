@@ -45,7 +45,20 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
          delete from RESERVATION where RESERVE_IDX = #{RESERVE_IDX}
     </delete>    
 
-
+	<select id="getMyEvalCount" parameterType="hashmap" resultType="java.util.HashMap">
+		select count(*) as count from evaluation where MEMBER_ID = #{MEMBER_ID}
+	
+	</select>
+	
+	<select id="getMyEvalMean" parameterType="hashmap" resultType="java.util.HashMap">
+		SELECT AVG(STAR_COUNT) AVERAGE FROM EVALUATION WHERE MEMBER_ID = #{MEMBER_ID}
+	</select>
+	
+	<select id="getStar" parameterType="hashmap" resultType="java.util.HashMap">
+		select star_count,count(*) as count from evaluation where member_id = #{MEMBER_ID}
+		 group by star_count  order by count desc
+	</select>
+	
 
 
 </mapper>

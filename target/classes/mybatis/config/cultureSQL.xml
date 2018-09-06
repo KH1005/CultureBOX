@@ -10,6 +10,7 @@
        <result property = "CULTURE_START" column ="CULTURE_START" />
        <result property = "CULTURE_END" column = "CULTURE_END" />
        <result property = "CULTURE_ORGNAME" column = "CULTURE_ORGNAME" />
+       
        <result property = "CULTURE_SAVNAME" column = "CULTURE_SAVNAME" />
        <result property = "CULTURE_LOCATION" column = "CULTURE_LOCATION" />
        <result property = "CULTURE_CONTENT" column = "CULTURE_CONTENT" />
@@ -68,6 +69,7 @@
       <delete id="deleteCultureComment" parameterType="cultureCommentModel">
 		delete from CULTURE_COMMENT where COMMENT_IDX=#{COMMENT_IDX} 
 	</delete>
+
        
        <!-- 댓글 수정 -->
        <update id="modifyCultureComment" parameterType="cultureCommentModel">
@@ -78,4 +80,6 @@
        where 
        		COMMENT_IDX = #{COMMENT_IDX}
       </update>
+
+        
 </mapper>

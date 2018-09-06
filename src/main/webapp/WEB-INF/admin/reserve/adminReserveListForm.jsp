@@ -105,90 +105,90 @@ button, input {
    
    
    function checkboxSelectPull(obj) {
-         var i;
-         var chk = document.getElementsByName(obj);
-         var value = "";
-         var tot = chk.length;
-         var checked = 0;
-         
-         for (i = 0; i < tot; i++) {
-            if (chk[i].checked == true)
-            value = value + chk[i].value+'/';
-         
-         }
-       
-         
-         $.ajax({
-            url:"http://localhost:8080/culture/admin/ReserveModifyAll.cul",
-            data: "value="+encodeURIComponent(value),
-            type:"post",
-            success:function(req){
-               var result = req.code;
-               alert(result);
-               location.reload();
-            },error:function(){
-               alert('fail');
-            }
-         })
-      }
+	      var i;
+	      var chk = document.getElementsByName(obj);
+	      var value = "";
+	      var tot = chk.length;
+	      var checked = 0;
+	      
+	      for (i = 0; i < tot; i++) {
+	    	  if (chk[i].checked == true)
+	         value = value + chk[i].value+'/';
+	      
+	      }
+	    
+	      
+	      $.ajax({
+	    	  url:"http://localhost:8080/culture/admin/ReserveModifyAll.cul",
+	    	  data: "value="+encodeURIComponent(value),
+	    	  type:"post",
+	    	  success:function(req){
+			      var result = req.code;
+			      alert(result);
+	    		  location.reload();
+	    	  },error:function(){
+	    		  alert('fail');
+	    	  }
+	      })
+	   }
    
    
    function checkboxSelectPush(obj) {
-         var i;
-         var chk = document.getElementsByName(obj);
-         var value = "";
-         var tot = chk.length;
-         var checked = 0;
-         
-         for (i = 0; i < tot; i++) {
-            if (chk[i].checked == true)
-            value = value + chk[i].value+'/';
-         
-         }
-         
-         
-         $.ajax({ 
-            url:"http://localhost:8080/culture/admin/ReserveModifyBackAll.cul",
-            data: "value="+encodeURIComponent(value),
-            type:"post",
-            success:function(req){
-               var result = req.code;
-               alert(result);
-               location.reload();
-            },error:function(){
-               alert('fail');
-               location.reload();
-            }
-         })
-      }
+	      var i;
+	      var chk = document.getElementsByName(obj);
+	      var value = "";
+	      var tot = chk.length;
+	      var checked = 0;
+	      
+	      for (i = 0; i < tot; i++) {
+	    	  if (chk[i].checked == true)
+	         value = value + chk[i].value+'/';
+	      
+	      }
+	      
+	      
+	      $.ajax({ 
+	    	  url:"http://localhost:8080/culture/admin/ReserveModifyBackAll.cul",
+	    	  data: "value="+encodeURIComponent(value),
+	    	  type:"post",
+	    	  success:function(req){
+			      var result = req.code;
+			      alert(result);
+	    		  location.reload();
+	    	  },error:function(){
+	    		  alert('fail');
+	    		  location.reload();
+	    	  }
+	      })
+	   }
    
    function checkboxSelectDel(obj) {
-         var i;
-         var chk = document.getElementsByName(obj);
-         var value = "";
-         var tot = chk.length;
-         var checked = 0;
-         
-         for (i = 0; i < tot; i++) {
-            if (chk[i].checked == true)
-            value = value + chk[i].value+'/';
-         
-         }
-         alert(value);
-         
-         $.ajax({
-            url:"http://localhost:8080/culture/admin/AdminReserveDeleteAll.cul",
-            data: "value="+encodeURIComponent(value),
-            type:"post",
-            success:function(req){
-               var result = req.code;
-               alert(result);
-               location.reload();
-            },error:function(){
-               alert('fail');
-            }
-         })
-      }
+	      var i;
+	      var chk = document.getElementsByName(obj);
+	      var value = "";
+	      var tot = chk.length;
+	      var checked = 0;
+	      
+	      for (i = 0; i < tot; i++) {
+	    	  if (chk[i].checked == true)
+	         value = value + chk[i].value+'/';
+	      
+	      }
+	      alert(value);
+	      
+	      $.ajax({
+	    	  url:"http://localhost:8080/culture/admin/AdminReserveDeleteAll.cul",
+	    	  data: "value="+encodeURIComponent(value),
+	    	  type:"post",
+	    	  success:function(req){
+			      var result = req.code;
+			      alert(result);
+	    		  location.reload();
+	    	  },error:function(){
+	    		  alert('fail');
+	    	  }
+	      })
+	   }
    
    
    
@@ -344,6 +344,7 @@ button, input {
 
 
    <div class="paging" align="center">${pagingHtml}
+
 </body>
 <br>
 <br>

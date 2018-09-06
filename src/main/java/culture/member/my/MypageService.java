@@ -56,7 +56,7 @@ public class MypageService implements MypageDao{
 		return sqlSessionTemplate.selectList("mypage.getMyEvalList", parameter);
 	}
 
-	
+
 
 	@Override
 	public int reserveCancel(int RESERVE_IDX) {
@@ -64,5 +64,21 @@ public class MypageService implements MypageDao{
 		return sqlSessionTemplate.delete("mypage.reserveCancel", RESERVE_IDX);
 	}
 
+	@Override
+	public Map<String, Object> getMyEvalCount(Map<String, Object> parameter) {
+		return sqlSessionTemplate.selectOne("mypage.getMyEvalCount",parameter);
+	}
+
+	@Override
+	public Map<String, Object> getMyEvalMean(Map<String, Object> parameter) {
+		return sqlSessionTemplate.selectOne("mypage.getMyEvalMean",parameter);
+	}
+
+	@Override
+	public List<Map<String, Object>> getStar(Map<String, Object> parameter) {
+		return sqlSessionTemplate.selectList("mypage.getStar",parameter);
+	}
+	
+	
 	
 }

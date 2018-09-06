@@ -48,6 +48,17 @@ public class AdminCultureController {
 
 		List<AdminCultureModel> adminCultureList = adminCultureService.adminCultureList();
 		
+		for(int i=0;i<adminCultureList.size();i++){
+	           String sday = adminCultureList.get(i).getCULTURE_START();
+	           String eday = adminCultureList.get(i).getCULTURE_END();
+	           
+	           String start[] = sday.split(" ");
+	           String end[] = eday.split(" ");
+	           
+	           adminCultureList.get(i).setCULTURE_START(start[0]);
+	           adminCultureList.get(i).setCULTURE_END(end[0]);
+	         }
+		
 		isSearch = request.getParameter("isSearch");
 		if(isSearch != null)
 		{
@@ -82,7 +93,7 @@ public class AdminCultureController {
 				+ "culture_idx"));
 
 		AdminCultureModel admincultureModel = adminCultureService.AdminCultureDetail(culture_idx);
-	/*	System.out.println("culture idx:" +admincultureModel.getCULTURE_IDX());*/
+		System.out.println("culture idx:" +admincultureModel.getCULTURE_IDX());
 		
 		List<CultureCommentModel> list = adminCultureService.cultureCommentList(culture_idx);
 		
@@ -149,17 +160,16 @@ public class AdminCultureController {
 	public String CultureJoin(AdminCultureModel cultureModel, BindingResult result,
 			MultipartHttpServletRequest multipartHttpServletRequest) throws Exception, Exception {
 		ModelAndView mav = new ModelAndView();
-		/*
-		 * 벨리데이트 new ReviewValidator().validate(reviewModel, result);
-		 * if(result.hasErrors()) { mav.setViewName("reviewWrite"); return
-		 * "reviewWrite"; }
-		 */
+		
+		/*new ReviewValidator().validate(reviewModel, result);
+		 if(result.hasErrors()) { mav.setViewName("reviewWrite"); return "reviewWrite"; }
+		 
 
-		/*
+		
 		 * 줄바꿈 String CULTURE_CONTENT =
 		 * cultureModel.getCULTURE_CONTENT().replaceAll("\r\n", "<br />");
-		 * cultureModel.setCULTURE_CONTENT(CULTURE_CONTENT);
-		 */
+		 * cultureModel.setCULTURE_CONTENT(CULTURE_CONTENT);*/
+		 
 
 		// 업로드
 		MultipartFile multipartFile = multipartHttpServletRequest.getFile("file");
@@ -315,5 +325,9 @@ public class AdminCultureController {
 		}
 	}
 
+
+
+
+   
 
 

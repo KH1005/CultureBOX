@@ -15,7 +15,7 @@
         <setting name="defaultStatementTimeout"   value="25000"/>  
 	</settings>
 	
-	<!-- 모델등록 -->
+	<!-- 모델등록 --> 
 	<typeAliases>
 		<typeAlias type="culture.admin.member.AdminMemberModel" alias="AdminMemberModel"/>
 		<typeAlias type="culture.admin.culture.AdminCultureModel" alias="AdminCultureModel"/>
@@ -23,7 +23,7 @@
 		<!-- admin -->
 		<typeAlias type="culture.member.culture.CultureModel" alias="cultureModel" />
 		<typeAlias type="culture.member.culture.CultureCommentModel" alias="cultureCommentModel" />
-		
+
 		<typeAlias alias="AdminReserveModel" type="culture.admin.reserve.AdminReserveModel" /> 
 		<typeAlias alias="AdminMusicModel" type="culture.admin.music.AdminMusicModel" /> 
 		<typeAlias alias="MusicCommentModel" type="culture.admin.music.MusicCommentModel" /> 

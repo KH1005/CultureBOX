@@ -47,7 +47,7 @@
 <link rel="stylesheet" href="https://unpkg.com/rmodal/dist/rmodal.css" type="text/css" />
 <style type="text/css">
 .banner-area {
-    background: url(<c:url value='/interior-master/cultureimg/mainback7.jpg'/>) center;
+    background: url(<c:url value='/interior-master/cultureimg/myself.jpg'/>) center;
     background-size: cover;
 }
 </style>
@@ -61,9 +61,9 @@
 					<div class="row d-flex align-items-center justify-content-center">
 						<div class="about-content col-lg-12">
 							<h1 class="text-white">
-								My Evaluation				
+								Withrawal				
 							</h1>	
-							<p class="text-white link-nav"><a href="index.html">Home </a>  <span class="lnr lnr-arrow-right"></span>  <a href="services.html"> Services</a></p>
+							<p>회원탈퇴 페이지에요 ㅠㅠ</p>
 						</div>	
 					</div>
 				</div>

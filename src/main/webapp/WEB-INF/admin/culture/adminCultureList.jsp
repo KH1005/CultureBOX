@@ -4,9 +4,6 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <html lang="ko">
-
-
-
 <head>
 
       <!-- Mobile Specific Meta -->
@@ -122,11 +119,11 @@
                                     <img class='max-small' src="http://localhost:8080/culture/cultureimg/${row.CULTURE_SAVNAME}"  alt="">
                                  <div class="content-details fadeIn-bottom">
                                    <h4 class="content-title mx-auto">${row.CULTURE_NAME}<br><br>
-                                    ${admincultureModel.CULTURE_START}<br>
-                                    ~&nbsp; ${admincultureModel.CULTURE_END}
+                                    ${row.CULTURE_START}<br>
+                                    ~&nbsp; ${row.CULTURE_END}
                                     <br><br>${row.CULTURE_LOCATION}
                                    </h4>
-                                 
+
                                    <a href='http://localhost:8080/culture/admin/CultureDetail.cul?culture_idx=${row.CULTURE_IDX}' class="primary-btn text-uppercase mt-20">More Details</a>
                                  </div>
                                </a>
@@ -146,17 +143,19 @@
     
 <script src="<c:url value='/interior-master/js/vendor/jquery-2.2.4.min.js'/>"></script>         
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-<script src="<c:url value='/interior-master/js/vendor/bootstrap.min.js'/>"></script>	       
+
+<script src="<c:url value='/interior-master/js/vendor/bootstrap.min.js'/>"></script>          
 <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBhOdIF3Y9382fqJYt5I_sswSrEw5eihAA"></script>
-<script src="<c:url value='/interior-master/js/easing.min.js'/>"></script>	      
+<script src="<c:url value='/interior-master/js/easing.min.js'/>"></script>         
 <script src="<c:url value='/interior-master/js/hoverIntent.js'/>"></script>
-<script src="<c:url value='/interior-master/js/superfish.min.js'/>"></script>	 
+<script src="<c:url value='/interior-master/js/superfish.min.js'/>"></script>    
 <script src="<c:url value='/interior-master/js/jquery.ajaxchimp.min.js'/>"></script>
-<script src="<c:url value='/interior-master/js/jquery.magnific-popup.min.js'/>"></script>	 
-<script src="<c:url value='/interior-master/js/owl.carousel.min.js'/>"></script>	                
+<script src="<c:url value='/interior-master/js/jquery.magnific-popup.min.js'/>"></script>    
+<script src="<c:url value='/interior-master/js/owl.carousel.min.js'/>"></script>                   
 <script src="<c:url value='/interior-master/js/jquery.nice-select.min.js'/>"></script>                   
-<script src="<c:url value='/interior-master/js/mail-script.js'/>"></script>	 
-<script src="<c:url value='/interior-master/js/main.js'/>"></script>	   
+<script src="<c:url value='/interior-master/js/mail-script.js'/>"></script>    
+<script src="<c:url value='/interior-master/js/main.js'/>"></script>      
+
  
 </body>
 </html>

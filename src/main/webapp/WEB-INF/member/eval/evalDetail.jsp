@@ -118,21 +118,22 @@
     
 </head>
 <body>
-            <!-- start banner Area -->
-         <section class="banner-area relative" id="home">   
-            <div class="overlay overlay-bg"></div>
-            <div class="container">            
-               <div class="row d-flex align-items-center justify-content-center">
-                  <div class="about-content col-lg-12">
-                     <h1 class="text-white">
-                        ${music.MUSIC_ALBUM }         
-                     </h1>    
-                     <p class="text-white link-nav"><a href="index.html">Home </a>  <span class="lnr lnr-arrow-right"></span>  <a href="projects-details.html"> Project Details</a></p>
-                  </div>   
-               </div>
-            </div>
-         </section>
-         <!-- End banner Area -->   
+
+				<!-- start banner Area -->
+			<section class="banner-area relative" id="home">	
+				<div class="overlay overlay-bg"></div>
+				<div class="container">				
+					<div class="row d-flex align-items-center justify-content-center">
+						<div class="about-content col-lg-12">
+							<h1 class="text-white">
+								${music.MUSIC_ALBUM }			
+							</h1>	
+						</div>	
+					</div>
+				</div>
+			</section>
+			<!-- End banner Area -->	
+
 
          <!-- Start project-details Area -->
          <section class="project-details-area section-gap">

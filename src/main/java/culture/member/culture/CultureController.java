@@ -59,6 +59,17 @@ public class CultureController {
 			
 			List<CultureModel> cultureCategoryList = cultureService.cultureCategoryList(culture_category);
 			
+			for(int i=0;i<cultureCategoryList.size();i++){
+		           String sday = cultureCategoryList.get(i).getCULTURE_START();
+		           String eday = cultureCategoryList.get(i).getCULTURE_END();
+		           
+		           String start[] = sday.split(" ");
+		           String end[] = eday.split(" ");
+		           
+		           cultureCategoryList.get(i).setCULTURE_START(start[0]);
+		           cultureCategoryList.get(i).setCULTURE_END(end[0]);
+		         }
+			
 			mv.addObject("cate",culture_category);
 			mv.addObject("cultureList", cultureCategoryList);
 			mv.setViewName("cultureList");
@@ -68,50 +79,50 @@ public class CultureController {
 		
 	//공연 상세보기 (댓글 추가)
 	@RequestMapping("/concert/CultureDetail.cul")
-	public ModelAndView cultureDetail(HttpServletRequest request) throws Exception{
-		
-		HttpSession session = request.getSession();
-		String id = (String)session.getAttribute("id");
-		
-		int culture_idx = Integer.parseInt(request.getParameter("culture_idx"));
-		
-		CultureModel cultureModel = cultureService.cultureDetail(culture_idx); 
-		//댓글
-		List<CultureCommentModel> list = cultureService.cultureCommentList(cultureModel.getCULTURE_IDX());
-	
-		session.setAttribute("cidx", culture_idx);
-		
-		//날짜
-		String sday = cultureModel.getCULTURE_START();
-        String eday = cultureModel.getCULTURE_END();
-        
-        String start[] = sday.split(" ");
-        String end[] = eday.split(" ");
-        
-        cultureModel.setCULTURE_START(start[0]);
-        cultureModel.setCULTURE_END(end[0]);
-		
-        //좌석가격 가져오는 부분
-        String area = cultureModel.getCULTURE_AREA(); //구역  "a,b,c,d"
-        String price = cultureModel.getCULTURE_PRICE(); //가격 "1000,2000,3000,4000"
-        
-        String start1[] = area.split(","); // ,로 구분하여 자른다 (a  b   c   d) 각각 저장
-        String start2[] = price.split(",");
-        
-        String start3[] = new String[start1.length];
-        
-        for(int i=0; i<start1.length; i++){
-        	start3[i] = start1[i]+"-"+start2[i];
-        }
-       
-        mv.addObject("start3",start3);
-		mv.addObject("cultureModel",cultureModel);
-		mv.addObject("cultureCommentList",list);
-	
-		mv.setViewName("cultureDetail");
-		
-		return mv;
-	
+
+	   public ModelAndView cultureDetail(HttpServletRequest request) throws Exception{
+	      
+	      HttpSession session = request.getSession();
+	      
+	      int culture_idx = Integer.parseInt(request.getParameter("culture_idx"));
+	      
+	      CultureModel cultureModel = cultureService.cultureDetail(culture_idx); 
+	      //댓글
+	      List<CultureCommentModel> list = cultureService.cultureCommentList(cultureModel.getCULTURE_IDX());
+	   
+	      session.setAttribute("cidx", culture_idx);
+	      
+	      //날짜
+	        String sday = cultureModel.getCULTURE_START();
+	        String eday = cultureModel.getCULTURE_END();
+	        
+	        String start[] = sday.split(" ");
+	        String end[] = eday.split(" ");
+	        
+	        cultureModel.setCULTURE_START(start[0]);
+	        cultureModel.setCULTURE_END(end[0]);
+	      
+	        //좌석가격 가져오는 부분
+	        String area = cultureModel.getCULTURE_AREA(); //구역  "a,b,c,d"
+	        String price = cultureModel.getCULTURE_PRICE(); //가격 "1000,2000,3000,4000"
+	        
+	        String start1[] = area.split(","); // ,로 구분하여 자른다 (a  b   c   d) 각각 저장
+	        String start2[] = price.split(",");
+	        
+	        String start3[] = new String[start1.length];
+	        
+	        for(int i=0; i<start1.length; i++){
+	           start3[i] = start1[i]+"-"+start2[i];
+	        }
+	       
+	        mv.addObject("start3",start3);
+	      mv.addObject("cultureModel",cultureModel);
+	      mv.addObject("cultureCommentList",list);
+	   
+	      mv.setViewName("cultureDetail");
+	      
+	      return mv;
+	   
 	}
 	
 		
@@ -179,6 +190,5 @@ public class CultureController {
 		
 	}
 	
-   
 	
 }

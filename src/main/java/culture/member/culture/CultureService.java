@@ -46,11 +46,13 @@ public class CultureService implements CultureDAO {
 		return sqlSessionTemplate.delete("culture.deleteCultureComment",cultureCommentModel);
 	}
 
+
 	@Override
 	public void modifyCultureComment(CultureCommentModel cultureCommentModel) { //댓글 수정하기
 		// TODO Auto-generated method stub
 		sqlSessionTemplate.update("culture.modifyCultureComment",cultureCommentModel);
 	}
+
 	
 	@Override
 	public List<CultureModel> selectDate(){
