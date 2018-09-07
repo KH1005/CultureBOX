@@ -14,7 +14,7 @@ public interface MypageDao {
 	
 	public void updateQRcode(Map<String, Object> parameter);
 	
-	public Object memberModify(MemberModel memberModel);
+	public Object memberModify(MemberModel member);
 	
 	public Object memberDelete(String MEMBER_ID);
 	

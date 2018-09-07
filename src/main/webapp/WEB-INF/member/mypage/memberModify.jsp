@@ -120,7 +120,7 @@
 		<tbody>
 			<tr>
 				<th scope="row">아이디</th>
-				<td>${id} <input type="hidden" name="MEMBER_ID" id="MEMBER_ID" />
+				<td>${id }<input type="hidden" value="${id}" name="MEMBER_ID" id="MEMBER_ID" />
 				</td>
 			</tr>
 			<tr>
@@ -145,25 +145,26 @@
 			<tr>
 				<th scope="row">이메일</th>
 				<td><input type="text" class="txt w200" name="MEMBER_EMAIL"
-					 value=""  placeholder= "${email}" id="MEMBER_EMAIL" /></td>
+					    placeholder= "${email}" id="MEMBER_EMAIL" /></td>
 			</tr> 
 		</tbody>
 	</table>
 
 
 
-	<div class="zopim" __jx__id="___$_4 ___$_4"
+<!-- 	<div class="zopim" __jx__id="___$_4 ___$_4"
 		data-test-id="ChatWidgetWindow"
 		style="margin-top: 0px; margin-right: 0px; margin-bottom: 0px; padding: 0px; border: 0px; background: transparent; overflow: hidden; position: fixed; z-index: 16000001; right: 10px; bottom: 0px; border-top-left-radius: 5px; border-top-right-radius: 5px; display: none; width: 350px; height: 450px; box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 3px 2px;">
 		<iframe frameborder="0"
 			style="background-color: transparent; vertical-align: text-bottom; position: relative; width: 100%; height: 100%; min-width: 100%; min-height: 100%; max-width: 100%; max-height: 100%; margin: 0px; overflow: hidden; display: block;"
-			src="about:blank" data-test-id="ChatWidgetWindow-iframe"></iframe>
+			src="about:blank" data-test-id="ChatWidgetWindow-iframe"></iframe> -->
 <!-- 	</div> -->
 
 <!-- 	<div class="btn_type_04"> -->
-		<a href="mypage.cul"> <span>취소</span>
-		</a> <input type="submit" value="확인" />
-</div>
+<br/><br/>
+		<a href="/culture/eval/EvalList.cul" class="genric-btn primary e-large"> <span>취소</span>
+		</a> <input type="submit" value="확인" class="genric-btn primary e-large" />
+<!-- </div> -->
 </div>
 
 </form:form>
@@ -193,5 +194,6 @@
 			
 			
 			<script type="text/javascript" src="https://unpkg.com/rmodal/dist/rmodal.js"></script>
+			<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
 </body>
 </html>

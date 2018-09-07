@@ -42,8 +42,8 @@ public class MypageService implements MypageDao{
 	}
 
 	@Override
-	public Object memberModify(MemberModel memberModel) {
-		return sqlSessionTemplate.update("member.updateMember", memberModel);
+	public Object memberModify(MemberModel member) {
+		return sqlSessionTemplate.update("member.updateMember", member);
 	}
 
 	@Override
